@@ -38,8 +38,8 @@ const SIGMA_SETTINGS = {
 
 const MODE_HINTS = {
   overview: "Click a chain to drill in  ·  Click a macro factor chip to see impact  ·  Scroll to zoom",
-  chain:    "Click a stock to open its full relationship web  ·  Esc to go back",
-  ego:      "Hover to highlight connections  ·  Click any node to explore  ·  Esc to go back",
+  chain:    "Click a stock to open its full relationship web",
+  ego:      "Hover to highlight connections  ·  Click any node to explore",
 };
 
 // ── Breadcrumb navigation ────────────────────────────────────────────────────
@@ -51,30 +51,33 @@ function Breadcrumb({ mode, activeChainId, activeStockId, rawData, onNavigate })
   return (
     <nav className="breadcrumb">
       <button
-        className={`bc-btn ${mode === "overview" ? "bc-active" : ""}`}
+        className={`bc-item ${mode === "overview" ? "bc-active" : ""}`}
         onClick={() => onNavigate("overview")}
       >
-        🌏 Overview
+        Overview
       </button>
 
       {chainNode && (
-        <>
-          <span className="bc-sep">›</span>
-          <button
-            className={`bc-btn ${mode === "chain" ? "bc-active" : ""}`}
-            onClick={() => onNavigate("chain", activeChainId)}
-          >
-            {chainNode.label}
-          </button>
-        </>
+        <button
+          className={`bc-item ${mode === "chain" ? "bc-active" : ""}`}
+          onClick={() => onNavigate("chain", activeChainId)}
+        >
+          {chainNode.label}
+        </button>
       )}
 
       {stockNode && (
-        <>
-          <span className="bc-sep">›</span>
-          <span className="bc-btn bc-active">{stockNode.ticker ?? activeStockId}</span>
-        </>
+        <span className="bc-item bc-active bc-stock">
+          {stockNode.ticker ?? activeStockId}
+        </span>
       )}
+
+      <div className="bc-spacer" />
+      <div className="bc-mode-label">{
+        mode === "overview" ? "Supply Chain Map" :
+        mode === "chain"    ? "Industry View" :
+                              "Stock Focus"
+      }</div>
     </nav>
   );
 }
@@ -97,6 +100,9 @@ export default function App() {
   // Scenario overlay (macro factor id)
   const [scenarioFactorId, setScenarioFactorId] = useState(null);
 
+  // Navigation history for Back button
+  const [navHistory,       setNavHistory]       = useState([]);
+
   useEffect(() => {
     fetch("/graph-data.json")
       .then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); })
@@ -104,35 +110,57 @@ export default function App() {
       .catch(e => { setError(e.message); setLoading(false); });
   }, []);
 
-  // Escape to go up one level
+  function snapshot() {
+    return { mode, activeChainId, activeStockId, selectedNode, scenarioFactorId };
+  }
+
+  function pushHistory() {
+    setNavHistory(prev => [...prev, snapshot()]);
+  }
+
+  function goBack() {
+    setNavHistory(prev => {
+      if (!prev.length) return prev;
+      const entry = prev[prev.length - 1];
+      setMode(entry.mode);
+      setActiveChainId(entry.activeChainId);
+      setActiveStockId(entry.activeStockId);
+      setSelectedNode(entry.selectedNode);
+      setScenarioFactorId(entry.scenarioFactorId);
+      return prev.slice(0, -1);
+    });
+  }
+
+  // Escape to go back one history step
   useEffect(() => {
     function onKey(e) {
-      if (e.key !== "Escape") return;
-      if (mode === "ego")   navigateTo("chain", activeChainId);
-      else if (mode === "chain") navigateTo("overview");
+      if (e.key === "Escape") goBack();
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [mode, activeChainId]);
+  }, [navHistory]);
 
   const handleNodeAction = useCallback((action) => {
     const { type, nodeId, nodeType, attrs } = action;
     if (type === "clickStage") { setSelectedNode(null); return; }
 
-    setSelectedNode({ id: nodeId, ...attrs });
-
     if (type === "click") {
       if (nodeType === "SupplyChain") {
+        pushHistory();
         navigateTo("chain", nodeId);
       } else if (nodeType === "Stock") {
-        // Keep activeChainId for breadcrumb continuity
+        pushHistory();
         setMode("ego");
         setActiveStockId(nodeId);
+        setSelectedNode({ id: nodeId, ...attrs });
       } else if (nodeType === "MacroFactor") {
+        setSelectedNode({ id: nodeId, ...attrs });
         setScenarioFactorId(prev => prev === nodeId ? null : nodeId);
+      } else {
+        setSelectedNode({ id: nodeId, ...attrs });
       }
     }
-  }, []);
+  }, [mode, activeChainId, activeStockId, selectedNode, scenarioFactorId]);
 
   function navigateTo(toMode, chainId = null, stockId = null) {
     setMode(toMode);
@@ -141,6 +169,7 @@ export default function App() {
     if (toMode === "overview") {
       setSelectedNode(null);
       setScenarioFactorId(null);
+      setNavHistory([]);
     }
   }
 
@@ -174,7 +203,7 @@ export default function App() {
             activeChainId={activeChainId}
             activeStockId={activeStockId}
             rawData={rawData}
-            onNavigate={navigateTo}
+            onNavigate={(toMode, chainId) => { pushHistory(); navigateTo(toMode, chainId); }}
           />
         )}
 
@@ -209,6 +238,12 @@ export default function App() {
               />
             </SigmaContainer>
           </ErrorBoundary>
+        )}
+
+        {!loading && !error && navHistory.length > 0 && (
+          <button className="back-btn" onClick={goBack}>
+            ← Back
+          </button>
         )}
 
         {!loading && !error && (

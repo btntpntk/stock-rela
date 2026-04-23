@@ -275,8 +275,8 @@ function buildEgoGraph(rawData, stockId, scenarioFactorId) {
     if (seenE.has(k)) return;
     seenE.add(k);
     graph.addEdge(e.source, e.target, {
-      color: (EGO_COLORS[e.relType] ?? "#888888") + "66",
-      size:  e.relType === "MACRO_FACTOR" ? 0.6 : 1.0,
+      color: "rgba(90,90,90,0.65)",
+      size:  e.relType === "MACRO_FACTOR" ? 0.7 : 1.1,
       relType: e.relType,
       ...e,
       type: "arrow",

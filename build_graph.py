@@ -40,6 +40,27 @@ def main():
     files = sorted(RELATION_DIR.glob("*.json"))
     print(f"Processing {len(files)} files...")
 
+    # Pre-scan: collect every stock ticker so entity references to known
+    # stocks resolve to the Stock node ID instead of creating a ghost Entity node.
+    known_stocks: set[str] = set()
+    for path in files:
+        raw = path.read_text(encoding="utf-8").strip()
+        if not raw:
+            continue
+        try:
+            data = json.loads(raw)
+        except json.JSONDecodeError:
+            continue
+        for entity in data.get("entities", []):
+            if t := entity.get("ticker"):
+                known_stocks.add(t)
+
+    def resolve_entity(name: str) -> tuple[str, str]:
+        """Return (node_id, node_type) — uses Stock id when name is a known ticker."""
+        if name in known_stocks:
+            return name, "Stock"
+        return node_id("Entity", name), "Entity"
+
     for path in files:
         raw = path.read_text(encoding="utf-8").strip()
         if not raw:
@@ -60,16 +81,16 @@ def main():
             web = entity.get("relationship_web", {})
 
             for fin in web.get("financial", []):
-                eid = node_id("Entity", fin["entity"])
-                add_node(eid, "Entity", label=fin["entity"], name=fin["entity"])
+                eid, etype = resolve_entity(fin["entity"])
+                add_node(eid, etype, label=fin["entity"], name=fin["entity"])
                 add_edge(sid, eid, "FINANCIAL_RELATION",
                          relation=fin.get("relation", ""),
                          proportionality=fin.get("proportionality", ""),
                          note=fin.get("note", ""))
 
             for sc in web.get("supply_chain", []):
-                eid = node_id("Entity", sc["entity"])
-                add_node(eid, "Entity", label=sc["entity"], name=sc["entity"])
+                eid, etype = resolve_entity(sc["entity"])
+                add_node(eid, etype, label=sc["entity"], name=sc["entity"])
                 add_edge(sid, eid, "SUPPLY_CHAIN",
                          relation=sc.get("relation", ""),
                          proportionality=sc.get("proportionality", ""),
@@ -77,8 +98,8 @@ def main():
                          note=sc.get("note", ""))
 
             for eq in web.get("equity_cross_holdings", []):
-                eid = node_id("Entity", eq["entity"])
-                add_node(eid, "Entity", label=eq["entity"], name=eq["entity"])
+                eid, etype = resolve_entity(eq["entity"])
+                add_node(eid, etype, label=eq["entity"], name=eq["entity"])
                 add_edge(sid, eid, "EQUITY_HOLDING",
                          ownership_pct=eq.get("ownership_pct"),
                          holding_type=eq.get("type", ""),
@@ -88,11 +109,11 @@ def main():
                 comp_ticker = comp.get("ticker")
                 comp_entity = comp.get("entity")
                 if comp_ticker:
-                    cid = comp_ticker
-                    add_node(cid, "Stock", label=comp_ticker, name=comp_ticker, ticker=comp_ticker)
+                    cid, ctype = resolve_entity(comp_ticker)
+                    add_node(cid, ctype, label=comp_ticker, name=comp_ticker, ticker=comp_ticker)
                 elif comp_entity:
-                    cid = node_id("Entity", comp_entity)
-                    add_node(cid, "Entity", label=comp_entity, name=comp_entity)
+                    cid, ctype = resolve_entity(comp_entity)
+                    add_node(cid, ctype, label=comp_entity, name=comp_entity)
                 else:
                     continue
                 add_edge(sid, cid, "COMPETITOR",

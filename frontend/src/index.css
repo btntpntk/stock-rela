@@ -90,36 +90,77 @@ body {
 }
 .sigma-container { background: transparent !important; flex: 1; }
 
-/* ── Breadcrumb ──────────────────────────────────────────────────────────────── */
+/* ── Breadcrumb — NYT section bar ────────────────────────────────────────────── */
 .breadcrumb {
   display: flex;
-  align-items: center;
-  gap: 2px;
-  padding: 0 20px;
-  height: 44px;
+  align-items: stretch;
+  height: 40px;
   background: var(--panel);
+  border-top: 3px solid var(--text);
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
   z-index: 10;
 }
 
-.bc-btn {
-  background: none;
+.bc-item {
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
   border: none;
-  color: var(--text-muted);
+  border-right: 1px solid var(--border);
+  background: none;
   cursor: pointer;
   font-family: var(--font-sans);
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 10px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: .07em;
-  padding: 4px 8px;
-  border-radius: 2px;
+  letter-spacing: .10em;
+  color: var(--text-muted);
+  white-space: nowrap;
   transition: color .12s, background .12s;
 }
-.bc-btn:hover    { color: var(--text); background: var(--panel2); }
-.bc-btn.bc-active { color: var(--text); cursor: default; }
-.bc-sep { color: var(--border); font-size: 13px; user-select: none; padding: 0 2px; }
+.bc-item:hover              { color: var(--text); background: var(--panel2); }
+.bc-item.bc-active          { color: var(--text); cursor: default; background: var(--panel2); }
+.bc-item.bc-active.bc-stock { font-family: var(--font-serif); font-size: 12px; font-weight: 700; letter-spacing: .02em; }
+
+.bc-spacer    { flex: 1; }
+.bc-mode-label {
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  border-left: 1px solid var(--border);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ── Back button ─────────────────────────────────────────────────────────────── */
+.back-btn {
+  position: absolute;
+  top: 56px;   /* breadcrumb 40px + 16px gap */
+  left: 16px;
+  z-index: 20;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--text);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .10em;
+  padding: 6px 14px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: background .12s, box-shadow .12s;
+}
+.back-btn:hover {
+  background: var(--text);
+  color: var(--panel);
+  box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+}
 
 /* ── Mode hint ───────────────────────────────────────────────────────────────── */
 .mode-hint {
@@ -173,7 +214,7 @@ body {
   outline: none;
   transition: border-color .12s;
 }
-.search-wrap input::placeholder { color: var(--text-light); }
+.search-wrap input::placeholder { color: var(--text-light); font-family: var(--font-serif); font-style: italic; }
 .search-wrap input:focus { border-bottom-color: var(--accent); }
 
 .search-suggestions {
