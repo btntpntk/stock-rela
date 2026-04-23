@@ -408,6 +408,7 @@ body {
   border-radius: 50%;
   margin-right: 6px;
   flex-shrink: 0;
+  background: var(--text-muted);
 }
 
 .rel-group { margin-bottom: 18px; }
