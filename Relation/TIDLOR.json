@@ -1,0 +1,107 @@
+{
+  "entities": [
+    {
+      "ticker": "TIDLOR.BK",
+      "name": "Ngern Tid Lor Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bank of Ayudhya (BAY.BK / Krungsri)",
+            "relation": "Parent Company / Primary Funding Partner",
+            "proportionality": "Proportional",
+            "note": "BAY holds ~46.51% equity as of April 2026; provides critical funding synergy and access to a lower cost of funds compared to smaller peers."
+          },
+          {
+            "entity": "Vayupak Fund 1",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~3.28% equity; provides institutional stability and long-term capital backing within the SET50 index."
+          },
+          {
+            "entity": "Social Security Office (SSO)",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~0.43% equity; reflects steady domestic institutional confidence in the non-bank financial sector."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Shield Insurance Broker / Areegator",
+            "relation": "Subsidiary / Non-Interest Revenue Driver",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "Internal insurance brokerage wing; No. 2 retail non-life broker in Thailand. High-margin fee income acts as a buffer against lending margin compression."
+          },
+          {
+            "entity": "Regional Vehicle Dealers",
+            "relation": "Upstream / Strategic Partners",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Primary source for vehicle title loan leads; 2026 expansion relies on deeper integration with local auto and motorcycle dealer networks."
+          },
+          {
+            "entity": "Metropolitan / Provincial Electricity Authorities",
+            "relation": "Operational Expense Factor",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.30,
+            "note": "Branch utility costs; 2026 energy price reductions provide a minor operational tailwind for its 1,700+ location network."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Tidlor Holdings Public Company Limited",
+            "type": "Ultimate Parent",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "9 BASIL PTE. LTD.",
+            "type": "Major Shareholder / Private Equity",
+            "ownership_pct": 3.08,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "MTC.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct rival for the vehicle title loan market; MTC's aggressive provincial branch expansion pressures TIDLOR's urban-digital strategy."
+          },
+          {
+            "ticker": "SAWAD.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Competition for motorcycle and car title market share; TIDLOR differentiates through its 'Tidlor Card' revolving credit feature."
+          },
+          {
+            "ticker": "KTC.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Rivalry in the personal loan and title-loan-to-card segment (KTC P BERM vs Tidlor Card)."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thailand Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "BoT rate levels dictate cost of funds; TIDLOR benefits from a high proportion of fixed-rate debentures and Krungsri's financial support."
+          },
+          {
+            "factor": "Agricultural Commodity Prices (Rice/Rubber)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Directly correlates with the repayment capability of rural customers; 2026 price stability helps lower Expected Credit Loss (ECL) provisions."
+          },
+          {
+            "factor": "Household Debt to GDP (Thailand)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "High systemic debt (~87-90% in 2026) increases credit risk; TIDLOR's prudent loan approval (NPL target <3%) is critical for asset quality."
+          }
+        ]
+      }
+    }
+  ]
+}

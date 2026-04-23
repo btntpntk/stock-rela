@@ -1,0 +1,125 @@
+{
+  "entities": [
+    {
+      "ticker": "OR.BK",
+      "name": "PTT Oil and Retail Business Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "relation": "Primary Underwriter / Credit Provider",
+            "proportionality": "Inversely Proportional",
+            "note": "BBL acts as a lead underwriter for OR's corporate bonds (AA+ rating); rising interest rates in 2026 increase refinancing costs for expansion CAPEX in Mobility and Lifestyle segments."
+          },
+          {
+            "entity": "Kasikornbank Public Company Limited (KBANK)",
+            "relation": "Strategic Banking Partner / Underwriter",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides transactional banking and credit lines; KBANK's SME network synergies support OR's partner-based service station model."
+          },
+          {
+            "entity": "Krungthai Bank Public Company Limited (KTB)",
+            "relation": "Financial Service Provider",
+            "proportionality": "Inversely Proportional",
+            "note": "Collaborates on digital payment integration and government-linked stimulus disbursements (e.g., fuel subsidies or travel vouchers)."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "PTT Public Company Limited (PTT.BK)",
+            "relation": "Primary Upstream Supplier (Refined Oil)",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.95,
+            "note": "OR procures the majority of its petroleum products from PTT Group refineries; rising procurement costs at the refinery level compress marketing margins if pump price adjustments lag."
+          },
+          {
+            "entity": "Cafe Amazon Supply Chain",
+            "relation": "Internal Downstream Logistics",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.78,
+            "note": "100% owned; sold 429M cups in 2025. 2026 performance is tied to coffee bean sourcing costs and foot traffic in PTT stations."
+          },
+          {
+            "entity": "Aviation Fuel Customers (Airlines)",
+            "relation": "Downstream Strategic Customers",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.65,
+            "note": "2026 tourism recovery drives aviation fuel volume; OR expects to outperform the market with a targeted 1-2% share increase."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "PTT.BK",
+            "type": "Parent Company",
+            "ownership_pct": 75.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Flash Express (Flash Forward)",
+            "type": "Associate / Investment",
+            "ownership_pct": 20.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Pluz (EV Station Pluz)",
+            "type": "Subsidiary (EV Charging)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "I-Tail Corporation (ITC)",
+            "type": "Strategic Investment",
+            "ownership_pct": null,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "BCP.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition in retail oil and non-oil (Inthanin vs Cafe Amazon); BCP maintains a 29% market share in 2026."
+          },
+          {
+            "ticker": "PTG.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Competition for high-volume rural stations and membership loyalty program (Max Card vs Blue Plus)."
+          },
+          {
+            "ticker": "SHELL (Private)",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Rivalry in premium fuel segments and lubricants."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Brent/Dubai Crude Oil Price",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Weeks",
+            "logic": "High prices increase stock gain but often lead to government pressure for price caps (Oil Fund intervention), compressing marketing margins."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Crude imports are USD-denominated; a weak THB (trading ~32.11 in April 2026) increases procurement costs at the refinery gate."
+          },
+          {
+            "factor": "Domestic Consumption (Non-Oil)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Correlates with Cafe Amazon sales; a slowing Thai economy in 2026 acts as a headwind for the Lifestyle business segment."
+          },
+          {
+            "factor": "EV Penetration Rate (Thailand)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Year",
+            "logic": "Rising EV adoption reduces long-term fossil fuel demand but supports OR's transition via EV Station Pluz network growth."
+          }
+        ]
+      }
+    }
+  ]
+}

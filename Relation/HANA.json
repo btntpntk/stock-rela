@@ -1,0 +1,109 @@
+{
+  "entities": [
+    {
+      "ticker": "HANA.BK",
+      "name": "Hana Microelectronics Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Internal Cash Reserves",
+            "relation": "Primary Financier/Capex Provider",
+            "proportionality": "Proportional",
+            "note": "HANA maintains a robust 'Net Cash' position with very low debt-to-equity; expansion is largely self-funded from retained earnings."
+          },
+          {
+            "entity": "Bangkok Bank (BBL.BK)",
+            "relation": "Secondary Credit Provider/Lender",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides working capital and letters of credit for international trade; sensitive to floating interest rates on current liabilities."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "PTT Public Company Limited (PTT.BK)",
+            "relation": "Joint Venture Partner (FT1 Corp)",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.8,
+            "note": "11.5 billion THB JV to build Thailand's first Silicon Carbide (SiC) wafer plant, diversifying into the high-growth EV supply chain."
+          },
+          {
+            "entity": "Phononic Inc. (USA)",
+            "relation": "Downstream/Strategic Customer",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.7,
+            "note": "Selected as a primary supplier for solid-state cooling systems starting 3Q26, expanding HANA's footprint in AI and data center tech."
+          },
+          {
+            "entity": "Western Digital / Seagate",
+            "relation": "Downstream/Key Customers",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.65,
+            "note": "Primary buyers for PCBA and HDD-related IC assembly; performance is tied to the global storage and PC refresh cycles."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Power Master Semiconductor (PMS)",
+            "type": "Subsidiary (South Korea)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional",
+            "note": "Core R&D and manufacturing hub for SiC technology, pivotal for the group's 2026-2027 power electronics pivot."
+          },
+          {
+            "entity": "Hana Microelectronics (Cambodia)",
+            "type": "Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional",
+            "note": "Strategic relocation site for production shifted out of China due to US-China geopolitical trade fragmentation."
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "KCE.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct rival for automotive and industrial electronic manufacturing market share in Thailand."
+          },
+          {
+            "ticker": "SVI.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in the global EMS (Electronic Manufacturing Services) space for specialized industrial components."
+          },
+          {
+            "ticker": "CCET.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Rivalry in high-volume PCBA and consumer electronics manufacturing segments."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "As a 100% exporter, THB depreciation significantly boosts THB-denominated revenue and operating margins."
+          },
+          {
+            "factor": "Global Spot Gold Price (XAU/USD)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Gold is a critical raw material for IC bonding wires; price spikes directly increase Cost of Goods Sold (COGS)."
+          },
+          {
+            "factor": "LME Copper Prices",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Major component for PCB substrates and lead frames; high copper prices squeeze manufacturing spreads."
+          },
+          {
+            "factor": "Global Semiconductor Inventory Cycle",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Recovery in 2026 driven by AI adoption and EV demand directly correlates with factory utilization rates."
+          }
+        ]
+      }
+    }
+  ]
+}

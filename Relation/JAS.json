@@ -1,0 +1,95 @@
+{
+  "entities": [
+    {
+      "ticker": "JAS.BK",
+      "name": "Jasmine International Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "relation": "Primary Lender / Transactional Bank",
+            "proportionality": "Inversely Proportional",
+            "note": "BBL is the primary credit provider for the group; following the 3BB disposal, JAS maintains significant cash but remains sensitive to interest rates for JTS expansion capital."
+          },
+          {
+            "entity": "Pete Bodharamik",
+            "relation": "Controlling Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~50.31% of shares; his personal liquidity and strategic direction are the primary drivers of JAS's pivot into crypto-assets and AI."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Bitmain Technologies / NVIDIA",
+            "relation": "Upstream Hardware Provider",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.85,
+            "note": "ASIC miners and GPUs are the core CAPEX for JTS; price spikes in hardware or supply chain delays in 2026 impact mining hash-rate growth."
+          },
+          {
+            "entity": "Metropolitan Electricity Authority (MEA) / PEA",
+            "relation": "Energy Provider",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.90,
+            "note": "Electricity represents the largest OPEX for Bitcoin mining operations; 2026 Ft rate fluctuations directly impact bottom-line profitability."
+          },
+          {
+            "entity": "Vietnamese Content Distributors",
+            "relation": "Downstream Partner (Media)",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.65,
+            "note": "JAS HK secured 2026 Premier League rights in Vietnam; success depends on downstream sub-licensing and subscriber growth in the region."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "JTS.BK (Jasmine Technology Solution)",
+            "type": "Subsidiary",
+            "ownership_pct": 44.14,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "MONO.BK (Mono Next)",
+            "type": "Related Party (Shared Parent)",
+            "ownership_pct": null,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "ZIGA.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition in the domestic Bitcoin mining sector for power resources and investor capital."
+          },
+          {
+            "ticker": "PROEN.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in the data center and enterprise cloud space following JAS's shift toward high-performance computing."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Bitcoin (BTC) Price",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Direct correlation to the valuation of JTS and the primary revenue stream for the group's new core business."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "ASIC hardware and GPU imports are USD-denominated; THB weakness inflates CAPEX costs for mining and AI infrastructure."
+          },
+          {
+            "factor": "Thailand Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Affects the discount rate for future cash flows in the long-term data center and media rights segments."
+          }
+        ]
+      }
+    }
+  ]
+}

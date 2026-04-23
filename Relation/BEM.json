@@ -1,0 +1,107 @@
+{
+  "entities": [
+    {
+      "ticker": "BEM.BK",
+      "name": "Bangkok Expressway and Metro Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Krung Thai Bank (KTB.BK)",
+            "relation": "Primary Lender/Lead Arranger",
+            "proportionality": "Inversely Proportional",
+            "note": "KTB is a lead financier for BEM's massive infrastructure projects, including the MRT Orange Line; debt servicing is sensitive to loan repricing."
+          },
+          {
+            "entity": "Bangkok Bank (BBL.BK)",
+            "relation": "Major Debenture Underwriter",
+            "proportionality": "Inversely Proportional",
+            "note": "BEM maintains a large debenture profile (A(tha) rating); rising yields increase refinancing costs for its ~THB 39bn debt pool."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "CH. Karnchang (CK.BK)",
+            "relation": "Upstream/Parent & EPC Contractor",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "CK provides fixed-price, date-certain EPC support; BEM's project delivery and CAPEX efficiency are intrinsically linked to CK's performance."
+          },
+          {
+            "entity": "Siemens Mobility",
+            "relation": "Upstream/Rolling Stock & Technology",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.7,
+            "note": "Primary supplier of 53+ new trains and signaling for Blue/Orange lines; costs are sensitive to EUR/THB and global supply chain logistics."
+          },
+          {
+            "entity": "Plan B Media (PLANB.BK)",
+            "relation": "Downstream/Media Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.5,
+            "note": "Holds 20% of subsidiary BMN; MRT advertising and commercial revenue growth are optimized through Plan B's media network."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "CK.BK",
+            "type": "Parent/Major Shareholder",
+            "ownership_pct": 34.52,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "TTW.BK",
+            "type": "Associate (Water Utility)",
+            "ownership_pct": 19.45,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "CKP.BK",
+            "type": "Associate (Power Generation)",
+            "ownership_pct": 16.82,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "BTS.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival for mass transit market share and future rail concessions (Pink/Yellow/Orange lines)."
+          },
+          {
+            "ticker": "DMT.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes for urban commuter traffic on elevated tollway routes into central Bangkok."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "BoT Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "As a highly leveraged utility (6.3x net leverage), rate cuts (to 1.00% in Q1 2026) significantly lower interest-bearing debt expenses."
+          },
+          {
+            "factor": "Electricity FT Tariff",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0",
+            "logic": "Rail operations are high-intensity energy consumers; rising utility costs for MRT traction power directly compress O&M margins."
+          },
+          {
+            "factor": "Brent Oil/Retail Fuel Price",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "High fuel prices incentivize 'modal shift' where drivers switch from private cars to BEM's MRT system, increasing ridership."
+          },
+          {
+            "factor": "Chinese Tourist Arrivals",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Critical driver for 'leisure ridership' and commercial development revenue (Metro Mall) at high-traffic hub stations like Sukhumvit/Chatuchak."
+          }
+        ]
+      }
+    }
+  ]
+}

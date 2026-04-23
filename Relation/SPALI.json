@@ -1,0 +1,113 @@
+{
+  "entities": [
+    {
+      "ticker": "SPALI.BK",
+      "name": "Supalai Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bank of Ayudhya (BAY.BK / Krungsri)",
+            "relation": "Major Shareholder / Financial Partner",
+            "proportionality": "Proportional",
+            "note": "Krungsi Asset Management holds ~2.06% equity; provides significant project financing and mortgage support for homebuyers."
+          },
+          {
+            "entity": "TRIS Rating",
+            "relation": "Credit Rating Agency",
+            "proportionality": "Proportional",
+            "note": "Maintains a consistent 'A' credit rating for 12+ years as of 2026, enabling low financing costs for long-term debentures."
+          },
+          {
+            "entity": "Thai NVDR Company Limited",
+            "relation": "Institutional Vehicle",
+            "ownership_pct": 6.25,
+            "proportionality": "Proportional",
+            "note": "Primary channel for indirect foreign institutional investment; reflects international sentiment toward Thai property."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Australian Real Estate Market (Melbourne/Sydney)",
+            "relation": "International Revenue Engine",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "A core 2026 growth driver; Australia is projected to contribute THB 15bn to sales and THB 10.5bn to revenue (370% growth since 2025)."
+          },
+          {
+            "entity": "Global Raw Material Suppliers (Steel/PVC)",
+            "relation": "Upstream Construction Costs",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.85,
+            "note": "War-driven inflation in 2026 has increased the cost of petrochemical-dependent materials (PVC/wiring) by ~12%, compressing GPM."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Prateep Tangmatitham",
+            "type": "Founder / Controlling Shareholder",
+            "ownership_pct": 34.53,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Ajchara Tangmatitham",
+            "type": "Major Shareholder",
+            "ownership_pct": 6.29,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Gersh Investment Partners (Australia)",
+            "type": "Strategic Partner",
+            "ownership_pct": null,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "AP.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct rivalry in the provincial low-rise market where SPALI is expanding into 30 provinces."
+          },
+          {
+            "ticker": "LH.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in the premium detached house segment (e.g., Prima Villa vs LADAWAN)."
+          },
+          {
+            "ticker": "PSH.BK (Pruksa)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Competition for the 'first-home' buyer segment, currently squeezed by high household debt."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thai Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Easing trends in 2026 support mortgage affordability, though high household debt (90%+ GDP) remains a structural hurdle for transfers."
+          },
+          {
+            "factor": "AUD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Significant impact on the translation of 2026 Australian revenue (Target: THB 10.5bn)."
+          },
+          {
+            "factor": "Brent Crude Oil Price",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Correlates with the cost of finishing materials and logistics; 2026 geopolitical risks in the Middle East create direct margin pressure."
+          },
+          {
+            "factor": "Thailand Minimum Wage Policy",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Rising labor costs in the construction sector increase the 'new cost base' for the 28 new projects planned for 2026."
+          }
+        ]
+      }
+    }
+  ]
+}

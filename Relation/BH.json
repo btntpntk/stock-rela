@@ -1,0 +1,113 @@
+{
+  "entities": [
+    {
+      "ticker": "BH.BK",
+      "name": "Bumrungrad Hospital Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank (BBL.BK)",
+            "relation": "Major Shareholder/Financial Partner",
+            "proportionality": "Proportional",
+            "note": "BBL is a top-5 shareholder (6.7%); provides credit facilities and high-end wealth management integration for BH’s premium clientele."
+          },
+          {
+            "entity": "Bangkok Insurance (BKI.BK)",
+            "relation": "Major Shareholder/Strategic Partner",
+            "proportionality": "Proportional",
+            "note": "Leading shareholder (~10%); synergy in premium health insurance packages and captive patient referrals."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "GE HealthCare / Siemens Healthineers",
+            "relation": "Upstream/Medical Technology Providers",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.65,
+            "note": "Primary vendors for high-tech diagnostic and robotic surgery equipment; CAPEX and maintenance costs are sensitive to USD/THB volatility."
+          },
+          {
+            "entity": "DKSH (Thailand)",
+            "relation": "Upstream/Pharmaceutical Distributor",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.5,
+            "note": "Core distributor for imported specialized medicine; supply chain disruptions or global freight hikes directly compress drug margins."
+          },
+          {
+            "entity": "Global Referral Networks (Middle East/CLMV)",
+            "relation": "Downstream/Patient Pipeline",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Referral offices in 20+ countries drive the high-intensity fly-in patient volume (68% of revenue)."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "VitalLife Corporation Limited",
+            "type": "Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "RAKxa Venture Company Limited",
+            "type": "Joint Venture (Wellness)",
+            "ownership_pct": 50.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Keyoniq Health AG (Switzerland)",
+            "type": "Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "BDMS.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct rival for premium domestic and international medical tourism; BDMS's scale vs BH's specialized intensity."
+          },
+          {
+            "ticker": "BCH.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes for Middle Eastern (Kuwaiti) patient volume via World Medical Hospital (WMC)."
+          },
+          {
+            "ticker": "PR9.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Aggressive competitor for the Chinese and CLMV medical tourism segments."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Weak THB makes BH more price-competitive for fly-in patients from the US and Middle East; also generates FX gains on foreign receivables."
+          },
+          {
+            "factor": "Middle East Geopolitical Stability",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Critical for patient flow; 2026 regional conflicts in the Levant area act as a significant headwind for the 'fly-in' patient segment."
+          },
+          {
+            "factor": "Thai Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Though in a net cash position (~44% net cash to equity), rising rates increase the opportunity cost of capital and impact equity valuation multiples."
+          },
+          {
+            "factor": "Electricity FT Tariffs",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "BH operates a high-intensity single-campus facility with 24/7 HVAC and heavy diagnostic machinery requirements."
+          }
+        ]
+      }
+    }
+  ]
+}

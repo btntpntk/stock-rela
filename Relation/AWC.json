@@ -1,0 +1,107 @@
+{
+  "entities": [
+    {
+      "ticker": "AWC.BK",
+      "name": "Asset World Corp Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank (BBL.BK)",
+            "relation": "Primary Lender/Credit Provider",
+            "proportionality": "Inversely Proportional",
+            "note": "AWC utilizes substantial debt for large-scale property acquisitions and redevelopment projects; high sensitivity to interest rate hikes on corporate debentures and term loans."
+          },
+          {
+            "entity": "Krung Thai Bank (KTB.BK)",
+            "relation": "Lender/Debt Financier",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides credit facilities for state-linked infrastructure tourism initiatives and hospitality expansions."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Marriott International (MAR)",
+            "relation": "Downstream/Global Management Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.8,
+            "note": "AWC's performance is tied to the brand strength and global booking network of its management partners; Marriott manages a significant portion of its premium hotel keys."
+          },
+          {
+            "entity": "PTT Public Company Limited (PTT.BK)",
+            "relation": "Upstream/EV & Energy Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.45,
+            "note": "Strategic partnership for 'on-ion' EV charging stations across AWC properties; synergy in driving sustainable tourism traffic."
+          },
+          {
+            "entity": "Sino-Thai Engineering (STEC.BK)",
+            "relation": "Upstream/Construction Contractor",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.5,
+            "note": "Major contractor for asset enhancement and new projects; rising labor and material costs impact AWC's development CAPEX."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "TCC Business Management Co., Ltd.",
+            "type": "Parent/Major Shareholder",
+            "ownership_pct": 44.96,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "TCC Retail Co., Ltd.",
+            "type": "Parent/Major Shareholder",
+            "ownership_pct": 29.98,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "CPN.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition in the lifestyle retail and office building segments (e.g., Empire Tower vs. Central World)."
+          },
+          {
+            "ticker": "MINT.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival in the luxury hospitality segment and regional tourism market share."
+          },
+          {
+            "ticker": "ERW.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes for domestic and regional hotel travelers, particularly in the upscale segment."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "BoT Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Directly impacts the cost of servicing an asset-heavy balance sheet with significant IBD (Interest-Bearing Debt)."
+          },
+          {
+            "factor": "Chinese Tourist Arrivals",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "High-spending Chinese tourists are a critical demographic for AWC's luxury retail (Asiatique) and hospitality segments."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "A weaker THB boosts the purchasing power of international tourists, driving ADR (Average Daily Rate) and RevPAR (Revenue Per Available Room) growth."
+          },
+          {
+            "factor": "Electricity FT Tariffs",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Large-scale hospitality and commercial properties are high energy consumers; rising utility costs erode operating margins."
+          }
+        ]
+      }
+    }
+  ]
+}

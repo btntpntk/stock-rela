@@ -1,0 +1,120 @@
+{
+  "entities": [
+    {
+      "ticker": "SIRI.BK",
+      "name": "Sansiri Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "relation": "Primary Debt Financier / Lead Underwriter",
+            "proportionality": "Inversely Proportional",
+            "note": "BBL acts as a lead underwriter for SIRI's perpetual and senior bonds; rising interest rates in 2026 increase refinancing costs on their ~80bn THB total liabilities."
+          },
+          {
+            "entity": "Vayupak Fund 1",
+            "relation": "Major Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds significant equity in the SETHD (High Dividend) index; provides capital stability and long-term institutional support."
+          },
+          {
+            "entity": "Thai NVDR Company Limited",
+            "relation": "Institutional Vehicle",
+            "ownership_pct": 10.65,
+            "proportionality": "Proportional",
+            "note": "A primary channel for foreign and indirect institutional investment as of April 2026."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Siam Cement Group (SCC.BK)",
+            "relation": "Upstream Raw Material Supplier",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.82,
+            "note": "Critical supplier of cement and green building materials for Sansiri's Net-Zero projects; rising input costs directly compress the 30-31% GPM target."
+          },
+          {
+            "entity": "XSpring Capital (XPG.BK)",
+            "relation": "Strategic Associate (Fintech/Investment)",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.55,
+            "note": "Sansiri holds ~13-14% of XPG; partnership focuses on digital assets for real estate and financial services for homebuyers."
+          },
+          {
+            "entity": "Hospitality & Management Partners (The Standard / Peri)",
+            "relation": "Subsidiary Services",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.65,
+            "note": "SIRI's 'Lifestyle' segment (hotels and management) benefits directly from the 2026 tourism recovery in Bangkok and Phuket."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Siri Ventures",
+            "type": "Corporate VC Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "The Standard Hotels (International)",
+            "type": "Strategic Investment",
+            "ownership_pct": 62.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Standard International (Thailand)",
+            "type": "Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "AP.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct rivalry in the mid-to-high-end townhouse and detached house segments in Greater Bangkok."
+          },
+          {
+            "ticker": "SIRI.BK vs LH.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Compete for luxury segment dominance; Sansiri's 'BuGaan' and 'Narasiri' brands vs LH's 'LADAWAN'."
+          },
+          {
+            "ticker": "SPALI.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competition for high-rise condominium market share and provincial project expansion."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thai Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "BoT rate levels dictate mortgage affordability; SIRI is highly sensitive to credit underwriting and bank rejection rates (target 2026 presales of 41bn THB)."
+          },
+          {
+            "factor": "Domestic Consumer Confidence Index",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Directly impacts 'take-up rates' for new launches (33 projects valued at 51bn THB in 2026)."
+          },
+          {
+            "factor": "International Tourist Arrivals (Phuket focus)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Phuket is a core 2026 expansion node for Sansiri; tourism growth drives demand for second homes and luxury villas."
+          },
+          {
+            "factor": "Household Debt to GDP (Thailand)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "High debt levels in 2026 pressure the 'Affordable' housing segment, forcing SIRI to pivot 41% of launches toward the 'Medium' segment."
+          }
+        ]
+      }
+    }
+  ]
+}

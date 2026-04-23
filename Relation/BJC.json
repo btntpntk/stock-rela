@@ -1,0 +1,119 @@
+{
+  "entities": [
+    {
+      "ticker": "BJC.BK",
+      "name": "Berli Jucker Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "relation": "Primary Lender / Credit Provider",
+            "proportionality": "Inversely Proportional",
+            "note": "BBL is the main financier for TCC Group's acquisition-led growth; BJC's high Net D/E ratio (~1.18x) makes interest expense highly sensitive to BBL's prime lending rate."
+          },
+          {
+            "entity": "Vayupak Fund 1",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds approx. 1.5% equity; provides institutional liquidity and reflects sovereign-linked fund sentiment."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "DHL Supply Chain (Thailand)",
+            "relation": "Logistics Joint Venture Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "A 2025/2026 JV to optimize Big C's distribution and enter the healthcare distribution market; efficiency gains directly impact SG&A margins."
+          },
+          {
+            "entity": "PTT Public Company Limited (PTT.BK)",
+            "relation": "Upstream Energy Provider",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Supplies natural gas for glass furnace operations; energy is a primary cost driver in the Packaging Supply Chain segment."
+          },
+          {
+            "entity": "Thai Beverage PCL (ThaiBev)",
+            "relation": "Major B2B Customer (Affiliate)",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.90,
+            "note": "Captive demand from TCC Group's beverage arm for glass containers and aluminum cans; performance of ThaiBev beverages drives BJC's packaging volume."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "TCC Corporation",
+            "type": "Parent Company",
+            "ownership_pct": 74.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Big C Supercenter PCL",
+            "type": "Wholly Owned Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "MM Mega Market (Vietnam)",
+            "type": "Subsidiary (via TCCLI)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "CPAXT.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition between Big C and Lotus's/Makro in hypermarket and wholesale segments."
+          },
+          {
+            "ticker": "CPALL.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Mini Big C competes for convenience market share against 7-Eleven's dominant footprint."
+          },
+          {
+            "ticker": "SCGP.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competition in the consumer packaging and paper-based product segments."
+          },
+          {
+            "ticker": "BGC.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival in the domestic glass container manufacturing market."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Aluminum LME Price",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+3 Months",
+            "logic": "Major raw material for can manufacturing; rising global aluminum prices compress margins in the Packaging segment."
+          },
+          {
+            "factor": "Global Wood Pulp Price",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+2 Months",
+            "logic": "Direct cost input for tissue brands (Cellox, Zilk); price spikes negatively affect Consumer Supply Chain GPM."
+          },
+          {
+            "factor": "Thailand Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "BJC carries substantial debt (~200bn THB); a 25bps hike significantly increases finance costs and reduces net earnings."
+          },
+          {
+            "factor": "Domestic Consumer Confidence Index",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Correlates strongly with Same Store Sales Growth (SSSG) for Big C's retail formats."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "entities": [
+    {
+      "ticker": "CCET.BK",
+      "name": "Cal-Comp Electronics (Thailand) Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Far Eastern International Bank",
+            "relation": "Lender/Major Shareholder",
+            "proportionality": "Inversely Proportional",
+            "note": "A major Taiwanese creditor and shareholder (~15.8%); interest rate hikes in Taiwan or Thailand increase the cost of short-term OD and long-term borrowing."
+          },
+          {
+            "entity": "KGI Asia Limited",
+            "relation": "Financial Services/Strategic Partner",
+            "proportionality": "Proportional",
+            "note": "Acts as a primary financial intermediary and major shareholder; provides liquidity and credit facilities for regional expansion."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Western Digital / Seagate",
+            "relation": "Downstream/Key Customers",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "CCET is a critical PCBA and component manufacturer for the HDD cluster in Thailand; global storage demand directly drives volume."
+          },
+          {
+            "entity": "HP / Epson / Canon",
+            "relation": "Downstream/OEM Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Major manufacturer of ink-jet and laser printers; global consumer spending on home office tech impacts quarterly revenues."
+          },
+          {
+            "entity": "Nvidia / AMD",
+            "relation": "Upstream/Chipset Providers",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.6,
+            "note": "Raw material costs; global semiconductor supply constraints or price hikes for chipsets used in AI/PCBA applications compress margins."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Kinpo Electronics, Inc.",
+            "type": "Parent",
+            "ownership_pct": 49.99,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Cal-Comp Electronics (Malaysia) Sdn. Bhd.",
+            "type": "Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Cal-Comp (Brazil)",
+            "type": "Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "DELTA.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competition for high-value power electronics and EV component manufacturing capacity."
+          },
+          {
+            "ticker": "HANA.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct rival in EMS (Electronic Manufacturing Services) and semiconductor packaging."
+          },
+          {
+            "ticker": "SVI.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in industrial and telecom hardware manufacturing segments."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "As a 100% exporter, a weaker THB inflates THB-denominated revenue, though it increases the cost of imported raw materials."
+          },
+          {
+            "factor": "Global Semiconductor Index (SOX)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Correlates with global demand for electronics; high index readings signal a robust order book for EMS providers."
+          },
+          {
+            "factor": "Shanghai Containerized Freight Index (SCFI)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "High logistics costs for global exports (especially to US/EU) directly impact the net profit margins of the company."
+          }
+        ]
+      }
+    }
+  ]
+}

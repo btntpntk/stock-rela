@@ -1,0 +1,113 @@
+{
+  "entities": [
+    {
+      "ticker": "KTB.BK",
+      "name": "Krung Thai Bank Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Ministry of Finance (FIDF)",
+            "relation": "Majority Shareholder/Strategic Parent",
+            "proportionality": "Proportional",
+            "note": "Holds ~55.07% stake through the Financial Institutions Development Fund (FIDF); KTB acts as the primary vehicle for government financial policy and stimulus disbursement."
+          },
+          {
+            "entity": "Bank of Thailand (BoT)",
+            "relation": "Regulator/Monetary Policy Driver",
+            "proportionality": "Inversely Proportional",
+            "note": "2026 BoT policy rates (at ~1.25%) directly dictate Net Interest Margins (NIM); KTB targets a 2.35-2.5% NIM for 2026 amid a 'Neutral' carry environment."
+          },
+          {
+            "entity": "Vayupak Fund 1",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~3.24% stake; provides capital stability and aligns with government-linked institutional investment strategies."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "IBM / KTBCS",
+            "relation": "Upstream/Digital Infrastructure JV",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "IBM holds 90% of the KTBCS joint venture; critical for KTB's 2026 migration from legacy systems to a secure, hybrid cloud-based 'Future Banking' architecture."
+          },
+          {
+            "entity": "Accenture (Arise by Infinitas)",
+            "relation": "Upstream/Tech Talent & Innovation Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.7,
+            "note": "51/49 JV focusing on AI-driven banking and cloud engineering to support the 'Pao Tang' ecosystem expansion."
+          },
+          {
+            "entity": "Pao Tang / Infinitas by Krungthai",
+            "relation": "Downstream/Digital Distribution Hub",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "Serves >40-50 million users; the primary channel for retail credit (KTC), government bonds (USD Bond Wallet), and state welfare stimulus."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "KTC.BK (Krungthai Card)",
+            "type": "Subsidiary (Consumer Finance)",
+            "ownership_pct": 49.29,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Krungthai-AXA Life Insurance",
+            "type": "Joint Venture (Insurance)",
+            "ownership_pct": 50.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Krungthai Asset Management (KTAM)",
+            "type": "Wholly-Owned Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "BBL.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival for large-corporate lending and regional transaction banking."
+          },
+          {
+            "ticker": "GSB (Government Savings Bank)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition for mass-retail deposits and policy-driven lending mandates."
+          },
+          {
+            "ticker": "SCB.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in digital banking innovation and retail platform ecosystems."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thai Household Debt-to-GDP",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0",
+            "logic": "Persistently high debt (~90% of GDP) in 2026 remains a ceiling for retail loan growth and a primary driver for credit cost provisions (target 75-115bp)."
+          },
+          {
+            "factor": "Government Stimulus Spending (Digital Wallet)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "As the state’s fiscal agent, KTB captures transactional fees and massive deposit inflows during stimulus distribution cycles."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Influences the success of the 'USD Bond Wallet' and cross-border trade finance; a weaker THB bolsters the value of foreign-denominated assets."
+          }
+        ]
+      }
+    }
+  ]
+}

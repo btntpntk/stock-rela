@@ -1,0 +1,101 @@
+{
+  "entities": [
+    {
+      "ticker": "SISB.BK",
+      "name": "SISB Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Investors / Shareholders",
+            "relation": "Equity Owners",
+            "proportionality": "Proportional",
+            "note": "A high-dividend play in 2026; recently approved a ฿0.51 cash dividend (Ex-date Mar 6, Payment Apr 30, 2026), yielding ~4.9%."
+          },
+          {
+            "entity": "Commercial Banks (e.g., KBank, BBL)",
+            "relation": "Lenders / Transactional Banks",
+            "proportionality": "Inversely Proportional",
+            "note": "Maintains a healthy interest coverage ratio (30x+); however, rising construction costs for new buildings in 2026 increase capital expenditure sensitivity."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Ministry of Education (Thailand)",
+            "relation": "Regulator / Licensor",
+            "proportionality": "Neutral",
+            "sensitivity_index": 0.9,
+            "note": "Operates under the Private Schools Act; changes in curriculum standards or international school quotas directly affect licensing and operations."
+          },
+          {
+            "entity": "Construction Firms (e.g., for Pracha Uthit Expansion)",
+            "relation": "Upstream / Infrastructure Partners",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.7,
+            "note": "SISB Pracha Uthit is currently adding a 6-storey Secondary-Sixth Form block slated for 2026 completion; delivery delays impact enrollment capacity."
+          },
+          {
+            "entity": "Singapore Examinations and Assessment Board (SEAB)",
+            "relation": "Curriculum / Assessment Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "SISB is the official iPSLE centre; the 'Singapore Curriculum' brand is their primary competitive moat for attracting Thai and Chinese students."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Mr. Yew Hock Koh",
+            "type": "Founder / Major Shareholder",
+            "ownership_pct": 29.01,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Miss Wilawan Kaewkanokvijit",
+            "type": "Major Shareholder",
+            "ownership_pct": 25.14,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "SISB International Schools (Ekkamai, Thonburi, etc.)",
+            "type": "Managed Assets / Subsidiaries",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "International School Bangkok (ISB)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival for premium expat and high-net-worth local families."
+          },
+          {
+            "ticker": "Shrewsbury International School",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in the ultra-premium segment; SISB counters with lower tuition fees and a trilingual focus (Thai, English, Chinese)."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thai Household Income / Wealth",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Year",
+            "logic": "Demand for international schooling is a proxy for luxury discretionary spending; sensitivity to local GDP growth."
+          },
+          {
+            "factor": "Expat Population (Inward Investment)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Semester",
+            "logic": "Foreign direct investment in Thailand (e.g., EEC) drives expat enrollment, particularly in the Rayong campus."
+          },
+          {
+            "factor": "Minimum Wage / Teacher Salaries",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0",
+            "logic": "As a service-based business, staff costs (expat teachers) are the largest overhead; wage inflation squeezes operating margins (currently ~35%)."
+          }
+        ]
+      }
+    }
+  ]
+}

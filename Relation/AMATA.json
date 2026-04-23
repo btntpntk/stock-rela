@@ -1,0 +1,101 @@
+{
+  "entities": [
+    {
+      "ticker": "AMATA.BK",
+      "name": "Amata Corporation Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank (BBL.BK)",
+            "relation": "Primary Lender/Credit Provider",
+            "proportionality": "Inversely Proportional",
+            "note": "AMATA maintains significant debt facilities for land development and utility infrastructure; rising rates increase interest expense and CAPEX costs."
+          },
+          {
+            "entity": "Kasikornbank (KBANK.BK)",
+            "relation": "Lender/Financial Partner",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides working capital and project finance for industrial estate expansions in the EEC and regional markets."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "B.Grimm Power (BGRIM.BK)",
+            "relation": "Upstream/Energy Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.7,
+            "note": "Joint venture via Amata B.Grimm Power; reliable power supply is a core utility revenue driver and critical for tenant acquisition."
+          },
+          {
+            "entity": "PTT Public Company Limited (PTT.BK)",
+            "relation": "Upstream/Natural Gas Supplier",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.5,
+            "note": "Direct fuel cost for utility operations; natural gas price fluctuations through PTT NGD affect industrial service margins."
+          },
+          {
+            "entity": "Electricite du Laos (EDL)",
+            "relation": "Upstream/Regional Infrastructure Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.4,
+            "note": "Strategic partner for power infrastructure in the Amata Smart and Eco City (Laos) expansion."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "AMATAV.BK",
+            "type": "Subsidiary (Vietnam)",
+            "ownership_pct": 72.85,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "AMATAR.BK",
+            "type": "Associate (REIT)",
+            "ownership_pct": 17.01,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Amata Summit Ready Built",
+            "type": "Associate/Joint Venture",
+            "ownership_pct": 50.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "WHA.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct rival in Thailand's EEC; competition for global FDI (Data Centers, EV manufacturers) pressures land pricing."
+          },
+          {
+            "ticker": "ROJNA.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes for Japanese manufacturing tenants and electronic sector relocation."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Foreign Direct Investment (FDI) Trends",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Primary driver for land sales; sensitive to the 'China Plus One' strategy and geopolitical relocation trends."
+          },
+          {
+            "factor": "THB/USD Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "A weaker THB makes Thai industrial land more attractive to foreign investors, though it increases the cost of imported infrastructure tech."
+          },
+          {
+            "factor": "Thai Policy Interest Rate (BoT)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Directly impacts the cost of funding for high-CAPEX land development and the valuation of the group's REIT (AMATAR)."
+          }
+        ]
+      }
+    }
+  ]
+}

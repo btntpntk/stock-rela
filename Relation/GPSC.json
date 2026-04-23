@@ -1,0 +1,101 @@
+{
+  "entities": [
+    {
+      "ticker": "GPSC.BK",
+      "name": "Global Power Synergy Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "PTT Public Company Limited (PTT.BK)",
+            "relation": "Parent/Strategic Sponsor",
+            "proportionality": "Proportional",
+            "note": "As the flagship power subsidiary of PTT Group, GPSC receives credit support and project pipeline synergy."
+          },
+          {
+            "entity": "Krung Thai Bank (KTB.BK)",
+            "relation": "Primary Lender",
+            "proportionality": "Inversely Proportional",
+            "note": "Major financier for the Glow Energy acquisition debt and long-term project loans; rising rates increase interest expense."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "PTT Public Company Limited (PTT.BK)",
+            "relation": "Upstream/Natural Gas Supplier",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Natural gas is the primary feedstock for SPP/IPP plants. High fuel costs compress margins if Ft adjustments lag."
+          },
+          {
+            "entity": "EGAT (Electricity Generating Authority of Thailand)",
+            "relation": "Downstream/Primary Off-taker",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.9,
+            "note": "Revenue stability is secured via long-term Power Purchase Agreements (PPAs) for IPP and SPP segments."
+          },
+          {
+            "entity": "PTT Global Chemical (PTTGC.BK)",
+            "relation": "Downstream/Industrial Customer",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Key industrial user for steam and electricity; performance correlates with PTTGC's refining and petro-chemical utilization rates."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Glow Energy (GLOW)",
+            "type": "Subsidiary",
+            "ownership_pct": 99.83,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Avaada Energy (India)",
+            "type": "Associate (Renewable)",
+            "ownership_pct": 42.93,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Changfang and Xidao (CFXD)",
+            "type": "Joint Venture (Wind)",
+            "ownership_pct": 25.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "GULF.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition for IPP bidding and industrial user market share in the Eastern Economic Corridor (EEC)."
+          },
+          {
+            "ticker": "BGRIM.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Rivalry in the SPP segment for multi-tenant industrial estate customers."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Natural Gas Price (Pool Gas)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Major operating cost. Although partially pass-through via Ft, rapid spikes cause temporary margin compression."
+          },
+          {
+            "factor": "Fuel Tariff (Ft) Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+4 Months",
+            "logic": "Regulatory adjustments to electricity prices; rising Ft allows for recovery of fuel costs and margin normalization."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0",
+            "logic": "GPSC has significant USD-denominated debt and international project exposure; THB depreciation causes unrealized FX losses."
+          }
+        ]
+      }
+    }
+  ]
+}

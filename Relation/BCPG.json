@@ -1,0 +1,119 @@
+{
+  "entities": [
+    {
+      "ticker": "BCPG.BK",
+      "name": "BCPG Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangchak Corporation (BCP.BK)",
+            "relation": "Parent Company/Financial Sponsor",
+            "proportionality": "Proportional",
+            "note": "BCP holds ~57.81% stake; provides strategic direction and credit support for large-scale energy transitions."
+          },
+          {
+            "entity": "Bangkok Bank (BBL.BK)",
+            "relation": "Primary Lender/Facility Agent",
+            "proportionality": "Inversely Proportional",
+            "note": "Major provider of project finance for domestic solar and international wind assets; debt servicing costs rise with interest rates."
+          },
+          {
+            "entity": "Kasikornbank (KBANK.BK)",
+            "relation": "Joint Venture Partner/Lender",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides working capital and is involved in digital energy platform financing; sensitive to BoT policy shifts."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "PJM Interconnection (USA)",
+            "relation": "Downstream/Market Operator",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.9,
+            "note": "Primary market for US natural gas assets; 2026 capacity payments are a core revenue driver at ~$215/MW-day."
+          },
+          {
+            "entity": "EGAT (Electricity Generating Authority of Thailand)",
+            "relation": "Downstream/PPA Customer",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Long-term PPAs for solar and wind assets provide stable, inflation-indexed cash flows."
+          },
+          {
+            "entity": "Vestas / Goldwind",
+            "relation": "Upstream/Turbine Suppliers",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.55,
+            "note": "Suppliers for the Monsoon Wind project in Laos; CAPEX is sensitive to global logistics and raw material prices."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Alpha Chartered Energy Co., Ltd.",
+            "type": "Strategic Shareholder",
+            "ownership_pct": 16.82,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Monsoon Wind Power (Laos)",
+            "type": "Associate (Investment)",
+            "ownership_pct": null,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Impact Energy Asia Development",
+            "type": "Joint Venture",
+            "ownership_pct": 45.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "GULF.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition for renewable concessions and regional infrastructure S-curves (Data Centers)."
+          },
+          {
+            "ticker": "GPSC.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes for EV battery storage leadership and PTT group-linked energy synergy."
+          },
+          {
+            "ticker": "BGRIM.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Rival in regional industrial user (IU) solar rooftop and regional wind expansion."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "US PJM Capacity Prices",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Major uplift in US CCGT earnings as capacity payments surged from 2025 levels due to data center demand."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Majority of revenue (US, Laos, Vietnam) is USD-linked; THB depreciation provides significant translation gains."
+          },
+          {
+            "factor": "Thai Ft (Fuel Tariff)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Impacts the selling price to industrial users in Thailand; rising Ft bolsters domestic solar rooftop margins."
+          },
+          {
+            "factor": "Henry Hub Natural Gas",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0",
+            "logic": "Operational cost for US gas plants; partially hedged but spot spikes can compress margins."
+          }
+        ]
+      }
+    }
+  ]
+}

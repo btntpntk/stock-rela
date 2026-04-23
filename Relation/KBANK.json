@@ -1,0 +1,107 @@
+{
+  "entities": [
+    {
+      "ticker": "KBANK.BK",
+      "name": "Kasikornbank Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bank of Thailand (BoT)",
+            "relation": "Monetary Regulator / Policy Source",
+            "proportionality": "Proportional",
+            "note": "BoT policy rate cuts (1.00% as of Q1 2026) directly impact NIM; KBANK's high floating-rate loan mix makes earnings sensitive to yield curve shifts."
+          },
+          {
+            "entity": "Gulf Development Public Company Limited (GULF.BK)",
+            "relation": "Largest Shareholder / Strategic Stakeholder",
+            "proportionality": "Proportional",
+            "note": "GULF increased its stake to 10.03% in early 2026, becoming the largest shareholder; provides capital stability and potential for enterprise AI/energy ecosystem financing."
+          },
+          {
+            "entity": "JK Asset Management (JK AMC)",
+            "relation": "Joint Venture (NPL Management)",
+            "proportionality": "Proportional",
+            "note": "50/50 JV with JMT to manage distressed assets; success in debt recovery through this vehicle directly bolsters KBANK's provision reversals and net profit."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "KASIKORN Business-Technology Group (KBTG)",
+            "relation": "Internal Technology / AI Infrastructure",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "The primary driver of the 'AI-First' strategy; failure in KBTG's infrastructure delivery would severely compromise the Bank's 2026 digital-first targets."
+          },
+          {
+            "entity": "Grab Holdings",
+            "relation": "Strategic Synergy Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.70,
+            "note": "Strategic data partnership for digital lending and payment ecosystem integration; Grab's user growth expands KBANK's addressable retail credit market."
+          },
+          {
+            "entity": "J.P. Morgan Asset Management",
+            "relation": "Strategic Wealth Management Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.65,
+            "note": "Co-developer of global investment products; KBANK's fee-based income is increasingly dependent on international asset management performance."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Orbix Trade Co., Ltd.",
+            "type": "Subsidiary (Digital Assets)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "KASIKORN RESEARCH CENTER",
+            "type": "Subsidiary (Economic Research)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Bank Maspion (Indonesia)",
+            "type": "Subsidiary (Regional Expansion)",
+            "ownership_pct": 84.55,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "SCB.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival in the 'Universal Digital Bank' race; market share shifts in retail deposits and wealth management are a zero-sum competition."
+          },
+          {
+            "ticker": "BBL.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition for large-scale corporate lending and trade finance, particularly in the EEC and regional CLMV markets."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thailand GDP Growth",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Directly correlates with credit demand and loan quality; 2026 forecast is 1.9%, driving the target 0-2% loan growth."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Weak THB (trading around 32.79 in March 2026) increases default risks for import-heavy SME clients while benefiting export-led corporate portfolios."
+          },
+          {
+            "factor": "Thailand Minimum Retail Rate (MRR)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Adjusted to 6.58% in Q1 2026; primary determinant of yields from the bank's retail and mortgage books."
+          }
+        ]
+      }
+    }
+  ]
+}

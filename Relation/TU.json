@@ -1,0 +1,90 @@
+{
+  "entities": [
+    {
+      "ticker": "TU.BK",
+      "name": "Thai Union Group Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Mitsubishi Corporation",
+            "relation": "Strategic Partner/Major Shareholder",
+            "proportionality": "Proportional",
+            "note": "Collaborates on global food distribution and joint ventures in functional ingredients."
+          },
+          {
+            "entity": "Red Lobster",
+            "relation": "Discontinued Investment/Former Associate",
+            "proportionality": "Inversely Proportional",
+            "note": "TU completed its exit strategy in early 2026; the removal of this loss-making 'minority investment' has significantly de-risked the balance sheet."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Tuna Raw Material Market",
+            "relation": "Upstream/Commodity Dependency",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.9,
+            "note": "Prices reached $2,000/ton in March 2026; high costs are expected to impact margins starting 3Q26 once low-cost inventory is depleted."
+          },
+          {
+            "entity": "Thai Union Feedmill (TFM.BK)",
+            "relation": "Internal/Feed Supply Subsidiary",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.7,
+            "note": "Ensures vertical integration for aquaculture and pet food business segments."
+          },
+          {
+            "entity": "Avanti Feeds (India)",
+            "relation": "Strategic Joint Venture",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.65,
+            "note": "Key partner for shrimp feed and processing in the South Asian market."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "i-Tail Corporation (ITC.BK)",
+            "type": "Subsidiary (Pet Care)",
+            "ownership_pct": 77.8,
+            "proportionality": "Proportional",
+            "note": "The group's high-margin growth engine; ITC's record purchase orders drive TU's 2026 performance."
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "CPF.BK (Charoen Pokphand Foods)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Rivalry in the global frozen seafood and processed meat sectors."
+          },
+          {
+            "ticker": "MOWI (Mowi ASA)",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Global competitor in value-added seafood and aquaculture."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "US/EU Import Tariffs",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0",
+            "logic": "TU implemented price adjustments in 1Q26 to mitigate the impact of rising tariffs on its processed seafood exports."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "As a global exporter, a weaker Baht bolsters translated THB revenue and overall competitiveness."
+          },
+          {
+            "factor": "Sustainability-Linked Bond Targets",
+            "proportionality": "Proportional",
+            "impact_lag": "T+Long Term",
+            "logic": "TU's ฿9bn 'Blue Bond' (2026) ties financing costs to SeaChange® 2030 sustainability KPIs."
+          }
+        ]
+      }
+    }
+  ]
+}

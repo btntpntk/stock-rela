@@ -1,0 +1,128 @@
+{
+  "entities": [
+    {
+      "ticker": "PLANB.BK",
+      "name": "Plan B Media Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "VGI Public Company Limited (VGI.BK)",
+            "relation": "Largest Shareholder/Strategic Associate",
+            "proportionality": "Proportional",
+            "note": "VGI holds ~24.13% stake (as of 2026). The partnership allows for cross-platform sales management; VGI's financial health and BTS ridership directly impact PLANB's managed media revenue."
+          },
+          {
+            "entity": "TMBThanachart Bank (TTB.BK)",
+            "relation": "Primary Debenture Registrar/Lender",
+            "proportionality": "Inversely Proportional",
+            "note": "Acts as registrar for the SME26NA and SME27DA series; rising interest rates increase the cost of capital for their aggressive ฿4bn acquisition of Hello LED."
+          },
+          {
+            "entity": "Government Savings Bank (GSB)",
+            "relation": "Major Debenture Underwriter/Registrar",
+            "proportionality": "Inversely Proportional",
+            "note": "Serves as registrar for the ฿6.0bn 2026 debenture series; PLANB's refinancing capability is sensitive to GSB's credit terms."
+          },
+          {
+            "entity": "Mr. Palin Lojanagosin",
+            "relation": "Founder/Major Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~23.82% stake; strategic direction and majority control over 'Engagement Marketing' pivots (Boxing, Olympics) remain with the founder."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "VGI Public Company Limited (VGI.BK)",
+            "relation": "Upstream/Media Management Rights",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.9,
+            "note": "PLANB manages the sales and marketing for VGI's entire OOH portfolio; a significant portion of 'Transit' revenue is derived from this agency-style agreement."
+          },
+          {
+            "entity": "Bangkok Metro Networks (BMN)",
+            "relation": "Upstream/MRT Concession Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.8,
+            "note": "PLANB holds 20% of BMN; commercial rights for MRT Blue Line media are critical for the 'Transit' segment revenue floor."
+          },
+          {
+            "entity": "CP ALL (CPALL.BK)",
+            "relation": "Downstream/Retail Media Channel",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.65,
+            "note": "Exclusive provider of digital screens inside ~14,000 7-Eleven stores; success depends on foot traffic and CPALL's outlet expansion."
+          },
+          {
+            "entity": "Football Association of Thailand (FAT)",
+            "relation": "Upstream/Content Rights Provider",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Holds exclusive management rights for FAT and Thai League until 2028; performance is tied to the commercial success of national football."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Hello Bangkok LED Co., Ltd.",
+            "type": "Wholly-Owned Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional",
+            "note": "Acquired for ฿4bn in 2025; consolidates market leadership in static and digital billboard segments."
+          },
+          {
+            "entity": "BMN (Bangkok Metro Networks)",
+            "type": "Strategic Associate",
+            "ownership_pct": 20.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Independent Artist Management (iAM)",
+            "type": "Subsidiary (Talent)",
+            "ownership_pct": 35.0,
+            "proportionality": "Proportional",
+            "note": "Manages BNK48/CGM48; provides the foundation for the 'Artist Management' revenue stream."
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "VGI.BK",
+            "market_share_overlap": "Extreme",
+            "proportionality": "Inversely Proportional",
+            "note": "While allies, they are the two dominant players for OOH budgets; VGI focuses on the BTS ecosystem, while PLANB dominates billboards and retail."
+          },
+          {
+            "ticker": "MACO (Master Ad)",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in provincial static media; PLANB has largely neutralized this threat through Resell agreements."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "2026 Thai General Election",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Electoral spending in early 2026 drives a surge in demand for static billboards and transit media across the country."
+          },
+          {
+            "factor": "2026 FIFA World Cup",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "As a rights manager for international sports broadcasting, PLANB captures a major revenue spike from sponsorships and airtime sales."
+          },
+          {
+            "factor": "Foreign Tourist Arrivals",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Forecasted 35.5M arrivals in 2026 drive occupancy and spending in 'Airport' and 'Retail' media segments (Mega Bangna, Central malls)."
+          },
+          {
+            "factor": "Thai Household Debt-to-GDP",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "High debt (~90%) constrains consumer goods (FMCG) advertising budgets, which are the primary source of OOH spending."
+          }
+        ]
+      }
+    }
+  ]
+}

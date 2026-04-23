@@ -1,0 +1,125 @@
+{
+  "entities": [
+    {
+      "ticker": "IRPC.BK",
+      "name": "IRPC Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Krungthai Bank Public Company Limited (KTB)",
+            "relation": "Primary Banking & FX Strategic Partner",
+            "proportionality": "Inversely Proportional",
+            "note": "KTB leads the 2026 ESG Data-Integrated FX Total Solutions Program for IRPC; interest rate hikes increase debt servicing on its ~50bn THB net debt."
+          },
+          {
+            "entity": "Siam Commercial Bank (SCB.BK)",
+            "relation": "Debenture Arranger / Project Financier",
+            "proportionality": "Inversely Proportional",
+            "note": "A lead arranger for 2026 senior unsecured debentures; critical for managing the company's 'A-' rated credit facilities."
+          },
+          {
+            "entity": "Social Security Office (SSO)",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds 1.98% equity; provides institutional stability and aligns with government-linked fund interest in national energy infrastructure."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "PTT Public Company Limited (PTT.BK)",
+            "relation": "Upstream Crude Supplier / Parent",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.95,
+            "note": "PTT supplies the bulk of crude feedstock; rising crude costs increase working capital requirements despite potential stock gains."
+          },
+          {
+            "entity": "Industrial Users (Rayong Industrial Zone)",
+            "relation": "Downstream Customers",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.80,
+            "note": "Direct demand for refinery and petrochemical products (PE/PP) from regional manufacturing hubs."
+          },
+          {
+            "entity": "IRPC Oil Company Limited",
+            "relation": "Downstream Distribution Subsidiary",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.90,
+            "note": "100% owned; handles the distribution of refined products, directly linking retail volume to parent output."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "PTT Public Company Limited (PTT.BK)",
+            "type": "Parent Company",
+            "ownership_pct": 45.05,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "GPSC.BK (Global Power Synergy)",
+            "type": "Joint Venture Partner (IRPC Clean Power)",
+            "ownership_pct": 48.99,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "WHA Industrial Estate Rayong",
+            "type": "Joint Venture",
+            "ownership_pct": 40.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Innopolymed Company Limited",
+            "type": "Subsidiary (Medical Grade)",
+            "ownership_pct": 60.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "PTTGC.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival in the integrated petrochemical (Olefins/Aromatics) and refining space."
+          },
+          {
+            "ticker": "TOP.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Competition for refining margins and high-quality petroleum product market share."
+          },
+          {
+            "ticker": "SPRC.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Rivalry in refined petroleum products specifically for the domestic fuel market."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Gross Refining Margin (GRM)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Reflects the spread between crude costs and refined product prices; 2026 performance is highly sensitive to regional gasoline/diesel crack spreads."
+          },
+          {
+            "factor": "Petrochemical Spreads (PE/PP vs Naphtha)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "A recovery in PP/PE spreads is expected in 2026; primary driver of the Integrated Product Margin (GIM)."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Crude is priced in USD; a weak THB increases feedstock costs and creates potential FX losses on USD-denominated debt."
+          },
+          {
+            "factor": "Brent Crude Oil Price",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Rising prices increase input costs and operational cash flow needs, though partially offset by stock gains in 2026 volatile markets."
+          }
+        ]
+      }
+    }
+  ]
+}

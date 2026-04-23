@@ -1,0 +1,109 @@
+{
+  "entities": [
+    {
+      "ticker": "SCC.BK",
+      "name": "The Siam Cement Public Company Limited (SCG)",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Crown Property Bureau",
+            "relation": "Largest Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~33% stake; ensures long-term institutional stability and alignment with national infrastructure interests."
+          },
+          {
+            "entity": "Bangkok Bank (BBL.BK) / Kasikornbank (KBANK.BK)",
+            "relation": "Primary Lenders/Bond Underwriters",
+            "proportionality": "Inversely Proportional",
+            "note": "Major providers of long-term debt and debenture management; SCC's ฿30bn 2026 investment plan is sensitive to bank credit terms and policy rates."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "SCG Chemicals (SCGC)",
+            "relation": "Core Subsidiary/Petrochemical Arm",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.9,
+            "note": "Primary profit driver; earnings are highly sensitive to the PE/PP-Naphtha spread, which is projected to recover in 2H26 as global oversupply eases."
+          },
+          {
+            "entity": "Long Son Petrochemicals (LSP) Vietnam",
+            "relation": "Strategic Growth Project",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "A ฿16bn Ethane Feedstock enhancement project (2026-2027) aims to lower production costs and capture Vietnam's 7% GDP growth."
+          },
+          {
+            "entity": "SCG Packaging (SCGP.BK)",
+            "relation": "Subsidiary/Packaging Arm",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Provides defensive cash flow (~75% consumer-linked); 2026 focus on mergers and partnerships in Vietnam and Indonesia."
+          },
+          {
+            "entity": "Coal & Naphtha Suppliers",
+            "relation": "Upstream/Raw Material Providers",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.8,
+            "note": "Energy and feedstock costs directly impact margins for the Cement and Chemical units; price spikes are a major downside risk."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "SCG Decor (SCGD.BK)",
+            "type": "Subsidiary (Ceramic/Hardware)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Global House (GLOBAL.BK)",
+            "type": "Associate (Strategic Retail)",
+            "ownership_pct": 32.9,
+            "proportionality": "Proportional",
+            "note": "Primary distribution channel for SCC's cement and building products in regional Thailand."
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "SCCC.BK (Siam City Cement)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct rival in the domestic cement and construction materials market."
+          },
+          {
+            "ticker": "PTTGC.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in the olefins and polymers sector; rival for global petrochemical market share."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "PE/PP-Naphtha Spread",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "The single most important driver for SCC's bottom line; consensus expects a rebound from early 2026 troughs by 3Q26."
+          },
+          {
+            "factor": "Thai Government Infrastructure Spending",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Drives volume for the Cement-Construction Materials business (CBM); 2026 public project acceleration is a key catalyst."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "A weaker THB boosts translated export revenue (Chemicals/Packaging) but increases the cost of imported coal and naphtha."
+          },
+          {
+            "factor": "Global Interest Rate Cycle (Fed/BoT)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Impacts the cost of servicing the ฿400bn+ asset base and influences the valuation of its diverse investment portfolio."
+          }
+        ]
+      }
+    }
+  ]
+}

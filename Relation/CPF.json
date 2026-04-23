@@ -1,0 +1,113 @@
+{
+  "entities": [
+    {
+      "ticker": "CPF.BK",
+      "name": "Charoen Pokphand Foods Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Siam Commercial Bank (SCB.BK)",
+            "relation": "Primary Lender/Lead Arranger",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides significant credit facilities for international M&A; rising interest rates increase the servicing cost of its high debt-to-EBITDA load (~8x-10x)."
+          },
+          {
+            "entity": "Bangkok Bank (BBL.BK)",
+            "relation": "Major Debt Provider/Debenture Underwriter",
+            "proportionality": "Inversely Proportional",
+            "note": "BBL is a core financier for CP Group's large-scale agro-industrial infrastructure; sensitive to policy rate hikes."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Bangkok Produce Merchandising (BPM)",
+            "relation": "Upstream/Raw Material Procurement",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Subsidiary handling procurement of corn and soy; price volatility in feed ingredients directly impacts gross margins (feed accounts for ~50-60% of farm costs)."
+          },
+          {
+            "entity": "CP ALL.BK",
+            "relation": "Downstream/Key Distribution Channel",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.7,
+            "note": "Operates 7-Eleven; serves as a primary retail outlet for CPF's ready-to-eat (RTE) meals and processed food products."
+          },
+          {
+            "entity": "CPAXT.BK",
+            "relation": "Downstream/Wholesale Channel",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.65,
+            "note": "Makro and Lotus's are major volume buyers of CPF's fresh meat (pork/chicken) for the HORECA and retail segments."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "CPALL.BK",
+            "type": "Associate",
+            "ownership_pct": 34.77,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "CPAXT.BK",
+            "type": "Associate",
+            "ownership_pct": 8.85,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Chia Tai Investment (China)",
+            "type": "Associate/Investment",
+            "ownership_pct": 35.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "BTG.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct rival in premium meat and feed; competition for domestic market share in Thailand's livestock sector."
+          },
+          {
+            "ticker": "TFG.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Competitor in poultry and swine; price wars in domestic carcasses negatively affect CPF's farm revenue."
+          },
+          {
+            "ticker": "GFPT.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competitor specifically in the chicken export and processing segment."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Domestic Swine/Pork Prices",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Direct revenue driver; 10% change in swine prices correlates with ~5% change in net profit."
+          },
+          {
+            "factor": "Corn & Soybean CBOT Prices",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 to T+3 Months",
+            "logic": "Major raw material inputs for feed; higher global grain prices compress margins if output prices cannot be passed on."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "62% of revenue is international; a weaker THB (higher USD/THB) results in higher translated earnings and export competitiveness."
+          },
+          {
+            "factor": "China Swine Cycle (Muyuan Benchmark)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "China is a critical market for associates; oversupply or low prices in China (e.g., RMB <14/kg) lead to losses for CPF's China operations."
+          }
+        ]
+      }
+    }
+  ]
+}

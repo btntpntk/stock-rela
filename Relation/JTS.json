@@ -1,0 +1,120 @@
+{
+  "entities": [
+    {
+      "ticker": "JTS.BK",
+      "name": "Jasmine Technology Solution Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Jasmine International (JAS.BK)",
+            "relation": "Parent/Financial Sponsor",
+            "proportionality": "Proportional",
+            "note": "Receives significant financial assistance and collateral support for debenture issuance from its parent company."
+          },
+          {
+            "entity": "Siam Commercial Bank (SCB.BK)",
+            "relation": "Lender/Transactional Bank",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides credit facilities for ICT operations; sensitive to interest rate fluctuations affecting debt servicing costs."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Bitmain Technologies",
+            "relation": "Upstream/Hardware Supplier",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Primary supplier of Antminer ASICs (S21/S19 series); Capex is highly sensitive to hardware pricing and global chip supply."
+          },
+          {
+            "entity": "Provincial Electricity Authority (PEA)",
+            "relation": "Upstream/Energy Provider",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.95,
+            "note": "Bitcoin mining is energy-intensive; electricity costs (FT tariff) are the largest operational expense."
+          },
+          {
+            "entity": "KT Corporation (Korea)",
+            "relation": "Strategic Partner/AI Infrastructure",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.7,
+            "note": "Collaboration on Generative AI (JAI brand) and Hyperscale Data Centers; drives the high-margin tech solution segment."
+          },
+          {
+            "entity": "Upstage (AI Developer)",
+            "relation": "Upstream/LLM Technology Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.6,
+            "note": "Strategic partner for developing the 'JAI' Thai LLM model, enhancing the ICT solution's competitive moat."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Jasmine International (JAS.BK)",
+            "type": "Parent",
+            "ownership_pct": 44.14,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "JasTel Network Co., Ltd.",
+            "type": "Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Cloud Computing Solutions Co., Ltd.",
+            "type": "Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "ZIGA.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct rival in the Thai-listed Bitcoin mining space; competes for domestic investor capital in crypto-proxy stocks."
+          },
+          {
+            "ticker": "BROOK.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes as a digital asset investment play; sector rotation between pure miners and asset-holding firms."
+          },
+          {
+            "ticker": "TRUE.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Rival in the corporate ICT, Cloud, and Data Center segments in Thailand."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Bitcoin Price (BTC/USD)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "The primary revenue driver for the digital asset segment; highly volatile and direct correlation with stock price."
+          },
+          {
+            "factor": "Electricity FT Tariff",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Direct operational cost for mining rigs; rising power costs in Thailand compress mining gross profit margins."
+          },
+          {
+            "factor": "Bitcoin Network Difficulty/Hashrate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0",
+            "logic": "As global hashrate rises, JTS's share of rewards decreases, necessitating constant hardware upgrades."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Revenue from Bitcoin is in USD, while costs are primarily in THB; THB depreciation yields translation gains."
+          }
+        ]
+      }
+    }
+  ]
+}

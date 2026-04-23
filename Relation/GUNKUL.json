@@ -1,0 +1,119 @@
+{
+  "entities": [
+    {
+      "ticker": "GUNKUL.BK",
+      "name": "Gunkul Engineering Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Siam Commercial Bank (SCB.BK)",
+            "relation": "Primary Lender/Lead Financial Advisor",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides significant credit facilities for IPP project financing; interest rate hikes directly increase the cost of servicing long-term project debt."
+          },
+          {
+            "entity": "Bangkok Bank (BBL.BK)",
+            "relation": "Debenture Underwriter/Lender",
+            "proportionality": "Inversely Proportional",
+            "note": "Key partner for corporate bond issuance used to fund the 2026 'New S-Curve' expansion into data center infrastructure."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "EGAT / PEA / MEA",
+            "relation": "Downstream/Government Off-takers",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.9,
+            "note": "Primary customers for EPC services and renewable energy PPAs; revenue is secured through 20-25 year government contracts."
+          },
+          {
+            "entity": "Longi Solar / Jinko Solar",
+            "relation": "Upstream/PV Module Suppliers",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Raw material inputs for solar EPC and IPP projects; fluctuations in global PV module prices impact project IRRs."
+          },
+          {
+            "entity": "Copper & Steel Producers",
+            "relation": "Upstream/Material Suppliers",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.65,
+            "note": "Key materials for the electrical equipment manufacturing and transmission line business; price spikes squeeze manufacturing margins."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Gunkul Group Co., Ltd.",
+            "type": "Parent",
+            "ownership_pct": 50.68,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Rang Ngern Solution Co., Ltd.",
+            "type": "Subsidiary (Solar)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Gunkul Power Development (GPD)",
+            "type": "Subsidiary (EPC)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "JP One Asset (JPO)",
+            "type": "Joint Venture (Asset Management)",
+            "ownership_pct": 50.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "BGRIM.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct rival in renewable energy IPP and industrial solar rooftop solutions (GRoof vs B.Grimm Solar)."
+          },
+          {
+            "ticker": "GULF.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competition for large-scale renewable bidding and data center infrastructure synergy."
+          },
+          {
+            "ticker": "BCPG.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Rivalry in regional wind and solar project development across CLMV."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "BoT 1-Day Repo Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "As a capital-intensive utility, falling rates in 2026 significantly reduce debt-servicing costs for the 38-billion-baht EV-based debt load."
+          },
+          {
+            "factor": "Global Copper Prices (LME)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Direct cost for the electrical equipment and cable manufacturing segment; 2026 supply constraints increase COGS."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "A weaker THB benefits translation of overseas project earnings (e.g., Vietnam/Japan) and export competitiveness of electrical goods."
+          },
+          {
+            "factor": "Thai Government Solar Rooftop Subsidy",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "The 2026 THB 200,000 household tax incentive accelerates adoption for GUNKUL's GRoof retail business."
+          }
+        ]
+      }
+    }
+  ]
+}

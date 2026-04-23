@@ -1,0 +1,119 @@
+{
+  "entities": [
+    {
+      "ticker": "MEGA.BK",
+      "name": "Mega Lifesciences Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "relation": "Primary Transactional Bank / Trade Finance",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides trade credit and FX hedging facilities; interest rate hikes increase the cost of working capital despite MEGA's strong net cash position (~THB 5.6bn in 2026)."
+          },
+          {
+            "entity": "Kasikornbank Public Company Limited (KBANK)",
+            "relation": "Transactional Banking Partner",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary partner for regional payment gateways and supply chain financing in the CLMV region."
+          },
+          {
+            "entity": "Unistretch Company Limited",
+            "relation": "Ultimate Parent / Major Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds approx. 49.8% equity; provides capital stability and strategic alignment with the broader Diversified Group."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Maxcare (Distribution Business)",
+            "relation": "Internal Downstream Logistics / Distribution",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "MEGA's 100%-owned distribution wing; accounts for ~45-50% of revenue. Operational efficiency in Myanmar and Vietnam is critical for volume growth."
+          },
+          {
+            "entity": "Global API (Active Pharmaceutical Ingredient) Suppliers",
+            "relation": "Upstream Raw Material Providers",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.80,
+            "note": "Imports raw materials for its Samut Prakan and Australian plants; price spikes in pharmaceutical-grade chemicals directly compress GPM."
+          },
+          {
+            "entity": "Watsons / Boots / Local Pharmacies",
+            "relation": "Downstream Retail Distribution Channels",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Major retail gateways for the 'Mega We Care' brand; pharmacy foot traffic and shelf space allocation drive branded sales."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Mega Lifesciences (Vietnam) Ltd.",
+            "type": "Wholly Owned Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Mega Lifesciences (Australia) Pty. Ltd.",
+            "type": "Wholly Owned Subsidiary / Manufacturing",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "BiO-LiFE Marketing Sdn. Bhd. (Malaysia)",
+            "type": "Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "Blackmores (Kirin Holdings)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary global rival in the premium nutraceutical segment across Southeast Asia."
+          },
+          {
+            "ticker": "Haleon (Centrum/Caltrate)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition in the multivitamin and supplement markets in modern trade channels."
+          },
+          {
+            "ticker": "GPO (Government Pharmaceutical Organization)",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in the domestic generic medicine segment, particularly for government procurement."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "MEGA is a net exporter (>80% of revenue from international markets); THB depreciation significantly boosts revenue translation and net margins."
+          },
+          {
+            "factor": "Consumer Discretionary Spending (CLMV)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Nutraceuticals are sensitive to household income; 2026 inflation in Myanmar and Vietnam acts as a volume headwind."
+          },
+          {
+            "factor": "Global Logistics & Freight Rates",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "High exposure to international shipping for distribution to Africa and Southeast Asia; rising container rates increase OpEx."
+          },
+          {
+            "factor": "Thai Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Though net cash, higher rates impact equity valuation multiples and overall consumer credit/spending power."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "entities": [
+    {
+      "ticker": "BAM.BK",
+      "name": "Bangkok Commercial Asset Management Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Financial Institutions Development Fund (FIDF)",
+            "relation": "Major Shareholder/State-Linked Parent",
+            "proportionality": "Proportional",
+            "note": "FIDF holds approximately 45.8% of BAM; state affiliation provides superior credit rating and access to low-cost funding."
+          },
+          {
+            "entity": "Krung Thai Bank (KTB.BK)",
+            "relation": "Primary Credit Provider & NPL Seller",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides significant credit facilities; however, rising interest rates increase BAM's cost of funds on debentures and loans."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Thai Commercial Banks (BBL, KBANK, SCB)",
+            "relation": "Upstream/NPL & NPA Suppliers",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "BAM's inventory growth depends on banks offloading distressed assets; rising systemic NPLs increase BAM's acquisition pipeline."
+          },
+          {
+            "entity": "Legal Execution Department (LED)",
+            "relation": "Downstream/Liquidation Channel",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.7,
+            "note": "BAM relies on the LED for asset auctions; the speed of the judicial and auction process directly impacts cash collection cycles."
+          },
+          {
+            "entity": "Property Investors/Retail Buyers",
+            "relation": "Downstream/End Customers",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.6,
+            "note": "Purchasers of Non-Performing Assets (NPAs); demand is highly sensitive to mortgage approval rates and consumer sentiment."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "FIDF (Ministry of Finance)",
+            "type": "Parent/Major Shareholder",
+            "ownership_pct": 45.8,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Thai NVDR Co., Ltd.",
+            "type": "Institutional Holding",
+            "ownership_pct": 4.5,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "JMT.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival in the distressed debt management market; competition for NPL portfolios can drive up acquisition costs."
+          },
+          {
+            "ticker": "CHAYO.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in the unsecured and smaller-ticket secured loan acquisition segments."
+          },
+          {
+            "ticker": "KCC.BK",
+            "market_share_overlap": "Low",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes for specialized corporate debt and property-backed NPLs."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thai Policy Interest Rate (BoT)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Higher rates increase the cost of debt servicing for BAM and reduce the repayment capacity of distressed debtors."
+          },
+          {
+            "factor": "Thailand Residential Property Price Index",
+            "proportionality": "Proportional",
+            "impact_lag": "T+3 Months",
+            "logic": "Increases the appraised value of BAM's NPA inventory (land/houses), leading to higher margins upon disposal."
+          },
+          {
+            "factor": "Thai Household Debt-to-GDP",
+            "proportionality": "Proportional",
+            "impact_lag": "T+2 Quarters",
+            "logic": "Correlates with the supply of NPLs from the banking sector; high debt levels ensure a steady stream of assets for BAM to acquire."
+          },
+          {
+            "factor": "Bank Credit Standards (LTV/DSR)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0",
+            "logic": "Stricter lending makes it harder for buyers to purchase BAM's NPAs, slowing down inventory turnover (Days Sales of Inventory)."
+          }
+        ]
+      }
+    }
+  ]
+}

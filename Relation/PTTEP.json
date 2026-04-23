@@ -1,0 +1,90 @@
+{
+  "entities": [
+    {
+      "ticker": "PTTEP.BK",
+      "name": "PTT Exploration and Production Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "PTT Public Company Limited (PTT.BK)",
+            "relation": "Majority Shareholder/Parent",
+            "proportionality": "Proportional",
+            "note": "Holds ~63.79% stake; PTTEP is the group's primary cash generator and dividend engine, highly sensitive to PTT's consolidated energy strategy."
+          },
+          {
+            "entity": "Bank of New York Mellon / State Street",
+            "relation": "Institutional Shareholders",
+            "proportionality": "Proportional",
+            "note": "Hold significant minority stakes (~1.7-1.8%); indicates high foreign institutional ownership and sensitivity to global ESG fund flows."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "EGAT (Electricity Generating Authority of Thailand)",
+            "relation": "Downstream/Primary Gas Customer",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "Natural gas accounts for ~70-75% of sales volume; EGAT is the ultimate off-taker for the power sector, ensuring a stable revenue floor."
+          },
+          {
+            "entity": "Global Oilfield Service Providers (SLB, Halliburton)",
+            "relation": "Upstream/Operational Partners",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.8,
+            "note": "Rising exploration and production costs (OPEX/CAPEX) in the Middle East and Gulf of Thailand projects can squeeze unit margins."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "G1/61 (Erawan) & G2/61 (Bongkot)",
+            "type": "Core Domestic Assets",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional",
+            "note": "The backbone of Thailand's energy security; production ramp-up to 800 MMcf/d at Erawan is a key 2026 milestone."
+          },
+          {
+            "entity": "Seagreen Offshore Wind (UK)",
+            "type": "Strategic Diversification",
+            "ownership_pct": 25.5,
+            "proportionality": "Proportional",
+            "note": "Provides seasonal equity income and serves as a primary 'Decarbonize' strategy project."
+          }
+        ],
+        "competitors": [
+          {
+            "entity": "Chevron / Mitsui Oil Exploration",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition for concession renewals and new E&P block bidding in Southeast Asia."
+          },
+          {
+            "entity": "Woodside Energy / PETRONAS",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Rivalry in regional LNG development and deepwater exploration projects in Malaysia and Australia."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Brent Crude Oil Price",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "The primary determinant of the Average Selling Price (ASP); PTTEP is the purest upstream play on the SET, thriving when Brent exceeds $65/bbl."
+          },
+          {
+            "factor": "Natural Gas Price (Henry Hub / Pool Gas)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Gas prices are less volatile than oil but subject to regulatory 'Pool Gas' pricing shifts in Thailand."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Revenue is largely USD-denominated; a weaker THB acts as a significant tailwind for THB-denominated net profit and dividends."
+          }
+        ]
+      }
+    }
+  ]
+}

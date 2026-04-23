@@ -1,0 +1,101 @@
+{
+  "entities": [
+    {
+      "ticker": "TCAP.BK",
+      "name": "Thanachart Capital Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "MBK Public Company Limited (MBK.BK)",
+            "relation": "Largest Shareholder / Cross-Holding Partner",
+            "proportionality": "Proportional",
+            "note": "MBK holds ~24.9% of TCAP; likewise, TCAP holds ~23% of MBK. Their performance is deeply intertwined through equity income and shared board representation."
+          },
+          {
+            "entity": "TMBThanachart Bank (TTB.BK)",
+            "relation": "Major Associate / Strategic Asset",
+            "proportionality": "Proportional",
+            "note": "TCAP is a key shareholder (~24.9%+). In early 2026, TCAP sought BoT approval to exceed 25% ownership due to TTB's share buybacks, emphasizing TTB's role as a dividend engine."
+          },
+          {
+            "entity": "Vayupak Fund 1",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~1.14% stake; represents state-linked institutional stability and alignment with government investment themes."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Thanachart Insurance (TNI)",
+            "relation": "Wholly-Owned Subsidiary",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.8,
+            "note": "Core profit contributor; 2025/2026 performance driven by non-life insurance growth and bancassurance synergy with TTB."
+          },
+          {
+            "entity": "Ratchthani Leasing (THANI.BK)",
+            "relation": "Subsidiary (Hire Purchase)",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.9,
+            "note": "TCAP holds ~60%. Specializes in truck leasing; earnings are highly sensitive to the Thai logistics sector and industrial NPL trends."
+          },
+          {
+            "entity": "Thanachart Securities (TNS)",
+            "relation": "Wholly-Owned Subsidiary",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.6,
+            "note": "Provides brokerage and investment banking services; performance correlates with SET trading volume and IPO activity."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "MBK.BK",
+            "type": "Associate (Strategic)",
+            "ownership_pct": 23.3,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "TTB.BK",
+            "type": "Associate (Banking Flagship)",
+            "ownership_pct": 24.9,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "TISCO.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct rival for high-dividend yield bank investors and hire-purchase market share."
+          },
+          {
+            "ticker": "KKP.BK (Kiatnakin Phatra)",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in the hire-purchase, wealth management, and securities sectors."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "BoT Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "As a holding company for leasing and banking assets, rising rates increase the cost of funds for THANI and TTB, potentially squeezing interest spreads."
+          },
+          {
+            "factor": "Thai Household Debt-to-GDP",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0",
+            "logic": "High debt levels (~90% in 2026) act as a ceiling for hire-purchase loan growth and pose persistent NPL risks for THANI."
+          },
+          {
+            "factor": "Thai Private Consumption Index",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Directly impacts the performance of MBK's retail malls and Thanachart Insurance's motor premium volume."
+          }
+        ]
+      }
+    }
+  ]
+}

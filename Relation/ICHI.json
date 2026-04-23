@@ -1,0 +1,109 @@
+{
+  "entities": [
+    {
+      "ticker": "ICHI.BK",
+      "name": "Ichitan Group Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank (BBL.BK)",
+            "relation": "Primary Lender/Facility Agent",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides credit lines for factory automation and regional expansion; however, ICHI maintains a very low D/E ratio (~0.2x), making it less sensitive to rate hikes than peers."
+          },
+          {
+            "entity": "Kasikornbank (KBANK.BK)",
+            "relation": "Lender/Cash Management Provider",
+            "proportionality": "Inversely Proportional",
+            "note": "Key partner for supply chain finance and digital payment integration for retail distributors."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "CP ALL (CPALL.BK)",
+            "relation": "Downstream/Primary Distribution Channel",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.9,
+            "note": "7-Eleven is the critical sales node; ~50-60% of RTD tea volume flows through CPALL. Stock is highly sensitive to 7-Eleven SSSG and shelf-space allocation."
+          },
+          {
+            "entity": "Indorama Ventures (IVL.BK)",
+            "relation": "Upstream/PET Resin & Preform Supplier",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Packaging accounts for ~25-30% of COGS; fluctuations in global PET/Oil prices directly impact gross margins."
+          },
+          {
+            "entity": "Mitr Phol Group",
+            "relation": "Upstream/Sugar Supplier",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.65,
+            "note": "Primary sweetener source; price volatility and domestic sugar quotas affect production costs for high-sugar variants."
+          },
+          {
+            "entity": "DKSH (Thailand)",
+            "relation": "Downstream/Logistics & General Trade Distributor",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.5,
+            "note": "Facilitates reach into traditional trade (mom-and-pop shops) and regional provinces."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "PT Ichi Tan Indonesia",
+            "type": "Joint Venture (PT Atri Pasifik)",
+            "ownership_pct": 50.0,
+            "proportionality": "Proportional",
+            "note": "High-growth engine for 2026; success in the Indonesian market (Thai Milk Tea segment) significantly impacts consolidated net profit."
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "OISHI (ThaiBev Group)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct duopoly rival in RTD tea; marketing price wars and lucky draw campaigns create a zero-sum environment for market share."
+          },
+          {
+            "ticker": "SAPPE.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competition in the functional drink and 'Beauty Drink' segment; sector rotation between tea and non-tea health beverages."
+          },
+          {
+            "ticker": "Suntory PepsiCo (Tea+)",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Aggressive rival in the premium Oolong and zero-sugar segments."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thailand Sugar Tax (Phase 4)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0",
+            "logic": "The 2025/2026 tax escalation for sugar-sweetened beverages forces reformulation or price hikes, impacting volumes."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Beneficial for the growing export segment (CLMV and Indonesia), though it increases the cost of imported tea leaves (Japan)."
+          },
+          {
+            "factor": "Electricity FT Tariff",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0",
+            "logic": "Operational cost for massive bottling lines (1,700M bottles/year capacity); rising energy costs directly compress EBITDA margins."
+          },
+          {
+            "factor": "La Niña Phenomenon",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Excess rainfall/cooler weather reduces demand for cold beverages; conversely, hot weather (El Niño) acts as a strong tailwind."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "entities": [
+    {
+      "ticker": "IVL.BK",
+      "name": "Indorama Ventures Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank (BBL.BK)",
+            "relation": "Primary Lender/Lead Underwriter",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides significant credit facilities for global acquisitions; IVL's high leverage makes it sensitive to global interest rate cycles and debt refinancing costs."
+          },
+          {
+            "entity": "Siam Commercial Bank (SCB.BK)",
+            "relation": "Lender/Debt Facility Provider",
+            "proportionality": "Inversely Proportional",
+            "note": "Major financier for domestic operations and ESG-linked financing; impact of debt-to-equity covenants on capital allocation."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "PTT Global Chemical (PTTGC.BK)",
+            "relation": "Upstream/Raw Material Supplier",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.8,
+            "note": "Supplier of Paraxylene (PX) and Monoethylene Glycol (MEG) for the Thai production cluster; feed-stock price volatility directly impacts CPET margins."
+          },
+          {
+            "entity": "Coca-Cola / PepsiCo / Unilever",
+            "relation": "Downstream/Global FMCG Customers",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.9,
+            "note": "Major off-takers for PET resin and recycled PET (rPET); revenue is highly correlated with global consumer staple volumes."
+          },
+          {
+            "entity": "Integrated Oxides and Derivatives (IOD)",
+            "relation": "Internal/Upstream-Vertical",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.7,
+            "note": "Internalized production of EO/EG in the US (Huntsman assets) provides a cost hedge against external feedstock spikes."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Indorama Resources Ltd.",
+            "type": "Parent/Major Shareholder",
+            "ownership_pct": 64.73,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Indorama Ventures Oxides LLC",
+            "type": "Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "ALPEKA.MX",
+            "name": "Alpek S.A.B. de C.V.",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct global rival in the PET and PTA markets, particularly in the Americas."
+          },
+          {
+            "ticker": "1402.TW",
+            "name": "Far Eastern New Century",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in the global polyester value chain and sustainable recycling technologies."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "PET-PX/MEG Spread",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "The primary determinant of profitability; wider spreads between the finished product (PET) and raw materials (PX/MEG) lead to margin expansion."
+          },
+          {
+            "factor": "Brent Oil Price",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Input cost driver for oil-based chemicals; rising oil prices increase operational costs, though they may allow for inventory revaluation gains."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "As a global entity with ~90% of revenue outside Thailand, a weaker THB boosts translated earnings and export competitiveness."
+          },
+          {
+            "factor": "Global Freight Rates (SCFI)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "High shipping costs for global logistics (import/export of resins) compress margins, especially in the regional arbitrage business."
+          }
+        ]
+      }
+    }
+  ]
+}

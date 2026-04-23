@@ -1,0 +1,106 @@
+{
+  "entities": [
+    {
+      "ticker": "LH.BK",
+      "name": "Land and Houses Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "CTBC Bank Co., Ltd. (Taiwan)",
+            "relation": "Strategic Banking Partner (Joint Venture)",
+            "proportionality": "Proportional",
+            "note": "CTBC is the major shareholder (46.61%) of LHFG; their capital and digital banking expertise directly support LH's financial wing performance."
+          },
+          {
+            "entity": "Land and Houses Bank (LH Bank)",
+            "relation": "Subsidiary Lender",
+            "proportionality": "Proportional",
+            "note": "Primary provider of mortgages for LH residential projects; 2026 targets 10-12% loan growth to sustain property sales velocity."
+          },
+          {
+            "entity": "Social Security Office (SSO)",
+            "relation": "Major Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds 6.39% equity; provides institutional stability and reflects long-term confidence in the Thai property yield cycle."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Siam Cement Group (SCC.BK)",
+            "relation": "Upstream Material Supplier",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Primary supplier of cement and construction materials; rising input costs in the 2026 index directly compress residential GPM."
+          },
+          {
+            "entity": "Global Steel Suppliers",
+            "relation": "Upstream Raw Material Logistics",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.70,
+            "note": "The 2026 global commodity price drop (World Bank forecast) acts as a tailwind for LH's construction cost management."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "HMPRO.BK (Home Product Center)",
+            "type": "Associate / Investment",
+            "ownership_pct": 30.23,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "QH.BK (Quality Houses)",
+            "type": "Associate / Investment",
+            "ownership_pct": 24.98,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "LHFG.BK (LH Financial Group)",
+            "type": "Parent / Holding Associate",
+            "ownership_pct": 21.88,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "SIRI.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Intense rivalry in the luxury and mid-to-high-end single-detached house segments."
+          },
+          {
+            "ticker": "SPALI.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Competition for nationwide mass-market horizontal projects and high-rise condominiums."
+          },
+          {
+            "ticker": "PSH.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Rivalry in the affordable housing segment, particularly townhouses in Greater Bangkok."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thailand Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Lower 2026 interest rates (BoT cuts) reduce mortgage hurdles for buyers and lower the interest expense on LH's high corporate debt."
+          },
+          {
+            "factor": "Thailand GDP Growth",
+            "proportionality": "Proportional",
+            "impact_lag": "T+2 Quarters",
+            "logic": "1.8% GDP forecast for 2026 drives organic housing demand and consumer purchasing power for the premium segment."
+          },
+          {
+            "factor": "Construction Material Price Index",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Rising local costs (1.09% increase in Jan 2026) for electromechanical and wood products increase the Cost of Sales."
+          }
+        ]
+      }
+    }
+  ]
+}

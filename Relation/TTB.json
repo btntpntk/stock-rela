@@ -1,0 +1,107 @@
+{
+  "entities": [
+    {
+      "ticker": "TTB.BK",
+      "name": "TMBThanachart Bank Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Ministry of Finance (Thailand)",
+            "relation": "Major Shareholder / State Backer",
+            "proportionality": "Proportional",
+            "note": "Holds 11.65% as of March 2026; provides sovereign-linked stability and alignment with national financial inclusion policies."
+          },
+          {
+            "entity": "Thanachart Capital PCL (TCAP.BK)",
+            "relation": "Largest Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds 24.37% equity; TTB serves as the primary banking engine for the Thanachart Group ecosystem."
+          },
+          {
+            "entity": "ING Bank N.V.",
+            "relation": "Strategic Global Partner / Major Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds 21.69% equity; provides international banking standards and digital transformation expertise."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "ttb wealth securities",
+            "relation": "Newly Consolidated Subsidiary",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Integration in 2026 has boosted non-interest fee income from wealth management, despite a temporary spike in personnel OPEX."
+          },
+          {
+            "entity": "ttb leasing",
+            "relation": "Internal Auto-Loan Ecosystem",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.90,
+            "note": "A core 2026 growth driver focusing on the motorcycle market to extend the bank's dominant position in auto-financing."
+          },
+          {
+            "entity": "Bancassurance & Mutual Fund Partners (Prudential/Eastspring)",
+            "relation": "Downstream Fee Revenue Partners",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Core fee income is increasingly driven by these cross-selling channels under the 'Empower Your REAL Change' strategy."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "VAYUPAK FUND 1",
+            "type": "Institutional Shareholder",
+            "ownership_pct": 3.63,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "THAI NVDR COMPANY LIMITED",
+            "type": "Institutional Investment Vehicle",
+            "ownership_pct": 6.25,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "KBANK.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival in the digital-first retail banking and SME lending segments."
+          },
+          {
+            "ticker": "SCB.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Competition for high-yield retail loans and mass-affluent wealth management clients."
+          },
+          {
+            "ticker": "BAY.BK (Krungsri)",
+            "market_share_overlap": "Very High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition for the #1 spot in the Thai automobile hire-purchase market."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thai Policy Interest Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "February 2026 rate cuts put pressure on NIM (3.02% in Q1); TTB is mitigating this by shifting toward higher-yielding retail loans."
+          },
+          {
+            "factor": "Thailand Household Debt/GDP",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "High systemic debt limits loan growth (targeted at 0-2% in 2026) and necessitates strict risk-based pricing."
+          },
+          {
+            "factor": "Middle East Geopolitical Conflict",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Drivers a 'Management Overlay' in reserves (THB 1.6bn in Q1 2026) to buffer against global economic volatility."
+          }
+        ]
+      }
+    }
+  ]
+}

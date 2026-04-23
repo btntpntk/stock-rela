@@ -1,0 +1,113 @@
+{
+  "entities": [
+    {
+      "ticker": "BDMS.BK",
+      "name": "Bangkok Dusit Medical Services Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "relation": "Primary Lender & Strategic Partner",
+            "proportionality": "Inversely Proportional",
+            "note": "Maintains uncommitted facilities >20bn THB; interest rate sensitive for floating-rate debt used in hospital network expansion."
+          },
+          {
+            "entity": "Viriyah Insurance PCL",
+            "relation": "Strategic Shareholder / Insurance Partner",
+            "proportionality": "Proportional",
+            "note": "Holds ~4.3% equity; key partner in the 'AIA-BDMS' and 'Viriyah-BDMS' networks, driving insured patient traffic."
+          },
+          {
+            "entity": "Social Security Office (SSO)",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~3.8% equity; ensures alignment with national health welfare and public sector healthcare demand."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "A.N.B. Laboratories / Medicpharma",
+            "relation": "Upstream Manufacturing (Subsidiaries)",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.92,
+            "note": "Internalized production of saline and generic drugs; mitigates supply volatility and enhances margin control."
+          },
+          {
+            "entity": "National Healthcare Systems (N Health)",
+            "relation": "Lab & Logistics Support (Subsidiary)",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.88,
+            "note": "Centralized laboratory and medical equipment maintenance; high operational synergy across the 60-hospital network."
+          },
+          {
+            "entity": "General Hospital Products PCL",
+            "relation": "Upstream Associate",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.65,
+            "note": "BDMS holds 47%; provides medical supplies; vertical integration reduces procurement risk."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "BA.BK (Bangkok Airways)",
+            "type": "Strategic Shareholder / Associate",
+            "ownership_pct": 4.6,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Samitivej Public Company Limited",
+            "type": "Subsidiary",
+            "ownership_pct": 95.8,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Phyathai Hospital Group / Paolo Hospital Group",
+            "type": "Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "BH.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary competitor for premium international medical tourists and specialized tertiary care."
+          },
+          {
+            "ticker": "BCH.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competition in the mid-market segment and Social Security scheme patient volume."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Weak THB makes Thai medical services cheaper for foreign patients (medical tourism boost), offsetting USD-denominated equipment costs."
+          },
+          {
+            "factor": "Middle East Geopolitical Stability",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Conflicts in the Middle East negatively impact high-margin patient flows from Kuwait and the GCC region."
+          },
+          {
+            "factor": "Gold Price (XAU/USD)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Specific 2026 impact: BDMS provisions for long-service awards are linked to gold prices, causing non-cash expense volatility."
+          },
+          {
+            "factor": "Domestic Epidemic Trends (Influenza/Dengue)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Directly correlates with Thai patient OPD/IPD volumes, particularly in the rainy and winter seasons."
+          }
+        ]
+      }
+    }
+  ]
+}

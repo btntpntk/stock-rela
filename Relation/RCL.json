@@ -1,0 +1,103 @@
+{
+  "entities": [
+    {
+      "ticker": "RCL.BK",
+      "name": "Regional Container Lines Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Ngow Hock Company Limited",
+            "relation": "Majority Shareholder/Parent",
+            "proportionality": "Proportional",
+            "note": "Holds ~25.20% stake; Ngow Hock provides strategic backing and long-term stability for RCL's regional dominance."
+          },
+          {
+            "entity": "Thai NVDR Company Limited",
+            "relation": "Institutional Shareholder (Nominee)",
+            "proportionality": "Proportional",
+            "note": "Holds ~12.98% stake; indicative of significant foreign capital flows and sentiment towards the Thai logistics sector."
+          },
+          {
+            "entity": "Bank of New York Mellon / State Street",
+            "relation": "Institutional Shareholders",
+            "proportionality": "Proportional",
+            "note": "Hold combined ~2-3% stakes; reflects global institutional trust in RCL's operational transparency and dividend reliability."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "HD Hyundai Heavy Industries (Korea)",
+            "relation": "Upstream/Vessel Supplier",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Primary shipyard for RCL's 2026 fleet expansion, including two new 14,000 TEU eco-friendly vessels to meet IMO standards."
+          },
+          {
+            "entity": "Bunker Fuel Suppliers (VLSFO/Biofuel)",
+            "relation": "Upstream/Energy Providers",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.9,
+            "note": "Fuel is the largest variable cost; 2026 focus on 'B24 VLSFO' biofuel to mitigate carbon taxes and rising crude prices."
+          },
+          {
+            "entity": "Global Exporters (China/ASEAN)",
+            "relation": "Downstream/Key Customers",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "Revenue is 100% dependent on global trade volume; performance is sensitive to the 2026 US-China trade 'tariff war' escalation."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Regional Container Lines Pte. Ltd. (Singapore)",
+            "type": "Wholly-Owned Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional",
+            "note": "The group's international operating hub; manages the deep-sea fleet and high-capacity regional routes."
+          },
+          {
+            "entity": "RCL Logistics Co., Ltd.",
+            "type": "Subsidiary (Land-side)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional",
+            "note": "Critical for the 2026 'Integrated Logistics' pivot to stabilize earnings against volatile ocean freight rates."
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "WHL (Wan Hai Lines)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival in the Intra-Asia segment; both companies compete fiercely for slot capacity and feeder network dominance."
+          },
+          {
+            "ticker": "ZIM (ZIM Integrated Shipping)",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Rivalry in the spot-market-heavy routes; both stocks exhibit high volatility correlated with the SCFI (Shanghai Containerized Freight Index)."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Shanghai Containerized Freight Index (SCFI)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "The most direct leading indicator for RCL's revenue; 2026 oversupply risks (10%+ surplus) act as a downward pressure on this index."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "As a global carrier with USD-denominated freight income, a weaker THB significantly boosts translated net profits for SET reporting."
+          },
+          {
+            "factor": "Suez Canal Transit Status",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "The return to Suez routing in early 2026 increased effective global capacity by ~3%, contributing to the current freight rate normalization."
+          }
+        ]
+      }
+    }
+  ]
+}

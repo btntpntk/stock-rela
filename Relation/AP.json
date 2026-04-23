@@ -1,0 +1,113 @@
+{
+  "entities": [
+    {
+      "ticker": "AP.BK",
+      "name": "AP (Thailand) Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bank of Ayudhya (BAY.BK)",
+            "relation": "Primary Lender/Strategic Shareholder",
+            "proportionality": "Inversely Proportional",
+            "note": "BAY holds a 3.26% stake and provides significant credit lines; debt servicing costs rise with interest rates, impacting net margins."
+          },
+          {
+            "entity": "Siam Commercial Bank (SCB.BK)",
+            "relation": "Lender/Project Financier",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary financier for large-scale condominium and low-rise residential developments; sensitivity to floating rate facilities."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Siam Cement Group (SCC.BK)",
+            "relation": "Upstream/Material Supplier",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Primary supplier of cement and construction materials; price volatility in raw materials directly impacts project GPM."
+          },
+          {
+            "entity": "AP Construction Material Supply",
+            "relation": "Subsidiary/Internal Procurement",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.9,
+            "note": "Internalized supply chain helps manage procurement costs but is exposed to global commodity price swings."
+          },
+          {
+            "entity": "A&P Maintenance and Service",
+            "relation": "Downstream/Facility Management",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.4,
+            "note": "Provides post-sale maintenance, supporting brand value and recurring service revenue."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Premium Residence Co., Ltd.",
+            "type": "Joint Venture (Mitsubishi Estate)",
+            "ownership_pct": 51.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Mitsubishi Estate Co., Ltd. (8802.T)",
+            "type": "Strategic Partner",
+            "ownership_pct": null,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Me-Home Co., Ltd.",
+            "type": "Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "SIRI.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct rival in the high-end condominium and luxury low-rise segments."
+          },
+          {
+            "ticker": "SPALI.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Main competitor for middle-to-low income housing and provincial expansion."
+          },
+          {
+            "ticker": "LH.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes for premium landed property buyers (detached houses)."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "BoT 1-Day Repo Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Higher rates increase mortgage costs for buyers (reducing demand) and financing costs for the developer."
+          },
+          {
+            "factor": "Thai Household Debt-to-GDP",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+2 Quarters",
+            "logic": "High debt levels lead to stricter bank lending (LTV) and higher rejection rates for AP's middle-market customers."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "A weaker THB attracts foreign buyers (especially from Myanmar and China), which significantly drove 2025-2026 condo presales."
+          },
+          {
+            "factor": "Global Steel Prices",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+3 Months",
+            "logic": "Steel represents a major component of construction costs for high-rise condos."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "entities": [
+    {
+      "ticker": "TOA.BK",
+      "name": "TOA Paint (Thailand) Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "TOA Group Holding Co., Ltd.",
+            "relation": "Parent Holding Company",
+            "proportionality": "Proportional",
+            "note": "Holds 29.99% equity; the Tangkaravakoon family maintains central control over the group's strategic direction."
+          },
+          {
+            "entity": "Thai NVDR Company Limited",
+            "relation": "Institutional Vehicle",
+            "ownership_pct": 4.20,
+            "proportionality": "Proportional",
+            "note": "A primary channel for indirect foreign investment as of April 2026."
+          },
+          {
+            "entity": "Morgan Stanley & Co. International PLC",
+            "relation": "Major Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~3.48% as of 2026, reflecting global institutional interest in the AEC's largest paint manufacturer."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Global Chemical Suppliers (ASIC/Petrochemicals)",
+            "relation": "Upstream Raw Material Providers",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.88,
+            "note": "Margins are highly sensitive to crude oil prices and chemical inputs like nano-titanium; 2Q26 expected margins are under pressure from rising oil (~$80-90/bbl)."
+          },
+          {
+            "entity": "Modern Trade (HomePro, Thai Watsadu)",
+            "relation": "Downstream Retail Distribution Channels",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.92,
+            "note": "TOA's 48.7% market share is anchored by its massive retail network and shelf-space dominance in major home improvement stores."
+          },
+          {
+            "entity": "Jomoo (China)",
+            "relation": "Strategic Partner (Sanitaryware)",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.65,
+            "note": "Collaboration to distribute sanitaryware and bathroom solutions in Thailand as part of the 'Non-Decorative' expansion strategy."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "TOA Paint (Vietnam) Co., Ltd.",
+            "type": "Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Incosource Co., Ltd.",
+            "type": "Wholly Owned Subsidiary (Hardware Sourcing)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Phacha Enterprise / Phawatri Intertrade",
+            "type": "Subsidiary (Tiles Business)",
+            "ownership_pct": 52.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "Kansai Paint (Japan)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary global rival in the premium decorative segment across Southeast Asia."
+          },
+          {
+            "ticker": "AkzoNobel (Dulux)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Intense competition for the premium and mid-range professional segments."
+          },
+          {
+            "ticker": "Nippon Paint",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes directly in both decorative and heavy-duty industrial coating markets."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thailand GDP Growth (Construction Focus)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Correlates with new property launches; 2026 growth is slower, leading TOA to pivot toward the 'Repainting' market."
+          },
+          {
+            "factor": "Brent Crude Oil Price",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+3 Months",
+            "logic": "As a downstream player, TOA faces a lag in cost-push inflation for raw materials linked to oil prices."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Imports of specialty chemicals are USD-denominated; a weak THB (~32-33 in April 2026) inflates the COGS."
+          },
+          {
+            "factor": "Regional AEC Stability (Vietnam/Myanmar)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "TOA's 13% AEC market share makes it vulnerable to political or economic shifts in neighboring countries."
+          }
+        ]
+      }
+    }
+  ]
+}

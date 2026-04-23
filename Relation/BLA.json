@@ -1,0 +1,108 @@
+{
+  "entities": [
+    {
+      "ticker": "BLA.BK",
+      "name": "Bangkok Life Assurance Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank (BBL.BK)",
+            "relation": "Primary Credit Provider & Strategic Shareholder",
+            "proportionality": "Proportional",
+            "note": "BBL holds 9.46% and provides critical bancassurance revenue; financial stability is tightly coupled with BBL's distribution reach."
+          },
+          {
+            "entity": "Bangkok Insurance (BKI.BK)",
+            "relation": "Strategic Shareholder/Affiliate",
+            "proportionality": "Proportional",
+            "note": "BKI holds 4.71%; synergy in cross-selling general and life insurance products to high-net-worth clients."
+          },
+          {
+            "entity": "State Street Bank and Trust Company",
+            "relation": "Major Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds 24.21% (as of Mar 2026); sentiment from global institutional investors significantly influences stock liquidity and price volatility."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Bangkok Bank (BBL.BK)",
+            "relation": "Downstream/Bancassurance Distribution",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.9,
+            "note": "The 2026 'Road to the Leader' initiative underscores BBL as the primary source of first-year premiums (FYP) and new business value."
+          },
+          {
+            "entity": "Bangkok Dusit Medical Services (BDMS.BK)",
+            "relation": "Upstream/Healthcare Partner",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.7,
+            "note": "Primary hospital network partner; rising medical inflation and healthcare service costs (estimated +10% in 2026) compress insurance claim margins."
+          },
+          {
+            "entity": "Bumrungrad Hospital (BH.BK)",
+            "relation": "Upstream/Healthcare Partner",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.55,
+            "note": "Key partner for premium 'Life Care' segments; high service fees at premium hospitals impact loss ratios for health riders."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "KrungSiam Life Assurance",
+            "type": "Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Siam Life Assurance Company Limited",
+            "type": "Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "TLI.BK",
+            "name": "Thai Life Insurance",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct rival in the agency-driven and endowment segments; competition for quality agents pressures acquisition costs."
+          },
+          {
+            "ticker": "Prudential Thailand",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Aggressive competitor in digital insurance and alternative bank partnerships."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thai 10-Year Government Bond Yield",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Yields directly impact reinvestment income and the valuation of the 87% fixed-income portfolio; 2026 BoT rate cut to 1.00% creates reinvestment pressure."
+          },
+          {
+            "factor": "Thai Aging Society Demographics",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Thailand’s 2026 transition into a full ageing society drives structural demand for pension and 'Long Life Care' products."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Weak THB enhances returns on offshore diversification (foreign bonds/equities), though high volatility can impact capital adequacy ratios (CAR)."
+          },
+          {
+            "factor": "Brent Oil Price",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Rising oil prices drive domestic inflation, reducing household discretionary income and causing potential policy lapses or lower new premium growth."
+          }
+        ]
+      }
+    }
+  ]
+}

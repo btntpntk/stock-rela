@@ -1,0 +1,101 @@
+{
+  "entities": [
+    {
+      "ticker": "JMART.BK",
+      "name": "Jaymart Group Holdings Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Kasikornbank (KBANK.BK)",
+            "relation": "Primary Registrar/Credit Provider",
+            "proportionality": "Inversely Proportional",
+            "note": "KBANK serves as the registrar for major 2026 debenture issuances (e.g., JMART292A); rising interest rates increase refinancing costs for their ~฿8.8bn debt pool."
+          },
+          {
+            "entity": "Asia Plus Securities (ASPS)",
+            "relation": "Bondholder Representative/Underwriter",
+            "proportionality": "Inversely Proportional",
+            "note": "Lead manager for the ฿2.0bn debenture rollout in April 2026; financial performance is sensitive to the success of capital market fundraising."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Samsung Electronics",
+            "relation": "Upstream/Key Device Supplier",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Collaborates on the 'Samsung Finance+' model; sales volume is highly sensitive to Samsung's flagship launch cycles and credit approval rates."
+          },
+          {
+            "entity": "SG Capital (SGC.BK)",
+            "relation": "Financial Ecosystem Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.9,
+            "note": "Provides the 'Locked Phone' loan platform (SG Finance+) which is the primary driver for JMART Mobile's 2026 growth strategy."
+          },
+          {
+            "entity": "VGI Public Company Limited (VGI.BK)",
+            "relation": "Downstream/Marketing & Distribution",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.6,
+            "note": "Utilizes the BTS Group advertising and distribution network to reach urban commuters; performance is tied to VGI's retail ecosystem."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "JMT.BK",
+            "type": "Subsidiary (Debt Management)",
+            "ownership_pct": 52.5,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "SINGER.BK",
+            "type": "Subsidiary (Retail/Finance)",
+            "ownership_pct": 25.4,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "BTS Group (via Rabbit Holdings)",
+            "type": "Strategic Associate",
+            "ownership_pct": 13.5,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "COM7.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival in tech-retail; competition for iPhone/Android market share and consumer financing dominance."
+          },
+          {
+            "ticker": "BAM.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Indirect rival via JMT in the distressed debt acquisition market; share of capital for NPL portfolios."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thai Policy Interest Rate (BoT)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "As a finance-heavy holding company, rate hikes compress margins for SINGER/SGC and increase JMT's cost of capital for debt purchases."
+          },
+          {
+            "factor": "Thai Household Debt-to-GDP",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Increases the supply of NPLs for JMT but serves as a headwind for the retail division's purchasing power."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Weak THB increases the landed cost of imported smartphones, potentially squeezing retail gross margins if price hikes aren't passed on."
+          }
+        ]
+      }
+    }
+  ]
+}

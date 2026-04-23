@@ -1,0 +1,131 @@
+{
+  "entities": [
+    {
+      "ticker": "BCP.BK",
+      "name": "Bangchak Corporation Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Vayupak Fund 1",
+            "relation": "Major Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds 15.37%; provide capital stability and alignment with government energy security policies."
+          },
+          {
+            "entity": "Social Security Office (SSO)",
+            "relation": "Major Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds 14.13%; long-term institutional backing providing liquidity and institutional trust."
+          },
+          {
+            "entity": "Alpha Chartered Energy (ACE)",
+            "relation": "Strategic Shareholder (Under Legal Review)",
+            "proportionality": "Inversely Proportional",
+            "note": "Holds ~16.8%; assets currently frozen by AMLO; legal controversy creates friction with international lenders and reputation risk."
+          },
+          {
+            "entity": "Ministry of Finance (Thailand)",
+            "relation": "State Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds 4.45%; ensures strategic alignment with national energy infrastructure mandates."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "BCP Trading (BCPT) Singapore/Dubai",
+            "relation": "Upstream Sourcing / Trading Subsidiary",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "Handles 100% of crude procurement and international trading; central to supply chain optimization."
+          },
+          {
+            "entity": "Thai Oil (TOP.BK) / PTT Group",
+            "relation": "Logistics/Infrastructure Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.65,
+            "note": "Shared use of oil pipelines and maritime logistics infrastructure in the Chonburi-Bangkok corridor."
+          },
+          {
+            "entity": "Retail Service Station Network",
+            "relation": "Downstream Distribution",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "29% domestic market share; retail volume is a core driver of marketing margin stability."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "BSRC.BK (Bangchak Sriracha)",
+            "type": "Subsidiary (Refinery)",
+            "ownership_pct": 99.72,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "BCPG.BK (BCPG Public Co., Ltd.)",
+            "type": "Subsidiary (Renewables)",
+            "ownership_pct": 57.81,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "BBGI.BK (BBGI Public Co., Ltd.)",
+            "type": "Subsidiary (Bio-fuels)",
+            "ownership_pct": 60.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "OKEA ASA (Norway)",
+            "type": "Strategic Investment (E&P)",
+            "ownership_pct": 45.4,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "TOP.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition in refining capacity and institutional market share."
+          },
+          {
+            "ticker": "OR.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival in the retail oil station market and non-oil (convenience) segments."
+          },
+          {
+            "ticker": "SPRC.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competitive pressure on regional refining margins and wholesale distribution."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Gross Refining Margin (GRM)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "The primary driver of refinery profitability; reflects the spread between crude costs and refined product prices."
+          },
+          {
+            "factor": "Brent Crude Oil Price",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Rising prices increase input costs and risk of government price intervention (oil fund subsidies)."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Crude imports are priced in USD; a weak THB inflates procurement costs and increases FX loss on debt."
+          },
+          {
+            "factor": "Singapore Mogas (Gasoline) Spread",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Directly impacts the profit margin of BCP's high gasoline yield from its Phra Khanong and Sriracha plants."
+          }
+        ]
+      }
+    }
+  ]
+}

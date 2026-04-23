@@ -1,0 +1,115 @@
+{
+  "entities": [
+    {
+      "ticker": "M.BK",
+      "name": "MK Restaurant Group Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Rit Thirakomen & Thirakomen Family",
+            "relation": "Controlling Shareholder/Management",
+            "proportionality": "Proportional",
+            "note": "The family holds >45% stake; strategic shifts (e.g., the 2026 push into the budget 'Bonus Suki' segment) are entirely driven by their vision for reclaiming market share from challengers like Suki Teenoi."
+          },
+          {
+            "entity": "Social Security Office (SSO)",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "SSO holds ~2.06% (as of 2026); sentiment from state funds often signals long-term stability and dividend reliability for Thai blue-chip retail stocks."
+          },
+          {
+            "entity": "Bangkok Bank (BBL.BK) / Kasikornbank (KBANK.BK)",
+            "relation": "Primary Lenders/Transactional Banks",
+            "proportionality": "Inversely Proportional",
+            "note": "While M.BK maintains a robust net cash position, rising interest rates in 2026 increase the opportunity cost of their ~591M THB cash reserves and the cost of debt for recent M&A/expansion."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "MK Central Kitchen (CK5)",
+            "relation": "Internal Upstream/Processing Hub",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "MK's vertically integrated central kitchen in Bang Na processes all fresh ingredients; operational efficiency here is the primary determinant of the 62-64% gross margins."
+          },
+          {
+            "entity": "Betagro (BTG.BK) / CP Foods (CPF.BK)",
+            "relation": "Upstream/Meat & Poultry Suppliers",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.8,
+            "note": "Primary suppliers for pork, chicken, and eggs; volatility in livestock prices (e.g., pork price surges in early 2026) directly compresses restaurant operating margins."
+          },
+          {
+            "entity": "Agri-Cooperatives (Vegetable Supply)",
+            "relation": "Upstream/Produce Partners",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.6,
+            "note": "MK relies on long-term contracts with local farms; seasonal climate impacts (e.g., La Niña flooding in 2026) affect the cost and quality of leafy greens."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Laem Charoen Seafood (LCS)",
+            "type": "Subsidiary",
+            "ownership_pct": 65.0,
+            "proportionality": "Proportional",
+            "note": "A critical growth engine in 2026 as tourism recovers; LCS contributes ~5% of revenue but has a higher average check size than the core MK brand."
+          },
+          {
+            "entity": "Mark One Innovation Center",
+            "type": "R&D Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional",
+            "note": "Focused on the 'Bonus Suki' brand development and ready-to-eat (RTE) product innovation to compete with CP's EzyGo."
+          },
+          {
+            "entity": "Plenus & MK Pte. Ltd. (Singapore/Japan)",
+            "type": "Joint Venture",
+            "ownership_pct": 50.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "Suki Teenoi (Dynasty Food)",
+            "market_share_overlap": "Extreme",
+            "proportionality": "Inversely Proportional",
+            "note": "The primary threat in 2026; Teenoi's aggressive budget buffet pricing forced M.BK to launch 'Bonus Suki' to protect its low-to-mid tier customer base."
+          },
+          {
+            "ticker": "ZEN.BK (Zen Corporation)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition in the Japanese segment (Zen/Aka vs. Yayoi); competition for premium mall locations and labor."
+          },
+          {
+            "ticker": "Lucky Suki / Bar-B-Q Plaza",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Rivals in the 'Buffet Battle' of 2026, which is currently a 213B THB market in Thailand."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Minimum Wage Increases",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0",
+            "logic": "As a labor-intensive service business, the 2026 wage floor hikes are a major headwind; SG&A as % of sales reached ~58% for new brands like Bonus Suki."
+          },
+          {
+            "factor": "Tourism Recovery Index",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Directly impacts foot traffic in Bangkok-centric malls and Laem Charoen Seafood locations catering to international 'foodie' tourists."
+          },
+          {
+            "factor": "Electricity FT Tariff",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0",
+            "logic": "Utilities account for ~4% of SG&A; high energy prices in 2026 for 24/7 central kitchens and mall-based HVAC systems squeeze the bottom line."
+          }
+        ]
+      }
+    }
+  ]
+}

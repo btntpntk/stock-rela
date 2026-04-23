@@ -1,0 +1,126 @@
+{
+  "entities": [
+    {
+      "ticker": "DELTA.BK",
+      "name": "Delta Electronics (Thailand) Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "The Hongkong and Shanghai Banking Corporation (HSBC)",
+            "relation": "Lender / Hedging Partner / Custodian",
+            "proportionality": "Inversely Proportional",
+            "note": "Acts as a primary custodian and strategic hedging partner (confirmed 2025-2026 hedging arrangements); rising rates increase cost of corporate credit lines and hedging premiums."
+          },
+          {
+            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "relation": "Primary Transactional Bank",
+            "proportionality": "Inversely Proportional",
+            "note": "BBL manages local working capital and payroll; high interest rates increase financing costs for massive CAPEX in India and Thailand (e.g., Krishnagiri Plant)."
+          },
+          {
+            "entity": "Vayupak Fund 1",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~1.14% equity; state-linked fund support provides liquidity floor and reflects sovereign investment sentiment."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "NVIDIA Corporation",
+            "relation": "Downstream Strategic Partner / Customer",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "Critical collaboration on AI data centers and 800 VDC architectures for 'AI Factories' (GTC 2026 synergy); DELTA's power solutions are essential for NVIDIA hardware."
+          },
+          {
+            "entity": "Tan Chong Group (Malaysia)",
+            "relation": "Downstream Customer (EV Segment)",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Strategic partner for Southeast Asian EV charging infrastructure; volume directly correlates with regional EV adoption rates."
+          },
+          {
+            "entity": "Global Semiconductor Foundries (e.g., TSMC)",
+            "relation": "Upstream Component Supplier",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Dependency on active semiconductor materials; supply shortages or price hikes at the foundry level create significant production lags and margin pressure."
+          },
+          {
+            "entity": "Yarra Power Co., Ltd.",
+            "relation": "Downstream Distribution/System Integrator",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.60,
+            "note": "2026 MoU partner for domestic clean energy and energy-efficient solution distribution in Thailand."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Delta Electronics, Inc. (Taiwan)",
+            "type": "Ultimate Parent",
+            "ownership_pct": 61.1,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Delta Electronics Int'l (Singapore) Pte. Ltd.",
+            "type": "Major Shareholder/Holding Co",
+            "ownership_pct": 42.85,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Delta International Holding Limited B.V.",
+            "type": "Subsidiary/Investment Vehicle",
+            "ownership_pct": 13.77,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "6981.T (Murata Manufacturing)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct global rival in power modules and electronic components; competitive pricing affects DELTA's market positioning."
+          },
+          {
+            "ticker": "6762.T (TDK Corporation)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Rivalry in high-efficiency power supplies and automotive electronics; sector rotation often sees capital moving between TDK and DELTA."
+          },
+          {
+            "ticker": "2308.TW (Delta Taiwan)",
+            "market_share_overlap": "Low",
+            "proportionality": "Proportional",
+            "note": "Though a competitor in global tenders, royalty payments and group synergy (transfer of business units in 2026) create a positive correlation."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "LME Copper Price",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Copper hit record highs (USD 14,500/tonne) in Q1 2026; major input for wiring and power components, causing direct margin compression."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Export-heavy model (~90% revenue in USD); THB depreciation significantly boosts top-line translation and competitiveness in the AI sector."
+          },
+          {
+            "factor": "US Import Tariffs (Section 122/301)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+2 Months",
+            "logic": "Renewed 2026 tariffs on EV components and power electronics manufactured in certain Asian nodes (Thailand/India) act as a trade cost drag."
+          },
+          {
+            "factor": "Global Data Center CAPEX Cycle",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Correlates with the Power Electronics Group (~71% of revenue); hyperscale spending on AI infrastructure is the primary revenue engine for 2026."
+          }
+        ]
+      }
+    }
+  ]
+}

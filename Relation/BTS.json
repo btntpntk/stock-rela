@@ -1,0 +1,101 @@
+{
+  "entities": [
+    {
+      "ticker": "BTS.BK",
+      "name": "BTS Group Holdings Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank (BBL.BK)",
+            "relation": "Primary Lender & Strategic Shareholder",
+            "proportionality": "Proportional",
+            "note": "BBL is a major shareholder (~4.48%) and lead financier for 3M (Move, Mix, Match) expansions; strong banking support reduces liquidity risk."
+          },
+          {
+            "entity": "Bangkok Metropolitan Administration (BMA)",
+            "relation": "Government Debtor/Contractor",
+            "proportionality": "Proportional",
+            "note": "Oct 2025 settlement of ฿36.4 billion in Green Line debt significantly deleveraged the balance sheet, reducing D/E ratio to 1.0x."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Sino-Thai Engineering (STEC.BK)",
+            "relation": "Upstream/Construction Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.8,
+            "note": "Primary partner in BSR Joint Venture for Pink and Yellow Line monorails; project completion efficiency directly impacts Move division ROI."
+          },
+          {
+            "entity": "Siemens Mobility",
+            "relation": "Upstream/Rolling Stock Provider",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.6,
+            "note": "Dependence on European rail technology and maintenance parts; costs are sensitive to EUR/THB exchange rate fluctuations."
+          },
+          {
+            "entity": "EGAT / MEA",
+            "relation": "Upstream/Energy Supplier",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.45,
+            "note": "High-intensity electricity consumption for rail traction; Jan-Apr 2026 Ft surcharge increases operational expenses."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "VGI.BK",
+            "type": "Subsidiary (Mix)",
+            "ownership_pct": 60.5,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Rabbit Holdings (RABBIT.BK)",
+            "type": "Subsidiary (Match)",
+            "ownership_pct": 82.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Jaymart Group (JMART.BK)",
+            "type": "Strategic Investment",
+            "ownership_pct": null,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "BEM.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition for urban mass transit concessions and future rail network expansions (e.g., Orange Line West)."
+          },
+          {
+            "ticker": "PLANB.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "VGI's primary rival in the Out-of-Home (OOH) advertising sector; competition for digital billboard market share."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thai Policy Interest Rate (BoT)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "High CAPEX requirements for long-term concessions make the group sensitive to debt refinancing costs and valuation of its BTS-GIF fund."
+          },
+          {
+            "factor": "Chinese Tourist Arrivals",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Drives ridership on the core Green Line and fuels OOH advertising demand for luxury/retail brands via VGI."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Affects the cost of imported spare parts and potential FX losses on foreign-denominated debt if unhedged."
+          }
+        ]
+      }
+    }
+  ]
+}

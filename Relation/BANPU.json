@@ -1,0 +1,90 @@
+{
+  "entities": [
+    {
+      "ticker": "BANPU.BK",
+      "name": "Banpu Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank (BBL.BK)",
+            "relation": "Lead Creditor/Bond Underwriter",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary provider of long-term debentures and project finance for global mining and power acquisitions; sensitive to rising interest rates on a high net-debt-to-EBITDA ratio (~3.4x)."
+          },
+          {
+            "entity": "Kasikornbank (KBANK.BK)",
+            "relation": "Lender/Working Capital Provider",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides revolving credit for trade finance and regional coal logistics operations."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "BKV Corporation (US Subsidiary)",
+            "relation": "Upstream/Natural Gas Production",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.8,
+            "note": "Operates the 'Closed-Loop' gas model in the US (Barnett/Marcellus); integrated production and power generation capture the full value chain."
+          },
+          {
+            "entity": "Bulk Carrier/Freight Operators",
+            "relation": "Logistics/Transportation",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.65,
+            "note": "High sensitivity to the Baltic Dry Index (BDI); rising shipping costs erode margins on coal exports from Indonesia and Australia to Asian markets."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "BPP.BK (Banpu Power)",
+            "type": "Associate/Amalgamation Partner",
+            "ownership_pct": 91.07,
+            "proportionality": "Proportional",
+            "note": "Currently merging with BANPU to form 'NewCo' in Q3 2026 to streamline capital allocation under the Energy Symphonics strategy."
+          },
+          {
+            "entity": "Banpu Next Co., Ltd.",
+            "type": "Joint Venture (Greenergy)",
+            "ownership_pct": 50.0,
+            "proportionality": "Proportional",
+            "note": "Holds the group's renewable and battery storage assets (BESS), critical for the company's decarbonization transition."
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "LANNA.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct domestic competitor in coal mining (Indonesia) and trading; share price often moves in tandem due to sector sentiment."
+          },
+          {
+            "ticker": "PTTEP.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competition for capital in the E&P space; though PTT focused on Oil/LNG, BANPU's US gas expansion creates overlap in the global gas market."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Newcastle Coal Index (NEX)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 to T+1 Month",
+            "logic": "The primary revenue driver for the mining pillar; early 2026 price rally to $136/tonne significantly bolsters the earnings outlook."
+          },
+          {
+            "factor": "Henry Hub Natural Gas Price",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Directly impacts the profitability of the US gas business; hedged at ~70% ($3.8/MMBtu) to mitigate downside but remains sensitive to spot volatility."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 (Reporting)",
+            "logic": "A stronger THB leads to unrealized FX translation losses as BANPU reports in THB but holds massive USD-denominated assets/earnings (e.g., $45.9M loss in 2025)."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "entities": [
+    {
+      "ticker": "KTC.BK",
+      "name": "Krungthai Card Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Krungthai Bank Public Company Limited (KTB)",
+            "relation": "Parent Company / Primary Funding Source",
+            "proportionality": "Proportional",
+            "note": "KTB holds 49.29% equity; provides primary credit facilities, funding synergy, and shared infrastructure for card issuance and settlement."
+          },
+          {
+            "entity": "Institutional Bondholders (Debentures)",
+            "relation": "Primary Debt Providers",
+            "proportionality": "Inversely Proportional",
+            "note": "56% of KTC's THB 51.5bn borrowing is long-term debentures; interest rate hikes in 2026 increase refinancing costs and pressure NIM."
+          },
+          {
+            "entity": "Vayupak Fund 1",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds 1.72% equity; provides capital stability and aligns with sovereign-linked investment sentiment in the financial sector."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Visa / Mastercard / JCB / UnionPay",
+            "relation": "Infrastructure / Payment Networks",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.92,
+            "note": "Global payment rails are essential for transaction processing; higher transaction volumes via these networks drive interchange fee revenue."
+          },
+          {
+            "entity": "Krungthai-AXA Life Insurance",
+            "relation": "Strategic Insurance Partner / Brokerage Channel",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.65,
+            "note": "Collaborates on insurance brokerage operations; fee income from cross-selling insurance to the 3.7M member base is a key non-interest revenue driver."
+          },
+          {
+            "entity": "KTB Branch Network",
+            "relation": "Marketing & Acquisition Channel",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.88,
+            "note": "Primary physical channel for new member acquisition and 'KTC P BERM' auto-title loan inspections."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "KTB.BK",
+            "type": "Parent Company",
+            "ownership_pct": 49.29,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "KTC IBOL Company Limited",
+            "type": "Subsidiary (Hire Purchase)",
+            "ownership_pct": 75.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "AEONTS.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition in the personal loan and 'cash card' segment (KTC PROUD vs AEON cards)."
+          },
+          {
+            "ticker": "CARDX (SCB.BK Subsidiary)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival in the premium and mid-market credit card spending segment."
+          },
+          {
+            "ticker": "BAY.BK (Krungsri Consumer)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Intense competition for market share in card spending volume and co-branded retail partnerships."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thailand Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "BoT rate cuts to 1.00% in Feb 2026 lower KTC's cost of funds, supporting margin expansion as loan yields remain relatively sticky."
+          },
+          {
+            "factor": "Thailand Household Debt/GDP",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "High debt levels (91% of GDP) increase the probability of default and necessitate higher Expected Credit Loss (ECL) provisions."
+          },
+          {
+            "factor": "Domestic Consumer Confidence Index",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Directly correlates with credit card spending volume, particularly in the travel and dining categories."
+          },
+          {
+            "factor": "Thailand Minimum Wage Policy",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Impacts operational expenses (OpEx) for collection centers and increases the credit risk of low-income personal loan segments."
+          }
+        ]
+      }
+    }
+  ]
+}

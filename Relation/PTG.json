@@ -1,0 +1,113 @@
+{
+  "entities": [
+    {
+      "ticker": "PTG.BK",
+      "name": "PTG Energy Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "relation": "Primary Lender / Transactional Bank",
+            "proportionality": "Inversely Proportional",
+            "note": "BBL provides major revolving credit lines for fuel procurement; 2026 interest rate sensitivity is high due to a tight Current Ratio of ~0.39."
+          },
+          {
+            "entity": "TRIS Rating",
+            "relation": "Credit Rating Agency",
+            "proportionality": "Proportional",
+            "note": "Maintains a 'BBB+' rating with Stable outlook in 2026; rating shifts directly impact the coupon rate of its THB 5bn+ debenture cycle."
+          },
+          {
+            "entity": "S&P Global",
+            "relation": "Sustainability Benchmark",
+            "proportionality": "Proportional",
+            "note": "2026 Sustainability Yearbook accreditation enhances ESG-driven institutional fund flows and reduces long-term cost of equity."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Thai Palm Oil Producers",
+            "relation": "Upstream Feedstock (Biodiesel)",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Raw material for B100; rising CPO (Crude Palm Oil) prices in 2026 compress margins in the integrated palm complex."
+          },
+          {
+            "entity": "Subway (Master Franchise)",
+            "relation": "Downstream F&B Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.70,
+            "note": "Via Go Luck subsidiary; integration of Subway into the service station network is a 2026 core non-oil growth engine."
+          },
+          {
+            "entity": "PT Max Card Ecosystem",
+            "relation": "Downstream Loyalty / Data Platform",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.92,
+            "note": "25M+ members; data-driven insights from the 'Max Me' app drive non-oil conversion and high-margin affiliate revenue."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Punthai Coffee Co., Ltd.",
+            "type": "Wholly Owned Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Siam Autobacs Co., Ltd.",
+            "type": "Joint Venture (Auto Care)",
+            "ownership_pct": 38.26,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Maxbit Digital Assets Co., Ltd.",
+            "type": "Joint Venture (Crypto Broker)",
+            "ownership_pct": 35.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "OR.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival for the #2 retail market share; PTT Station's expansion in rural areas directly pressures PTG's traditional stronghold."
+          },
+          {
+            "ticker": "BCP.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Rivalry intensified in 2026 following Bangchak's Sriracha integration; competition in non-oil F&B (Punthai vs Inthanin)."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thailand Oil Fuel Fund (Subsidy)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Acts as a buffer; 2026 fund surpluses allow for retail price stabilization during Brent spikes to USD 85/bbl, protecting marketing margins."
+          },
+          {
+            "factor": "Domestic Diesel Demand (Logistics)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Diesel accounts for ~70% of sales volume; performance is tied to the 2026 Thai Logistics Index and e-commerce delivery frequency."
+          },
+          {
+            "factor": "Thailand EV Adoption Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Year",
+            "logic": "Long-term threat to fuel volume; mitigated in 2026 by the 'Max Card Plus EV' membership rollout to capture charging revenue."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "A weak Baht (~36.50 in 2026 forecast) inflates refined oil procurement costs and puts pressure on the marketing margin cap."
+          }
+        ]
+      }
+    }
+  ]
+}

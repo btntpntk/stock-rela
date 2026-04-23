@@ -1,0 +1,113 @@
+{
+  "entities": [
+    {
+      "ticker": "BTG.BK",
+      "name": "Betagro Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Kiatnakin Phatra Bank (KKP.BK)",
+            "relation": "Primary Lender / IPO Strategic Advisor",
+            "proportionality": "Inversely Proportional",
+            "note": "KKP served as a lead underwriter and provides major credit facilities; interest rate hikes increase debt servicing on expansion CAPEX."
+          },
+          {
+            "entity": "Bangkok Bank (BBL.BK)",
+            "relation": "Lender / Transactional Bank",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides trade finance and working capital; high sensitivity to prime lending rate fluctuations."
+          },
+          {
+            "entity": "Vayupak Fund 1",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~1.18% equity; institutional backing provides liquidity support and price stability during market volatility."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Local Maize & Soybean Growers",
+            "relation": "Upstream Feed Raw Material Suppliers",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Feed accounts for ~60-70% of livestock production costs; price spikes in feed grains directly compress GPM."
+          },
+          {
+            "entity": "Betagro Shop & Betagro Deli",
+            "relation": "Internal Downstream Retail (Captive)",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.90,
+            "note": "B2B and B2C channels allow for margin capture and better price pass-through compared to third-party wholesalers."
+          },
+          {
+            "entity": "Central Retail Corporation (CRC.BK)",
+            "relation": "Downstream Retail Partner (Tops Market)",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Major distribution partner for premium meat products; CRC's foot traffic drives BTG's high-margin premium segment sales."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Betagro Holding Company Limited",
+            "type": "Parent Company",
+            "ownership_pct": 37.83,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "TAE HK Investment Limited",
+            "type": "Strategic Investor",
+            "ownership_pct": 20.67,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Eggriculture Foods Ltd (Singapore)",
+            "type": "Strategic Associate",
+            "ownership_pct": null,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "CPF.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival in integrated agro-industrial and food; competitive pricing in pork/chicken directly impacts BTG margins."
+          },
+          {
+            "ticker": "TFG.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition in livestock and retail shop expansion; market share battles in the upcountry retail segment."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "CBOT Soybean Meal / Maize Prices",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Input costs for animal feed; BTG typically hedges 3-6 months in advance, delaying the impact of spot price volatility."
+          },
+          {
+            "factor": "Thai Domestic Pork/Chicken Prices",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Direct revenue driver; livestock prices are sensitive to supply cycles (El Niño impact on mortality) and domestic demand."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Net positive for BTG as exports (over 20% of revenue) benefit from THB weakness, offsetting the cost of imported soy meal."
+          },
+          {
+            "factor": "Consumer Confidence Index (Thailand)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Correlates with the performance of the premium food segment and 'value-added' processed products."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,117 @@
+{
+  "entities": [
+    {
+      "ticker": "COM7.BK",
+      "name": "Com7 Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Kasikornbank (KBANK.BK)",
+            "relation": "Primary Lender & Strategic Partner",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides credit facilities for inventory and is a strategic partner through KASIKORN LINE (LINE BK) for digital lending services (UFund)."
+          },
+          {
+            "entity": "TISCO Bank (TISCO.BK)",
+            "relation": "Major Institutional Holder/Creditor",
+            "proportionality": "Inversely Proportional",
+            "note": "Significant institutional shareholder via provident funds; sensitivity to interest rates on corporate debentures used for retail expansion."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Apple Inc. (AAPL)",
+            "relation": "Upstream/Primary Brand Supplier",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "Core revenue driver via Studio 7; earnings are heavily weighted toward iPhone (iPhone 17/18) and MacBook launch cycles."
+          },
+          {
+            "entity": "Samsung Electronics",
+            "relation": "Upstream/Mobile & Gadget Supplier",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Key supplier for Android flagship sales (Galaxy S26); success of high-end foldable segments drives ASP (Average Selling Price)."
+          },
+          {
+            "entity": "True Corporation (TRUE.BK)",
+            "relation": "Downstream/Retail Channel Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.7,
+            "note": "Operates and manages True Shop outlets via subsidiary Double Seven (DOU7); revenue is tied to mobile subscriber acquisition and handset bundles."
+          },
+          {
+            "entity": "GAC AION (EV Manufacturer)",
+            "relation": "Upstream/EV Distribution",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.45,
+            "note": "Strategic diversification into EV distribution through subsidiary Gold Integrate; success depends on Thai EV adoption rates."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Thunder Fin Fin (UFUND)",
+            "type": "Subsidiary (Financing)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional",
+            "note": "Installment lending arm for smartphones; critical for driving sales volume in the middle-to-low income segments."
+          },
+          {
+            "entity": "Double Seven (DOU7)",
+            "type": "Subsidiary",
+            "ownership_pct": 99.0,
+            "proportionality": "Proportional",
+            "note": "Manages True Shop operations; ownership increased post-exit from SABUY share-swap agreement."
+          },
+          {
+            "entity": "iCare (Service Center)",
+            "type": "Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional",
+            "note": "Generates high-margin recurring revenue from Apple-authorized service and maintenance."
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "SPVI.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct rival in Apple product retail and educational sector distribution."
+          },
+          {
+            "ticker": "JMART.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in mobile retail and synergy-based consumer financing (Singer Thailand)."
+          },
+          {
+            "ticker": "CPW.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in premium lifestyle gadgets and Apple premium reseller market."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Import-heavy business; THB depreciation increases landed cost of devices, potentially squeezing retail margins."
+          },
+          {
+            "factor": "Global Semiconductor/Memory Prices",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Surges in RAM/SSD costs inflate BOM (Bill of Materials), forcing price hikes on PCs and laptops which may dampen demand."
+          },
+          {
+            "factor": "Thai Private Consumption Index (PCI)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Directly correlates with discretionary spending on high-ticket technology and consumer electronics."
+          }
+        ]
+      }
+    }
+  ]
+}

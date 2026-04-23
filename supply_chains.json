@@ -1,0 +1,226 @@
+{
+  "supply_chains": [
+    {
+      "id": "chain:energy_ep",
+      "label": "E&P Upstream",
+      "color": "#ff6b35",
+      "macro_category": "cat:energy",
+      "members": ["PTT.BK", "PTTEP.BK"],
+      "feeds_into": [
+        {"target_id": "chain:energy_refining", "relation": "Crude Oil & Natural Gas Feedstock", "sensitivity_index": 0.95, "note": "Raw hydrocarbon supply drives refinery throughput and petrochemical feedstock pricing."},
+        {"target_id": "chain:power_generation", "relation": "Natural Gas Fuel Supply", "sensitivity_index": 0.85, "note": "PTT supplies ~90% of Thailand's pipeline gas to IPP/SPP power plants."}
+      ]
+    },
+    {
+      "id": "chain:energy_refining",
+      "label": "Refining & Petrochem",
+      "color": "#f7a24f",
+      "macro_category": "cat:energy",
+      "members": ["TOP.BK", "PTTGC.BK", "IRPC.BK", "BCP.BK", "SPRC.BK", "TASCO.BK", "IVL.BK"],
+      "feeds_into": [
+        {"target_id": "chain:energy_retail", "relation": "Refined Fuel Products (Gasoline/Diesel/Jet)", "sensitivity_index": 0.80, "note": "GRM and crack spreads determine margin passed downstream to retail stations."},
+        {"target_id": "chain:industrial_materials", "relation": "Petrochemical Feedstock (Ethylene/Propylene/PTA)", "sensitivity_index": 0.70, "note": "Naphtha-derived monomers flow into plastics and packaging manufacturers."}
+      ]
+    },
+    {
+      "id": "chain:energy_retail",
+      "label": "Fuel & Energy Retail",
+      "color": "#ffc567",
+      "macro_category": "cat:energy",
+      "members": ["OR.BK", "PTG.BK"],
+      "feeds_into": [
+        {"target_id": "chain:aviation", "relation": "Jet Fuel Supply (MOPS-linked)", "sensitivity_index": 0.90, "note": "Jet fuel is 30-40% of airline operating costs; OR/PTG are primary into-plane suppliers."},
+        {"target_id": "chain:transport_logistics", "relation": "Diesel & Lubricants for Fleet", "sensitivity_index": 0.75, "note": "Fuel cost is the #1 variable cost for trucking and maritime fleets."}
+      ]
+    },
+    {
+      "id": "chain:power_generation",
+      "label": "Power Generation",
+      "color": "#f4d03f",
+      "macro_category": "cat:energy",
+      "members": ["GPSC.BK", "BGRIM.BK", "GULF.BK", "RATCH.BK", "EA.BK", "EGCO.BK", "GUNKUL.BK", "BCPG.BK", "BANPU.BK"],
+      "feeds_into": [
+        {"target_id": "chain:industrial_estate", "relation": "Industrial Power & Utilities", "sensitivity_index": 0.80, "note": "Reliable power supply is a critical location factor for industrial estates; power cost affects tenant margins."},
+        {"target_id": "chain:telecom", "relation": "Data Center & Network Power", "sensitivity_index": 0.65, "note": "Telco data centers consume 10-15% of enterprise power; renewable PPA terms affect OPEX."}
+      ]
+    },
+    {
+      "id": "chain:banking",
+      "label": "Banking & Wholesale Finance",
+      "color": "#4f8ef7",
+      "macro_category": "cat:rate",
+      "members": ["BBL.BK", "KBANK.BK", "SCB.BK", "KTB.BK", "TTB.BK", "KKP.BK", "TISCO.BK", "TCAP.BK"],
+      "feeds_into": [
+        {"target_id": "chain:consumer_finance", "relation": "Wholesale Funding & Securitization Lines", "sensitivity_index": 0.75, "note": "Non-bank lenders rely on bank credit lines; BoT policy rate shifts cost of funds for the whole chain."},
+        {"target_id": "chain:property_dev", "relation": "Project Finance & Mortgage Origination", "sensitivity_index": 0.80, "note": "LTV limits and mortgage rates set by banks directly control housing demand velocity."},
+        {"target_id": "chain:construction", "relation": "Infrastructure & EPC Project Finance", "sensitivity_index": 0.70, "note": "Large CK/BEM projects depend on syndicated bank loans; spread over THBFIX determines bid viability."}
+      ]
+    },
+    {
+      "id": "chain:consumer_finance",
+      "label": "Consumer Finance & Credit",
+      "color": "#74b9ff",
+      "macro_category": "cat:credit",
+      "members": ["AEONTS.BK", "MTC.BK", "SAWAD.BK", "TIDLOR.BK", "KTC.BK", "JMT.BK", "BAM.BK", "JMART.BK"],
+      "feeds_into": [
+        {"target_id": "chain:retail_modern", "relation": "Consumer Purchasing Power & Credit Demand", "sensitivity_index": 0.70, "note": "Personal loan and motorcycle title loan approval rates correlate with same-store sales growth in modern trade."}
+      ]
+    },
+    {
+      "id": "chain:insurance",
+      "label": "Insurance",
+      "color": "#a29bfe",
+      "macro_category": "cat:rate",
+      "members": ["BLA.BK", "TLI.BK"],
+      "feeds_into": [
+        {"target_id": "chain:healthcare", "relation": "Health Insurance Reimbursement", "sensitivity_index": 0.65, "note": "Premium growth and claim ratios from private health insurers directly fund hospital revenue (BLA/TLI → BDMS/BH)."}
+      ]
+    },
+    {
+      "id": "chain:agri_feed",
+      "label": "Agriculture & Animal Feed",
+      "color": "#27ae60",
+      "macro_category": "cat:agri",
+      "members": ["CPF.BK", "GFPT.BK", "BTG.BK", "TFG.BK", "STA.BK"],
+      "feeds_into": [
+        {"target_id": "chain:food_processing", "relation": "Raw Protein & Agricultural Commodity Supply", "sensitivity_index": 0.85, "note": "Live broiler, pork, and rubber prices directly determine COGS for downstream food processors."}
+      ]
+    },
+    {
+      "id": "chain:food_processing",
+      "label": "Food Processing & Beverage",
+      "color": "#00b894",
+      "macro_category": "cat:agri",
+      "members": ["TU.BK", "CBG.BK", "OSP.BK", "ICHI.BK", "STGT.BK"],
+      "feeds_into": [
+        {"target_id": "chain:retail_modern", "relation": "Packaged Food & Beverage to Modern Trade", "sensitivity_index": 0.80, "note": "Shelf space allocation and trade promotion terms at 7-Eleven/Central are key top-line drivers for branded FMCG."}
+      ]
+    },
+    {
+      "id": "chain:retail_modern",
+      "label": "Modern Trade & Retail",
+      "color": "#00cec9",
+      "macro_category": "cat:consumer",
+      "members": ["CPALL.BK", "BJC.BK", "HMPRO.BK", "DOHOME.BK", "GLOBAL.BK", "CRC.BK"],
+      "feeds_into": [
+        {"target_id": "chain:media_digital", "relation": "Advertising & In-Store Media Spend", "sensitivity_index": 0.60, "note": "Modern trade is the largest single advertiser on OOH and digital; VGI/PLANB revenue is correlated with retail SSSG."}
+      ]
+    },
+    {
+      "id": "chain:healthcare",
+      "label": "Healthcare & Pharma",
+      "color": "#fd79a8",
+      "macro_category": "cat:consumer",
+      "members": ["BDMS.BK", "BH.BK", "BCH.BK", "CHG.BK", "PR9.BK", "MEGA.BK"],
+      "feeds_into": []
+    },
+    {
+      "id": "chain:property_dev",
+      "label": "Property Development",
+      "color": "#e17055",
+      "macro_category": "cat:economy",
+      "members": ["AP.BK", "LH.BK", "SIRI.BK", "SPALI.BK", "QH.BK"],
+      "feeds_into": [
+        {"target_id": "chain:construction", "relation": "Residential Project Construction Orders", "sensitivity_index": 0.80, "note": "New project launches from developers are the primary order pipeline for EPC and materials contractors."}
+      ]
+    },
+    {
+      "id": "chain:property_commercial",
+      "label": "Commercial Property & REIT",
+      "color": "#d63031",
+      "macro_category": "cat:economy",
+      "members": ["CPN.BK", "AWC.BK"],
+      "feeds_into": [
+        {"target_id": "chain:tourism_hospitality", "relation": "Mixed-Use & Hotel Portfolio Synergies", "sensitivity_index": 0.60, "note": "AWC integrates hotel, retail, and convention space; tourist arrival recovery drives occupancy for both segments."}
+      ]
+    },
+    {
+      "id": "chain:construction",
+      "label": "Construction & Infrastructure",
+      "color": "#b2bec3",
+      "macro_category": "cat:economy",
+      "members": ["CK.BK", "STECON.BK", "BEM.BK", "BTS.BK", "AOT.BK"],
+      "feeds_into": [
+        {"target_id": "chain:tourism_hospitality", "relation": "Airport & Transport Infrastructure Capacity", "sensitivity_index": 0.70, "note": "AOT terminal expansion determines ceiling on international arrivals; BTS/BEM feed commuter demand to retail/hotel zones."},
+        {"target_id": "chain:industrial_estate", "relation": "Factory & Warehouse Construction", "sensitivity_index": 0.65, "note": "CK/STECON are primary EPC contractors for WHA/AMATA industrial park expansion phases."}
+      ]
+    },
+    {
+      "id": "chain:industrial_materials",
+      "label": "Industrial Materials & Packaging",
+      "color": "#636e72",
+      "macro_category": "cat:economy",
+      "members": ["SCC.BK", "TOA.BK", "SCGP.BK"],
+      "feeds_into": [
+        {"target_id": "chain:construction", "relation": "Cement, Steel & Building Materials", "sensitivity_index": 0.90, "note": "SCC cement/concrete is consumed in >60% of domestic infrastructure and residential projects."},
+        {"target_id": "chain:property_dev", "relation": "Finishing Materials & Coatings", "sensitivity_index": 0.70, "note": "TOA paints and SCC tiles follow the property launch cycle with a 6-12 month lag."},
+        {"target_id": "chain:food_processing", "relation": "Packaging Materials (Paper/Plastic)", "sensitivity_index": 0.65, "note": "SCGP flexible packaging is direct input cost for TU, CPF, and OSP branded products."}
+      ]
+    },
+    {
+      "id": "chain:telecom",
+      "label": "Telecom & Connectivity",
+      "color": "#6c5ce7",
+      "macro_category": "cat:economy",
+      "members": ["ADVANC.BK", "TRUE.BK", "JAS.BK"],
+      "feeds_into": [
+        {"target_id": "chain:media_digital", "relation": "Digital Distribution & Content Pipeline", "sensitivity_index": 0.65, "note": "Telco broadband is the primary distribution channel for OTT and digital advertising; data ARPU growth funds content spend."}
+      ]
+    },
+    {
+      "id": "chain:media_digital",
+      "label": "Media & Digital Advertising",
+      "color": "#a29bfe",
+      "macro_category": "cat:consumer",
+      "members": ["PLANB.BK", "VGI.BK"],
+      "feeds_into": []
+    },
+    {
+      "id": "chain:electronics_mfg",
+      "label": "Electronics & Components",
+      "color": "#00b894",
+      "macro_category": "cat:economy",
+      "members": ["DELTA.BK", "HANA.BK", "KCE.BK", "CCET.BK"],
+      "feeds_into": [
+        {"target_id": "chain:industrial_estate", "relation": "High-Tech Manufacturing Tenants & EV Supply Chain", "sensitivity_index": 0.75, "note": "DELTA/HANA are anchor tenants in WHA/AMATA estates; EV battery and inverter demand links electronics to auto OEM supply chains."}
+      ]
+    },
+    {
+      "id": "chain:transport_logistics",
+      "label": "Shipping & Logistics",
+      "color": "#fdcb6e",
+      "macro_category": "cat:economy",
+      "members": ["SJWD.BK", "RCL.BK", "PRM.BK"],
+      "feeds_into": [
+        {"target_id": "chain:retail_modern", "relation": "Last-Mile & Cold Chain Distribution", "sensitivity_index": 0.60, "note": "SJWD cold chain directly enables CPF/TU products to reach modern trade distribution centers."},
+        {"target_id": "chain:agri_feed", "relation": "Bulk Grain & Commodity Transport", "sensitivity_index": 0.65, "note": "RCL/PRM bulk carriers move imported corn, soybean, and fishmeal that feed CPF/GFPT feed mills."}
+      ]
+    },
+    {
+      "id": "chain:industrial_estate",
+      "label": "Industrial Estate & EEC",
+      "color": "#e67e22",
+      "macro_category": "cat:economy",
+      "members": ["WHA.BK", "AMATA.BK"],
+      "feeds_into": []
+    },
+    {
+      "id": "chain:aviation",
+      "label": "Aviation",
+      "color": "#0984e3",
+      "macro_category": "cat:consumer",
+      "members": ["AAV.BK", "BA.BK"],
+      "feeds_into": [
+        {"target_id": "chain:tourism_hospitality", "relation": "Passenger Traffic to Tourist Destinations", "sensitivity_index": 0.90, "note": "Load factor and route network of AirAsia/Bangkok Airways are the primary demand driver for Phuket, Samui, and Chiang Mai hotel occupancy."}
+      ]
+    },
+    {
+      "id": "chain:tourism_hospitality",
+      "label": "Tourism & Hospitality",
+      "color": "#fab1a0",
+      "macro_category": "cat:consumer",
+      "members": ["ERW.BK", "CENTEL.BK", "MINT.BK"],
+      "feeds_into": []
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "entities": [
+    {
+      "ticker": "KKP.BK",
+      "name": "Kiatnakin Phatra Bank Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Thai NVDR Company Limited",
+            "relation": "Major Institutional Shareholder (Nominee)",
+            "proportionality": "Proportional",
+            "note": "Holds ~14.4% stake; significant influence over stock liquidity and foreign institutional sentiment."
+          },
+          {
+            "entity": "Ramkhamhaeng Hospital (RAM.BK)",
+            "relation": "Strategic Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~2.5% stake; represents cross-sector strategic investment and potential synergy in wealth management for high-net-worth medical professionals."
+          },
+          {
+            "entity": "Bank of Thailand (BoT)",
+            "relation": "Regulator/Policy Setter",
+            "proportionality": "Inversely Proportional",
+            "note": "Regulates capital adequacy (BIS ratio) and sets interest rates; 2026 policy rate of 1.25% directly impacts KKP's net interest margin (NIM)."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Auto Dealerships (Nationwide)",
+            "relation": "Upstream/Channel Partner (Hire Purchase)",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.9,
+            "note": "Dealerships are the primary originators for KKP's dominant hire-purchase (car loan) business; domestic auto sales volume is a critical lead indicator."
+          },
+          {
+            "entity": "Goldman Sachs",
+            "relation": "Strategic Partner (Wealth Management/Research)",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Long-standing collaboration for global investment research and asset management products; essential for KKP's premium wealth management brand."
+          },
+          {
+            "entity": "Tipaya Insurance (TIPH.BK)",
+            "relation": "Downstream/Bancassurance Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.6,
+            "note": "Major shareholder and strategic partner in insurance product distribution; fee income from bancassurance is a key non-interest revenue driver."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Kiatnakin Phatra Securities (KKPS)",
+            "type": "Wholly-Owned Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional",
+            "note": "Market leader in Thai institutional brokerage (~20%+ market share) and investment banking."
+          },
+          {
+            "entity": "Kiatnakin Phatra Asset Management (KKPAM)",
+            "type": "Wholly-Owned Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "KKP Dime Securities (Dime!)",
+            "type": "Subsidiary (FinTech)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional",
+            "note": "Digital investment platform targeting mass-affluent retail users; critical for the group's digital transformation strategy."
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "TISCO.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct peer in the hire-purchase and high-yield dividend banking segment."
+          },
+          {
+            "ticker": "SCB.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival in the premium wealth management and private banking space (SCB Julius Baer)."
+          },
+          {
+            "ticker": "BAY.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Rivalry in the automotive finance sector (Krungsri Auto)."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thai Household Debt-to-GDP",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0",
+            "logic": "Persistently high household debt (~90% of GDP in 2026) limits loan growth and increases NPL risks in the hire-purchase and retail segments."
+          },
+          {
+            "factor": "BoT Policy Interest Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "As a lender with high fixed-rate assets (car loans) and floating-rate liabilities, rapid rate hikes initially squeeze NIM, while stabilization at 1.25% aids repricing."
+          },
+          {
+            "factor": "SET Average Daily Turnover",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Directly correlates with brokerage fee revenue from the Capital Market division; 2026 market volatility influences Phatra’s bottom line."
+          },
+          {
+            "factor": "Used Car Price Index",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Influences the recovery value of repossessed vehicles; a slump in used car prices (e.g., from EV competition) increases credit loss provisions."
+          }
+        ]
+      }
+    }
+  ]
+}

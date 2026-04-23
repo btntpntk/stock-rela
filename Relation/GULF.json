@@ -1,0 +1,125 @@
+{
+  "entities": [
+    {
+      "ticker": "GULF.BK",
+      "name": "Gulf Development Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "relation": "Primary Transactional Bank & Shareholder",
+            "proportionality": "Inversely Proportional",
+            "note": "BBL holds approx. 1.0% equity and provides major corporate credit lines; rising interest rates increase servicing costs for GULF's massive infrastructure debentures."
+          },
+          {
+            "entity": "Siam Commercial Bank (SCB.BK)",
+            "relation": "Lead Underwriter & Project Financier",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary advisor for the GULF-INTUCH merger and lead arranger for renewable energy loans; critical for refinancing the ~35bn THB debenture cycle in 2026."
+          },
+          {
+            "entity": "Asian Development Bank (ADB)",
+            "relation": "Green Finance Provider",
+            "proportionality": "Proportional",
+            "note": "Mandated Lead Arranger for GULF's 60bn THB renewable portfolio (Solar+BESS); ADB's continued backing reduces weighted average cost of capital (WACC) for ESG projects."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "ENGIE (France)",
+            "relation": "Upstream LNG Supplier",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.85,
+            "note": "15-year strategic partnership for 0.8 million tons per annum; GULF is sensitive to global LNG price benchmarks and ENGIE's supply reliability."
+          },
+          {
+            "entity": "Google Cloud",
+            "relation": "Downstream Infrastructure Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Strategic framework agreement for AI and Cloud services; GULF's data center revenue is directly linked to Google's sovereign cloud adoption in Thailand."
+          },
+          {
+            "entity": "PTT Public Company Limited (PTT.BK)",
+            "relation": "Upstream Gas Supplier / Infrastructure Partner",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.90,
+            "note": "Primary supplier of natural gas for GULF's IPP/SPP plants; gas price volatility is the largest driver of operating expenses."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "ADVANC.BK (AIS)",
+            "type": "Subsidiary (via INTUCH)",
+            "ownership_pct": 40.4,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "THCOM.BK (Thaicom)",
+            "type": "Subsidiary (via INTUCH)",
+            "ownership_pct": 41.1,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "KBANK.BK (Kasikornbank)",
+            "type": "Strategic Investment",
+            "ownership_pct": 9.9,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Jackson Generation (USA)",
+            "type": "Subsidiary (Associate)",
+            "ownership_pct": 49.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "GPSC.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition for the new 7GW power reserve quotas under the 2026 Thailand Power Development Plan (PDP)."
+          },
+          {
+            "ticker": "TRUE.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary competitor in the telecommunications and digital infrastructure space following the GULF-INTUCH amalgamation."
+          },
+          {
+            "ticker": "BGRIM.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competition for industrial users (IU) and direct PPA market share in industrial estates."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Singapore JKM LNG Price",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Major input cost for 2026 LNG import optimization strategy; higher prices compress merchant power margins."
+          },
+          {
+            "factor": "Thailand Ft Rate (Regulated)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+4 Months",
+            "logic": "Pass-through mechanism for fuel costs; 2026 regulatory decisions on the 3.88-4.18 THB/kWh range impact EBITDA stability."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "THB depreciation boosts the translation of dividends from US assets (Jackson Generation) and international renewable projects."
+          },
+          {
+            "factor": "Global Data Center Power Demand Index",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Correlates with the growth of GSA01 (25MW) and future 1GW targets; driven by regional AI compute expansion."
+          }
+        ]
+      }
+    }
+  ]
+}

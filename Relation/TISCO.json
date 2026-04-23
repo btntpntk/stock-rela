@@ -1,0 +1,101 @@
+{
+  "entities": [
+    {
+      "ticker": "TISCO.BK",
+      "name": "TISCO Financial Group Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bank of Thailand (BoT)",
+            "relation": "Monetary Regulator",
+            "proportionality": "Proportional",
+            "note": "A lower interest rate environment in 2026 supports TISCO's cost of funds management, though it remains sensitive to systemic NPL regulations."
+          },
+          {
+            "entity": "CDIB Investment Consultancy",
+            "relation": "Strategic Shareholder",
+            "proportionality": "Proportional",
+            "note": "As a key institutional investor, their long-term position anchors the high-payout policy (>80% payout ratio) favored by value investors."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "EV Manufacturers (BYD, GWM, Tesla)",
+            "relation": "Upstream Ecosystem Partners",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "TISCO's 2026 growth is heavily leveraged on the EV hire-purchase market, capturing volume as legacy internal combustion engine (ICE) demand softens."
+          },
+          {
+            "entity": "AIA / Bancassurance Partners",
+            "relation": "Downstream Strategic Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Bancassurance and mutual fund brokerage are core fee-income drivers; 2026 targets focus on digital wealth advisory (Wealth Advisory Hub)."
+          },
+          {
+            "entity": "Second-hand Car Market",
+            "relation": "Residual Value Proxy",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.80,
+            "note": "Used car prices directly impact recovery values for repossessed assets; 2026 market stabilization helps reduce Expected Credit Loss (ECL)."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "TISCO Bank",
+            "type": "Primary Subsidiary (Banking)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "TISCO Asset Management",
+            "type": "Subsidiary (Fund Management)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "TISCO Securities",
+            "type": "Subsidiary (Brokerage)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "KKP.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival in the hire-purchase and wealth management segments; KKP's more aggressive lending stance contrasts with TISCO's conservative quality focus."
+          },
+          {
+            "ticker": "SCB.BK / InnovestX",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in the digital wealth management space and high-net-worth individual (HNWI) segments."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thailand Auto Sales Volume",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "The most significant driver of the hire-purchase book; 2026 EV penetration is the key growth sub-sector."
+          },
+          {
+            "factor": "Thai Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "As a large wholesale funder, TISCO benefits from falling rates as their cost of funds reprices faster than their fixed-rate hire-purchase assets."
+          },
+          {
+            "factor": "Household Debt to GDP (Thailand)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "High systemic debt levels (~88-90% in 2026) act as a cap on loan growth and necessitate higher credit costs (est. 120bps in 2026)."
+          }
+        ]
+      }
+    }
+  ]
+}

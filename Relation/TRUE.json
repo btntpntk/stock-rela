@@ -1,0 +1,107 @@
+{
+  "entities": [
+    {
+      "ticker": "TRUE.BK",
+      "name": "True Corporation Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Charoen Pokphand Group (CP Group)",
+            "relation": "Controlling Shareholder/Strategic Parent",
+            "proportionality": "Proportional",
+            "note": "A primary shareholder providing ecosystem synergy (e.g., Lotus's/7-Eleven distribution); strategic direction is heavily influenced by CP's retail dominance."
+          },
+          {
+            "entity": "Telenor Group",
+            "relation": "Strategic Partner/Major Shareholder",
+            "proportionality": "Proportional",
+            "note": "Significant institutional backing (~Telenor Thailand Investments); provides global telco operational expertise and governance standards."
+          },
+          {
+            "entity": "Citrine Global Company Limited",
+            "relation": "Major Shareholder (Consolidated)",
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "China Mobile International",
+            "relation": "Major Shareholder/Strategic Tech Partner",
+            "proportionality": "Proportional",
+            "note": "Holds a significant minority stake; provides critical insights into 5G technology and digital platform scaling."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Huawei / Ericsson / ZTE",
+            "relation": "Upstream/Infrastructure Suppliers",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Key vendors for 5G network modernization and the 'One Network' project; Capex is sensitive to global hardware pricing and trade policy."
+          },
+          {
+            "entity": "National Telecom (NT)",
+            "relation": "Interconnected Partner/Former Lessor",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.6,
+            "note": "The expiration of the NT network rental agreement in Aug 2025 has led to a revenue decline but significant network cost savings in 2026."
+          },
+          {
+            "entity": "TrueID / TrueVisions / TrueX",
+            "relation": "Internal/Digital Ecosystem",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.7,
+            "note": "Core components of the 'Beyond Connectivity' strategy; essential for driving ARPU (Average Revenue Per User) through content and AI-home solutions."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "True Move H Universal Communication",
+            "type": "Wholly-Owned Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "DTAC (via Amalgamation)",
+            "type": "Consolidated Brand",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional",
+            "note": "Synergy realization from the 2023 merger is the primary driver of EBITDA improvement in 2026."
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "ADVANC.BK (AIS)",
+            "market_share_overlap": "Extreme",
+            "proportionality": "Inversely Proportional",
+            "note": "The 'duopoly' rival; while TRUE leads in total subscribers (~51M), AIS leads in ARPU and overall profitability."
+          },
+          {
+            "ticker": "GULF.BK / KTB.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in the digital finance space; both are exploring 'Virtual Bank' licenses which directly threaten TRUE's digital wallet/fintech ambitions."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thai GDP Growth (BoT Forecast ~1.5%)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Directly impacts consumer spending power for high-tier 5G plans and handset upgrades (e.g., iPhone 17)."
+          },
+          {
+            "factor": "Electricity FT Tariff",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Network operations are energy-intensive; rising power costs in Thailand compress EBITDA margins unless offset by AI-driven network efficiency."
+          },
+          {
+            "factor": "ARPU (Average Revenue Per User)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "The most critical operational KPI; TRUE is focusing on 'quality subscribers' rather than raw volume to drive 2026 profitability."
+          }
+        ]
+      }
+    }
+  ]
+}

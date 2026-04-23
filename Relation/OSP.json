@@ -1,0 +1,116 @@
+{
+  "entities": [
+    {
+      "ticker": "OSP.BK",
+      "name": "Osotspa Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Niti Osathanugrah",
+            "relation": "Controlling Shareholder/Chairman of the Executive Board",
+            "proportionality": "Proportional",
+            "note": "Holds ~24.07% stake; the Osathanugrah family remains the primary strategic driver of the firm’s long-term pivot toward premiumization."
+          },
+          {
+            "entity": "Bank Julius Baer & Co. Ltd",
+            "relation": "Major Shareholder (Institutional)",
+            "proportionality": "Proportional",
+            "note": "Holds ~8.69% stake; represents significant international institutional backing, often providing a floor for stock liquidity."
+          },
+          {
+            "entity": "Thai NVDR Company Limited",
+            "relation": "Institutional Shareholder (Nominee)",
+            "proportionality": "Proportional",
+            "note": "Holds ~4.26% stake; fluctuates based on foreign capital inflows/outflows from the SET."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Aluminum & Glass Suppliers (e.g., BG Container Glass)",
+            "relation": "Upstream/Packaging Suppliers",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Raw material and packaging costs account for ~50% of total costs; rising aluminum prices (up 18% YTD in 2026) directly compress gross margins."
+          },
+          {
+            "entity": "Sugar Producers (Mitr Phol / Thai Roong Ruang)",
+            "relation": "Upstream/Raw Material Suppliers",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.7,
+            "note": "Core ingredient for energy drinks; performance is sensitive to domestic sugar price floors and the Thai Excise Department's sugar tax tiers."
+          },
+          {
+            "entity": "Traditional Trade (Mom-and-Pop Shops)",
+            "relation": "Downstream/Primary Distribution Channel",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.9,
+            "note": "Represents >65% of OSP's distribution network; core to the M-150 brand's dominance in provincial markets."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Osotspa Myanmar",
+            "type": "Subsidiary (Market Leader)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional",
+            "note": "Holds #1 position in Myanmar's energy drink market; however, 2026 geopolitical instability in the region remains a top-tier operational risk."
+          },
+          {
+            "entity": "C-vitt (House Osotspa Foods)",
+            "type": "Joint Venture (House Foods Group Japan)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional",
+            "note": "The growth engine for the 'Functional Drink' segment, targeting Gen Z and health-conscious 'Silver Age' consumers."
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "CBG.BK",
+            "name": "Carabao Group",
+            "market_share_overlap": "Extreme",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival in the Bt10-12 energy drink segment; CBG’s 28.2% market share and aggressive pricing pressure OSP's pricing power."
+          },
+          {
+            "ticker": "SAPPE.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in the functional drink and 'Beauty Drink' segments; rival for shelf space in Modern Trade channels."
+          },
+          {
+            "ticker": "TCP Group (Red Bull)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Rival for premium energy drink market share and international distribution dominance."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Sugar Excise Tax (Thailand)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0",
+            "logic": "Directly increases COGS for high-sugar variants; OSP has aggressively reformulated M-150 to lower sugar content and mitigate tax impacts."
+          },
+          {
+            "factor": "Middle East Geopolitical Conflict",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Impacts logistics costs and the success of OSP's 2026 expansion into the UAE and Oman markets."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "As international business targets double-digit growth in 2026, a weaker THB boosts translated earnings from Vietnam, Indonesia, and China."
+          },
+          {
+            "factor": "Electricity FT Tariff",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "High-intensity manufacturing (glass bottling and personal care production) makes EBITDA sensitive to Thai energy policy."
+          }
+        ]
+      }
+    }
+  ]
+}

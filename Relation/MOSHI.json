@@ -1,0 +1,107 @@
+{
+  "entities": [
+    {
+      "ticker": "MOSHI.BK",
+      "name": "Moshi Moshi Retail Corporation Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Kasikornbank Public Company Limited (KBANK)",
+            "relation": "Primary Banking Partner / Underwriter",
+            "proportionality": "Inversely Proportional",
+            "note": "KBANK (via Kasikorn Securities) acts as a primary advisor and liquidity provider; while MOSHI maintains a net cash position in 2026, expansion credit lines are sensitive to the 1.00% BoT policy rate."
+          },
+          {
+            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "relation": "Transactional Banking / Trade Finance",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides trade finance facilities for cross-border sourcing; interest expenses on short-term working capital are sensitive to prime lending rate fluctuations."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "China-based OEM Manufacturers",
+            "relation": "Upstream Sourcing / Product Manufacturing",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.92,
+            "note": "Approximately 50-60% of lifestyle products are exclusively designed and imported from China; margins are highly sensitive to Chinese production costs and labor availability."
+          },
+          {
+            "entity": "Index Creative Village PCL",
+            "relation": "Joint Venture Partner (Project Development)",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.45,
+            "note": "50/50 JV for event-based marketing (e.g., Sanrio exhibitions) designed to drive brand engagement and higher-margin licensed product sales."
+          },
+          {
+            "entity": "CP Axtra (Lotus's) & Big C Supercenter",
+            "relation": "Downstream Real Estate / Anchor Tenants",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Primary expansion nodes; MOSHI's revenue growth is directly linked to foot traffic in hypermarket corridors and favorable rental lease renewals."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Boonsongkor Family",
+            "type": "Ultimate Parent / Controlling Shareholder",
+            "ownership_pct": 75.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Moshi Moshi & Index JV",
+            "type": "Joint Venture",
+            "ownership_pct": 50.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "Miniso (MNSO)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary global rival; 2026 data shows MOSHI gaining share as Miniso recalibrates its high-cost mall strategy in Thailand."
+          },
+          {
+            "ticker": "KKV (Private)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Intense competition in the large-format lifestyle segment; KKV's 2026 downsizing provides a consolidation opportunity for MOSHI's standalone stores."
+          },
+          {
+            "ticker": "Daiso (Private)",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Traditional competitor in the fixed-price segment; MOSHI competes through localized designs and broader price tiers."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "CNY/THB Exchange Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Major impact on COGS for imports; a strong Yuan (CNY) increases procurement costs and compresses gross profit margins (GPM)."
+          },
+          {
+            "factor": "Plastic Resin (PP/PE) Prices",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Conflict-driven 30-40% spike in Q1 2026 resin prices increases manufacturing costs for household goods and toys, affecting 20% of COGS."
+          },
+          {
+            "factor": "Thai Consumer Confidence Index",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "MOSHI products are discretionary; higher confidence correlates with impulse purchase conversion, a key 2026 management strategy."
+          },
+          {
+            "factor": "Global Ocean Freight Rates",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Rising shipping costs from Chinese ports to Laem Chabang directly increase landing costs for high-volume, low-margin SKUs."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "entities": [
+    {
+      "ticker": "AURA.BK",
+      "name": "Aurora Design Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Kasikornbank (KBANK.BK)",
+            "relation": "Strategic Partner (via LINE BK)",
+            "proportionality": "Proportional",
+            "note": "Collaboration with LINE BK for 'Gold for Cash' digital pawn services expands customer reach and credit access."
+          },
+          {
+            "entity": "Bangkok Bank (BBL.BK)",
+            "relation": "Primary Credit Provider",
+            "proportionality": "Inversely Proportional",
+            "note": "Major provider of working capital for gold inventory; rising interest rates increase the cost of carry for high-value stock."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Gold Traders Association (Thailand)",
+            "relation": "Upstream/Price Setter",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "AURA's selling and buyback prices are directly pegged to the association's daily fixings."
+          },
+          {
+            "entity": "Central Pattana (CPN.BK)",
+            "relation": "Downstream/Retail Infrastructure",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.6,
+            "note": "A large portion of Aurora's 800+ branches are located in high-traffic shopping malls; foot traffic correlates with sales."
+          },
+          {
+            "entity": "The Walt Disney Company (Thailand)",
+            "relation": "Strategic Licensing Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.4,
+            "note": "Disney-themed gold collections target younger demographics and drive high-margin 'Design Gold' segment sales."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Thong Ma Ngern Pai Co., Ltd.",
+            "type": "Subsidiary (Financing Arm)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Seng Heng Gold Shop",
+            "type": "Acquired Brand/Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "SAWAD.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in the secured lending/pawn market; sector rotation between pure retail and distressed lending."
+          },
+          {
+            "ticker": "JUBILE.BK",
+            "market_share_overlap": "Low",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in the premium diamond jewelry segment, though AURA focuses more on 96.5% gold."
+          },
+          {
+            "ticker": "MTC.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition for 'pawn-style' liquidity in the lower-to-middle income segment."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Global Spot Gold Price (XAU/USD)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Increases the valuation of existing inventory and drives speculative buying/selling volume."
+          },
+          {
+            "factor": "Thai THB/USD Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Local gold prices are calculated based on USD spot; a weaker THB inflates the local price per 'baht' weight."
+          },
+          {
+            "factor": "Thai Policy Interest Rate (BoT)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Increases cost of funds for the 'Gold for Cash' lending business and reduces consumer discretionary spending on luxury items."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "entities": [
+    {
+      "ticker": "AEONTS.BK",
+      "name": "AEON Thana Sinsap (Thailand) Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank (BBL.BK)",
+            "relation": "Primary Credit Provider",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides significant wholesale funding and credit facilities; rising interest rates increase AEONTS's cost of funds."
+          },
+          {
+            "entity": "TISCO Bank (TISCO.BK)",
+            "relation": "Lender/Institutional Shareholder",
+            "proportionality": "Inversely Proportional",
+            "note": "Significant institutional holder via provident funds; acts as a liquidity provider for corporate debentures."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Big C Supercenter (BJC.BK)",
+            "relation": "Downstream Retail Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.65,
+            "note": "Key co-branded card partner (Big C Platinum Visa); credit card spend is tied to Big C's retail traffic."
+          },
+          {
+            "entity": "B-Quik (Major Private Partner)",
+            "relation": "Downstream Service Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.4,
+            "note": "Co-branded card partner for automotive services; installment revenue depends on consumer car maintenance cycles."
+          },
+          {
+            "entity": "AEON (Thailand) Co., Ltd. (MaxValu)",
+            "relation": "Group Synergy/Channel",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.55,
+            "note": "Affiliate retail network (MaxValu) provides a captive merchant ecosystem for AEON cardholders."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "AEON Financial Service Co., Ltd. (8570.T)",
+            "type": "Parent",
+            "ownership_pct": 35.12,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "ACS Servicing (Thailand) Co., Ltd.",
+            "type": "Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "ACS Capital Corporation Ltd.",
+            "type": "Major Shareholder",
+            "ownership_pct": 19.2,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "KTC.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival in the credit card and personal loan segment; compete for high-quality borrowers."
+          },
+          {
+            "ticker": "MTC.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in the personal/unsecured loan market for lower-income tiers."
+          },
+          {
+            "ticker": "TIDLOR.BK",
+            "market_share_overlap": "Low",
+            "proportionality": "Inversely Proportional",
+            "note": "Secondary competition in installment loans and general retail lending."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "BoT Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Directly impacts Net Interest Margin (NIM) as funding costs rise faster than lending caps (regulatory limits)."
+          },
+          {
+            "factor": "Thai Household Debt-to-GDP",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+3 Months",
+            "logic": "High leverage reduces the pool of qualified borrowers and increases Non-Performing Loan (NPL) risks."
+          },
+          {
+            "factor": "Private Consumption Index (PCI)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Determines the velocity of credit card spending and demand for new personal loans."
+          }
+        ]
+      }
+    }
+  ]
+}

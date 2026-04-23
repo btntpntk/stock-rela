@@ -1,0 +1,110 @@
+{
+  "entities": [
+    {
+      "ticker": "RATCH.BK",
+      "name": "RATCH Group Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Electricity Generating Authority of Thailand (EGAT)",
+            "relation": "Majority Shareholder/Strategic Parent",
+            "proportionality": "Proportional",
+            "note": "Holds 45% stake; RATCH acts as the primary investment arm for EGAT's IPP projects. Financial health is deeply linked to EGAT's credit rating and the Thai sovereign outlook."
+          },
+          {
+            "entity": "Siam Commercial Bank (SCB.BK) / Krung Thai Bank (KTB.BK)",
+            "relation": "Primary Lenders/Debt Facility Providers",
+            "proportionality": "Inversely Proportional",
+            "note": "Major financiers for regional M&A and infrastructure projects; rising interest rates increase the servicing cost on their ~฿100bn+ debt load."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "EGAT (Electricity Generating Authority of Thailand)",
+            "relation": "Downstream/Primary Customer (PPA)",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "Revenue stability is secured via 20-25 year Power Purchase Agreements (PPAs) with EGAT, though 2026 sees some impact from the expiry of the Ratchaburi Thermal Units."
+          },
+          {
+            "entity": "PTT Public Company Limited (PTT.BK)",
+            "relation": "Upstream/Natural Gas Supplier",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.8,
+            "note": "Primary fuel supplier for thermal and combined-cycle plants; fuel costs are generally passed through, but PTT price volatility can impact working capital."
+          },
+          {
+            "entity": "NEXIF Energy (Singapore)",
+            "relation": "Subsidiary/Growth Platform",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.7,
+            "note": "NEXIF RATCH Energy is the core vehicle for expansion into renewable energy in Vietnam and the Philippines, targeting 30-40% renewable capacity by 2030."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Paiton Energy (Indonesia)",
+            "type": "Major Associate",
+            "ownership_pct": 36.26,
+            "proportionality": "Proportional",
+            "note": "Acquired in 2024; provides significant dividend income flow (est. ฿4bn+ annually in 2026) to RATCH's consolidated EBITDA."
+          },
+          {
+            "entity": "Ratchaburi Power Company (RPCL)",
+            "type": "Restructured Subsidiary",
+            "ownership_pct": 50.0,
+            "proportionality": "Proportional",
+            "note": "Completed investment restructuring in early 2026 to optimize the 1,400 MW plant's returns."
+          },
+          {
+            "entity": "Principal Healthcare Co., Ltd.",
+            "type": "Strategic Associate (Non-Power)",
+            "ownership_pct": 10.0,
+            "proportionality": "Proportional",
+            "note": "Diversification into healthcare infrastructure to create a secondary 'steady-income' stream."
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "GULF.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Main rival for large-scale IPP and renewable projects; Gulf's rapid scale-up in gas and LNG-to-power pressures RATCH's market position."
+          },
+          {
+            "ticker": "EGCO.BK",
+            "market_share_overlap": "Extreme",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct peer and fellow EGAT affiliate; both compete for regional M&A and international renewable energy projects."
+          },
+          {
+            "ticker": "B.GRIMM (BGRIM.BK)",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Rival in the SPP and regional renewable segments, particularly in Vietnam and the Philippines."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Australian Wind & Solar Resource",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "The Lincoln Gap 3 Wind Farm (operational early 2026) makes RATCH's earnings increasingly sensitive to Australian environmental and energy market prices."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "As a global holding company (Paiton Energy in Indonesia, Australian assets), a weaker THB boosts translated dividend and net income."
+          },
+          {
+            "factor": "Thai Policy Interest Rate (BoT)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Directly impacts the cost of the ฿40bn+ 5-year investment plan and influences the yield spread for dividend investors."
+          }
+        ]
+      }
+    }
+  ]
+}

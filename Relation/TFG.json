@@ -1,0 +1,113 @@
+{
+  "entities": [
+    {
+      "ticker": "TFG.BK",
+      "name": "Thaifoods Group Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "New Star Victor Co., Ltd.",
+            "relation": "Controlling Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~31.74% stake; the primary vehicle for the Teawsomboonkij family's control over strategic capital allocation."
+          },
+          {
+            "entity": "Teawsomboonkij Family",
+            "relation": "Founding Family/Management",
+            "proportionality": "Proportional",
+            "note": "Led by Winai Teawsomboonkij (~17.94% direct stake); the family maintains over 50% combined voting power."
+          },
+          {
+            "entity": "The Bank of New York (Nominees) Limited",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Significant institutional holding (~13.98%), reflecting TFG's inclusion in global emerging market and agri-food indices."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Thai Foods Fresh Market",
+            "relation": "Internal/Retail Channel (S-Curve)",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "Primary growth driver for 2026; expanding from 615 to 850 branches. Aims to contribute 50% of total revenue to hedge against meat price volatility."
+          },
+          {
+            "entity": "Corn & Soybean Suppliers",
+            "relation": "Upstream/Feed Feedstock",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Raw material costs for feed mill operations; TFG has locked in ~60-70% of 2026 input costs to stabilize margins."
+          },
+          {
+            "entity": "Vietnam Swine Operations",
+            "relation": "Upstream/Overseas Production",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.8,
+            "note": "Vietnam remains a key growth engine; 2026 capacity expansion focuses on integrating animal feed mills with poultry and swine farms."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Thai Foods Feed Mill Co., Ltd.",
+            "type": "Wholly-Owned Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Thai Foods Swine Farm Co., Ltd.",
+            "type": "Wholly-Owned Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "CPF.BK (Charoen Pokphand Foods)",
+            "market_share_overlap": "Extreme",
+            "proportionality": "Inversely Proportional",
+            "note": "Dominant rival in all segments (poultry, swine, feed); CPF's global scale pressures TFG's pricing power in export markets."
+          },
+          {
+            "ticker": "BTG.BK (Betagro)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competitor in the premium meat and retail shop segments ('Betagro Deli' vs 'Thai Foods Fresh Market')."
+          },
+          {
+            "ticker": "GFPT.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Rival specifically in the frozen and processed chicken export segment."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Domestic Swine/Poultry ASP",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "The 'Price Maker' factor; 2026 swine prices in Thailand are projected at THB 70/kg, driving significant margin expansion."
+          },
+          {
+            "factor": "Vietnam Swine Price (VND)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Directly impacts overseas earnings; full-year 2026 prices are targeted at VND 55,000–60,000/kg."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Exports (chicken) are USD-denominated; a weaker THB boosts revenue but increases the cost of imported feed ingredients."
+          },
+          {
+            "factor": "Minimum Wage Policy",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0",
+            "logic": "Retail expansion is labor-intensive; 2026 wage hikes impact the SG&A of the 850-branch Fresh Market network."
+          }
+        ]
+      }
+    }
+  ]
+}

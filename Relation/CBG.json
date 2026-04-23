@@ -1,0 +1,120 @@
+{
+  "entities": [
+    {
+      "ticker": "CBG.BK",
+      "name": "Carabao Group Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Kasikornbank Public Company Limited (KBANK)",
+            "relation": "Primary Lender / Transactional Bank",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides major credit facilities and working capital; CBG's 2026 leverage (Net D/E ~19.2%) maintains sensitivity to floating-rate corporate debt."
+          },
+          {
+            "entity": "Sathientham Holding Company Limited",
+            "relation": "Controlling Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~25.01%; direct alignment with the Sathientham family's broader ecosystem (CJ More, Carabao Beer)."
+          },
+          {
+            "entity": "Vayupak Fund 1",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~3.09%; provides institutional stability and reflects state-linked investment sentiment in consumer staples."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Tawandang DCM Company Limited",
+            "relation": "Distribution Subsidiary",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "Handles 100% of own distribution and 3rd party distribution for Sathientham's spirits/beer, a key 2026 revenue driver."
+          },
+          {
+            "entity": "Asia Can Manufacturing (ACM)",
+            "relation": "Upstream Packaging Subsidiary",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.88,
+            "note": "Internalized aluminum can production; reduces supply volatility but increases exposure to global aluminum spot prices."
+          },
+          {
+            "entity": "CJ More / CJ Express",
+            "relation": "Downstream Strategic Retail Affiliate",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.78,
+            "note": "Primary retail channel for the 'Carabao Ecosystem'; expansion of CJ stores directly correlates with CBG's domestic volume growth."
+          },
+          {
+            "entity": "PTT Public Company Limited (PTT.BK)",
+            "relation": "Upstream Energy Provider (Gas)",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.65,
+            "note": "Supplies natural gas for Asia Pacific Glass (APG) furnace operations; energy costs are a major component of packaging GPM."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Carabao Tawandang Co., Ltd. (CBD)",
+            "type": "Wholly Owned Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Asia Pacific Glass Co., Ltd. (APG)",
+            "type": "Wholly Owned Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Intercarabao Limited (UK)",
+            "type": "International Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "OSP.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival in Thai energy drinks (M-150 vs Carabao Dang); intense 2026 competition for the 32% market share target."
+          },
+          {
+            "ticker": "SAPPE.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competition in the non-carbonated functional drink segment (Woody C+ Lock vs Sappe products)."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "LME Aluminum Price",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+3 Months",
+            "logic": "Lack of 2026 hedging strategy makes CBG highly vulnerable to aluminum price spikes, compressing GPM in the packaging arm."
+          },
+          {
+            "factor": "Thailand Sugar Excise Tax",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Regulatory risk; 2026 shifts to 'sugar-free' formulas are a response to periodic tax tier escalations."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Net positive on export revenue (CLMV and Middle East) despite offsetting effects of USD-linked raw material costs."
+          },
+          {
+            "factor": "Thailand Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Impacts interest expense on 4.9bn+ THB total liabilities; rate hikes directly reduce core net profit."
+          }
+        ]
+      }
+    }
+  ]
+}

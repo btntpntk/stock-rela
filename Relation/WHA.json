@@ -1,0 +1,109 @@
+{
+  "entities": [
+    {
+      "ticker": "WHA.BK",
+      "name": "WHA Corporation Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Jareeporn Jarukornsakul",
+            "relation": "Controlling Shareholder/Group CEO",
+            "proportionality": "Proportional",
+            "note": "Holds ~23.3% stake; the visionary leader driving the 'WHA: SHAPE THE FUTURE' 2026 mission."
+          },
+          {
+            "entity": "Thai NVDR Company Limited",
+            "relation": "Institutional Shareholder (Nominee)",
+            "proportionality": "Proportional",
+            "note": "Holds ~7.5% stake; reflects significant foreign institutional sentiment toward Thailand's industrial and digital infrastructure."
+          },
+          {
+            "entity": "Siam Commercial Bank (SCB.BK) / Kasikornbank (KBANK.BK)",
+            "relation": "Primary Lenders/Transactional Banks",
+            "proportionality": "Inversely Proportional",
+            "note": "Major providers of the ฿16.5bn 2026 investment budget; sensitive to interest rate cuts (expected to 1.0% in 1H26)."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Data Center Giants (Google/Amazon/Microsoft)",
+            "relation": "Downstream/High-Value Customers",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "The primary growth driver in 2026; data center water consumption is 12–16x higher than standard manufacturing, fueling WHAUP revenue."
+          },
+          {
+            "entity": "EV & Battery Manufacturers (BYD/Changan)",
+            "relation": "Downstream/Industrial Land Tenants",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.9,
+            "note": "WHA is the main beneficiary of the EV supply chain 'reshoring' to Thailand's EEC; land sales target for 2026 is 2,500 rai."
+          },
+          {
+            "entity": "WHA Utilities and Power (WHAUP.BK)",
+            "relation": "Internal/Utility Subsidiary",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Provides vertical integration; WHAUP secured PPAs for 135.8 MW solar projects in April 2026 to power the 'Green Economy'."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "WHART.BK (WHA Premium Growth REIT)",
+            "type": "Associated REIT/Asset Monetization Vehicle",
+            "ownership_pct": 15.0,
+            "proportionality": "Proportional",
+            "note": "WHA plans to divest 193,000 sq.m. of assets (~฿4.7bn) into WHART in late 2026 to recycle capital."
+          },
+          {
+            "entity": "WHAUP.BK",
+            "type": "Subsidiary (Utilities)",
+            "ownership_pct": 70.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Mobilix (WHA Mobility)",
+            "type": "New S-Curve Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional",
+            "note": "Targeting 637 cumulative EV rental vehicles in 2026 as part of the green logistics push."
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "AMATA.BK",
+            "market_share_overlap": "Extreme",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct rival for FDI in industrial estates (Thailand and Vietnam); AMATA is a major competitor for the same high-tech 'S-Curve' clients."
+          },
+          {
+            "ticker": "ROJNA.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes for electronics and automotive tenants in central and eastern Thailand."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "BOI Investment Applications",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Record 2025 BOI applications (฿1.88tn) act as a leading indicator for WHA's 2026 land sales and transfers."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Influences FDI attractiveness; a weaker THB makes Thai industrial assets cheaper for foreign tech and EV giants."
+          },
+          {
+            "factor": "Electricity FT Tariff",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Impacts the profitability of WHAUP's power business and the operational costs of large-scale data center tenants."
+          }
+        ]
+      }
+    }
+  ]
+}

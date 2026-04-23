@@ -1,0 +1,122 @@
+{
+  "entities": [
+    {
+      "ticker": "MINT.BK",
+      "name": "Minor International Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank (BBL.BK) / Kasikornbank (KBANK.BK)",
+            "relation": "Primary Lenders/Sustainability-Linked Bond Underwriters",
+            "proportionality": "Inversely Proportional",
+            "note": "Major financiers for MINT's global debt profile; interest expense is sensitive to Thai policy rates (~1.25% in 2026) and global credit spreads."
+          },
+          {
+            "entity": "Social Security Office (SSO)",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~3.6% stake; provides capital stability and aligns with local institutional sentiment for Thai blue-chip hospitality."
+          },
+          {
+            "entity": "Vayupak Fund 1",
+            "relation": "Major Shareholder/Strategic Fund",
+            "proportionality": "Proportional",
+            "note": "Government-linked fund holding ~3.1% stake, reflecting MINT's status as a critical national tourism asset."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Minor Dairy Limited (MDL)",
+            "relation": "Internal Upstream/Manufacturing Subsidiary",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.9,
+            "note": "Supplies 100% of cheese and ice cream for 'The Pizza Company' and 'Swensen’s'; protects margins against global dairy commodity volatility."
+          },
+          {
+            "entity": "Coperama (Europe)",
+            "relation": "Upstream/Procurement Subsidiary",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Primary procurement arm for Minor Hotels Europe & Americas; critical for operational efficiency and ESG-certified supply sourcing."
+          },
+          {
+            "entity": "Global Food Distributors (e.g., Tyson/Cargill)",
+            "relation": "Upstream/Raw Material Suppliers",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.8,
+            "note": "Suppliers of protein and flour; fluctuations in agricultural commodities directly impact Minor Food's COGS."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Minor Hotels Europe & Americas (formerly NH Hotel Group)",
+            "type": "Subsidiary",
+            "ownership_pct": 95.9,
+            "proportionality": "Proportional",
+            "note": "Contributes ~50% of group revenue; core driver for European RevPAR and ADR growth in 2026."
+          },
+          {
+            "entity": "Pop Mart Thailand",
+            "type": "Joint Venture (Associate)",
+            "ownership_pct": null,
+            "proportionality": "Proportional",
+            "note": "Surging equity income from this JV has become a significant 'Lifestyle' segment tailwind in 2026."
+          },
+          {
+            "entity": "Minor Food PLC",
+            "type": "Subsidiary (Restaurant Arm)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional",
+            "note": "Targeted for a Hong Kong IPO in 2H26 to raise ~$400M and unlock valuation premiums."
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "CENTEL.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct rival across both hotel and food (Centara vs Anantara, KFC/Mister Donut vs Burger King/Dairy Queen)."
+          },
+          {
+            "ticker": "AWC.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes for high-end hospitality real estate and luxury hotel management contracts in Thailand."
+          },
+          {
+            "ticker": "M.BK (MK Restaurant)",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary competitor for casual dining and domestic consumer wallet share in Thailand."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "2026 FIFA World Cup (Americas)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Major catalyst for MINT’s 62 properties in the Americas, particularly in host cities like New York and Miami."
+          },
+          {
+            "factor": "Thai Foreign Tourist Arrivals (Forecast: 35-36M)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Directly correlates with occupancy and RevPAR for Thai-based hotels (Anantara, Avani)."
+          },
+          {
+            "factor": "EUR/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "A weaker THB against the EUR inflates translated earnings from the massive European portfolio."
+          },
+          {
+            "factor": "Global Jet Fuel/Electricity Prices",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0",
+            "logic": "Affects both flight affordability (tourist volume) and the operational utility costs of massive hotel properties."
+          }
+        ]
+      }
+    }
+  ]
+}

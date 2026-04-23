@@ -1,0 +1,107 @@
+{
+  "entities": [
+    {
+      "ticker": "BA.BK",
+      "name": "Bangkok Airways Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "relation": "Lender and Strategic Shareholder",
+            "proportionality": "Inversely Proportional",
+            "note": "BBL holds approx. 5.0% equity and provides major credit lines; interest rate hikes increase debt servicing costs on aircraft leases and loans."
+          },
+          {
+            "entity": "BAREIT (Bangkok Airways Leasehold Real Estate Investment Trust)",
+            "relation": "Leaseback Partner/REIT Sponsor",
+            "proportionality": "Inversely Proportional",
+            "note": "BA pays fixed lease payments to BAREIT for Samui Airport assets; higher lease obligations act as a fixed cost drag during low-demand periods."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Bangkok Aviation Fuel Services (BAFS)",
+            "relation": "Logistics/Refueling Service",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Primary refueling provider at major Thai hubs; operational volume is directly tied to BA's flight frequency."
+          },
+          {
+            "entity": "PTT Public Company Limited",
+            "relation": "Upstream Fuel Supplier",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.70,
+            "note": "Major jet fuel supplier; rising energy prices at the source compress operating margins."
+          },
+          {
+            "entity": "Airbus / ATR",
+            "relation": "Upstream Aircraft Manufacturer",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.40,
+            "note": "Suppliers of fleet (A319, A320, ATR 72-600); maintenance costs and spare parts prices affect operational CASK."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "BDMS.BK (Bangkok Dusit Medical Services)",
+            "relation": "Long-term Investment/Associate",
+            "ownership_pct": 4.6,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "BBS Joint Venture (U-Tapao Airport)",
+            "relation": "Infrastructure Investment",
+            "ownership_pct": 45.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Bangkok Air Catering (BAC)",
+            "relation": "Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "AAV.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competition on secondary domestic routes and regional international flights (CLMV)."
+          },
+          {
+            "ticker": "THAI.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Overlap on high-traffic domestic routes and partnership friction in codeshare markets."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Singapore Jet Kerosene Price",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Direct correlation with fuel expense; a 1% increase in Brent/Jet Fuel typically reduces BA profit by ~1%."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Major costs (fuel, aircraft leases, maintenance) are USD-denominated; THB depreciation increases expenses."
+          },
+          {
+            "factor": "International Tourist Arrivals (Thailand)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Primary demand driver for the Samui route 'monopoly'; highly sensitive to global travel cycles."
+          },
+          {
+            "factor": "Passenger Load Factor",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Operational leverage: 1% increase in load factor correlates to approx. 5% increase in net profit."
+          }
+        ]
+      }
+    }
+  ]
+}

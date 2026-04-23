@@ -1,0 +1,107 @@
+{
+  "entities": [
+    {
+      "ticker": "STGT.BK",
+      "name": "Sri Trang Gloves (Thailand) Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "EY Office Limited",
+            "relation": "External Auditor",
+            "proportionality": "N/A",
+            "note": "Auditor mandate effective through December 31, 2026; provided an unqualified opinion on the 2025 yearly report."
+          },
+          {
+            "entity": "The Asset Triple A",
+            "relation": "Sustainable Finance Benchmarking",
+            "proportionality": "Proportional",
+            "note": "Awarded 'Best Sustainability-Linked Loan' in April 2026; underscores STGT's pivot toward ESG-linked financing to lower borrowing costs."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "STA.BK (Sri Trang Agro-Industry)",
+            "relation": "Parent Company / Primary Feedstock Supplier",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "STA holds 50.61% equity; STGT's GPM is highly sensitive to the transfer price of concentrated latex from STA's midstream processing plants."
+          },
+          {
+            "entity": "Global Healthcare Providers / Hospital Chains",
+            "relation": "Downstream Strategic Customers",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Primary demand source for medical-grade exam gloves; 2026 recovery in hospital utilization rates is a key volume catalyst."
+          },
+          {
+            "entity": "Nitrile Butadiene Rubber (NBR) Suppliers",
+            "relation": "Upstream Synthetic Material Providers",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.70,
+            "note": "Synthetic glove production (NBR) depends on petrochemical inputs; 2026 global oil volatility impacts synthetic glove margins differently than natural latex ones."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "STA.BK",
+            "type": "Parent Company",
+            "ownership_pct": 50.61,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Thai NVDR Company Limited",
+            "type": "Institutional Vehicle",
+            "ownership_pct": 1.82,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "LGT Bank (Singapore) Ltd.",
+            "type": "Institutional Shareholder",
+            "ownership_pct": 2.35,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "HART.KL (Hartalega)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary Malaysian rival in the high-end Nitrile segment; competitive pricing in the US/EU markets pressures STGT's export margins."
+          },
+          {
+            "ticker": "TOPG.KL (Top Glove)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Global capacity leader; intense price competition from Malaysian peers is a persistent risk for STGT's ASP (Average Selling Price)."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Global Rubber Glove ASP (USD/1,000 pcs)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "The most critical profit driver; 2026 is seeing a gradual USD-denominated ASP recovery toward USD 19.40+ as pandemic-era oversupply finally clears."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Export-heavy model; a weak Baht (trading ~32.50 in April 2026) is vital for translating USD sales into competitive THB revenue."
+          },
+          {
+            "factor": "Thailand Electricity Ft Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Glove manufacturing is energy-intensive; the 2026 reduction in Ft rates provides a direct tailwind to the 'Cost of Sales'."
+          },
+          {
+            "factor": "Concentrated Latex Price",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Input cost for natural rubber gloves; 2026 supply growth due to neutral weather patterns (post-La Niña) helps stabilize raw material costs."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "entities": [
+    {
+      "ticker": "SPRC.BK",
+      "name": "Star Petroleum Refining Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Chevron South Asia Holdings Pte. Ltd.",
+            "relation": "Parent/Majority Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds 60.56% stake; provides technical support and secures crude supply, particularly during geopolitical supply chain disruptions."
+          },
+          {
+            "entity": "Thai NVDR Company Limited",
+            "relation": "Institutional Shareholder (Nominee)",
+            "proportionality": "Proportional",
+            "note": "Holds ~10.55% stake; reflects foreign institutional flow and sentiment toward Thai energy refining spreads."
+          },
+          {
+            "entity": "Vayupak Fund 1",
+            "relation": "Major Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~1.52% stake; represents government-linked investment stability in a core national infrastructure asset."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Chevron",
+            "relation": "Upstream/Crude Supplier",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.9,
+            "note": "Secures crude supply through 2Q26; helped SPRC reduce Middle East crude reliance from ~80% to <20% to mitigate geopolitical risks."
+          },
+          {
+            "entity": "PTT Public Company Limited (PTT.BK) / OR.BK",
+            "relation": "Downstream/Key Customers",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Major off-takers of refined products (diesel, jet fuel, gasoline) for the domestic Thai market."
+          },
+          {
+            "entity": "Rayong Complex",
+            "relation": "Internal/Operational Asset",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "175,000 bpd capacity (13.2% of Thailand's total); high Nelson Complexity Index of 6.3 allows for higher-margin product yields."
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "TOP.BK (Thai Oil)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary domestic rival in complex refining; both compete for market share in middle distillates."
+          },
+          {
+            "ticker": "BCP.BK (Bangchak)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Rivalry intensified following BCP's acquisition of Esso Thailand; competes directly in retail and fuel marketing."
+          },
+          {
+            "ticker": "IRPC.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in the refining segment, though IRPC has a heavier focus on integrated petrochemicals."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Singapore GRM (Gross Refining Margin)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "The most critical earnings driver; every $1/bbl change impacts annual core earnings by ~฿700m–฿900m."
+          },
+          {
+            "factor": "Middle East Geopolitical Tensions",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Drives crude price volatility, leading to massive inventory gains (est. ฿7.2b in 1Q26) despite core operational shutdowns."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Refining margins are denominated in USD; a weaker THB inflates translated earnings but can lead to FX losses on USD debt."
+          },
+          {
+            "factor": "Jet Fuel & Diesel Spreads (Cracks)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Middle distillates are SPRC's bread and butter; 1H26 tourism recovery in Thailand boosts domestic jet fuel demand."
+          }
+        ]
+      }
+    }
+  ]
+}

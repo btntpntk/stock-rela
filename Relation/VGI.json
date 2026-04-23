@@ -1,0 +1,115 @@
+{
+  "entities": [
+    {
+      "ticker": "VGI.BK",
+      "name": "VGI Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "BTS Group Holdings (BTS.BK)",
+            "relation": "Ultimate Parent / Controlling Shareholder",
+            "proportionality": "Proportional",
+            "note": "BTS Group increased its stake in late 2025/early 2026; VGI is the exclusive media manager for the BTS Skytrain network until 2029."
+          },
+          {
+            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "relation": "Major Shareholder / Financial Partner",
+            "proportionality": "Proportional",
+            "note": "BBL holds ~8.36%; provides credit facilities and collaborates on payment infrastructure through the Rabbit ecosystem."
+          },
+          {
+            "entity": "Thai NVDR Company Limited",
+            "relation": "Institutional Vehicle",
+            "ownership_pct": 3.72,
+            "proportionality": "Proportional",
+            "note": "Primary channel for indirect foreign investment; recently saw a slight increase in participation as of April 2026."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Rabbit Group (BSS/BSSH)",
+            "relation": "Subsidiary / Data & Digital Engine",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "20.8M+ cards in circulation as of Q3 FY25/26; core to VGI's 'Offline-to-Online' (O2O) strategy for targeted advertising and digital lending."
+          },
+          {
+            "entity": "Plan B Media (PLANB.BK)",
+            "relation": "Strategic Partner / Co-marketing",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.80,
+            "note": "Collaborates on bundled media packages like 'Bangkok Live' to offer 360-degree Out-of-Home coverage across Bangkok."
+          },
+          {
+            "entity": "Turtle (Super Turtle PCL)",
+            "relation": "Subsidiary / Retail Outlet",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.70,
+            "note": "Operates retail shops on BTS stations; integration of retail data with media displays drives the 'Turtle LED' high-margin ad segment."
+          },
+          {
+            "entity": "Fanslink",
+            "relation": "Subsidiary / Distribution Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.65,
+            "note": "E-commerce enabler; 2026 performance is tied to its status as a Shopee-Certified Enabler and its ability to scale snack/content creator brands."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Rabbit Care",
+            "type": "Subsidiary (Insurance/Fintech)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Rabbit Cash",
+            "type": "Joint Venture (Digital Lending)",
+            "ownership_pct": 77.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "TURTLE.BK (Super Turtle)",
+            "type": "Subsidiary (Retail)",
+            "ownership_pct": 73.3,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "PLANB.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "While partners in some segments, they compete directly for non-BTS outdoor advertising budgets."
+          },
+          {
+            "ticker": "MACO.BK (Master Ad)",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in static and digital billboard placement across Thailand's provinces."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thailand Transit Ridership (BTS)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Directly impacts ad eye-balls and Turtle retail traffic; 2026 ridership recovery to pre-pandemic levels is a primary revenue catalyst."
+          },
+          {
+            "factor": "Ad-Spending Sentiment (Thailand)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "The 2026 economic headwind led to a pivot toward 'Bundled' and 'Value' packages to maintain utilization rates (currently ~49%)."
+          },
+          {
+            "factor": "Thai Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "VGI holds a high cash position (~THB 21bn), making it sensitive to interest income; however, it helps fund digital lending via Rabbit Cash."
+          }
+        ]
+      }
+    }
+  ]
+}

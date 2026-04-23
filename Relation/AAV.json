@@ -1,0 +1,96 @@
+{
+  "entities": [
+    {
+      "ticker": "AAV.BK",
+      "name": "Asia Aviation Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank (BBL.BK)",
+            "relation": "Primary Lender/Credit Provider",
+            "proportionality": "Inversely Proportional",
+            "note": "High interest rate sensitivity due to significant lease liabilities and debt restructuring post-pandemic."
+          },
+          {
+            "entity": "Kasikornbank (KBANK.BK)",
+            "relation": "Lender/Working Capital Provider",
+            "proportionality": "Inversely Proportional",
+            "note": "Exposure to floating interest rates on short-term credit lines for operational liquidity."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "PTT Oil and Retail Business (OR.BK)",
+            "relation": "Upstream/Fuel Supplier",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Jet fuel accounts for ~30-40% of operating costs; high correlation with MOPS Jet Fuel prices."
+          },
+          {
+            "entity": "Airports of Thailand (AOT.BK)",
+            "relation": "Downstream/Logistics Infrastructure",
+            "proportionality": "Inversely Proportional",
+            "note": "Landing and parking fees are fixed costs; rising AOT service charges negatively impact margins."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Thai AirAsia Co., Ltd. (TAA)",
+            "type": "Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Capital A (AIRASIA.KL)",
+            "type": "Strategic Partner/Brand Owner",
+            "ownership_pct": null,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "BA.BK",
+            "name": "Bangkok Airways",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competition on premium domestic routes and Samui-linked connections."
+          },
+          {
+            "ticker": "THAI.BK",
+            "name": "Thai Airways International",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition on major domestic and regional hubs (Phuket, Chiang Mai)."
+          },
+          {
+            "ticker": "NOK.BK",
+            "name": "Nok Air",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "LCC price wars directly erode Yield Per Passenger (YPP)."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Singapore Jet Fuel (MOPS)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 to T+1 Month",
+            "logic": "Direct raw material cost. Hedging strategies usually cover only 20-40% of consumption."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "Quarterly",
+            "logic": "Major expenses (fuel, maintenance, aircraft leases) are USD-denominated; THB depreciation causes FX losses."
+          },
+          {
+            "factor": "Thai Tourist Arrivals (TAT Data)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Primary driver of load factor and top-line revenue growth, especially Chinese arrivals."
+          }
+        ]
+      }
+    }
+  ]
+}

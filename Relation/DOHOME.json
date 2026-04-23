@@ -1,0 +1,102 @@
+{
+  "entities": [
+    {
+      "ticker": "DOHOME.BK",
+      "name": "Dohome Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Kasikornbank (KBANK.BK)",
+            "relation": "Primary Lender/Credit Provider",
+            "proportionality": "Inversely Proportional",
+            "note": "High interest rate sensitivity due to expansion-driven debt; KBANK (via Kasikorn Securities) also serves as a key financial advisor."
+          },
+          {
+            "entity": "Bangkok Bank (BBL.BK)",
+            "relation": "Major Creditor/Lender",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides significant revolving credit and term loans for large-scale warehouse inventory and logistics infrastructure."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "NS BlueScope (Thailand)",
+            "relation": "Upstream/Steel Supplier",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "DOHOME is a major distributor of structural steel and roofing; BlueScope is a critical supplier for high-volume metal products."
+          },
+          {
+            "entity": "Siam City Cement (SCCC.BK)",
+            "relation": "Upstream/Cement & Building Materials",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.7,
+            "note": "Raw material costs for basic construction products; rising cement prices can squeeze retail margins if not fully passed to customers."
+          },
+          {
+            "entity": "TOA Paint (TOA.BK)",
+            "relation": "Upstream/Paint & Coatings",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.6,
+            "note": "Key partner for the 'Repair & Decor' segment; sales are highly correlated with home improvement and renovation cycles."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Kiddee Logistics Company Limited",
+            "type": "Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional",
+            "note": "In-house logistics arm critical for the 'Complete, Cheap, Good' distribution model across regional branches."
+          },
+          {
+            "entity": "Dohome Holding Company Limited",
+            "type": "Parent",
+            "ownership_pct": 28.17,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "GLOBAL.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct rival in the 'Warehouse' format; share price often moves inversely due to sector rotation or regional price wars."
+          },
+          {
+            "ticker": "HMPRO.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in the home decoration segment, though HMPRO targets a more premium urban demographic."
+          },
+          {
+            "ticker": "Thaiwatsadu (CRC.BK)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Intense competition in the industrial and contractor supply segments."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Global Steel Prices (HRC/Rebar)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 to T+1 Month",
+            "logic": "As a major steel trader, rising prices increase inventory valuation and top-line revenue, though they can dampen project demand."
+          },
+          {
+            "factor": "BoT Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Impacts the cost of financing high D/E ratios (1.6x) and reduces consumer mortgage/renovation loan affordability."
+          },
+          {
+            "factor": "Thai Private Consumption Index (PCI)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Directly drives 'Togo' branch sales and retail decoration segment; high household debt in 2026 remains a headwind."
+          }
+        ]
+      }
+    }
+  ]
+}

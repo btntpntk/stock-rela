@@ -1,0 +1,113 @@
+{
+  "entities": [
+    {
+      "ticker": "ERW.BK",
+      "name": "The Erawan Group Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "relation": "Primary Debt Financier / Creditor",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides significant long-term loans for hotel development; interest rate hikes directly increase financing costs for their 2026 expansion pipeline."
+          },
+          {
+            "entity": "Vayupak Fund 1",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~1.54% equity; provides institutional capital support and signal stability for the Thai hospitality sector."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Agoda / Booking.com / Trip.com",
+            "relation": "Downstream Distribution Channels (OTAs)",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Primary revenue engines for the luxury and midscale segments; performance is highly sensitive to OTA platform commission structures and digital traffic."
+          },
+          {
+            "entity": "Hospitality & F&B Suppliers",
+            "relation": "Upstream Raw Material / Service Providers",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.45,
+            "note": "Suppliers of food, laundry, and guest amenities; rising commodity prices compress margins across the F&B and room divisions."
+          },
+          {
+            "entity": "Contractors (e.g., Project Development Suppliers)",
+            "relation": "Upstream Construction / Maintenance",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.60,
+            "note": "Critical for the rollout of 9 new Hop Inn locations in 2026; rising labor and material costs impact CAPEX efficiency."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Erawan Hop Inn Co., Ltd.",
+            "type": "Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Tun Mitsiam Co., Ltd. (JV with Mitsui Fudosan)",
+            "type": "Strategic Associate / Shareholder",
+            "ownership_pct": 14.08,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "ERWPF (Erawan Hotel Growth Property Fund)",
+            "type": "Associate / REIT Sponsor",
+            "ownership_pct": 20.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "CENTEL.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition in the Thai upscale and midscale hotel segments; often move in tandem but compete for limited MICE and leisure demand."
+          },
+          {
+            "ticker": "MINT.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Global peer; while ERW is more Thailand-focused, they compete for the same institutional capital allocations."
+          },
+          {
+            "ticker": "AWC.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Intense rivalry in Bangkok’s luxury segment and international brand partnerships (Marriott/Hyatt)."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "International Tourist Arrivals (Thailand)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "The most dominant driver of RevPAR and occupancy; 2026 growth targets rely heavily on the recovery of Chinese and high-spending MICE travelers."
+          },
+          {
+            "factor": "Thai Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "As of Feb 2026, BoT cut rates to 1.00%; lower rates significantly alleviate debt burdens for ERW's asset-heavy model."
+          },
+          {
+            "factor": "Electricity Ft Rate (Fuel Tariff)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Utilities are a major fixed cost for large hotels; the 2026 reduction to 3.88 THB/kWh provides an immediate operational margin tailwind."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "A weaker Baht enhances Thailand’s competitiveness as a value destination, driving higher booking volumes for the luxury segment."
+          }
+        ]
+      }
+    }
+  ]
+}

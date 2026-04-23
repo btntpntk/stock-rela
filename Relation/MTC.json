@@ -1,0 +1,114 @@
+{
+  "entities": [
+    {
+      "ticker": "MTC.BK",
+      "name": "Muangthai Capital Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bank of Thailand (BoT)",
+            "relation": "Regulator/Monetary Policy Driver",
+            "proportionality": "Inversely Proportional",
+            "note": "Sets policy rates (currently ~1.25% in early 2026); rate cuts provide a 'Neutral' to 'Positive' carry as MTC refinances high-cost debentures."
+          },
+          {
+            "entity": "International Finance Corporation (IFC)",
+            "relation": "Strategic Lender/Social Bond Partner",
+            "proportionality": "Proportional",
+            "note": "Collaborated on a $50 million social bond in 2026 to support micro-entrepreneurs; provides diversified, lower-cost international funding."
+          },
+          {
+            "entity": "Kasikornbank (KBANK.BK) / Bangkok Bank (BBL.BK)",
+            "relation": "Primary Lenders/Transactional Banks",
+            "proportionality": "Inversely Proportional",
+            "note": "Major providers of local credit lines and debenture underwriting; interest expense is sensitive to the 1-day repo rate and bank MLR/MOR."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "MTC Branch Network (9,000+ locations)",
+            "relation": "Primary Distribution Channel",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "The core 'engine' of growth; adding 400 branches in 2026 to tap into provincial agricultural and industrial workers."
+          },
+          {
+            "entity": "Muangthai Leasing Co., Ltd.",
+            "relation": "Internal/Hire-Purchase Subsidiary",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.7,
+            "note": "Focuses on motorcycle hire-purchase; performance is sensitive to local vehicle sales and regional farm income."
+          },
+          {
+            "entity": "IBM / Infinitas",
+            "relation": "Upstream/Digital Tech Partners",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.5,
+            "note": "Facilitating the 'Digital Lending' shift; critical for reducing O&M costs per loan and improving credit scoring accuracy."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Muangthai Insurance (MTI.BK)",
+            "type": "Strategic Affiliate (Shared Family Interests)",
+            "ownership_pct": null,
+            "proportionality": "Proportional",
+            "note": "Synergy in cross-selling loan-protection insurance to the microfinance borrower base."
+          },
+          {
+            "entity": "Mrs. Daonapa Petampai",
+            "type": "Controlling Shareholder",
+            "ownership_pct": 33.96,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Vayupak Fund 1",
+            "type": "Institutional Shareholder",
+            "ownership_pct": 3.09,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "SAWAD.BK",
+            "market_share_overlap": "Extreme",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct duopoly rival; competition for provincial foot traffic and 'car-for-cash' loan volume."
+          },
+          {
+            "ticker": "TIDLOR.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Strong rival in truck/vehicle title loans; TIDLOR's tech-led approach pressures MTC's digital transformation speed."
+          },
+          {
+            "ticker": "SCB.BK / KBANK.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competition from bank-led microfinance arms (e.g., Auto X, Ngern Tid Lor) and upcoming virtual banks."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thai Household Debt-to-GDP",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0",
+            "logic": "At ~87.2% in April 2026, high debt levels act as a ceiling for loan growth and increase the risk of NPL spikes (MTC target NPL: <3.0%)."
+          },
+          {
+            "factor": "Retail Diesel Prices",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "The April 2026 surge in diesel prices (to 47+ THB/liter) strains the disposable income of rural clients, impacting loan repayment capacity."
+          },
+          {
+            "factor": "Farm Income Index",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Critical for regional branches; high crop prices (rice/rubber) correlate with better asset quality and higher loan demand for agricultural machinery."
+          }
+        ]
+      }
+    }
+  ]
+}

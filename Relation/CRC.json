@@ -1,0 +1,113 @@
+{
+  "entities": [
+    {
+      "ticker": "CRC.BK",
+      "name": "Central Retail Corporation Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bank of Ayudhya (BAY.BK)",
+            "relation": "Debenture Registrar/Primary Creditor",
+            "proportionality": "Inversely Proportional",
+            "note": "Acts as registrar for the CRC30OA 2026 series; rising interest rates increase the cost of servicing their 124 billion THB debt pool."
+          },
+          {
+            "entity": "Kasikornbank (KBANK.BK)",
+            "relation": "Lender/Financial Advisor",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides working capital and strategic underwriting; debt-to-equity ratios are sensitive to BoT policy rate shifts."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Central Pattana (CPN.BK)",
+            "relation": "Downstream/Mixed-Use Infrastructure Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Sister company and primary landlord; CRC's retail footprint is anchored in CPN's 44+ shopping malls nationwide."
+          },
+          {
+            "entity": "Central Retail Vietnam (CRV)",
+            "relation": "Subsidiary/Growth Engine",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Vietnam accounts for ~25% of revenue; performance of GO! Malls and GO! Hypermarkets is critical for EBITDA growth."
+          },
+          {
+            "entity": "L'Oréal / Estée Lauder / Luxury Fashion Groups",
+            "relation": "Upstream/Premium Brand Suppliers",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.6,
+            "note": "Inventory for the Fashion segment (Central/Robinson) is highly sensitive to consumer discretionary spending and brand availability."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Harng Central Department Store Ltd.",
+            "type": "Parent/Holding",
+            "ownership_pct": 35.06,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "MEB.BK",
+            "type": "Subsidiary (E-Book)",
+            "ownership_pct": 56.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Power Buy / Thaiwatsadu / Tops",
+            "type": "Wholly-Owned Subsidiaries",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "CPALL.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Main rival in the Food/Wholesale sector through Makro and Lotus's; competition for the 'Go Wholesale' segment."
+          },
+          {
+            "ticker": "HMPRO.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary competitor to Thaiwatsadu in the Hardline/Home Improvement market."
+          },
+          {
+            "ticker": "MWG (Vietnam)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition in the Vietnamese modern trade and grocery sector (Bach Hoa Xanh vs. Tops/Go!)."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thai Foreign Tourist Arrivals",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Projected 35.5M arrivals in 2026 drive foot traffic and high-ticket sales in tourist-centric department stores."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "A weaker THB inflates the cost of imported luxury fashion goods and global retail inventory, though it aids Vietnam translation gains."
+          },
+          {
+            "factor": "Thai Private Consumption Index (PCI)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Directly correlates with same-store sales growth (SSSG) across Fashion, Hardline, and Food segments."
+          },
+          {
+            "factor": "Brent Oil Price",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Affects logistics and electricity costs (Ft) for operating a massive multi-format brick-and-mortar network."
+          }
+        ]
+      }
+    }
+  ]
+}

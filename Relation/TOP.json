@@ -1,0 +1,108 @@
+{
+  "entities": [
+    {
+      "ticker": "TOP.BK",
+      "name": "Thai Oil Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "PTT Public Company Limited (PTT.BK)",
+            "relation": "Majority Shareholder/Parent",
+            "proportionality": "Proportional",
+            "note": "PTT holds ~45-48% stake; TOP serves as the group's primary refining flagship."
+          },
+          {
+            "entity": "Thai NVDR Company Limited",
+            "relation": "Institutional Shareholder (Nominee)",
+            "proportionality": "Proportional",
+            "note": "Holds ~13.7% stake; indicative of high foreign institutional interest and liquidity."
+          },
+          {
+            "entity": "Vayupak Fund 1",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~3.76% stake; provides capital stability and alignment with government investment strategy."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Global Crude Producers (Middle East/U.S./Canada)",
+            "relation": "Upstream/Feedstock Suppliers",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.95,
+            "note": "Refining margins are highly sensitive to crude premiums and light-heavy differentials. The Clean Fuel Project (CFP) allows for heavier, cheaper crude processing."
+          },
+          {
+            "entity": "Single Buoy Mooring (SBM-2)",
+            "relation": "Upstream/Critical Infrastructure",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.8,
+            "note": "Operations successfully resumed in early 2026, eliminating USD 0.5/bbl in temporary ship-to-ship transfer costs."
+          },
+          {
+            "entity": "PTT Oil and Retail (OR.BK)",
+            "relation": "Downstream/Key Strategic Customer",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Primary off-taker for refined products (gasoline/diesel) in the domestic market."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Global Power Synergy (GPSC.BK)",
+            "type": "Associate (Power)",
+            "ownership_pct": 10.0,
+            "proportionality": "Proportional",
+            "note": "Provides vertical integration into utility supply for refinery operations."
+          },
+          {
+            "entity": "Thaioil Ethanol Co., Ltd.",
+            "type": "Wholly-Owned Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "SPRC.BK (Star Petroleum)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct rival in complex refining; both compete for market share in middle distillates (diesel/jet fuel)."
+          },
+          {
+            "ticker": "BCP.BK (Bangchak)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival in the domestic refining and retail sector, especially post-BCP’s Esso acquisition."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Singapore Gross Refining Margin (GRM)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "The primary driver of core profit; 1Q26 GRM is strong at ~$6.8/bbl due to diesel and jet fuel demand."
+          },
+          {
+            "factor": "Clean Fuel Project (CFP) Progress",
+            "proportionality": "Proportional",
+            "impact_lag": "T+Long Term",
+            "logic": "Project is 97%+ complete as of April 2026; early completion in 2Q28 targets a refining capacity of 400,000 bpd."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "As a USD-earner, THB depreciation acts as a tailwind for translated revenue and inventory valuations."
+          },
+          {
+            "factor": "Crude Price Volatility",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Sharp price drops result in stock losses, while range-bound prices favor refinery crack spreads."
+          }
+        ]
+      }
+    }
+  ]
+}

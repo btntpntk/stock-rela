@@ -1,0 +1,101 @@
+{
+  "entities": [
+    {
+      "ticker": "TASCO.BK",
+      "name": "Tipco Asphalt Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "BNP Paribas Securities (Asia) Ltd - For Colas",
+            "relation": "Strategic Shareholder / Technical Partner",
+            "proportionality": "Proportional",
+            "note": "Colas S.A. (France) is a global leader in road construction and holds 31.09% of TASCO as of 2026; provides technical expertise and access to international tenders."
+          },
+          {
+            "entity": "Tipco Foods Public Company Limited (TIPCO.BK)",
+            "relation": "Founding Shareholder / Related Party",
+            "proportionality": "Proportional",
+            "note": "Holds 23.07% equity; the two companies share historical roots and administrative synergies despite operating in entirely different sectors."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Global Heavy Crude Suppliers (e.g., Middle East/South America)",
+            "relation": "Upstream Feedstock Provider",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.95,
+            "note": "Asphalt is a byproduct of heavy crude refining; supply disruptions in April 2026 (Strait of Hormuz) have pushed Brent premiums to $15/bbl over WTI, squeezing TASCO's input costs."
+          },
+          {
+            "entity": "Department of Highways (Thailand)",
+            "relation": "Primary Domestic Customer",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.90,
+            "note": "Domestic revenue is tied to the Thai government's infrastructure budget for road maintenance and new highway construction projects."
+          },
+          {
+            "entity": "Southeast Asia & Oceania Road Contractors",
+            "relation": "Export Market Customers",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.75,
+            "note": "TASCO exports high-grade asphalt to regional markets; performance depends on the 2026 infrastructure spend in Vietnam, Indonesia, and Australia."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Thai NVDR Company Limited",
+            "type": "Institutional Vehicle",
+            "ownership_pct": 4.12,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "South East Asia UK (Type C) Nominees",
+            "type": "Foreign Institutional Investor",
+            "ownership_pct": 1.47,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "ADESE.TR (International)",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competition in the international bitumen trade, particularly in the Asia-Pacific and African export corridors."
+          },
+          {
+            "ticker": "Domestic Asphalt Producers",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Fragmented competition for local Thai provincial road maintenance contracts."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Brent Crude Oil Price",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "April 2026 forecasts peak at $96/bbl; rising oil prices increase raw material procurement costs and shipping freight rates, compressing margins."
+          },
+          {
+            "factor": "Thailand Infrastructure Budget (2026/27)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+3 Months",
+            "logic": "The 2026 AGM (held April 9) confirmed a shift toward supporting domestic demand to offset weaker 1H26 export volumes."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "TASCO is a net exporter; a weak Baht (trading ~33.80 in April 2026) boosts export revenue but inflates the cost of imported heavy crude."
+          },
+          {
+            "factor": "International Shipping & Logistics Costs",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Supply chain chokepoints in April 2026 have increased 'Cost of Goods Sold' for its international distribution fleet."
+          }
+        ]
+      }
+    }
+  ]
+}

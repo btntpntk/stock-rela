@@ -1,0 +1,90 @@
+{
+  "entities": [
+    {
+      "ticker": "SCGP.BK",
+      "name": "SCG Packaging Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "The Siam Cement Public Company Limited (SCC.BK)",
+            "relation": "Majority Shareholder/Strategic Parent",
+            "proportionality": "Proportional",
+            "note": "SCC holds ~72% stake; SCGP is a key pillar of the SCG conglomerate, benefiting from group-wide procurement and credit synergy."
+          },
+          {
+            "entity": "Fajar Surya Wisesa (Fajar)",
+            "relation": "Key Underperforming Subsidiary",
+            "proportionality": "Proportional",
+            "note": "Indonesian subsidiary; its recovery toward net profit breakeven in 2H26 (following gas contract restructuring and price hikes) is a critical earnings catalyst."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Recycled Paper (RCP) Suppliers",
+            "relation": "Upstream/Raw Material Feedstock",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.9,
+            "note": "RCP costs are a major margin driver; stable pricing in early 2026 has supported a recovery in gross margins (targeting 19.5% for 1Q26)."
+          },
+          {
+            "entity": "Coal & Natural Gas Providers",
+            "relation": "Upstream/Energy Input",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Packaging manufacturing is energy-intensive; Fajar's transition to a new energy mix in 2026 is expected to save THB 800–850m annually."
+          },
+          {
+            "entity": "Duy Tan Plastics (Vietnam) / MyPack (Indonesia)",
+            "relation": "Downstream/Expansion Subsidiaries",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.8,
+            "note": "Vietnam and Indonesia are the primary growth engines; 2026 sales growth is driven by these high-margin consumer-linked packaging investments."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Peute Recycling (Netherlands)",
+            "type": "Subsidiary (Recycling)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional",
+            "note": "Secures long-term RCP supply and supports SCGP's circular economy/ESG rating (AAA)."
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "UTP.BK (United Paper)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct domestic rival in the industrial packaging paper segment."
+          },
+          {
+            "ticker": "BJC.BK (Berli Jucker)",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in the consumer packaging space (Glass/Cans vs. SCGP's Rigid/Flexible plastics)."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "China Containerboard Demand",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "As a major exporter, SCGP's paper utilization (target 90% in 2026) is highly sensitive to China's industrial and consumption recovery."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "A weaker Baht boosts THB-denominated revenue from overseas subsidiaries and enhances export competitiveness."
+          },
+          {
+            "factor": "Regional FMCG Consumption",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Directly correlates with the performance of the Integrated Packaging Chain (IPC) in ASEAN markets."
+          }
+        ]
+      }
+    }
+  ]
+}

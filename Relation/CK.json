@@ -1,0 +1,94 @@
+{
+  "entities": [
+    {
+      "ticker": "CK.BK",
+      "name": "CH. Karnchang Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "relation": "Primary Lender / Strategic Shareholder",
+            "proportionality": "Inversely Proportional",
+            "note": "BBL holds 2.30% of CK equity and acts as the lead financier for large-scale infrastructure bonds; rising rates increase the debt burden on a 2026 Net D/E ratio of approx 1.4x."
+          },
+          {
+            "entity": "Krungthai Bank Public Company Limited (KTB)",
+            "relation": "Project Financier / Associate Shareholder",
+            "proportionality": "Proportional",
+            "note": "KTB holds 5.33% of BEM (CK's core associate) and provides bridge financing for state-concession projects like the Orange Line and Purple Line."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Siam Cement Group (SCC.BK)",
+            "relation": "Upstream Raw Material Supplier",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Primary supplier of cement and construction materials; CK is highly sensitive to input cost inflation in the domestic building materials sector."
+          },
+          {
+            "entity": "Government of Thailand (Ministry of Transport)",
+            "relation": "Primary Customer / Employer",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "Infrastructure revenue is 100% dependent on public sector budget disbursement and concession approvals (e.g., Double Track Rail, Motorway M5/M9)."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "BEM.BK",
+            "type": "Associate / Concession Operator",
+            "ownership_pct": 42.26,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "CKP.BK",
+            "type": "Subsidiary / Power Producer",
+            "ownership_pct": 30.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "TTW.BK",
+            "type": "Associate / Utility Provider",
+            "ownership_pct": 19.4,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "STEC.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition for government civil engineering tenders; CK maintains a higher P/E premium due to its integrated BEM/CKP ecosystem."
+          },
+          {
+            "ticker": "ITD.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "2026 operational advantage for CK as ITD faces project blacklisting and liquidity constraints, consolidating CK's market leadership."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Global Steel Prices (HRC/Rebar)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Steel is a core cost in civil works; rising prices compress the 7-8% gross margin target for the construction backlog."
+          },
+          {
+            "factor": "Thai Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Impacts the financing cost of long-term concessions and the discount rate used for DCF valuations of BEM/CKP dividends."
+          },
+          {
+            "factor": "Public Infrastructure Budget (Fiscal 2026/2027)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+2 Months",
+            "logic": "Correlates directly with new project auctions and the ability to maintain the record-high 250bn+ THB backlog."
+          }
+        ]
+      }
+    }
+  ]
+}

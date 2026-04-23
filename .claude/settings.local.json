@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python build_graph.py)",
+      "Bash(npm view *)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(node -e \"const m = require\\('./frontend/node_modules/@react-sigma/core/lib/react-sigma_core.esm.min.js'\\); console.log\\('ok'\\)\")",
+      "Bash(node -e \"import\\('./frontend/node_modules/@react-sigma/core/lib/react-sigma_core.esm.min.js'\\).then\\(m => console.log\\(Object.keys\\(m\\).join\\(', '\\)\\)\\).catch\\(e => console.log\\(e.message\\)\\)\")",
+      "Bash(node -e ' *)",
+      "Bash(python3 -c \"import json,sys; p=json.load\\(sys.stdin\\); print\\('main:', p.get\\('main'\\)\\); print\\('exports:', list\\(p.get\\('exports',{}\\).keys\\(\\)\\)[:5]\\)\")",
+      "Bash(python -c \"import json; d=json.load\\(open\\('frontend/public/graph-data.json'\\)\\); sc=[n for n in d['nodes'] if n['nodeType']=='SupplyChain']; fi=[e for e in d['edges'] if e['relType']=='FEEDS_INTO']; cm=[e for e in d['edges'] if e['relType']=='CHAIN_MEMBER']; print\\(f'SupplyChain nodes: {len\\(sc\\)}'\\); print\\(f'FEEDS_INTO edges: {len\\(fi\\)}'\\); print\\(f'CHAIN_MEMBER edges: {len\\(cm\\)}'\\); print\\('Sample chains:', [n['label'] for n in sc[:5]]\\)\")",
+      "Bash(python -c \"import json; d=json.load\\(open\\('frontend/public/graph-data.json', encoding='utf-8'\\)\\); sc=[n for n in d['nodes'] if n['nodeType']=='SupplyChain']; fi=[e for e in d['edges'] if e['relType']=='FEEDS_INTO']; cm=[e for e in d['edges'] if e['relType']=='CHAIN_MEMBER']; print\\(f'SupplyChain nodes: {len\\(sc\\)}'\\); print\\(f'FEEDS_INTO edges: {len\\(fi\\)}'\\); print\\(f'CHAIN_MEMBER edges: {len\\(cm\\)}'\\); print\\('Chains:', [n['label'] for n in sc]\\)\")",
+      "Bash(python -c \"import json; d=json.load\\(open\\('frontend/public/graph-data.json', encoding='utf-8'\\)\\); chains=[\\(n['label'],len\\([e for e in d['edges'] if e['relType']=='CHAIN_MEMBER' and e['source']==n['id']]\\)\\) for n in d['nodes'] if n['nodeType']=='SupplyChain']; [print\\(f'{c[0]:35} {c[1]} stocks'\\) for c in chains]\")"
+    ]
+  }
+}

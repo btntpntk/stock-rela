@@ -1,0 +1,108 @@
+{
+  "entities": [
+    {
+      "ticker": "TLI.BK",
+      "name": "Thai Life Insurance Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "V.C. Sombat Co., Ltd.",
+            "relation": "Parent/Majority Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~50.81% stake; the primary investment vehicle for the Chaiyawan family, ensuring centralized strategic control."
+          },
+          {
+            "entity": "Meiji Yasuda Life Insurance",
+            "relation": "Strategic Partner/Major Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~17.0% via N.C.B. Trust; provides technical expertise and a stable long-term capital base."
+          },
+          {
+            "entity": "Vayupak Fund 1",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~1.77% stake; represents state-linked institutional backing and alignment with Thai financial sector stability."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Bancassurance Partners (e.g., CIMB Thai/LH Bank)",
+            "relation": "Downstream/Distribution Channels",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Crucial for First Year Premium (FYP) growth; TLI leverages these networks to reach mass-affluent and corporate segments."
+          },
+          {
+            "entity": "Healthcare Providers (BDMS/BH)",
+            "relation": "Upstream/Service Partners",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.9,
+            "note": "Rising medical inflation and claims from seasonal flu/outbreaks in early 2026 put pressure on underwriting margins."
+          },
+          {
+            "entity": "Global Reinsurers (e.g., Swiss Re/Munich Re)",
+            "relation": "Financial Supply Chain/Risk Transfer",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.7,
+            "note": "Rising global reinsurance premiums impact the net cost of large-sum assured and life-protection policies."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Thai Life Insurance Foundation",
+            "type": "Philanthropic Affiliate",
+            "ownership_pct": null,
+            "proportionality": "Neutral",
+            "note": "Core to the 'Thai Life' brand identity, focusing on social insurance and community development."
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "AIA Thailand (Unlisted)",
+            "market_share_overlap": "Extreme",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival for agency network dominance and market share in life-protection products."
+          },
+          {
+            "ticker": "BLA.BK (Bangkok Life Assurance)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct listed peer; both stocks are sensitive to Thai government bond yields and interest rate cycles."
+          },
+          {
+            "ticker": "FWD Thailand (Unlisted)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Strong competitor in the digital and bancassurance space."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thai 10-Year Government Bond Yield",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Directly impacts investment income and the valuation of the fixed-income-heavy reserve portfolio."
+          },
+          {
+            "factor": "Contractual Service Margin (CSM) Release Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Under TFRS 17, the steady release of CSM (est. 12% annually) provides high earnings visibility for 2026."
+          },
+          {
+            "factor": "Thai Household Disposable Income",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Drives demand for new endowment and health protection policies; sensitivity to Thai GDP recovery."
+          },
+          {
+            "factor": "Medical Inflation Index",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0",
+            "logic": "Higher-than-expected medical costs in early 2026 act as a drag on health insurance product profitability."
+          }
+        ]
+      }
+    }
+  ]
+}

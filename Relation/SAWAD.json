@@ -1,0 +1,107 @@
+{
+  "entities": [
+    {
+      "ticker": "SAWAD.BK",
+      "name": "Srisawad Corporation Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Fitch Ratings",
+            "relation": "Credit Rating Agency",
+            "proportionality": "Proportional",
+            "note": "Affirmed 'A-(tha)' with a Stable Outlook in January 2026; ratings are anchored by the group's consolidated credit profile and strong operational linkages."
+          },
+          {
+            "entity": "Government Savings Bank (GSB)",
+            "relation": "Strategic Banking Partner / Former JV Partner",
+            "proportionality": "Proportional",
+            "note": "Maintains a long-standing relationship for funding and credit-provision consultancy, though SAWAD has moved toward consolidated control of its Fast Money subsidiary."
+          },
+          {
+            "entity": "Vayupak Fund 1",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds 2.40% equity as of March 2026; provides institutional backing and a liquidity floor for one of Thailand's largest title lenders."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "SCAP (Srisawad Capital 1969)",
+            "relation": "Subsidiary / High-Margin Growth Driver",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "The group's motorcycle hire-purchase and personal loan engine; SCAP's performance is critical to group profitability and its 'A-(tha)' rating."
+          },
+          {
+            "entity": "Nationwide Branch Network (5,780+ locations)",
+            "relation": "Internal Distribution / Customer Acquisition",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.88,
+            "note": "The primary physical channel for vehicle title loans and debt collection services; branch efficiency is the main driver of the 2026 cost-to-income target (~50%)."
+          },
+          {
+            "entity": "Domestic Bond Market",
+            "relation": "Upstream Wholesale Financing",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Heavy reliance on corporate bond issuances; SAWAD is sensitive to shifts in market confidence and domestic interest rates for refinancing its 2026-2027 debt maturities."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "SCAP.BK",
+            "type": "Subsidiary (Hire Purchase)",
+            "ownership_pct": 72.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Srisawad International Holding",
+            "type": "Subsidiary (Regional Expansion)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Kaewbootta Family",
+            "type": "Ultimate Parent / Controlling Shareholder",
+            "ownership_pct": 30.8,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "MTC.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival for the #1 spot in the asset title loan (ATL) market; competition in yield and loan-to-value (LTV) ratios directly pressures SAWAD's NIM."
+          },
+          {
+            "ticker": "TIDLOR.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition in vehicle title loans and insurance brokerage; TIDLOR's tech-led approach pressures SAWAD's traditional branch-heavy OpEx."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thailand Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "As a wholesale-funded lender, lower rates in 2026 support margin expansion as funding costs drop faster than lending yields."
+          },
+          {
+            "factor": "Thailand Household Debt/GDP",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Remains elevated at 87% in 2026; high debt levels limit the addressable market for new credit and increase NPL risks for lower-income borrowers."
+          },
+          {
+            "factor": "Agricultural Commodity Prices (Rice/Sugar)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Strong correlation with the repayment ability of rural customers; 2026 price stability supports lower credit costs for provincial branches."
+          }
+        ]
+      }
+    }
+  ]
+}

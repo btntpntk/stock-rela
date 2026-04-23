@@ -1,0 +1,115 @@
+{
+  "entities": [
+    {
+      "ticker": "KCE.BK",
+      "name": "KCE Electronics Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Ongkosit Group",
+            "relation": "Controlling Shareholder/Management",
+            "proportionality": "Proportional",
+            "note": "The Ongkosit family, led by Pitharn Ongkosit (~13.94%), maintains ~33% ownership; their strategic focus on 'New S-Curve' automation directly dictates capital expenditure cycles."
+          },
+          {
+            "entity": "Bangkok Bank (BBL.BK)",
+            "relation": "Primary Lender/Financial Partner",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides long-term credit facilities for the Lat Krabang and Ayutthaya plant upgrades; interest expense is sensitive to Thai policy rate shifts."
+          },
+          {
+            "entity": "Thai NVDR Company Limited",
+            "relation": "Institutional Shareholder (Nominee)",
+            "proportionality": "Proportional",
+            "note": "Holds ~6.32% stake; fluctuates based on foreign fund flow (FOMO/FUD) regarding Thai electronics exports."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Continental AG / Bosch / Denso",
+            "relation": "Downstream/Key Automotive Customers",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.9,
+            "note": "Automotive segment accounts for ~70% of revenue. KCE is a Tier-1/Tier-2 supplier for high-density interconnect (HDI) PCBs used in ADAS and EV control systems."
+          },
+          {
+            "entity": "LME Copper / Global Copper Suppliers",
+            "relation": "Upstream/Raw Material Commodity",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Copper is a core cost component. Every $1,000/ton increase in copper prices typically results in a ~1% gross margin contraction with a 3-month lag."
+          },
+          {
+            "entity": "Thai Laminate Manufacturer (TLM)",
+            "relation": "Internal Supply/Subsidiary",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.7,
+            "note": "KCE's internal production of Prepreg and Copper Clad Laminate (CCL) provides a vertical hedge against global supply chain bottlenecks."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "KCE Technology Co., Ltd.",
+            "type": "Subsidiary (PCB Manufacturing)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Chemtronic Products Co., Ltd.",
+            "type": "Subsidiary (Chemicals)",
+            "ownership_pct": 94.96,
+            "proportionality": "Proportional",
+            "note": "Absorbed Chemtronic Technology via amalgamation in Jan 2026 to streamline the chemical recycling supply chain."
+          },
+          {
+            "entity": "Circuit Holding Co., Ltd.",
+            "type": "New Investment Vehicle",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional",
+            "note": "Established to manage international acquisitions, including the 100% stake in International Circuits Limited (UK)."
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "DELTA.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes for talent and investor capital in the Thai electronics sector, though DELTA focuses more on power supplies than pure PCB."
+          },
+          {
+            "ticker": "HANA.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct rival in the automotive EMS and IC packaging space; often trades in a high correlation with KCE."
+          },
+          {
+            "ticker": "SVI.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in industrial-grade PCB assembly and global export markets."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "As a 100% export company, THB depreciation acts as a direct tailwind for revenue translation and competitiveness."
+          },
+          {
+            "factor": "Global EV Adoption Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "The transition from ICE to EV increases PCB content per vehicle by 3-5x, serving as KCE’s primary long-term growth driver."
+          },
+          {
+            "factor": "Thai Ft (Fuel Tariff)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "PCB manufacturing is energy-intensive; rising utility costs for massive lamination and plating lines directly compress EBITDA."
+          }
+        ]
+      }
+    }
+  ]
+}

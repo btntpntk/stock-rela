@@ -1,0 +1,113 @@
+{
+  "entities": [
+    {
+      "ticker": "JMT.BK",
+      "name": "JMT Network Services Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "relation": "Primary Debt Financier / Facility Provider",
+            "proportionality": "Inversely Proportional",
+            "note": "BBL provides significant corporate credit lines for NPL portfolio acquisitions; rising interest rates increase the cost of carry for distressed assets."
+          },
+          {
+            "entity": "Kasikornbank Public Company Limited (KBANK)",
+            "relation": "Strategic Banking Partner",
+            "proportionality": "Proportional",
+            "note": "Collaborates on the JK AMC venture; KBANK's willingness to offload NPLs at favorable prices directly supports JMT's inorganic growth."
+          },
+          {
+            "entity": "Jaymart Group Holdings (JMART.BK)",
+            "relation": "Parent Company / Financial Backer",
+            "proportionality": "Proportional",
+            "note": "Provides inter-group liquidity and strategic capital support; JMT's performance is the primary profit engine for the JMART ecosystem."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "JK Asset Management (JK AMC)",
+            "relation": "Joint Venture (Upstream NPL Source)",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "50/50 JV with KBANK; serves as a dedicated pipeline for distressed assets, significantly reducing acquisition search costs."
+          },
+          {
+            "entity": "Thai Commercial Banks (SCB, KTB, BAY)",
+            "relation": "Upstream Distressed Debt Suppliers",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Banks sell NPL portfolios to JMT to clean their balance sheets; a higher banking sector NPL ratio increases JMT's inventory."
+          },
+          {
+            "entity": "Legal & Asset Appraisal Firms",
+            "relation": "Midstream Operational Partners",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.40,
+            "note": "Rising legal processing fees or appraisal costs for secured assets increase the 'Cost of Collection' and compress operating margins."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "J Asset Management (JAM)",
+            "type": "Subsidiary (NPL Management)",
+            "ownership_pct": 90.1,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Jaymart Insurance PCL",
+            "type": "Subsidiary (Non-Life Insurance)",
+            "ownership_pct": 73.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "K.T. Appraisal Co., Ltd.",
+            "type": "Subsidiary (Property Valuation)",
+            "ownership_pct": 55.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "BAM.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct rival for bank NPL tenders; intense bidding competition for high-quality portfolios can lead to yield compression."
+          },
+          {
+            "ticker": "CHAYO.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in the unsecured consumer debt segment; market share shifts impact JMT's dominance in small-ticket collection."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thailand Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Higher rates increase borrowing costs for acquisitions and reduce the disposable income of debtors, slowing 'Cash Collection' velocity."
+          },
+          {
+            "factor": "Thailand Household Debt/GDP",
+            "proportionality": "Proportional",
+            "impact_lag": "T+2 Quarters",
+            "logic": "High systemic debt levels expand the total addressable market (TAM) for NPL acquisition but increase Expected Credit Loss (ECL) risks."
+          },
+          {
+            "factor": "Unemployment Rate (Thailand)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Directly correlates with the ability of consumer debtors to settle accounts; rising unemployment reduces JMT's collection efficiency."
+          },
+          {
+            "factor": "Residential Property Price Index",
+            "proportionality": "Proportional",
+            "impact_lag": "T+3 Months",
+            "logic": "Impacts the recovery value of secured NPLs and Foreclosed Assets (NPA); higher prices enable higher auction disposal gains."
+          }
+        ]
+      }
+    }
+  ]
+}

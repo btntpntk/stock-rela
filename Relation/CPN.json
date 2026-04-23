@@ -1,0 +1,113 @@
+{
+  "entities": [
+    {
+      "ticker": "CPN.BK",
+      "name": "Central Pattana Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "relation": "Primary Debt Financier / Lead Underwriter",
+            "proportionality": "Inversely Proportional",
+            "note": "BBL is the primary financial partner for the Chirathivat family's Central Group; CPN's aggressive 2026 CAPEX for mixed-use projects increases its interest expense sensitivity to BBL's prime lending rates."
+          },
+          {
+            "entity": "Vayupak Fund 1",
+            "relation": "Major Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds 3.49% equity as of March 2026; provides institutional capital support and aligns with government-linked investment sentiment in the property sector."
+          },
+          {
+            "entity": "Social Security Office (SSO)",
+            "relation": "Major Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds 3.33% equity; reflects long-term domestic institutional trust and stability for large-cap property stocks."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "CRC.BK (Central Retail Corporation)",
+            "relation": "Anchor Tenant / Strategic Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "CRC's department stores (Central/Robinson) and supermarkets (Tops) act as primary traffic drivers for CPN malls; rental income is directly linked to CRC's performance and occupancy."
+          },
+          {
+            "entity": "Major Engineering Contractors (ITD / STEC)",
+            "relation": "Upstream Construction / Project Delivery",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.70,
+            "note": "Rising costs of labor and materials from major civil engineering partners directly impact the ROI and construction timeline of CPN's 2026-2028 development pipeline."
+          },
+          {
+            "entity": "Provincial Electricity Authority (PEA) / MEA",
+            "relation": "Upstream Energy Provider",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Utilities are a major fixed cost for shopping center operations; spikes in the Ft (Fuel Tariff) rate compress operating margins unless passed to tenants."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "CPNREIT (Retail Growth Leasehold REIT)",
+            "type": "REIT Sponsor / Associate",
+            "ownership_pct": 26.69,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "CPNCG (Commercial Growth Leasehold Property Fund)",
+            "type": "Associate / Office Investment",
+            "ownership_pct": 25.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Grand Canal Land (GLAND)",
+            "type": "Subsidiary",
+            "ownership_pct": 67.5,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "AWC.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competition for high-end lifestyle retail and international MICE/Hospitality demand in Bangkok's CBD."
+          },
+          {
+            "ticker": "Siam Piwat (Private)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct rivalry for premium 'Destination' retail market share (Paragon/Iconsiam vs CentralWorld/Central Embassy)."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thailand Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "MPC targets 1.0% by 1H26; lower rates reduce CPN's borrowing costs for expansions and increase the relative attractiveness of CPNREIT dividends."
+          },
+          {
+            "factor": "International Tourist Arrivals (Thailand)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Projected 35.5M arrivals in 2026; high-margin tourist spending at flagship malls (Phuket, Samui, Bangkok) is a critical revenue multiplier."
+          },
+          {
+            "factor": "Domestic Consumer Confidence Index",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Directly impacts rental collection from variable lease agreements and foot traffic in provincial shopping centers."
+          },
+          {
+            "factor": "Diesel / Logistics Cost",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Increases construction material delivery costs and the operational overhead for mall maintenance and waste management services."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "entities": [
+    {
+      "ticker": "STA.BK",
+      "name": "Sri Trang Agro-Industry Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "EY Office Limited",
+            "relation": "External Auditor",
+            "proportionality": "N/A",
+            "note": "Auditor mandate effective through December 31, 2026."
+          },
+          {
+            "entity": "Singapore Exchange (SGX)",
+            "relation": "Secondary Listing",
+            "proportionality": "Proportional",
+            "note": "Dual-listed on SET and SGX; cross-border arbitrage and regional liquidity flows impact share price volatility."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "STGT.BK (Sri Trang Gloves)",
+            "relation": "Subsidiary / Downstream Customer",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.90,
+            "note": "STA is a fully integrated producer; STGT consumes concentrated latex from STA. 2026 recovery in glove demand supports STA's midstream volume."
+          },
+          {
+            "entity": "Global Tire Manufacturers (Michelin, Bridgestone)",
+            "relation": "Downstream Strategic Customers",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Primary buyers of TSR and RSS grades; 2026 tire stockpiling for the automotive sector is a key revenue driver."
+          },
+          {
+            "entity": "Thai Rubber Smallholders",
+            "relation": "Upstream Feedstock Suppliers",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.70,
+            "note": "STA procures raw material from local farmers; 2026 neutral weather conditions (post-La Niña) are expected to increase farm output."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "STGT.BK",
+            "type": "Subsidiary (Gloves)",
+            "ownership_pct": 56.1,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Sri Trang Rubber Vietnam Co., Ltd.",
+            "type": "Subsidiary (Regional)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "TRUBB.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition in the concentrated latex market for medical and industrial applications."
+          },
+          {
+            "ticker": "Halcyon Agri (Singapore)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Global rival in natural rubber processing and supply chain management."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "SICOM / TOCOM Rubber Prices",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Benchmark pricing for TSR20 and RSS3; 2026 supply tightness is expected to support price levels."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Export-oriented business; a weak Baht (trading ~32.50 in April 2026) enhances competitiveness and translation gains."
+          },
+          {
+            "factor": "China Manufacturing PMI",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "China is the largest consumer of natural rubber; 2026 recovery in Chinese automotive production directly boosts STA's export orders."
+          },
+          {
+            "factor": "Shipping & Logistics Costs",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Recent 2026 disruptions in the Strait of Hormuz increase freight costs and lead times for European and Middle Eastern exports."
+          }
+        ]
+      }
+    }
+  ]
+}

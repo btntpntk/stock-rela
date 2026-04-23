@@ -1,0 +1,113 @@
+{
+  "entities": [
+    {
+      "ticker": "CPALL.BK",
+      "name": "CP All Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "relation": "Primary Debt Financier / Bond Trustee",
+            "proportionality": "Inversely Proportional",
+            "note": "BBL acts as a lead underwriter and registrar for CPALL's heavy corporate bond issuances (TRIS AA- rating in 2026); rising interest rates increase refinancing costs for its ~600bn THB liability base."
+          },
+          {
+            "entity": "Social Security Office (SSO)",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~3.43% equity as of March 2026; long-term institutional stability and alignment with domestic welfare/consumption cycles."
+          },
+          {
+            "entity": "Vayupak Fund 1",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~3.18% equity; significant state-linked institutional backing provides price floor support and liquidity."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "CPF.BK (Charoen Pokphand Foods)",
+            "relation": "Primary Upstream Food Supplier",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.88,
+            "note": "Captive supply of ready-to-eat meals, bakery, and fresh foods; CPF's production efficiency and raw material costs (corn/soy) directly impact 7-Eleven's GPM."
+          },
+          {
+            "entity": "Counter Service Co., Ltd.",
+            "relation": "Downstream Service Subsidiary",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.92,
+            "note": "Wholly owned; provides high-margin transaction fee income and drives foot traffic through utility payments and financial services."
+          },
+          {
+            "entity": "7-Eleven Distribution Centers (Internal)",
+            "relation": "Logistics / Midstream",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.70,
+            "note": "High exposure to diesel/fuel costs for nationwide delivery fleet; rising energy prices increase 'Cost of Sales'."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "CPAXT.BK (CP Extra)",
+            "type": "Subsidiary (Wholesale/Hypermarket)",
+            "ownership_pct": 59.9,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Thai Smart Card Company Limited",
+            "type": "Subsidiary",
+            "ownership_pct": 72.6,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "ACM Holdings (CP Virtual Bank)",
+            "type": "Strategic Associate (Under EGM Review)",
+            "ownership_pct": null,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "BJC.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct rivalry between Mini Big C and 7-Eleven; competitive pricing and promotion cycles create inverse correlation in short-term SSSG."
+          },
+          {
+            "ticker": "CRC.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Competition for urban convenience and premium grocery market share via Tops Daily."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Domestic Consumer Confidence Index",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "The primary driver of 7-Eleven daily ticket sizes; strongly correlated with government stimulus and private consumption."
+          },
+          {
+            "factor": "International Tourist Arrivals",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Tourist-heavy 7-Eleven locations (Phuket, Pattaya, Bangkok) see significantly higher GPM due to high-margin impulse and personal care product sales."
+          },
+          {
+            "factor": "Electricity Tariff (Ft Rate)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Energy costs are the second largest OpEx after labor for 16,000+ 24/7 stores; electricity price hikes directly compress EBIT margins."
+          },
+          {
+            "factor": "Thailand Headline Inflation",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Net positive impact as retail prices are adjusted upward, driving nominal sales growth while fixed operational costs lag."
+          }
+        ]
+      }
+    }
+  ]
+}

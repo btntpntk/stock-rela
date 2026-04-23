@@ -1,0 +1,113 @@
+{
+  "entities": [
+    {
+      "ticker": "PR9.BK",
+      "name": "Praram 9 Hospital Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Kiatnakin Phatra Securities (KKPS)",
+            "relation": "Financial Advisor / Strategic Partner",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary advisor for capital market activities and IPO; interest rate fluctuations impact the valuation of cash reserves and potential yield-bearing instruments."
+          },
+          {
+            "entity": "Vayupak Fund 1",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds 2.86% equity as of March 2026; state-linked fund backing provides a liquidity floor and signal of institutional stability."
+          },
+          {
+            "entity": "Social Security Office (SSO)",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds 0.57% equity; reflects long-term domestic institutional confidence and provides a steady flow of insured patients to non-premium segments."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Pacific Healthcare (Thailand)",
+            "relation": "Upstream Pharma / Medical Distributor",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.82,
+            "note": "Key distributor for global pharmaceutical innovators; rising drug prices or supply chain disruptions directly compress clinical margins."
+          },
+          {
+            "entity": "Kameda Medical Center (Japan)",
+            "relation": "Strategic Medical Collaboration Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.65,
+            "note": "Partnership for medical technology transfer and patient referral; success in high-end specialized treatments (e.g., kidney/heart) drives premium revenue."
+          },
+          {
+            "entity": "Tier 1 Medical Supply Vendors (e.g., Philips/GE)",
+            "relation": "Upstream Equipment Providers",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Providers of MRI, CT, and robotic surgery systems; high CAPEX and maintenance costs in USD terms affect the ROI of new medical wings."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Potjaman Damapong",
+            "type": "Ultimate Parent / Controlling Shareholder",
+            "ownership_pct": 37.27,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Thai NVDR Company Limited",
+            "type": "Associate / Investment Vehicle",
+            "ownership_pct": 3.47,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "BH.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival for high-margin Middle Eastern and international tertiary care patients; market share shifts in medical tourism affect PR9's top-line."
+          },
+          {
+            "ticker": "BDMS.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes for premium Thai and expatriate segments; BDMS's massive network creates economies of scale pressure on independent hospitals like PR9."
+          },
+          {
+            "ticker": "BCH.BK",
+            "market_share_overlap": "Low",
+            "proportionality": "Inversely Proportional",
+            "note": "Competition in the mid-tier segment and SSO-insured volume; BCH's pricing strategy sets a floor for the broader healthcare market."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "International Tourist Arrivals (Thailand)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Direct driver of medical tourism; 2026 target of 35.5M arrivals correlates with PR9's aim to increase foreign revenue share to 28%."
+          },
+          {
+            "factor": "Middle East Geopolitical Conflict",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "PR9 has ~10% exposure to Middle Eastern patients; ongoing regional conflicts in early 2026 create travel delays and volume softness."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "A weaker THB makes Thai healthcare competitive for fly-in patients, though it increases the cost of imported medical equipment and supplies."
+          },
+          {
+            "factor": "Thai Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "PR9 is in a net cash position by 2026; lower rates reduce the interest income on cash balances but lower the discount rate for long-term growth valuation."
+          }
+        ]
+      }
+    }
+  ]
+}

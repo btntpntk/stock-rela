@@ -1,0 +1,113 @@
+{
+  "entities": [
+    {
+      "ticker": "CENTEL.BK",
+      "name": "Central Plaza Hotel Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "relation": "Primary Lender / Credit Provider",
+            "proportionality": "Inversely Proportional",
+            "note": "BBL is a major financier for the Chirathivat family's Central Group; CENTEL maintains high sensitivity to interest rate hikes due to its 16bn+ THB CAPEX plan for 2026 expansions."
+          },
+          {
+            "entity": "Vayupak Fund 1",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~1.87% equity as of April 2026; provides institutional capital stability and reflects state-linked fund sentiment in the tourism recovery."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Central Retail Corporation (CRC.BK)",
+            "relation": "Downstream Strategic Partner / Cross-Holdings",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.82,
+            "note": "Synergy in location sourcing (food outlets in Robinson/Central malls) and cross-promotion via 'The 1' loyalty program."
+          },
+          {
+            "entity": "Betagro (BTG.BK) / CPF (CPF.BK)",
+            "relation": "Upstream Food Raw Material Suppliers",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Key suppliers for the Central Restaurants Group (CRG), particularly poultry for KFC; rising meat prices compress the food segment's gross margins."
+          },
+          {
+            "entity": "Grab / Foodpanda / Lineman",
+            "relation": "Downstream Distribution Channels",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.60,
+            "note": "Critical for the food business (KFC, Mister Donut); delivery volume directly impacts Same-Store Sales Growth (SSSG) but involves platform commission fees."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Central Restaurants Group (CRG)",
+            "type": "Wholly Owned Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Tiang Chirathivat Company Limited",
+            "type": "Ultimate Parent Company",
+            "ownership_pct": 5.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Central World Hotel Company Limited",
+            "type": "Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "M.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary competitor in the domestic chained restaurant market (Food business overlap)."
+          },
+          {
+            "ticker": "ERW.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition in the domestic hotel and leisure segment, particularly in mid-to-upscale brands."
+          },
+          {
+            "ticker": "MINT.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Global and domestic rivalry in both high-end hospitality and food franchising (Pizza/Burger competition)."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "International Tourist Arrivals (Thailand)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "The most significant driver for RevPAR; 2026 targets focus on the recovery of Chinese and luxury MICE travelers."
+          },
+          {
+            "factor": "Thai Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "High debt load from recent hotel renovations (e.g., Centara Grand Mirage) makes the bottom line sensitive to cost of funding."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Weak THB incentivizes medical/leisure tourism to Thailand and increases the value of overseas earnings (Japan, Maldives, Dubai)."
+          },
+          {
+            "factor": "Electricity & Utility Tariffs (Ft)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Utilities represent a major fixed operating cost for large-scale hotel properties and industrial-scale kitchens."
+          }
+        ]
+      }
+    }
+  ]
+}

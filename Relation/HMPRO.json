@@ -1,0 +1,120 @@
+{
+  "entities": [
+    {
+      "ticker": "HMPRO.BK",
+      "name": "Home Product Center Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "relation": "Primary Lender / Facility Provider",
+            "proportionality": "Inversely Proportional",
+            "note": "BBL is a core financier for the Land and Houses (LH) ecosystem; HMPRO maintains a Net Debt/Equity ratio of ~0.5x in 2026, making it sensitive to floating-rate credit lines."
+          },
+          {
+            "entity": "Vayupak Fund 1",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds 2.62% equity as of April 2026; provides institutional capital stability and represents state-linked fund confidence in the retail sector."
+          },
+          {
+            "entity": "Social Security Office (SSO)",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds 4.79% equity; reflects long-term domestic institutional trust and provides price floor support during consumption downturns."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Siam Cement Group (SCC.BK)",
+            "relation": "Primary Upstream Supplier (Building Materials)",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Rising costs of cement and construction materials from SCC increase COGS, particularly for the 'Mega Home' construction-focused segment."
+          },
+          {
+            "entity": "Global Electronics Brands (Mitsubishi/Daikin/Samsung)",
+            "relation": "Upstream Suppliers (Cooling Appliances)",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Seasonal 2Q26 performance is highly dependent on cooling appliance inventory; supply availability directly impacts high-margin seasonal sales."
+          },
+          {
+            "entity": "Private Label Manufacturers (Mega Home)",
+            "relation": "Internal Supply Chain / Captive Production",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.90,
+            "note": "Private labels act as a GPM enhancer; management target is to grow private label share to improve the 2026 gross margin mix."
+          },
+          {
+            "entity": "Global Freight / Logistics Providers",
+            "relation": "Upstream Logistics Services",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.30,
+            "note": "War-related freight risks in 2026 impact margins; every 10% increase in transportation costs is estimated to reduce net profit by ~2.5%."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "LH.BK (Land and Houses)",
+            "type": "Parent / Major Shareholder",
+            "ownership_pct": 30.23,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "QH.BK (Quality Houses)",
+            "type": "Major Shareholder / Associate",
+            "ownership_pct": 19.87,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Mega Home Center Co., Ltd.",
+            "type": "Wholly Owned Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "GLOBAL.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition in the upcountry construction and hardware segments; sector rotation between HMPRO and GLOBAL is frequent."
+          },
+          {
+            "ticker": "DOHOME.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Rivalry in the 'wholesale-retail' construction materials segment through the Mega Home brand."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thailand Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Higher rates discourage home renovations and mortgages, reducing the addressable market for HMPRO's hard-line products."
+          },
+          {
+            "factor": "Domestic Consumer Confidence Index",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Correlates strongly with SSSG; fragile 2026 purchasing power in the Northeast is a primary drag on Mega Home sales."
+          },
+          {
+            "factor": "Thailand 2Q Temperature Index",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Above-average 2026 temperatures in 2Q drive peak demand for air conditioners and cooling appliances, acting as a key quarterly catalyst."
+          },
+          {
+            "factor": "Government Stimulus (e.g., E-receipt)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Presence or absence of tax incentives creates front-loading effects; the absence of the e-receipt scheme in 1Q26 led to a ~15% SSSG drop."
+          }
+        ]
+      }
+    }
+  ]
+}

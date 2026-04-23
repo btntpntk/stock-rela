@@ -1,0 +1,125 @@
+{
+  "entities": [
+    {
+      "ticker": "PTTGC.BK",
+      "name": "PTT Global Chemical Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "PTT Public Company Limited (PTT.BK)",
+            "relation": "Parent Company / Primary Lender",
+            "proportionality": "Proportional",
+            "note": "As the chemical flagship of PTT Group, PTTGC relies on its parent for strategic funding and credit support; PTT holds 45.18% as of February 2026."
+          },
+          {
+            "entity": "Fitch Ratings",
+            "relation": "Credit Rating Agency",
+            "proportionality": "Proportional",
+            "note": "Maintains 'BBB-' rating with a Negative Outlook in 2026; credit rating stability is crucial for managing its ~240bn THB debt load and interest expenses."
+          },
+          {
+            "entity": "Siam Commercial Bank (SCB.BK)",
+            "relation": "Transactional Bank / Bond Underwriter",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary domestics lender; rising interest rates increase the cost of maintaining high net leverage, projected at >4.0x EBITDA through 2026."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "PTT Public Company Limited (PTT.BK)",
+            "relation": "Upstream Feedstock Supplier (Gas/Crude)",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.95,
+            "note": "Primary supplier of ethane, propane, and crude; rising PTT transfer prices or supply disruptions (e.g., Strait of Hormuz 2026 crisis) directly compress GPM."
+          },
+          {
+            "entity": "Global Automotive & Electronics Manufacturers",
+            "relation": "Downstream Customers (Polymers/Olefins)",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Demand for specialty chemicals and high-grade plastic resins (InnoPlus) is tied to global industrial production cycles."
+          },
+          {
+            "entity": "Covestro AG",
+            "relation": "Downstream Strategic Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.60,
+            "note": "2025/2026 divestment of Vencorex to Covestro streamlines GC’s portfolio toward higher-margin sustainable solutions."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "allnex (GmbH)",
+            "type": "Subsidiary (Coating Resins)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "GPSC.BK (Global Power Synergy)",
+            "type": "Associate / Power Provider",
+            "ownership_pct": 22.73,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "GGC.BK (Global Green Chemicals)",
+            "type": "Subsidiary (Bio-Chemicals)",
+            "ownership_pct": 72.3,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "NatureWorks LLC",
+            "type": "Joint Venture (Biopolymers)",
+            "ownership_pct": 50.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "IVL.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival in the global PET and intermediate chemicals market; sector rotation often favors IVL's asset-light model."
+          },
+          {
+            "ticker": "SCC.BK (SCG Chemicals)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition for domestic and regional market share in Polyethylene (PE) and Polypropylene (PP)."
+          },
+          {
+            "ticker": "IRPC.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Internal group rivalry in refining and aromatic product segments."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Petrochemical Spreads (Ethylene/PE vs Naphtha)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "The primary driver of the Olefins segment; 2026 recovery is driven by capacity cuts in China and Japan."
+          },
+          {
+            "factor": "Brent Crude Oil Price",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Rising prices increase input costs; however, 1Q26 Middle East disruptions led to a windfall in inventory gains (est. +USD 50/bbl impact)."
+          },
+          {
+            "factor": "Gross Refining Margin (GRM)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Refinery unit margins hit USD 13/bbl in Q1 2026 due to regional middle distillate shortages (Diesel/Jet fuel spikes)."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "As a global exporter, a weak THB (~32.50 in 2026) boosts export competitiveness and translation of international branch earnings."
+          }
+        ]
+      }
+    }
+  ]
+}

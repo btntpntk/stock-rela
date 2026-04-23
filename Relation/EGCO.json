@@ -1,0 +1,113 @@
+{
+  "entities": [
+    {
+      "ticker": "EGCO.BK",
+      "name": "Electricity Generating Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank (BBL.BK)",
+            "relation": "Primary Lender/Facility Agent",
+            "proportionality": "Inversely Proportional",
+            "note": "Major financier for international M&A and domestic project debt; rising interest rates increase the cost of servicing their multi-billion THB debt pool."
+          },
+          {
+            "entity": "Krung Thai Bank (KTB.BK)",
+            "relation": "Lead Creditor/Lender",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides working capital and project finance, often in coordination with EGAT-linked infrastructure projects."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "PTT Public Company Limited (PTT.BK)",
+            "relation": "Upstream/Natural Gas Supplier",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Primary fuel supplier for Thai power plants; natural gas price volatility directly impacts operational margins despite pass-through mechanisms."
+          },
+          {
+            "entity": "Electricity Generating Authority of Thailand (EGAT)",
+            "relation": "Downstream/Primary Customer (PPA)",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "The off-taker for the majority of contracted equity capacity in Thailand; revenue stability is anchored in long-term Power Purchase Agreements (PPAs)."
+          },
+          {
+            "entity": "Apex Clean Energy (USA)",
+            "relation": "Subsidiary/Renewable Developer",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.65,
+            "note": "U.S.-based developer providing a pipeline of renewable projects (Wind/Solar/BESS) as part of the 2026 clean energy transition."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "EGAT",
+            "type": "Parent/Major Shareholder",
+            "ownership_pct": 25.41,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "TEPDIA Generating B.V.",
+            "type": "Strategic Associate (Mitsubishi/TEPCO)",
+            "ownership_pct": 22.42,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Linden Cogen (USA)",
+            "type": "Subsidiary",
+            "ownership_pct": 38.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "RATCH.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct peer and fellow EGAT affiliate; intense competition for IPP/SPP licenses and regional M&A opportunities."
+          },
+          {
+            "ticker": "GPSC.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Rival in the industrial user (IU) segment and renewable energy synergy within Thailand."
+          },
+          {
+            "ticker": "GULF.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary private sector rival in large-scale power generation and energy-related infrastructure expansion."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "As a global holding company with assets in USA, Philippines, and Indonesia, a weaker THB inflates translated foreign earnings."
+          },
+          {
+            "factor": "Natural Gas (Pool Gas/Henry Hub)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Input cost for thermal power plants; spikes in global gas prices compress EBITDA when the Ft (Fuel Tariff) adjustment lags."
+          },
+          {
+            "factor": "Thai Policy Interest Rate (BoT)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Directly impacts the cost of funding for the THB 30-billion investment plan in 2026 and influences the yield attractiveness of the stock."
+          },
+          {
+            "factor": "Global Data Center Demand",
+            "proportionality": "Proportional",
+            "impact_lag": "T+2 Quarters",
+            "logic": "Drives the demand for 'clean power' solutions and utility services at EGCO's Rayong Industrial Estate (ERIE)."
+          }
+        ]
+      }
+    }
+  ]
+}

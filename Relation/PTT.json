@@ -1,0 +1,103 @@
+{
+  "entities": [
+    {
+      "ticker": "PTT.BK",
+      "name": "PTT Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Ministry of Finance (Thailand)",
+            "relation": "Majority Shareholder/Strategic Parent",
+            "proportionality": "Proportional",
+            "note": "Holds ~51% stake; PTT is the primary vehicle for Thailand's national energy security and fiscal revenue (dividends)."
+          },
+          {
+            "entity": "Vayupak Fund 1",
+            "relation": "Institutional Shareholder",
+            "proportionality": "Proportional",
+            "note": "Holds ~1.57% stake (via OR) and significant indirect holdings in PTT; aligns with government-linked investment stability."
+          },
+          {
+            "entity": "Fitch Ratings",
+            "relation": "Credit Rating Agency",
+            "proportionality": "Inversely Proportional",
+            "note": "Maintains a 'BBB+' rating for PTT but revised the outlook to 'Negative' in April 2026, tracking the Thai sovereign outlook."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "PTTEP.BK (PTT Exploration & Production)",
+            "relation": "Upstream/E&P Flagship",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.95,
+            "note": "Primary driver of group earnings; PTT owns ~65%. Performance is directly tied to global crude oil and natural gas price cycles."
+          },
+          {
+            "entity": "PTT Global Chemical (PTTGC.BK) / Thai Oil (TOP.BK) / IRPC.BK",
+            "relation": "Downstream/Refining & Petrochemical",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "PTT serves as the primary feedstock supplier (crude/gas) and off-taker; performance is sensitive to refining margins and petrochem spreads."
+          },
+          {
+            "entity": "OR.BK (PTT Oil and Retail)",
+            "relation": "Downstream/Retail & Lifestyle",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.75,
+            "note": "PTT owns 75%; critical for non-oil growth via Café Amazon and EV charging infrastructure transition."
+          },
+          {
+            "entity": "Centrica (UK)",
+            "relation": "Strategic LNG Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.6,
+            "note": "Partnership to strengthen Asian LNG market competitiveness and secure natural gas supply for Thailand's power sector."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "GPSC.BK",
+            "type": "Subsidiary (Power)",
+            "ownership_pct": 75.0,
+            "proportionality": "Proportional",
+            "note": "The group's power flagship focusing on renewable energy and battery value chains."
+          }
+        ],
+        "competitors": [
+          {
+            "entity": "Global Oil Majors (Shell, ExxonMobil, Chevron)",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in international oil trading and regional E&P bidding."
+          },
+          {
+            "entity": "Bangchak Corporation (BCP.BK)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary domestic rival in the refining and retail station segment (following the Esso acquisition)."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Brent Crude Oil Price",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Directly impacts PTTEP's ASP and the group's inventory valuation; 2026 forecast revolves around $60-65/bbl."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "As a major exporter and USD-denominated earner (E&P), a weaker THB boosts translated earnings but inflates LNG import costs."
+          },
+          {
+            "factor": "Thai Energy Regulatory Commission (ERC) Policies",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0",
+            "logic": "Decisions on natural gas pricing structures (Pool Gas) and FT tariffs directly impact gas business margins."
+          }
+        ]
+      }
+    }
+  ]
+}

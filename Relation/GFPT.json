@@ -1,0 +1,107 @@
+{
+  "entities": [
+    {
+      "ticker": "GFPT.BK",
+      "name": "GFPT Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "relation": "Primary Lender / Transactional Bank",
+            "proportionality": "Inversely Proportional",
+            "note": "BBL provides significant working capital and long-term project finance; interest rate hikes in 2026 increase cost of debt for farm expansions."
+          },
+          {
+            "entity": "Nichirei Foods Inc. (Japan)",
+            "relation": "Strategic Shareholder / JV Partner",
+            "proportionality": "Proportional",
+            "note": "Holds approx. 4.52% equity and is a 51% partner in GFPT Nichirei (GFN); ensures long-term export quotas to the Japanese market."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "McKey Food Services (Thailand)",
+            "relation": "Joint Venture / Downstream Processing",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.92,
+            "note": "A JV with Keystone Foods (Marubeni); primary supplier for McDonald's in the region, directly linking GFPT revenue to global fast-food demand."
+          },
+          {
+            "entity": "Local & Global Feed Grain Suppliers",
+            "relation": "Upstream Raw Material Providers",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Corn and soybean meal represent ~60-70% of production costs; price volatility in 2026 directly impacts gross margins."
+          },
+          {
+            "entity": "CPF.BK (Feed Division)",
+            "relation": "Secondary Upstream Supplier",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.40,
+            "note": "Though a competitor, GFPT occasionally procures feed additives or specialized grain tranches from industry peers during shortages."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Krungthai Food Co., Ltd.",
+            "type": "Subsidiary (Feed Mill)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "GP Breeding Co., Ltd.",
+            "type": "Subsidiary (Breeder)",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "GFPT Nichirei (Thailand) Co., Ltd. (GFN)",
+            "type": "Associate / Joint Venture",
+            "ownership_pct": 49.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "CPF.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary rival in the domestic and export poultry market; price wars in the EU/Japan segments negatively impact GFPT margins."
+          },
+          {
+            "ticker": "TFG.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Competition for domestic market share in broiler farms and chicken parts distribution."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "CBOT Corn & Soybean Prices",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Delayed impact due to 3-6 month forward inventory/hedging; 2026 soybean price increases act as a major cost drag."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Exports represent over 20-25% of direct revenue (higher via JVs); THB depreciation boosts competitiveness and translation gains."
+          },
+          {
+            "factor": "China Domestic Poultry Production",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+2 Months",
+            "logic": "Increased Chinese supply in 2026 global markets depresses international price levels for frozen chicken parts."
+          },
+          {
+            "factor": "Thai Minimum Wage Policy",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Labor-intensive processing plants (evisceration/cooking) are sensitive to government-mandated wage hikes."
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "entities": [
+    {
+      "ticker": "GLOBAL.BK",
+      "name": "Siam Global House Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank (BBL.BK)",
+            "relation": "Primary Lender/Facility Agent",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides long-term credit facilities for branch expansion; interest rate sensitivity is high due to capital-intensive warehouse construction."
+          },
+          {
+            "entity": "Kasikornbank (KBANK.BK)",
+            "relation": "Lender/Working Capital Provider",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides trade finance and working capital for high inventory turnover; rising rates increase the cost of carry for massive bulk stock."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Siam Cement Group (SCC.BK)",
+            "relation": "Upstream/Strategic Supplier & Parent Affiliate",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.9,
+            "note": "SCC (via SCG Distribution) is the major shareholder; GLOBAL acts as a primary retail channel for SCG cement and building materials."
+          },
+          {
+            "entity": "Thai Steel Producers (e.g., TSTH/GJS)",
+            "relation": "Upstream/Material Suppliers",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Raw material cost impact; volatility in global/local steel prices directly affects gross margins for structural products."
+          },
+          {
+            "entity": "Dynasty Ceramic (DCC.BK)",
+            "relation": "Upstream/Tile Supplier",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.65,
+            "note": "Ceramic tiles are a core decorative category; DCC's supply and pricing directly influence GLOBAL's 'Repair & Decor' segment performance."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "SCG Distribution Co., Ltd.",
+            "type": "Parent/Strategic Partner",
+            "ownership_pct": 32.94,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Global House (Cambodia) Co., Ltd.",
+            "type": "Subsidiary",
+            "ownership_pct": 55.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Global House International Co., Ltd.",
+            "type": "Joint Venture (SCG)",
+            "ownership_pct": 50.0,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "DOHOME.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct rival in the provincial 'Warehouse' format; aggressive price competition for contractor and bulk-buyer market share."
+          },
+          {
+            "ticker": "HMPRO.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in home decorative and DIY segments; HMPRO targets urban/premium users while GLOBAL focuses on rural/construction users."
+          },
+          {
+            "ticker": "CRC.BK (Thaiwatsadu)",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Strong competition in the heavy-construction and structural material segment across Thailand."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Global Steel Prices (HRC/Rebar)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Input cost factor; high steel prices increase the cost of inventory, which can dampen demand from project developers and small contractors."
+          },
+          {
+            "factor": "BoT 1-Day Repo Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Directly impacts consumer mortgage affordability and the developer's cost of capital for new residential projects."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0",
+            "logic": "Baht depreciation increases the cost of imported tools, hardware, and premium home finishing products."
+          },
+          {
+            "factor": "Farm Income Index (Thai Agricultural Prices)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+3 Months",
+            "logic": "Since many branches are in rural provinces, high crop prices (e.g., rice/rubber) drive regional home renovation and construction spending."
+          }
+        ]
+      }
+    }
+  ]
+}

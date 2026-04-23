@@ -1,0 +1,113 @@
+{
+  "entities": [
+    {
+      "ticker": "CHG.BK",
+      "name": "Chularat Hospital Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Bangkok Bank (BBL.BK)",
+            "relation": "Primary Lender/Facility Agent",
+            "proportionality": "Inversely Proportional",
+            "note": "Primary source of long-term loans and debenture underwriting for hospital construction and facility upgrades; rising rates increase cost of capital."
+          },
+          {
+            "entity": "Kasikornbank (KBANK.BK)",
+            "relation": "Lender/Working Capital Provider",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides short-term credit lines and operational banking services; sensitive to Thai policy rate fluctuations."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "Social Security Office (SSO)",
+            "relation": "Downstream/Key Customer Segment",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "SSO patients contribute ~35-40% of total revenue. The 2026 wage ceiling hike to 17,500 THB directly increases per-head reimbursement revenue."
+          },
+          {
+            "entity": "DKSH (Thailand)",
+            "relation": "Upstream/Logistics & Pharma Distributor",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.7,
+            "note": "Primary distributor for medical supplies and pharmaceuticals; medical inflation (11.3% in APAC) and logistics costs compress margins."
+          },
+          {
+            "entity": "Zuellig Pharma",
+            "relation": "Upstream/Pharmaceutical Supplier",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.6,
+            "note": "Critical supplier of vaccines and specialized medicine; pricing volatility directly impacts clinical department gross profit margins."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "Chularat 3 International Hospital",
+            "type": "Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Chularat 9 Airport Hospital",
+            "type": "Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Thai NVDR Co., Ltd.",
+            "type": "Investment (Nominee)",
+            "ownership_pct": 4.83,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "BCH.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct rival in the Social Security (SSO) and middle-market segments; competition for SSO registered quotas."
+          },
+          {
+            "ticker": "BDMS.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes for premium local and international patients in the Eastern Seaboard and industrial hubs."
+          },
+          {
+            "ticker": "RJH.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Regional competitor in the Central Thailand industrial zones (Ayutthaya/Saraburi)."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "SSO Wage Ceiling Reform (Jan 2026)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "The increase in max wage base from 15k to 17.5k THB provides a structural uplift in fixed-payment revenue for SSO-heavy hospitals."
+          },
+          {
+            "factor": "APAC Medical Trend Rate (Inflation)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "High medical inflation (projected 11.3% for 2026) increases drug and labor costs faster than public reimbursement rates can adjust."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Weak THB increases the cost of imported high-tech medical equipment (MRI, Robotic Surgery) used in flagship branches like Chularat 3."
+          },
+          {
+            "factor": "Thai Policy Interest Rate (BoT)",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Quarter",
+            "logic": "Increases interest expense on debentures and loans used for the 938-bed capacity expansion projects."
+          }
+        ]
+      }
+    }
+  ]
+}

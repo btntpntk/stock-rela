@@ -1,0 +1,107 @@
+{
+  "entities": [
+    {
+      "ticker": "BGRIM.BK",
+      "name": "B.Grimm Power Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Asian Development Bank (ADB)",
+            "relation": "Strategic Lender / Green Bond Investor",
+            "proportionality": "Inversely Proportional",
+            "note": "A key financier for renewable projects; while providing favorable terms, the company's high Net D/E (~1.8x in 2026) makes it sensitive to global credit tightening."
+          },
+          {
+            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "relation": "Primary Domestic Lender",
+            "proportionality": "Inversely Proportional",
+            "note": "Provides working capital and project finance; BGRIM's high leverage ratio translates to significant interest expense sensitivity during rate hikes."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "PTT Public Company Limited",
+            "relation": "Primary Natural Gas Supplier",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.92,
+            "note": "Natural gas accounts for ~70% of BGRIM's cost of goods sold; price spikes in pooled gas or LNG imports directly compress SPP margins."
+          },
+          {
+            "entity": "Electricity Generating Authority of Thailand (EGAT)",
+            "relation": "Primary Offtaker (Customer)",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "The largest customer under long-term PPAs; revenue is highly dependent on EGAT's dispatch volume and the regulated Ft rate."
+          },
+          {
+            "entity": "Industrial Users (Amata/WHA Estates)",
+            "relation": "Industrial Offtakers",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.70,
+            "note": "Direct electricity and steam sales to industrial clients; margins are higher than EGAT sales but dependent on domestic manufacturing activity."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "B.Grimm Power (Singapore) Pte. Ltd.",
+            "type": "Major Shareholder/Parent",
+            "ownership_pct": 33.7,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "reNIKOLA Holdings (Malaysia)",
+            "type": "Investment/Associate",
+            "ownership_pct": 45.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Nakwol Wind 1 (South Korea)",
+            "type": "Project Subsidiary",
+            "ownership_pct": null,
+            "proportionality": "Proportional"
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "GULF.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Direct competition for PDP (Power Development Plan) quotas and industrial client poaching."
+          },
+          {
+            "ticker": "GPSC.BK",
+            "market_share_overlap": "High",
+            "proportionality": "Inversely Proportional",
+            "note": "Rivalry in the SPP (Small Power Producer) segment and industrial steam supply."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Thailand Fuel Tariff (Ft Rate)",
+            "proportionality": "Proportional",
+            "impact_lag": "T+4 Months",
+            "logic": "The regulated mechanism to pass through fuel costs; a rising Ft rate increases revenue, though usually with a regulatory lag."
+          },
+          {
+            "factor": "Singapore JKM LNG Spot Price",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Reflects the cost of marginal gas supply for power generation; high spot prices correlate with margin squeeze in the SPP segment."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+0 Months",
+            "logic": "Dual impact: Increases the cost of imported LNG and creates unrealized FX losses on USD-denominated debt."
+          },
+          {
+            "factor": "Thai Policy Interest Rate",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+3 Months",
+            "logic": "Impacts the cost of refinancing large debt tranches and reduces the valuation of long-term cash flow assets (DCF sensitivity)."
+          }
+        ]
+      }
+    }
+  ]
+}

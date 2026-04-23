@@ -1,0 +1,96 @@
+{
+  "entities": [
+    {
+      "ticker": "PRM.BK",
+      "name": "Prima Marine Public Company Limited",
+      "relationship_web": {
+        "financial": [
+          {
+            "entity": "Nathalin Company Limited",
+            "relation": "Parent/Majority Shareholder",
+            "proportionality": "Proportional",
+            "note": "Nathalin holds a 54.23% stake as of March 2026. In April 2026, Nathalin notified intent to submit a General Offer for shares, signaling strong internal backing and potential for delisting or further consolidation."
+          },
+          {
+            "entity": "Thai NVDR Company Limited",
+            "relation": "Institutional Shareholder (Nominee)",
+            "proportionality": "Proportional",
+            "note": "Holds ~3.39% stake; indicative of foreign institutional sentiment toward Thai mid-cap energy transport."
+          }
+        ],
+        "supply_chain": [
+          {
+            "entity": "PTT Public Company Limited (PTT.BK)",
+            "relation": "Downstream/Key Strategic Customer",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.9,
+            "note": "PRM provides long-term petroleum transport for PTT and its subsidiaries (OR/PTTGC). Revenue stability is heavily anchored in PTT's domestic fuel demand."
+          },
+          {
+            "entity": "Thai Oil (TOP.BK)",
+            "relation": "Downstream/Key Strategic Customer",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Primary vessel operator for Thai Oil's crude and refined product logistics. Beneficiary of TOP's 'Clean Fuel Project' (CFP) volumes."
+          },
+          {
+            "entity": "Offshore Oil & Gas E&P Companies",
+            "relation": "Downstream/FSO & OSV Clients",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.7,
+            "note": "Clients for Floating Storage and Offloading (FSO) and Offshore Support Vessels (OSV) like hybrid crew boats; growth driven by regional E&P activity."
+          }
+        ],
+        "equity_cross_holdings": [
+          {
+            "entity": "V.C. Shipping and Service Co., Ltd.",
+            "type": "Wholly-Owned Subsidiary",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional",
+            "note": "Acquisition finalized in late 2025/early 2026 to enhance Ship Agent and Shipping (SAS) services, contributing to 50% YoY revenue growth in that segment."
+          }
+        ],
+        "competitors": [
+          {
+            "ticker": "AMA.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Competes in chemical and refined oil tanker services across domestic and regional ASEAN routes."
+          },
+          {
+            "ticker": "VL.BK",
+            "market_share_overlap": "Medium",
+            "proportionality": "Inversely Proportional",
+            "note": "Rival in the domestic petroleum tanker segment; PRM maintains a scale advantage with VLCCs and FSU assets."
+          }
+        ],
+        "macro_commodity_factors": [
+          {
+            "factor": "Domestic Petroleum Consumption",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Directly impacts PCT (Petroleum and Chemical Tanker) segment revenue; sensitivity to Thai GDP and tourism recovery (fuel demand)."
+          },
+          {
+            "factor": "Brent Crude Oil Price",
+            "proportionality": "Inversely Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Forecasted to decline to ~$62/barrel in 2026. Lower fuel costs (bunker oil) improve margins for transport operators if charter rates remain stable."
+          },
+          {
+            "factor": "USD/THB Exchange Rate",
+            "proportionality": "Proportional",
+            "impact_lag": "T+0",
+            "logic": "Major portion of revenue (FSU/OSV) is USD-linked; a weaker THB inflates translated earnings and asset valuations."
+          },
+          {
+            "factor": "Global FSU (Floating Storage Unit) Utilization",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "After a temporary dip in early 2026 (75%), utilization recovered to >90% by April, acting as a core EBITDA driver."
+          }
+        ]
+      }
+    }
+  ]
+}
