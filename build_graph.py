@@ -6,6 +6,59 @@ No database required.
 import json
 from pathlib import Path
 
+
+# ── HSL colour utilities ──────────────────────────────────────────────────────
+
+def _hex_to_hsl(hex_color: str) -> tuple[float, float, float]:
+    h = hex_color.lstrip("#")
+    r, g, b = (int(h[i:i+2], 16) / 255 for i in (0, 2, 4))
+    mx, mn = max(r, g, b), min(r, g, b)
+    l = (mx + mn) / 2
+    if mx == mn:
+        return 0.0, 0.0, l * 100
+    d = mx - mn
+    s = d / (2 - mx - mn) if l > 0.5 else d / (mx + mn)
+    if mx == r:
+        hue = ((g - b) / d + (6 if g < b else 0)) / 6
+    elif mx == g:
+        hue = ((b - r) / d + 2) / 6
+    else:
+        hue = ((r - g) / d + 4) / 6
+    return hue * 360, s * 100, l * 100
+
+
+def _hsl_to_hex(h: float, s: float, l: float) -> str:
+    h /= 360; s /= 100; l /= 100
+
+    def hue2rgb(p, q, t):
+        t = t % 1
+        if t < 1/6: return p + (q - p) * 6 * t
+        if t < 1/2: return q
+        if t < 2/3: return p + (q - p) * (2/3 - t) * 6
+        return p
+
+    if s == 0:
+        r = g = b = l
+    else:
+        q = l * (1 + s) if l < 0.5 else l + s - l * s
+        p = 2 * l - q
+        r = hue2rgb(p, q, h + 1/3)
+        g = hue2rgb(p, q, h)
+        b = hue2rgb(p, q, h - 1/3)
+    return "#" + "".join(f"{round(x * 255):02x}" for x in (r, g, b))
+
+
+def chain_shade(macro_hex: str, index: int, total: int) -> str:
+    """Return a lightness-varied shade of macro_hex for the i-th chain in a group.
+
+    Chains spread from L=68 % (lightest, index 0) down to L=32 % (darkest).
+    Saturation is capped at 78 % to avoid neon tones in lighter shades.
+    """
+    hue, sat, _ = _hex_to_hsl(macro_hex)
+    l_max, l_min = 68.0, 32.0
+    l = 50.0 if total <= 1 else l_max - (index / (total - 1)) * (l_max - l_min)
+    return _hsl_to_hex(hue, min(sat, 78.0), l)
+
 RELATION_DIR = Path(__file__).parent / "Relation"
 OUTPUT       = Path(__file__).parent / "frontend" / "public" / "graph-data.json"
 
@@ -136,11 +189,42 @@ def main():
         sc_raw = SC_FILE.read_text(encoding="utf-8").strip()
         if sc_raw:
             sc_data = json.loads(sc_raw)
+
+            # Root node
+            root_cfg = sc_data.get("global_macro_root", {})
+            root_id  = root_cfg.get("id", "root:global_macro")
+            add_node(root_id, "GlobalMacroRoot",
+                     label=root_cfg.get("label", "Global Macro"),
+                     color=root_cfg.get("color", "#1a1a2e"))
+
+            # Global Macro category nodes + ROOT_MACRO spokes
+            for macro in sc_data.get("global_macros", []):
+                add_node(macro["id"], "GlobalMacro",
+                         label=macro["label"],
+                         color=macro.get("color", "#888888"))
+                add_edge(root_id, macro["id"], "ROOT_MACRO", relation="Root")
+            print(f"  Global macros: {len(sc_data.get('global_macros', []))} loaded")
+
+            # Pre-compute shade colours: group chains by macro, assign L gradient
+            macro_colors = {m["id"]: m.get("color", "#888888")
+                            for m in sc_data.get("global_macros", [])}
+            macro_chain_order: dict[str, list[str]] = {}
+            for chain in sc_data.get("supply_chains", []):
+                cat = chain.get("macro_category", "")
+                if cat:
+                    macro_chain_order.setdefault(cat, []).append(chain["id"])
+
+            shade_map: dict[str, str] = {}
+            for cat_id, chain_ids in macro_chain_order.items():
+                base = macro_colors.get(cat_id, "#888888")
+                for i, cid in enumerate(chain_ids):
+                    shade_map[cid] = chain_shade(base, i, len(chain_ids))
+
             for chain in sc_data.get("supply_chains", []):
                 cid = chain["id"]
                 add_node(cid, "SupplyChain",
                          label=chain["label"],
-                         color=chain.get("color", "#888888"),
+                         color=shade_map.get(cid, chain.get("color", "#888888")),
                          macro_category=chain.get("macro_category", ""))
                 for member in chain.get("members", []):
                     add_edge(cid, member, "CHAIN_MEMBER", relation="Member")
@@ -149,6 +233,10 @@ def main():
                              relation=feed.get("relation", ""),
                              sensitivity_index=feed.get("sensitivity_index"),
                              note=feed.get("note", ""))
+                # Link to parent GlobalMacro
+                cat = chain.get("macro_category", "")
+                if cat:
+                    add_edge(cat, cid, "CAT_CHAIN", relation="Category Member")
             print(f"  Supply chains: {len(sc_data.get('supply_chains', []))} chains loaded")
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)

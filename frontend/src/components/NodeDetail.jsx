@@ -20,7 +20,7 @@ const REL_COLORS = {
   CHAIN_MEMBER:       "#64dca0",
 };
 
-const SKIP_REL = new Set(["CHAIN_MEMBER", "FEEDS_INTO", "MACRO_CHAIN", "ROOT_CAT", "CAT_MACRO"]);
+const SKIP_REL = new Set(["CHAIN_MEMBER", "FEEDS_INTO", "MACRO_CHAIN", "ROOT_CAT", "CAT_MACRO", "CAT_CHAIN", "ROOT_MACRO"]);
 
 // ── Shared sub-components ─────────────────────────────────────────────────────
 
@@ -45,6 +45,79 @@ function SensitivityBar({ value }) {
       </div>
       <div className="sens-bar-track">
         <div className="sens-bar-fill" style={{ width: `${pct}%`, background: color }} />
+      </div>
+    </div>
+  );
+}
+
+// ── Global Macro Root detail ──────────────────────────────────────────────────
+
+function GlobalMacroRootDetail({ rawData }) {
+  const macros = useMemo(() =>
+    rawData?.nodes.filter(n => n.nodeType === "GlobalMacro") ?? [], [rawData]);
+
+  return (
+    <div>
+      <div className="detail-name">Global Macro</div>
+      <span className="detail-label" style={{ background: "#1a1a2e22", color: "#1a1a2e" }}>
+        Root Node
+      </span>
+
+      <div className="rel-group">
+        <div className="rel-group-title" style={{ color: "#ffc567" }}>
+          Macro Categories ({macros.length})
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+          {macros.map(macro => (
+            <div className="rel-card" key={macro.id}>
+              <div className="rc-name">
+                <span style={{
+                  display: "inline-block", width: 10, height: 10, borderRadius: "50%",
+                  background: macro.color ?? "#888", marginRight: 8, flexShrink: 0,
+                }} />
+                <strong>{macro.label}</strong>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ── Global Macro detail ───────────────────────────────────────────────────────
+
+function GlobalMacroDetail({ node, rawData }) {
+  const chains = useMemo(() => {
+    if (!rawData) return [];
+    return rawData.edges
+      .filter(e => e.relType === "CAT_CHAIN" && e.source === node.id)
+      .map(e => rawData.nodes.find(n => n.id === e.target))
+      .filter(Boolean);
+  }, [node, rawData]);
+
+  return (
+    <div>
+      <div className="detail-name">{node.label}</div>
+      <span className="detail-label" style={{ background: (node.color ?? "#888") + "28", color: node.color ?? "#888" }}>
+        Global Macro
+      </span>
+
+      <div className="rel-group">
+        <div className="rel-group-title" style={{ color: "#ffc567" }}>Supply Chains ({chains.length})</div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+          {chains.map(chain => (
+            <div className="rel-card" key={chain.id}>
+              <div className="rc-name">
+                <span style={{
+                  display: "inline-block", width: 8, height: 8, borderRadius: "50%",
+                  background: chain.color ?? "#888", marginRight: 6, flexShrink: 0,
+                }} />
+                {chain.label}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -281,7 +354,9 @@ function EmptyState({ mode }) {
 export default function NodeDetail({ node, rawData, mode, onScenarioActivate }) {
   if (!node) return <EmptyState mode={mode} />;
 
-  if (node.nodeType === "SupplyChain") return <SupplyChainDetail node={node} rawData={rawData} />;
-  if (node.nodeType === "MacroFactor") return <MacroFactorDetail node={node} rawData={rawData} onScenarioActivate={onScenarioActivate} />;
+  if (node.nodeType === "GlobalMacroRoot") return <GlobalMacroRootDetail rawData={rawData} />;
+  if (node.nodeType === "GlobalMacro")     return <GlobalMacroDetail node={node} rawData={rawData} />;
+  if (node.nodeType === "SupplyChain")  return <SupplyChainDetail node={node} rawData={rawData} />;
+  if (node.nodeType === "MacroFactor")  return <MacroFactorDetail node={node} rawData={rawData} onScenarioActivate={onScenarioActivate} />;
   return <StockDetail node={node} rawData={rawData} />;
 }

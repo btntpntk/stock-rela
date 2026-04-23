@@ -23,7 +23,7 @@ const SIGMA_SETTINGS = {
   defaultNodeType:            "circle",
   defaultEdgeType:            "arrow",
   renderEdgeLabels:           false,
-  labelFont:                  "Inter, sans-serif",
+  labelFont:                  "Libre Baskerville, Georgia, serif",
   labelSize:                  12,
   labelWeight:                "600",
   labelColor:                 { color: "#121212" },
@@ -37,7 +37,7 @@ const SIGMA_SETTINGS = {
 };
 
 const MODE_HINTS = {
-  overview: "Click a chain to drill in  ·  Click a macro factor chip to see impact  ·  Scroll to zoom",
+  overview: "Inner ring = Global Macro  ·  Outer ring = Supply Chains  ·  Click any node to explore",
   chain:    "Click a stock to open its full relationship web",
   ego:      "Hover to highlight connections  ·  Click any node to explore",
 };
@@ -156,6 +156,10 @@ export default function App() {
       } else if (nodeType === "MacroFactor") {
         setSelectedNode({ id: nodeId, ...attrs });
         setScenarioFactorId(prev => prev === nodeId ? null : nodeId);
+      } else if (nodeType === "GlobalMacroRoot") {
+        setSelectedNode({ id: nodeId, ...attrs });
+      } else if (nodeType === "GlobalMacro") {
+        setSelectedNode({ id: nodeId, ...attrs });
       } else {
         setSelectedNode({ id: nodeId, ...attrs });
       }

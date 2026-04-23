@@ -65,51 +65,97 @@ function computeDAGLevels(chains, feedsIntoEdges) {
   return levels;
 }
 
-// ── Mode 1: Overview — supply chain DAG ──────────────────────────────────────
+// ── Mode 1: Overview — 3-ring concentric circles ────────────────────────────
+//   Ring 0 (center):  GlobalMacroRoot  — single node at origin
+//   Ring 1 (middle):  GlobalMacro      — 6 nodes, evenly spaced
+//   Ring 2 (outer):   SupplyChain      — grouped in their macro's 60° sector
 
 function buildOverviewGraph(rawData, scenarioFactorId) {
   const graph    = new MultiDirectedGraph();
+  const rootNode = rawData.nodes.find(n => n.nodeType === "GlobalMacroRoot");
+  const macros   = rawData.nodes.filter(n => n.nodeType === "GlobalMacro");
   const chains   = rawData.nodes.filter(n => n.nodeType === "SupplyChain");
   const fiEdges  = rawData.edges.filter(e => e.relType === "FEEDS_INTO");
+  const catEdges = rawData.edges.filter(e => e.relType === "CAT_CHAIN");
 
-  const levels   = computeDAGLevels(chains, fiEdges);
-  const maxLevel = Math.max(0, ...Object.values(levels));
+  const R_MID   = 230;   // GlobalMacro ring
+  const R_OUTER = 560;   // SupplyChain ring
+  const SECTOR  = (2 * Math.PI) / Math.max(macros.length, 1);
 
-  // Group by level
-  const byLevel = {};
-  chains.forEach(c => {
-    const l = levels[c.id] ?? 0;
-    if (!byLevel[l]) byLevel[l] = [];
-    byLevel[l].push(c);
+  // ── Ring 0: root ────────────────────────────────────────────────────────────
+  if (rootNode) {
+    graph.addNode(rootNode.id, {
+      ...rootNode, label: rootNode.label,
+      size: 30, color: rootNode.color ?? "#1a1a2e",
+      x: 0, y: 0,
+    });
+  }
+
+  // ── Build macro→chains lookup ────────────────────────────────────────────────
+  const chainsByMacro = {};
+  macros.forEach(m => { chainsByMacro[m.id] = []; });
+  catEdges.forEach(e => {
+    if (chainsByMacro[e.source]) chainsByMacro[e.source].push(e.target);
   });
 
-  const LX = 400, LY = 190;
+  // ── Ring 1: GlobalMacro nodes (evenly spaced) ────────────────────────────────
+  macros.forEach((macro, i) => {
+    const angle = i * SECTOR - Math.PI / 2;
+    graph.addNode(macro.id, {
+      ...macro, label: macro.label,
+      size: 20, color: macro.color ?? "#888888",
+      x: Math.cos(angle) * R_MID,
+      y: Math.sin(angle) * R_MID,
+    });
 
-  // Position and add chain nodes
-  chains.forEach(chain => {
-    const l  = levels[chain.id] ?? 0;
-    const col = byLevel[l];
-    const idx = col.indexOf(chain);
-    const x  = (l - maxLevel / 2) * LX;
-    const y  = (idx - (col.length - 1) / 2) * LY;
+    // Spoke: root → macro
+    if (rootNode && graph.hasNode(rootNode.id)) {
+      graph.addEdge(rootNode.id, macro.id, {
+        color: "rgba(120,120,140,0.65)", size: 1.4, relType: "ROOT_MACRO",
+      });
+    }
+  });
 
-    const memberCount = rawData.edges.filter(e => e.relType === "CHAIN_MEMBER" && e.source === chain.id).length;
+  // ── Ring 2: SupplyChain nodes — equal spacing, grouped by macro order ────────
+  const orderedChains = [];
+  macros.forEach(macro => {
+    (chainsByMacro[macro.id] ?? [])
+      .map(id => chains.find(c => c.id === id))
+      .filter(Boolean)
+      .forEach(chain => orderedChains.push(chain));
+  });
+
+  const total = orderedChains.length || 1;
+  orderedChains.forEach((chain, i) => {
+    const chainAngle  = (i / total) * 2 * Math.PI - Math.PI / 2;
+    const memberCount = rawData.edges
+      .filter(e => e.relType === "CHAIN_MEMBER" && e.source === chain.id).length;
     const sc = scenarioColor(chain.id, "SupplyChain", rawData, scenarioFactorId);
 
     graph.addNode(chain.id, {
-      ...chain,
-      label: chain.label,
-      size:  10 + memberCount * 1.3,
-      color: sc ?? "#121212",
-      x, y,
+      ...chain, label: chain.label,
+      size:  8 + memberCount * 1.1,
+      color: sc ?? chain.color ?? "#888888",
+      x: Math.cos(chainAngle) * R_OUTER,
+      y: Math.sin(chainAngle) * R_OUTER,
     });
   });
 
-  // FEEDS_INTO edges
+  // ── CAT_CHAIN spokes: macro → chain (macro-coloured) ────────────────────────
+  catEdges.forEach((e, i) => {
+    if (!graph.hasNode(e.source) || !graph.hasNode(e.target)) return;
+    const macroNode = rawData.nodes.find(n => n.id === e.source);
+    graph.addEdge(e.source, e.target, {
+      id: `cat${i}`, color: (macroNode?.color ?? "#888") + "bb",
+      size: 1.6, relType: "CAT_CHAIN",
+    });
+  });
+
+  // ── FEEDS_INTO arrows between supply chains ───────────────────────────────────
   fiEdges.forEach((e, i) => {
     if (!graph.hasNode(e.source) || !graph.hasNode(e.target)) return;
     graph.addEdge(e.source, e.target, {
-      id: `fi${i}`, color: "rgba(160,120,0,0.80)", size: 1.8,
+      id: `fi${i}`, color: "rgba(160,120,0,0.90)", size: 2.2,
       relType: "FEEDS_INTO", relation: e.relation ?? "", note: e.note ?? "",
     });
   });
@@ -153,7 +199,7 @@ function buildChainGraph(rawData, chainId, scenarioFactorId) {
       x: Math.cos(angle) * R, y: Math.sin(angle) * R,
     });
     graph.addEdge(chainId, sId, {
-      color: "rgba(100,100,100,0.30)", size: 0.7, relType: "CHAIN_MEMBER",
+      color: "rgba(100,100,100,0.65)", size: 1.3, relType: "CHAIN_MEMBER",
     });
   });
 
@@ -191,11 +237,11 @@ function buildChainGraph(rawData, chainId, scenarioFactorId) {
     if (seen.has(k)) return;
     seen.add(k);
     const color = {
-      SUPPLY_CHAIN:   "rgba(247,162,79,0.55)",
-      COMPETITOR:     "rgba(235,87,87,0.55)",
-      EQUITY_HOLDING: "rgba(187,107,217,0.55)",
-    }[e.relType] ?? "rgba(100,100,100,0.3)";
-    graph.addEdge(e.source, e.target, { color, size: 1.0, relType: e.relType, note: e.note ?? "" });
+      SUPPLY_CHAIN:   "rgba(247,162,79,0.85)",
+      COMPETITOR:     "rgba(235,87,87,0.85)",
+      EQUITY_HOLDING: "rgba(187,107,217,0.85)",
+    }[e.relType] ?? "rgba(100,100,100,0.65)";
+    graph.addEdge(e.source, e.target, { color, size: 1.6, relType: e.relType, note: e.note ?? "" });
   });
 
   return graph;
@@ -219,7 +265,7 @@ const EGO_BASE_ANGLES = {
   COMPETITOR:          Math.PI,              // left
 };
 
-const SKIP_REL = new Set(["CHAIN_MEMBER", "FEEDS_INTO", "MACRO_CHAIN", "ROOT_CAT", "CAT_MACRO"]);
+const SKIP_REL = new Set(["CHAIN_MEMBER", "FEEDS_INTO", "MACRO_CHAIN", "ROOT_CAT", "CAT_MACRO", "CAT_CHAIN", "ROOT_MACRO"]);
 
 function buildEgoGraph(rawData, stockId, scenarioFactorId) {
   const graph     = new MultiDirectedGraph();
@@ -267,19 +313,18 @@ function buildEgoGraph(rawData, stockId, scenarioFactorId) {
     });
   });
 
-  // Edges
+  // Edges — coloured by relationship type
   const seenE = new Set();
   relEdges.forEach(e => {
     if (!graph.hasNode(e.source) || !graph.hasNode(e.target)) return;
     const k = `${e.source}||${e.target}`;
     if (seenE.has(k)) return;
     seenE.add(k);
+    const baseColor = EGO_COLORS[e.relType];
+    const color = baseColor ? baseColor + "cc" : "rgba(90,90,90,0.80)";
+    const size  = e.relType === "MACRO_FACTOR" ? 1.2 : 1.8;
     graph.addEdge(e.source, e.target, {
-      color: "rgba(90,90,90,0.65)",
-      size:  e.relType === "MACRO_FACTOR" ? 0.7 : 1.1,
-      relType: e.relType,
-      ...e,
-      type: "arrow",
+      color, size, relType: e.relType, ...e, type: "arrow",
     });
   });
 

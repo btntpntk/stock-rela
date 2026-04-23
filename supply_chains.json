@@ -1,4 +1,13 @@
 {
+  "global_macro_root": { "id": "root:global_macro", "label": "Global Macro", "color": "#1a1a2e" },
+  "global_macros": [
+    { "id": "cat:energy",   "label": "Energy & Oil",   "color": "#c0392b" },
+    { "id": "cat:agri",     "label": "Agriculture",    "color": "#239b56" },
+    { "id": "cat:consumer", "label": "Consumer",       "color": "#d4681e" },
+    { "id": "cat:economy",  "label": "Economy",        "color": "#7d3c98" },
+    { "id": "cat:rate",     "label": "Interest Rates", "color": "#1f618d" },
+    { "id": "cat:credit",   "label": "Credit",         "color": "#117a65" }
+  ],
   "supply_chains": [
     {
       "id": "chain:energy_ep",
