@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Primary Lender/Facility Agent",
             "proportionality": "Inversely Proportional",
             "note": "Major provider of long-term debentures and credit lines for 5G spectrum licenses and infrastructure CAPEX."
           },
           {
-            "entity": "Siam Commercial Bank (SCB.BK)",
+            "entity": "SCB.BK",
             "relation": "Joint Venture Partner (AISCB)",
             "proportionality": "Proportional",
             "note": "Collaboration in digital lending and the Virtual Bank consortium increases non-core revenue potential."
@@ -20,7 +20,7 @@
         ],
         "supply_chain": [
           {
-            "entity": "GULF Development (GULF.BK)",
+            "entity": "GULF.BK",
             "relation": "Upstream/Energy & Strategic Parent",
             "proportionality": "Proportional",
             "sensitivity_index": 0.9,

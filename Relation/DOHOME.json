@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Kasikornbank (KBANK.BK)",
+            "entity": "KBANK.BK",
             "relation": "Primary Lender/Credit Provider",
             "proportionality": "Inversely Proportional",
             "note": "High interest rate sensitivity due to expansion-driven debt; KBANK (via Kasikorn Securities) also serves as a key financial advisor."
           },
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Major Creditor/Lender",
             "proportionality": "Inversely Proportional",
             "note": "Provides significant revolving credit and term loans for large-scale warehouse inventory and logistics infrastructure."
@@ -27,14 +27,14 @@
             "note": "DOHOME is a major distributor of structural steel and roofing; BlueScope is a critical supplier for high-volume metal products."
           },
           {
-            "entity": "Siam City Cement (SCCC.BK)",
+            "entity": "SCCC.BK",
             "relation": "Upstream/Cement & Building Materials",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.7,
             "note": "Raw material costs for basic construction products; rising cement prices can squeeze retail margins if not fully passed to customers."
           },
           {
-            "entity": "TOA Paint (TOA.BK)",
+            "entity": "TOA.BK",
             "relation": "Upstream/Paint & Coatings",
             "proportionality": "Proportional",
             "sensitivity_index": 0.6,
@@ -70,7 +70,7 @@
             "note": "Competes in the home decoration segment, though HMPRO targets a more premium urban demographic."
           },
           {
-            "ticker": "Thaiwatsadu (CRC.BK)",
+            "ticker": "CRC.BK",
             "market_share_overlap": "High",
             "proportionality": "Inversely Proportional",
             "note": "Intense competition in the industrial and contractor supply segments."

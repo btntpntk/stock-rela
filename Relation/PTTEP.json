@@ -6,7 +6,7 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "PTT Public Company Limited (PTT.BK)",
+            "entity": "PTT.BK",
             "relation": "Majority Shareholder/Parent",
             "proportionality": "Proportional",
             "note": "Holds ~63.79% stake; PTTEP is the group's primary cash generator and dividend engine, highly sensitive to PTT's consolidated energy strategy."
@@ -43,7 +43,7 @@
             "note": "The backbone of Thailand's energy security; production ramp-up to 800 MMcf/d at Erawan is a key 2026 milestone."
           },
           {
-            "entity": "Seagreen Offshore Wind (UK)",
+            "entity": "UK.BK",
             "type": "Strategic Diversification",
             "ownership_pct": 25.5,
             "proportionality": "Proportional",

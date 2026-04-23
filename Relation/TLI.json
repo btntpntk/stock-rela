@@ -64,7 +64,7 @@
             "note": "Primary rival for agency network dominance and market share in life-protection products."
           },
           {
-            "ticker": "BLA.BK (Bangkok Life Assurance)",
+            "ticker": "BLA.BK",
             "market_share_overlap": "High",
             "proportionality": "Inversely Proportional",
             "note": "Direct listed peer; both stocks are sensitive to Thai government bond yields and interest rate cycles."

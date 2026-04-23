@@ -6,7 +6,7 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Kasikornbank Public Company Limited (KBANK)",
+            "entity": "KBANK.BK",
             "relation": "Primary Lender / Transactional Bank",
             "proportionality": "Inversely Proportional",
             "note": "Provides major credit facilities and working capital; CBG's 2026 leverage (Net D/E ~19.2%) maintains sensitivity to floating-rate corporate debt."
@@ -33,7 +33,7 @@
             "note": "Handles 100% of own distribution and 3rd party distribution for Sathientham's spirits/beer, a key 2026 revenue driver."
           },
           {
-            "entity": "Asia Can Manufacturing (ACM)",
+            "entity": "ACM.BK",
             "relation": "Upstream Packaging Subsidiary",
             "proportionality": "Proportional",
             "sensitivity_index": 0.88,
@@ -47,7 +47,7 @@
             "note": "Primary retail channel for the 'Carabao Ecosystem'; expansion of CJ stores directly correlates with CBG's domestic volume growth."
           },
           {
-            "entity": "PTT Public Company Limited (PTT.BK)",
+            "entity": "PTT.BK",
             "relation": "Upstream Energy Provider (Gas)",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.65,
@@ -56,19 +56,19 @@
         ],
         "equity_cross_holdings": [
           {
-            "entity": "Carabao Tawandang Co., Ltd. (CBD)",
+            "entity": "CBG.BK",
             "type": "Wholly Owned Subsidiary",
             "ownership_pct": 100.0,
             "proportionality": "Proportional"
           },
           {
-            "entity": "Asia Pacific Glass Co., Ltd. (APG)",
+            "entity": "APG.BK",
             "type": "Wholly Owned Subsidiary",
             "ownership_pct": 100.0,
             "proportionality": "Proportional"
           },
           {
-            "entity": "Intercarabao Limited (UK)",
+            "entity": "UK.BK",
             "type": "International Subsidiary",
             "ownership_pct": 100.0,
             "proportionality": "Proportional"

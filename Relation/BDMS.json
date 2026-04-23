@@ -6,7 +6,7 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "entity": "BBL.BK",
             "relation": "Primary Lender & Strategic Partner",
             "proportionality": "Inversely Proportional",
             "note": "Maintains uncommitted facilities >20bn THB; interest rate sensitive for floating-rate debt used in hospital network expansion."
@@ -18,7 +18,7 @@
             "note": "Holds ~4.3% equity; key partner in the 'AIA-BDMS' and 'Viriyah-BDMS' networks, driving insured patient traffic."
           },
           {
-            "entity": "Social Security Office (SSO)",
+            "entity": "SSO.BK",
             "relation": "Institutional Shareholder",
             "proportionality": "Proportional",
             "note": "Holds ~3.8% equity; ensures alignment with national health welfare and public sector healthcare demand."
@@ -49,7 +49,7 @@
         ],
         "equity_cross_holdings": [
           {
-            "entity": "BA.BK (Bangkok Airways)",
+            "entity": "BA.BK",
             "type": "Strategic Shareholder / Associate",
             "ownership_pct": 4.6,
             "proportionality": "Proportional"

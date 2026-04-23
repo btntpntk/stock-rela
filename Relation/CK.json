@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "entity": "BBL.BK",
             "relation": "Primary Lender / Strategic Shareholder",
             "proportionality": "Inversely Proportional",
             "note": "BBL holds 2.30% of CK equity and acts as the lead financier for large-scale infrastructure bonds; rising rates increase the debt burden on a 2026 Net D/E ratio of approx 1.4x."
           },
           {
-            "entity": "Krungthai Bank Public Company Limited (KTB)",
+            "entity": "KTB.BK",
             "relation": "Project Financier / Associate Shareholder",
             "proportionality": "Proportional",
             "note": "KTB holds 5.33% of BEM (CK's core associate) and provides bridge financing for state-concession projects like the Orange Line and Purple Line."
@@ -20,7 +20,7 @@
         ],
         "supply_chain": [
           {
-            "entity": "Siam Cement Group (SCC.BK)",
+            "entity": "SCC.BK",
             "relation": "Upstream Raw Material Supplier",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.85,

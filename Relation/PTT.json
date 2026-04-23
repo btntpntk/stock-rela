@@ -26,28 +26,28 @@
         ],
         "supply_chain": [
           {
-            "entity": "PTTEP.BK (PTT Exploration & Production)",
+            "entity": "PTTEP.BK",
             "relation": "Upstream/E&P Flagship",
             "proportionality": "Proportional",
             "sensitivity_index": 0.95,
             "note": "Primary driver of group earnings; PTT owns ~65%. Performance is directly tied to global crude oil and natural gas price cycles."
           },
           {
-            "entity": "PTT Global Chemical (PTTGC.BK) / Thai Oil (TOP.BK) / IRPC.BK",
+            "entity": "PTTGC.BK",
             "relation": "Downstream/Refining & Petrochemical",
             "proportionality": "Proportional",
             "sensitivity_index": 0.85,
             "note": "PTT serves as the primary feedstock supplier (crude/gas) and off-taker; performance is sensitive to refining margins and petrochem spreads."
           },
           {
-            "entity": "OR.BK (PTT Oil and Retail)",
+            "entity": "OR.BK",
             "relation": "Downstream/Retail & Lifestyle",
             "proportionality": "Proportional",
             "sensitivity_index": 0.75,
             "note": "PTT owns 75%; critical for non-oil growth via Café Amazon and EV charging infrastructure transition."
           },
           {
-            "entity": "Centrica (UK)",
+            "entity": "UK.BK",
             "relation": "Strategic LNG Partner",
             "proportionality": "Proportional",
             "sensitivity_index": 0.6,
@@ -71,7 +71,7 @@
             "note": "Competes in international oil trading and regional E&P bidding."
           },
           {
-            "entity": "Bangchak Corporation (BCP.BK)",
+            "entity": "BCP.BK",
             "market_share_overlap": "High",
             "proportionality": "Inversely Proportional",
             "note": "Primary domestic rival in the refining and retail station segment (following the Esso acquisition)."

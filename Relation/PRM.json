@@ -20,14 +20,14 @@
         ],
         "supply_chain": [
           {
-            "entity": "PTT Public Company Limited (PTT.BK)",
+            "entity": "PTT.BK",
             "relation": "Downstream/Key Strategic Customer",
             "proportionality": "Proportional",
             "sensitivity_index": 0.9,
             "note": "PRM provides long-term petroleum transport for PTT and its subsidiaries (OR/PTTGC). Revenue stability is heavily anchored in PTT's domestic fuel demand."
           },
           {
-            "entity": "Thai Oil (TOP.BK)",
+            "entity": "TOP.BK",
             "relation": "Downstream/Key Strategic Customer",
             "proportionality": "Proportional",
             "sensitivity_index": 0.85,

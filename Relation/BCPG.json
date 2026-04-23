@@ -6,19 +6,19 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangchak Corporation (BCP.BK)",
+            "entity": "BCP.BK",
             "relation": "Parent Company/Financial Sponsor",
             "proportionality": "Proportional",
             "note": "BCP holds ~57.81% stake; provides strategic direction and credit support for large-scale energy transitions."
           },
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Primary Lender/Facility Agent",
             "proportionality": "Inversely Proportional",
             "note": "Major provider of project finance for domestic solar and international wind assets; debt servicing costs rise with interest rates."
           },
           {
-            "entity": "Kasikornbank (KBANK.BK)",
+            "entity": "KBANK.BK",
             "relation": "Joint Venture Partner/Lender",
             "proportionality": "Inversely Proportional",
             "note": "Provides working capital and is involved in digital energy platform financing; sensitive to BoT policy shifts."
@@ -26,7 +26,7 @@
         ],
         "supply_chain": [
           {
-            "entity": "PJM Interconnection (USA)",
+            "entity": "USA.BK",
             "relation": "Downstream/Market Operator",
             "proportionality": "Proportional",
             "sensitivity_index": 0.9,

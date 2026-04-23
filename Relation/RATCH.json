@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Electricity Generating Authority of Thailand (EGAT)",
+            "entity": "EGAT.BK",
             "relation": "Majority Shareholder/Strategic Parent",
             "proportionality": "Proportional",
             "note": "Holds 45% stake; RATCH acts as the primary investment arm for EGAT's IPP projects. Financial health is deeply linked to EGAT's credit rating and the Thai sovereign outlook."
           },
           {
-            "entity": "Siam Commercial Bank (SCB.BK) / Krung Thai Bank (KTB.BK)",
+            "entity": "SCB.BK",
             "relation": "Primary Lenders/Debt Facility Providers",
             "proportionality": "Inversely Proportional",
             "note": "Major financiers for regional M&A and infrastructure projects; rising interest rates increase the servicing cost on their ~฿100bn+ debt load."
@@ -27,7 +27,7 @@
             "note": "Revenue stability is secured via 20-25 year Power Purchase Agreements (PPAs) with EGAT, though 2026 sees some impact from the expiry of the Ratchaburi Thermal Units."
           },
           {
-            "entity": "PTT Public Company Limited (PTT.BK)",
+            "entity": "PTT.BK",
             "relation": "Upstream/Natural Gas Supplier",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.8,
@@ -50,7 +50,7 @@
             "note": "Acquired in 2024; provides significant dividend income flow (est. ฿4bn+ annually in 2026) to RATCH's consolidated EBITDA."
           },
           {
-            "entity": "Ratchaburi Power Company (RPCL)",
+            "entity": "RPCL.BK",
             "type": "Restructured Subsidiary",
             "ownership_pct": 50.0,
             "proportionality": "Proportional",
@@ -78,7 +78,7 @@
             "note": "Direct peer and fellow EGAT affiliate; both compete for regional M&A and international renewable energy projects."
           },
           {
-            "ticker": "B.GRIMM (BGRIM.BK)",
+            "ticker": "BGRIM.BK",
             "market_share_overlap": "Medium",
             "proportionality": "Inversely Proportional",
             "note": "Rival in the SPP and regional renewable segments, particularly in Vietnam and the Philippines."

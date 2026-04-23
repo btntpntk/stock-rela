@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Siam Commercial Bank (SCB.BK)",
+            "entity": "SCB.BK",
             "relation": "Primary Debt Registrar / Lead Underwriter",
             "proportionality": "Inversely Proportional",
             "note": "SCB acts as the registrar for major debenture tranches (e.g., EA269A); rising interest rates increase the servicing cost of EA's ~56bn THB total liabilities."
           },
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Transactional Lender / Underwriter",
             "proportionality": "Inversely Proportional",
             "note": "Significant exposure to EA's project financing for the Chachoengsao Gigafactory; debt-to-equity covenant pressure makes the stock sensitive to BBL's prime rate."
@@ -34,7 +34,7 @@
             "note": "Raw material for biodiesel (B100); rising Crude Palm Oil (CPO) prices compress the marketing margin of the biodiesel segment."
           },
           {
-            "entity": "Bangkok Expressway and Metro (BEM.BK)",
+            "entity": "BEM.BK",
             "relation": "Downstream Strategic Customer",
             "proportionality": "Proportional",
             "sensitivity_index": 0.78,
@@ -43,7 +43,7 @@
         ],
         "equity_cross_holdings": [
           {
-            "entity": "NEX.BK (Nex Point)",
+            "entity": "NEX.BK",
             "type": "Subsidiary (EV Assembly)",
             "ownership_pct": 77.77,
             "proportionality": "Proportional"

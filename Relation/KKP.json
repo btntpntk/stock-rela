@@ -12,7 +12,7 @@
             "note": "Holds ~14.4% stake; significant influence over stock liquidity and foreign institutional sentiment."
           },
           {
-            "entity": "Ramkhamhaeng Hospital (RAM.BK)",
+            "entity": "RAM.BK",
             "relation": "Strategic Shareholder",
             "proportionality": "Proportional",
             "note": "Holds ~2.5% stake; represents cross-sector strategic investment and potential synergy in wealth management for high-net-worth medical professionals."
@@ -40,7 +40,7 @@
             "note": "Long-standing collaboration for global investment research and asset management products; essential for KKP's premium wealth management brand."
           },
           {
-            "entity": "Tipaya Insurance (TIPH.BK)",
+            "entity": "TIPH.BK",
             "relation": "Downstream/Bancassurance Partner",
             "proportionality": "Proportional",
             "sensitivity_index": 0.6,
@@ -49,14 +49,14 @@
         ],
         "equity_cross_holdings": [
           {
-            "entity": "Kiatnakin Phatra Securities (KKPS)",
+            "entity": "KKPS.BK",
             "type": "Wholly-Owned Subsidiary",
             "ownership_pct": 100.0,
             "proportionality": "Proportional",
             "note": "Market leader in Thai institutional brokerage (~20%+ market share) and investment banking."
           },
           {
-            "entity": "Kiatnakin Phatra Asset Management (KKPAM)",
+            "entity": "KKPAM.BK",
             "type": "Wholly-Owned Subsidiary",
             "ownership_pct": 100.0,
             "proportionality": "Proportional"

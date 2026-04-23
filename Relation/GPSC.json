@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "PTT Public Company Limited (PTT.BK)",
+            "entity": "PTT.BK",
             "relation": "Parent/Strategic Sponsor",
             "proportionality": "Proportional",
             "note": "As the flagship power subsidiary of PTT Group, GPSC receives credit support and project pipeline synergy."
           },
           {
-            "entity": "Krung Thai Bank (KTB.BK)",
+            "entity": "KTB.BK",
             "relation": "Primary Lender",
             "proportionality": "Inversely Proportional",
             "note": "Major financier for the Glow Energy acquisition debt and long-term project loans; rising rates increase interest expense."
@@ -20,7 +20,7 @@
         ],
         "supply_chain": [
           {
-            "entity": "PTT Public Company Limited (PTT.BK)",
+            "entity": "PTT.BK",
             "relation": "Upstream/Natural Gas Supplier",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.85,
@@ -34,7 +34,7 @@
             "note": "Revenue stability is secured via long-term Power Purchase Agreements (PPAs) for IPP and SPP segments."
           },
           {
-            "entity": "PTT Global Chemical (PTTGC.BK)",
+            "entity": "PTTGC.BK",
             "relation": "Downstream/Industrial Customer",
             "proportionality": "Proportional",
             "sensitivity_index": 0.75,
@@ -43,7 +43,7 @@
         ],
         "equity_cross_holdings": [
           {
-            "entity": "Glow Energy (GLOW)",
+            "entity": "GLOW.BK",
             "type": "Subsidiary",
             "ownership_pct": 99.83,
             "proportionality": "Proportional"
@@ -55,7 +55,7 @@
             "proportionality": "Proportional"
           },
           {
-            "entity": "Changfang and Xidao (CFXD)",
+            "entity": "CFXD.BK",
             "type": "Joint Venture (Wind)",
             "ownership_pct": 25.0,
             "proportionality": "Proportional"

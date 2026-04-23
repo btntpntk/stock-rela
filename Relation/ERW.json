@@ -6,7 +6,7 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "entity": "BBL.BK",
             "relation": "Primary Debt Financier / Creditor",
             "proportionality": "Inversely Proportional",
             "note": "Provides significant long-term loans for hotel development; interest rate hikes directly increase financing costs for their 2026 expansion pipeline."
@@ -20,7 +20,21 @@
         ],
         "supply_chain": [
           {
-            "entity": "Agoda / Booking.com / Trip.com",
+            "entity": "Agoda",
+            "relation": "Downstream Distribution Channels (OTAs)",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Primary revenue engines for the luxury and midscale segments; performance is highly sensitive to OTA platform commission structures and digital traffic."
+          },
+          {
+            "entity": "Booking.com",
+            "relation": "Downstream Distribution Channels (OTAs)",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "Primary revenue engines for the luxury and midscale segments; performance is highly sensitive to OTA platform commission structures and digital traffic."
+          },
+          {
+            "entity": "Trip.com",
             "relation": "Downstream Distribution Channels (OTAs)",
             "proportionality": "Proportional",
             "sensitivity_index": 0.85,

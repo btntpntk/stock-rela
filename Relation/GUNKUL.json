@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Siam Commercial Bank (SCB.BK)",
+            "entity": "SCB.BK",
             "relation": "Primary Lender/Lead Financial Advisor",
             "proportionality": "Inversely Proportional",
             "note": "Provides significant credit facilities for IPP project financing; interest rate hikes directly increase the cost of servicing long-term project debt."
           },
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Debenture Underwriter/Lender",
             "proportionality": "Inversely Proportional",
             "note": "Key partner for corporate bond issuance used to fund the 2026 'New S-Curve' expansion into data center infrastructure."
@@ -55,13 +55,13 @@
             "proportionality": "Proportional"
           },
           {
-            "entity": "Gunkul Power Development (GPD)",
+            "entity": "GPD.BK",
             "type": "Subsidiary (EPC)",
             "ownership_pct": 100.0,
             "proportionality": "Proportional"
           },
           {
-            "entity": "JP One Asset (JPO)",
+            "entity": "JPO.BK",
             "type": "Joint Venture (Asset Management)",
             "ownership_pct": 50.0,
             "proportionality": "Proportional"

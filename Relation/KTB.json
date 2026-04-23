@@ -6,7 +6,7 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Ministry of Finance (FIDF)",
+            "entity": "FIDF.BK",
             "relation": "Majority Shareholder/Strategic Parent",
             "proportionality": "Proportional",
             "note": "Holds ~55.07% stake through the Financial Institutions Development Fund (FIDF); KTB acts as the primary vehicle for government financial policy and stimulus disbursement."
@@ -49,7 +49,7 @@
         ],
         "equity_cross_holdings": [
           {
-            "entity": "KTC.BK (Krungthai Card)",
+            "entity": "KTC.BK",
             "type": "Subsidiary (Consumer Finance)",
             "ownership_pct": 49.29,
             "proportionality": "Proportional"
@@ -61,7 +61,7 @@
             "proportionality": "Proportional"
           },
           {
-            "entity": "Krungthai Asset Management (KTAM)",
+            "entity": "KTAM.BK",
             "type": "Wholly-Owned Subsidiary",
             "ownership_pct": 100.0,
             "proportionality": "Proportional"

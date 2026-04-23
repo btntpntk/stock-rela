@@ -6,7 +6,7 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "PTT Public Company Limited (PTT.BK)",
+            "entity": "PTT.BK",
             "relation": "Parent Company / Primary Lender",
             "proportionality": "Proportional",
             "note": "As the chemical flagship of PTT Group, PTTGC relies on its parent for strategic funding and credit support; PTT holds 45.18% as of February 2026."
@@ -18,7 +18,7 @@
             "note": "Maintains 'BBB-' rating with a Negative Outlook in 2026; credit rating stability is crucial for managing its ~240bn THB debt load and interest expenses."
           },
           {
-            "entity": "Siam Commercial Bank (SCB.BK)",
+            "entity": "SCB.BK",
             "relation": "Transactional Bank / Bond Underwriter",
             "proportionality": "Inversely Proportional",
             "note": "Primary domestics lender; rising interest rates increase the cost of maintaining high net leverage, projected at >4.0x EBITDA through 2026."
@@ -26,7 +26,7 @@
         ],
         "supply_chain": [
           {
-            "entity": "PTT Public Company Limited (PTT.BK)",
+            "entity": "PTT.BK",
             "relation": "Upstream Feedstock Supplier (Gas/Crude)",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.95,
@@ -43,7 +43,7 @@
             "entity": "Covestro AG",
             "relation": "Downstream Strategic Partner",
             "proportionality": "Proportional",
-            "sensitivity_index": 0.60,
+            "sensitivity_index": 0.6,
             "note": "2025/2026 divestment of Vencorex to Covestro streamlines GC’s portfolio toward higher-margin sustainable solutions."
           }
         ],
@@ -55,13 +55,13 @@
             "proportionality": "Proportional"
           },
           {
-            "entity": "GPSC.BK (Global Power Synergy)",
+            "entity": "GPSC.BK",
             "type": "Associate / Power Provider",
             "ownership_pct": 22.73,
             "proportionality": "Proportional"
           },
           {
-            "entity": "GGC.BK (Global Green Chemicals)",
+            "entity": "GGC.BK",
             "type": "Subsidiary (Bio-Chemicals)",
             "ownership_pct": 72.3,
             "proportionality": "Proportional"
@@ -81,7 +81,7 @@
             "note": "Primary rival in the global PET and intermediate chemicals market; sector rotation often favors IVL's asset-light model."
           },
           {
-            "ticker": "SCC.BK (SCG Chemicals)",
+            "ticker": "SCC.BK",
             "market_share_overlap": "High",
             "proportionality": "Inversely Proportional",
             "note": "Direct competition for domestic and regional market share in Polyethylene (PE) and Polypropylene (PP)."

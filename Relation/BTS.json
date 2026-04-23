@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Primary Lender & Strategic Shareholder",
             "proportionality": "Proportional",
             "note": "BBL is a major shareholder (~4.48%) and lead financier for 3M (Move, Mix, Match) expansions; strong banking support reduces liquidity risk."
           },
           {
-            "entity": "Bangkok Metropolitan Administration (BMA)",
+            "entity": "BMA.BK",
             "relation": "Government Debtor/Contractor",
             "proportionality": "Proportional",
             "note": "Oct 2025 settlement of ฿36.4 billion in Green Line debt significantly deleveraged the balance sheet, reducing D/E ratio to 1.0x."
@@ -20,7 +20,7 @@
         ],
         "supply_chain": [
           {
-            "entity": "Sino-Thai Engineering (STEC.BK)",
+            "entity": "STEC.BK",
             "relation": "Upstream/Construction Partner",
             "proportionality": "Proportional",
             "sensitivity_index": 0.8,
@@ -34,7 +34,14 @@
             "note": "Dependence on European rail technology and maintenance parts; costs are sensitive to EUR/THB exchange rate fluctuations."
           },
           {
-            "entity": "EGAT / MEA",
+            "entity": "MEA.BK",
+            "relation": "Upstream/Energy Supplier",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.45,
+            "note": "High-intensity electricity consumption for rail traction; Jan-Apr 2026 Ft surcharge increases operational expenses."
+          },
+          {
+            "entity": "EGATIF.BK",
             "relation": "Upstream/Energy Supplier",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.45,
@@ -49,13 +56,13 @@
             "proportionality": "Proportional"
           },
           {
-            "entity": "Rabbit Holdings (RABBIT.BK)",
+            "entity": "RABBIT.BK",
             "type": "Subsidiary (Match)",
             "ownership_pct": 82.0,
             "proportionality": "Proportional"
           },
           {
-            "entity": "Jaymart Group (JMART.BK)",
+            "entity": "JMART.BK",
             "type": "Strategic Investment",
             "ownership_pct": null,
             "proportionality": "Proportional"

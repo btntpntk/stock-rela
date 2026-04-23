@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "BTS Group Holdings (BTS.BK)",
+            "entity": "BTS.BK",
             "relation": "Ultimate Parent / Controlling Shareholder",
             "proportionality": "Proportional",
             "note": "BTS Group increased its stake in late 2025/early 2026; VGI is the exclusive media manager for the BTS Skytrain network until 2029."
           },
           {
-            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "entity": "BBL.BK",
             "relation": "Major Shareholder / Financial Partner",
             "proportionality": "Proportional",
             "note": "BBL holds ~8.36%; provides credit facilities and collaborates on payment infrastructure through the Rabbit ecosystem."
@@ -34,17 +34,17 @@
             "note": "20.8M+ cards in circulation as of Q3 FY25/26; core to VGI's 'Offline-to-Online' (O2O) strategy for targeted advertising and digital lending."
           },
           {
-            "entity": "Plan B Media (PLANB.BK)",
+            "entity": "PLANB.BK",
             "relation": "Strategic Partner / Co-marketing",
             "proportionality": "Proportional",
-            "sensitivity_index": 0.80,
+            "sensitivity_index": 0.8,
             "note": "Collaborates on bundled media packages like 'Bangkok Live' to offer 360-degree Out-of-Home coverage across Bangkok."
           },
           {
             "entity": "Turtle (Super Turtle PCL)",
             "relation": "Subsidiary / Retail Outlet",
             "proportionality": "Proportional",
-            "sensitivity_index": 0.70,
+            "sensitivity_index": 0.7,
             "note": "Operates retail shops on BTS stations; integration of retail data with media displays drives the 'Turtle LED' high-margin ad segment."
           },
           {
@@ -69,7 +69,7 @@
             "proportionality": "Proportional"
           },
           {
-            "entity": "TURTLE.BK (Super Turtle)",
+            "entity": "TURTLE.BK",
             "type": "Subsidiary (Retail)",
             "ownership_pct": 73.3,
             "proportionality": "Proportional"
@@ -83,7 +83,7 @@
             "note": "While partners in some segments, they compete directly for non-BTS outdoor advertising budgets."
           },
           {
-            "ticker": "MACO.BK (Master Ad)",
+            "ticker": "MACO.BK",
             "market_share_overlap": "Medium",
             "proportionality": "Inversely Proportional",
             "note": "Competes in static and digital billboard placement across Thailand's provinces."

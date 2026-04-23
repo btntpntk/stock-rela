@@ -6,39 +6,46 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bank of Thailand (BoT)",
+            "entity": "Bank of Thailand",
             "relation": "Regulatory/Monetary Policy Source",
             "proportionality": "Proportional",
-            "note": "BBL has a high proportion of floating-rate corporate loans; policy rate hikes generally expand Net Interest Margin (NIM)."
+            "note": "As a corporate-heavy lender, BBL is highly sensitive to the policy rate; however, in Q1 2026, rate cuts have compressed NIM to approx. 2.49%."
           },
           {
             "entity": "Vayupak Fund 1",
-            "relation": "Institutional Shareholder",
+            "relation": "Institutional Shareholder/Strategic Partner",
             "proportionality": "Proportional",
-            "note": "Holds 1.51% equity; government-linked fund support provides price stability and capital flow alignment."
+            "note": "BBL is a major unit holder (9.47%) and lender to the fund's ecosystem; provides dividend stability and capital flow alignment."
           }
         ],
         "supply_chain": [
           {
-            "entity": "PTT Public Company Limited",
+            "entity": "PTT.BK",
             "relation": "Major Corporate Borrower/Client",
             "proportionality": "Proportional",
             "sensitivity_index": 0.85,
-            "note": "BBL is the primary financier for PTT Group's infrastructure and energy projects; PTT's credit health directly impacts BBL's loan book quality."
+            "note": "BBL acts as the lead financier for PTT Group infrastructure; PTT's CAPEX cycle drives BBL's corporate loan growth."
           },
           {
-            "entity": "Siam Cement Group (SCG)",
+            "entity": "SCC.BK",
             "relation": "Major Corporate Borrower/Client",
             "proportionality": "Proportional",
             "sensitivity_index": 0.80,
-            "note": "Long-standing lending relationship for industrial expansion and ESG-linked financing."
+            "note": "Primary lender for Siam Cement Group's regional expansion and green transition financing."
           },
           {
-            "entity": "Charoen Pokphand (CP) Group",
+            "entity": "CP Group",
             "relation": "Strategic Corporate Client",
             "proportionality": "Proportional",
             "sensitivity_index": 0.75,
-            "note": "Provides syndicated loans and trade finance for CP's global agri-food and retail operations."
+            "note": "Provides syndicated loans for CP's global retail and agri-food M&A activities."
+          },
+          {
+            "entity": "BTS-VGI-Sea Consortium",
+            "relation": "Strategic Virtual Bank Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.40,
+            "note": "Partnership for the 2026 virtual bank launch to capture the unbanked SME segment."
           }
         ],
         "equity_cross_holdings": [
@@ -49,13 +56,13 @@
             "proportionality": "Proportional"
           },
           {
-            "entity": "BLA.BK (Bangkok Life Assurance)",
+            "entity": "BLA.BK",
             "type": "Associate/Investment",
             "ownership_pct": 9.46,
             "proportionality": "Proportional"
           },
           {
-            "entity": "BKI.BK (Bangkok Insurance)",
+            "entity": "BKIH.BK",
             "type": "Strategic Associate",
             "ownership_pct": 9.9,
             "proportionality": "Proportional"
@@ -66,19 +73,19 @@
             "ticker": "KBANK.BK",
             "market_share_overlap": "High",
             "proportionality": "Inversely Proportional",
-            "note": "Primary rival in SME lending and digital banking; market share shifts impact BBL's domestic dominance."
+            "note": "Rivalry in digital transformation and SME lending; KBANK's retail strength pressures BBL's deposit costs."
           },
           {
             "ticker": "SCB.BK",
             "market_share_overlap": "High",
             "proportionality": "Inversely Proportional",
-            "note": "Competitive pressure in wealth management and technology-driven retail banking."
+            "note": "Direct competition in wealth management and tech-stack efficiency."
           },
           {
             "ticker": "KTB.BK",
             "market_share_overlap": "Medium",
             "proportionality": "Inversely Proportional",
-            "note": "Competition for government-linked projects and public sector payroll accounts."
+            "note": "Competition for government-linked lending and digital payment infrastructure."
           }
         ],
         "macro_commodity_factors": [
@@ -86,19 +93,19 @@
             "factor": "Thailand Policy Interest Rate",
             "proportionality": "Proportional",
             "impact_lag": "T+0 Months",
-            "logic": "As a corporate-heavy lender, BBL's yield on earnings assets re-prices faster than deposit costs during rate hikes."
+            "logic": "Yields on corporate loans re-price faster than deposits, though a 2026 downward trend is currently squeezing spreads."
           },
           {
             "factor": "USD/THB Exchange Rate",
             "proportionality": "Proportional",
             "impact_lag": "T+0 Months",
-            "logic": "Beneficiary of THB depreciation through translation of international branch earnings (approx. 25% of total assets)."
+            "logic": "Translates international earnings (Indonesia/Vietnam) back to THB; a weaker THB boosts reported net profit."
           },
           {
             "factor": "Thailand GDP Growth",
             "proportionality": "Proportional",
             "impact_lag": "T+1 Quarter",
-            "logic": "Directly correlates to loan demand and reduction in Non-Performing Loans (NPLs) across the corporate sector."
+            "logic": "Drives the demand for new credit and determines the NPL provisioning cycle for large industrial borrowers."
           }
         ]
       }

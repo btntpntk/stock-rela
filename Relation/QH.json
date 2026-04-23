@@ -6,19 +6,19 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Land and Houses Public Company Limited (LH.BK)",
+            "entity": "LH.BK",
             "relation": "Parent Company / Strategic Shareholder",
             "proportionality": "Proportional",
             "note": "LH holds 24.98% equity as of March 2026; provides operational synergy and capital support, though QH operates independently in the mid-market segment."
           },
           {
-            "entity": "Siam Commercial Bank (SCB.BK)",
+            "entity": "SCB.BK",
             "relation": "Primary Debt Financier / Underwriter",
             "proportionality": "Inversely Proportional",
             "note": "SCB acts as a lead financier for QH's debentures (A- rating); rising interest rates increase the refinancing cost of the ~15bn THB liability base."
           },
           {
-            "entity": "Social Security Office (SSO)",
+            "entity": "SSO.BK",
             "relation": "Institutional Shareholder",
             "proportionality": "Proportional",
             "note": "Holds ~0.73% equity; reflects long-term domestic institutional stability and yield-seeking alignment."
@@ -26,14 +26,14 @@
         ],
         "supply_chain": [
           {
-            "entity": "Siam Cement Group (SCC.BK)",
+            "entity": "SCC.BK",
             "relation": "Upstream Material Supplier",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.82,
             "note": "Primary supplier of cement and construction materials; QH's 2026 margins are sensitive to domestic building material cost inflation."
           },
           {
-            "entity": "HMPRO.BK (Home Product Center)",
+            "entity": "HMPRO.BK",
             "relation": "Associate / Distribution Channel",
             "proportionality": "Proportional",
             "sensitivity_index": 0.65,
@@ -48,7 +48,7 @@
             "proportionality": "Proportional"
           },
           {
-            "entity": "LHFG.BK (LH Financial Group)",
+            "entity": "LHFG.BK",
             "type": "Associate",
             "ownership_pct": 13.74,
             "proportionality": "Proportional"

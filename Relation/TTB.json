@@ -12,7 +12,7 @@
             "note": "Holds 11.65% as of March 2026; provides sovereign-linked stability and alignment with national financial inclusion policies."
           },
           {
-            "entity": "Thanachart Capital PCL (TCAP.BK)",
+            "entity": "TCAP.BK",
             "relation": "Largest Shareholder",
             "proportionality": "Proportional",
             "note": "Holds 24.37% equity; TTB serves as the primary banking engine for the Thanachart Group ecosystem."
@@ -36,7 +36,7 @@
             "entity": "ttb leasing",
             "relation": "Internal Auto-Loan Ecosystem",
             "proportionality": "Proportional",
-            "sensitivity_index": 0.90,
+            "sensitivity_index": 0.9,
             "note": "A core 2026 growth driver focusing on the motorcycle market to extend the bank's dominant position in auto-financing."
           },
           {
@@ -75,7 +75,7 @@
             "note": "Competition for high-yield retail loans and mass-affluent wealth management clients."
           },
           {
-            "ticker": "BAY.BK (Krungsri)",
+            "ticker": "BAY.BK",
             "market_share_overlap": "Very High",
             "proportionality": "Inversely Proportional",
             "note": "Direct competition for the #1 spot in the Thai automobile hire-purchase market."

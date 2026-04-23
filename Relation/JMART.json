@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Kasikornbank (KBANK.BK)",
+            "entity": "KBANK.BK",
             "relation": "Primary Registrar/Credit Provider",
             "proportionality": "Inversely Proportional",
             "note": "KBANK serves as the registrar for major 2026 debenture issuances (e.g., JMART292A); rising interest rates increase refinancing costs for their ~฿8.8bn debt pool."
           },
           {
-            "entity": "Asia Plus Securities (ASPS)",
+            "entity": "ASPS.BK",
             "relation": "Bondholder Representative/Underwriter",
             "proportionality": "Inversely Proportional",
             "note": "Lead manager for the ฿2.0bn debenture rollout in April 2026; financial performance is sensitive to the success of capital market fundraising."
@@ -27,14 +27,14 @@
             "note": "Collaborates on the 'Samsung Finance+' model; sales volume is highly sensitive to Samsung's flagship launch cycles and credit approval rates."
           },
           {
-            "entity": "SG Capital (SGC.BK)",
+            "entity": "SGC.BK",
             "relation": "Financial Ecosystem Partner",
             "proportionality": "Proportional",
             "sensitivity_index": 0.9,
             "note": "Provides the 'Locked Phone' loan platform (SG Finance+) which is the primary driver for JMART Mobile's 2026 growth strategy."
           },
           {
-            "entity": "VGI Public Company Limited (VGI.BK)",
+            "entity": "VGI.BK",
             "relation": "Downstream/Marketing & Distribution",
             "proportionality": "Proportional",
             "sensitivity_index": 0.6,

@@ -12,13 +12,13 @@
             "note": "Sets policy rates (currently ~1.25% in early 2026); rate cuts provide a 'Neutral' to 'Positive' carry as MTC refinances high-cost debentures."
           },
           {
-            "entity": "International Finance Corporation (IFC)",
+            "entity": "IFC.BK",
             "relation": "Strategic Lender/Social Bond Partner",
             "proportionality": "Proportional",
             "note": "Collaborated on a $50 million social bond in 2026 to support micro-entrepreneurs; provides diversified, lower-cost international funding."
           },
           {
-            "entity": "Kasikornbank (KBANK.BK) / Bangkok Bank (BBL.BK)",
+            "entity": "KBANK.BK",
             "relation": "Primary Lenders/Transactional Banks",
             "proportionality": "Inversely Proportional",
             "note": "Major providers of local credit lines and debenture underwriting; interest expense is sensitive to the 1-day repo rate and bank MLR/MOR."
@@ -49,7 +49,7 @@
         ],
         "equity_cross_holdings": [
           {
-            "entity": "Muangthai Insurance (MTI.BK)",
+            "entity": "MTI.BK",
             "type": "Strategic Affiliate (Shared Family Interests)",
             "ownership_pct": null,
             "proportionality": "Proportional",
@@ -82,7 +82,7 @@
             "note": "Strong rival in truck/vehicle title loans; TIDLOR's tech-led approach pressures MTC's digital transformation speed."
           },
           {
-            "ticker": "SCB.BK / KBANK.BK",
+            "ticker": "KBANK.BK",
             "market_share_overlap": "Medium",
             "proportionality": "Inversely Proportional",
             "note": "Competition from bank-led microfinance arms (e.g., Auto X, Ngern Tid Lor) and upcoming virtual banks."

@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Primary Lender/Credit Provider",
             "proportionality": "Inversely Proportional",
             "note": "AMATA maintains significant debt facilities for land development and utility infrastructure; rising rates increase interest expense and CAPEX costs."
           },
           {
-            "entity": "Kasikornbank (KBANK.BK)",
+            "entity": "KBANK.BK",
             "relation": "Lender/Financial Partner",
             "proportionality": "Inversely Proportional",
             "note": "Provides working capital and project finance for industrial estate expansions in the EEC and regional markets."
@@ -20,21 +20,21 @@
         ],
         "supply_chain": [
           {
-            "entity": "B.Grimm Power (BGRIM.BK)",
+            "entity": "BGRIM.BK",
             "relation": "Upstream/Energy Partner",
             "proportionality": "Proportional",
             "sensitivity_index": 0.7,
             "note": "Joint venture via Amata B.Grimm Power; reliable power supply is a core utility revenue driver and critical for tenant acquisition."
           },
           {
-            "entity": "PTT Public Company Limited (PTT.BK)",
+            "entity": "PTT.BK",
             "relation": "Upstream/Natural Gas Supplier",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.5,
             "note": "Direct fuel cost for utility operations; natural gas price fluctuations through PTT NGD affect industrial service margins."
           },
           {
-            "entity": "Electricite du Laos (EDL)",
+            "entity": "EDL.BK",
             "relation": "Upstream/Regional Infrastructure Partner",
             "proportionality": "Proportional",
             "sensitivity_index": 0.4,

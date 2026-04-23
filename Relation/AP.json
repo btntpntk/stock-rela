@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bank of Ayudhya (BAY.BK)",
+            "entity": "BAY.BK",
             "relation": "Primary Lender/Strategic Shareholder",
             "proportionality": "Inversely Proportional",
             "note": "BAY holds a 3.26% stake and provides significant credit lines; debt servicing costs rise with interest rates, impacting net margins."
           },
           {
-            "entity": "Siam Commercial Bank (SCB.BK)",
+            "entity": "SCB.BK",
             "relation": "Lender/Project Financier",
             "proportionality": "Inversely Proportional",
             "note": "Primary financier for large-scale condominium and low-rise residential developments; sensitivity to floating rate facilities."
@@ -20,7 +20,7 @@
         ],
         "supply_chain": [
           {
-            "entity": "Siam Cement Group (SCC.BK)",
+            "entity": "SCC.BK",
             "relation": "Upstream/Material Supplier",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.75,

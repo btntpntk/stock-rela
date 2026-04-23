@@ -6,49 +6,49 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Social Security Office (SSO)",
+            "entity": "Social Security Office",
             "relation": "Major Shareholder/Key Revenue Source",
             "proportionality": "Proportional",
-            "note": "SSO holds ~3.57% stake; more critically, SSO patients provide ~30-35% of total revenue. 2026 wage ceiling hikes are a direct positive catalyst for per-head revenue."
+            "note": "SSO holds ~3.57% stake; the Jan 2026 wage ceiling hike to 17,500 THB increases the per-head contribution base, supporting reimbursement growth for BCH's large SSO patient base."
           },
           {
-            "entity": "Siam Commercial Bank (SCB.BK)",
-            "relation": "Primary Lender/Credit Provider",
+            "entity": "SCB.BK",
+            "relation": "Primary Lender",
             "proportionality": "Inversely Proportional",
-            "note": "Provides long-term credit facilities for hospital expansions; ~33% of debt is floating rate, making interest expense sensitive to BoT policy shifts."
+            "note": "Provides debt facilities for the Suvarnabhumi and Rayong expansion projects; debt servicing costs are sensitive to floating rate shifts."
           },
           {
-            "entity": "Vibhavadi Medical Center (VIBHA.BK)",
+            "entity": "VIBHA.BK",
             "relation": "Strategic Shareholder/Peer",
             "proportionality": "Proportional",
-            "note": "VIBHA holds ~1.88% of BCH; financial performance and valuation multiples often correlate due to shared board interests and sector sentiment."
+            "note": "Holds ~1.88% stake; price action often moves in tandem due to shared boardroom ties and mid-tier healthcare sector rotation."
           }
         ],
         "supply_chain": [
           {
-            "entity": "DKSH (Thailand) / Zuellig Pharma",
-            "relation": "Upstream/Medical & Pharma Distribution",
+            "entity": "DKSH (Thailand)",
+            "relation": "Upstream/Medical Distribution",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.65,
-            "note": "Primary distributors for pharmaceutical products and medical supplies; rising drug costs directly squeeze hospital gross margins."
+            "note": "Primary distributor for pharma and consumables; pricing fluctuations in imported drugs directly affect gross margins."
           },
           {
-            "entity": "Berli Jucker (BJC.BK)",
+            "entity": "BJC.BK",
             "relation": "Upstream/Medical Equipment Supplier",
             "proportionality": "Inversely Proportional",
-            "sensitivity_index": 0.4,
-            "note": "Key supplier of healthcare technical products and imaging equipment; sensitive to THB depreciation on imported technology."
+            "sensitivity_index": 0.40,
+            "note": "Supplies technical healthcare products and imaging technology; high sensitivity to THB weakness on import costs."
           }
         ],
         "equity_cross_holdings": [
           {
             "entity": "Kasemrad International Hospital Vientiane",
-            "type": "Subsidiary (Laos)",
+            "type": "Subsidiary",
             "ownership_pct": 77.0,
             "proportionality": "Proportional"
           },
           {
-            "entity": "World Medical Hospital (WMC)",
+            "entity": "World Medical Hospital",
             "type": "Subsidiary/Premium Brand",
             "ownership_pct": 100.0,
             "proportionality": "Proportional"
@@ -59,45 +59,45 @@
             "ticker": "CHG.BK",
             "market_share_overlap": "High",
             "proportionality": "Inversely Proportional",
-            "note": "Direct rival in the Social Security (SSO) segment and suburban mid-tier market."
+            "note": "Direct rival in the suburban SSO and middle-income segments; often trades on identical macro catalysts."
           },
           {
             "ticker": "BDMS.BK",
             "market_share_overlap": "Medium",
             "proportionality": "Inversely Proportional",
-            "note": "Competes for premium international patients via World Medical Hospital brand."
+            "note": "Competes with BCH's World Medical brand for premium international and insurance patients."
           },
           {
             "ticker": "BH.BK",
             "market_share_overlap": "Low",
             "proportionality": "Inversely Proportional",
-            "note": "Competes for high-end medical tourism (Middle East/CLMV), specifically Kuwaiti and Cambodian fly-in traffic."
+            "note": "Rival for high-end medical tourism; BCH’s 2026 Kuwaiti patient certification creates direct competition for Middle Eastern referrals."
           }
         ],
         "macro_commodity_factors": [
           {
-            "factor": "SSO Reimbursement Rate/Wage Ceiling",
+            "factor": "SSO Wage Ceiling Increase",
             "proportionality": "Proportional",
             "impact_lag": "T+0",
-            "logic": "Direct impact on cash flow from the fixed-payment patient segment; the 2026 ceiling increase to 17,500 THB is a primary revenue driver."
+            "logic": "The 2026 move to 17,500 THB is a fundamental catalyst for cash flow growth in the public healthcare segment."
           },
           {
-            "factor": "USD/THB Exchange Rate",
+            "factor": "Kuwaiti Patient Referrals",
             "proportionality": "Proportional",
             "impact_lag": "T+1 Month",
-            "logic": "A weaker THB makes Thai healthcare cheaper for international fly-in patients, though it increases the cost of imported medical supplies (Inverse impact on OPEX)."
+            "logic": "Certification as a preferred provider for Kuwaiti referrals (started March 2026) drives high-margin revenue for the WMC segment."
+          },
+          {
+            "factor": "USD/THB",
+            "proportionality": "Proportional",
+            "impact_lag": "T+1 Month",
+            "logic": "Weak THB attracts fly-in patients (Cambodia, Laos, Middle East), though it increases medical equipment CAPEX."
           },
           {
             "factor": "Electricity FT Tariffs",
             "proportionality": "Inversely Proportional",
             "impact_lag": "T+1 Month",
-            "logic": "Hospitals are high-intensity utility consumers; rising energy prices significantly impact the operating margins of 24/7 facilities."
-          },
-          {
-            "factor": "BoT Policy Interest Rate",
-            "proportionality": "Inversely Proportional",
-            "impact_lag": "T+1 Quarter",
-            "logic": "Affects the cost of servicing debentures used for 'Kasemrad Suvarnabhumi' and other regional expansions."
+            "logic": "Energy costs for 24/7 hospital operations are a significant portion of non-medical OPEX."
           }
         ]
       }

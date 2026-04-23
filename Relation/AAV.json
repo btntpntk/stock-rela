@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Primary Lender/Credit Provider",
             "proportionality": "Inversely Proportional",
             "note": "High interest rate sensitivity due to significant lease liabilities and debt restructuring post-pandemic."
           },
           {
-            "entity": "Kasikornbank (KBANK.BK)",
+            "entity": "KBANK.BK",
             "relation": "Lender/Working Capital Provider",
             "proportionality": "Inversely Proportional",
             "note": "Exposure to floating interest rates on short-term credit lines for operational liquidity."
@@ -20,14 +20,14 @@
         ],
         "supply_chain": [
           {
-            "entity": "PTT Oil and Retail Business (OR.BK)",
+            "entity": "OR.BK",
             "relation": "Upstream/Fuel Supplier",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.85,
             "note": "Jet fuel accounts for ~30-40% of operating costs; high correlation with MOPS Jet Fuel prices."
           },
           {
-            "entity": "Airports of Thailand (AOT.BK)",
+            "entity": "AOT.BK",
             "relation": "Downstream/Logistics Infrastructure",
             "proportionality": "Inversely Proportional",
             "note": "Landing and parking fees are fixed costs; rising AOT service charges negatively impact margins."
@@ -35,13 +35,13 @@
         ],
         "equity_cross_holdings": [
           {
-            "entity": "Thai AirAsia Co., Ltd. (TAA)",
+            "entity": "TAA.BK",
             "type": "Subsidiary",
             "ownership_pct": 100.0,
             "proportionality": "Proportional"
           },
           {
-            "entity": "Capital A (AIRASIA.KL)",
+            "entity": "AIRASIA.KL",
             "type": "Strategic Partner/Brand Owner",
             "ownership_pct": null,
             "proportionality": "Proportional"

@@ -33,7 +33,7 @@
             "note": "Secures crude supply through 2Q26; helped SPRC reduce Middle East crude reliance from ~80% to <20% to mitigate geopolitical risks."
           },
           {
-            "entity": "PTT Public Company Limited (PTT.BK) / OR.BK",
+            "entity": "PTT.BK",
             "relation": "Downstream/Key Customers",
             "proportionality": "Proportional",
             "sensitivity_index": 0.85,
@@ -49,13 +49,13 @@
         ],
         "competitors": [
           {
-            "ticker": "TOP.BK (Thai Oil)",
+            "ticker": "TOP.BK",
             "market_share_overlap": "High",
             "proportionality": "Inversely Proportional",
             "note": "Primary domestic rival in complex refining; both compete for market share in middle distillates."
           },
           {
-            "ticker": "BCP.BK (Bangchak)",
+            "ticker": "BCP.BK",
             "market_share_overlap": "High",
             "proportionality": "Inversely Proportional",
             "note": "Rivalry intensified following BCP's acquisition of Esso Thailand; competes directly in retail and fuel marketing."

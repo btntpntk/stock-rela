@@ -63,13 +63,13 @@
         ],
         "competitors": [
           {
-            "ticker": "CPF.BK (Charoen Pokphand Foods)",
+            "ticker": "CPF.BK",
             "market_share_overlap": "Extreme",
             "proportionality": "Inversely Proportional",
             "note": "Dominant rival in all segments (poultry, swine, feed); CPF's global scale pressures TFG's pricing power in export markets."
           },
           {
-            "ticker": "BTG.BK (Betagro)",
+            "ticker": "BTG.BK",
             "market_share_overlap": "High",
             "proportionality": "Inversely Proportional",
             "note": "Direct competitor in the premium meat and retail shop segments ('Betagro Deli' vs 'Thai Foods Fresh Market')."

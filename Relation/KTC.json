@@ -6,7 +6,7 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Krungthai Bank Public Company Limited (KTB)",
+            "entity": "KTB.BK",
             "relation": "Parent Company / Primary Funding Source",
             "proportionality": "Proportional",
             "note": "KTB holds 49.29% equity; provides primary credit facilities, funding synergy, and shared infrastructure for card issuance and settlement."
@@ -75,7 +75,7 @@
             "note": "Primary rival in the premium and mid-market credit card spending segment."
           },
           {
-            "ticker": "BAY.BK (Krungsri Consumer)",
+            "ticker": "BAY.BK",
             "market_share_overlap": "High",
             "proportionality": "Inversely Proportional",
             "note": "Intense competition for market share in card spending volume and co-branded retail partnerships."

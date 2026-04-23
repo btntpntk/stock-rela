@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Kasikornbank (KBANK.BK)",
+            "entity": "KBANK.BK",
             "relation": "Primary Lender & Strategic Partner",
             "proportionality": "Inversely Proportional",
             "note": "Provides credit facilities for inventory and is a strategic partner through KASIKORN LINE (LINE BK) for digital lending services (UFund)."
           },
           {
-            "entity": "TISCO Bank (TISCO.BK)",
+            "entity": "TISCO.BK",
             "relation": "Major Institutional Holder/Creditor",
             "proportionality": "Inversely Proportional",
             "note": "Significant institutional shareholder via provident funds; sensitivity to interest rates on corporate debentures used for retail expansion."
@@ -20,7 +20,7 @@
         ],
         "supply_chain": [
           {
-            "entity": "Apple Inc. (AAPL)",
+            "entity": "AAPL.BK",
             "relation": "Upstream/Primary Brand Supplier",
             "proportionality": "Proportional",
             "sensitivity_index": 0.95,
@@ -34,7 +34,7 @@
             "note": "Key supplier for Android flagship sales (Galaxy S26); success of high-end foldable segments drives ASP (Average Selling Price)."
           },
           {
-            "entity": "True Corporation (TRUE.BK)",
+            "entity": "TRUE.BK",
             "relation": "Downstream/Retail Channel Partner",
             "proportionality": "Proportional",
             "sensitivity_index": 0.7,
@@ -50,7 +50,7 @@
         ],
         "equity_cross_holdings": [
           {
-            "entity": "Thunder Fin Fin (UFUND)",
+            "entity": "UFUND.BK",
             "type": "Subsidiary (Financing)",
             "ownership_pct": 100.0,
             "proportionality": "Proportional",

@@ -6,7 +6,7 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "The Siam Cement Public Company Limited (SCC.BK)",
+            "entity": "SCC.BK",
             "relation": "Majority Shareholder/Strategic Parent",
             "proportionality": "Proportional",
             "note": "SCC holds ~72% stake; SCGP is a key pillar of the SCG conglomerate, benefiting from group-wide procurement and credit synergy."
@@ -52,13 +52,13 @@
         ],
         "competitors": [
           {
-            "ticker": "UTP.BK (United Paper)",
+            "ticker": "UTP.BK",
             "market_share_overlap": "High",
             "proportionality": "Inversely Proportional",
             "note": "Direct domestic rival in the industrial packaging paper segment."
           },
           {
-            "ticker": "BJC.BK (Berli Jucker)",
+            "ticker": "BJC.BK",
             "market_share_overlap": "Medium",
             "proportionality": "Inversely Proportional",
             "note": "Competes in the consumer packaging space (Glass/Cans vs. SCGP's Rigid/Flexible plastics)."

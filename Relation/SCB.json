@@ -29,7 +29,7 @@
             "entity": "SCB 10X",
             "relation": "Internal Technology / VC Wing",
             "proportionality": "Proportional",
-            "sensitivity_index": 0.90,
+            "sensitivity_index": 0.9,
             "note": "Drives investment and trading income, which saw a 369% YoY increase in early 2026; central to the 'Mothership' tech transformation strategy."
           },
           {
@@ -40,16 +40,16 @@
             "note": "Core retail credit engine; improving asset quality here is critical for lowering group-level provisions and boosting 2026 net margins."
           },
           {
-            "entity": "Siam Cement Group (SCG)",
+            "entity": "SCG.BK",
             "relation": "Strategic MOU Partner (AI)",
             "proportionality": "Proportional",
-            "sensitivity_index": 0.60,
+            "sensitivity_index": 0.6,
             "note": "2026 partnership focused on AI and Intellectual Property management to enhance operational efficiency."
           }
         ],
         "equity_cross_holdings": [
           {
-            "entity": "Siam Commercial Bank (SCB)",
+            "entity": "SCB.BK",
             "type": "Primary Banking Subsidiary",
             "ownership_pct": 100.0,
             "proportionality": "Proportional"

@@ -6,7 +6,7 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "entity": "BBL.BK",
             "relation": "Primary Lender / Credit Provider",
             "proportionality": "Inversely Proportional",
             "note": "BBL is a major financier for the Chirathivat family's Central Group; CENTEL maintains high sensitivity to interest rate hikes due to its 16bn+ THB CAPEX plan for 2026 expansions."
@@ -20,30 +20,51 @@
         ],
         "supply_chain": [
           {
-            "entity": "Central Retail Corporation (CRC.BK)",
+            "entity": "CRC.BK",
             "relation": "Downstream Strategic Partner / Cross-Holdings",
             "proportionality": "Proportional",
             "sensitivity_index": 0.82,
             "note": "Synergy in location sourcing (food outlets in Robinson/Central malls) and cross-promotion via 'The 1' loyalty program."
           },
           {
-            "entity": "Betagro (BTG.BK) / CPF (CPF.BK)",
+            "entity": "BTG.BK",
             "relation": "Upstream Food Raw Material Suppliers",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.75,
             "note": "Key suppliers for the Central Restaurants Group (CRG), particularly poultry for KFC; rising meat prices compress the food segment's gross margins."
           },
           {
-            "entity": "Grab / Foodpanda / Lineman",
+            "entity": "CPF.BK",
+            "relation": "Upstream Food Raw Material Suppliers",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Key suppliers for the Central Restaurants Group (CRG), particularly poultry for KFC; rising meat prices compress the food segment's gross margins."
+          },
+          {
+            "entity": "Grab",
             "relation": "Downstream Distribution Channels",
             "proportionality": "Proportional",
-            "sensitivity_index": 0.60,
+            "sensitivity_index": 0.6,
+            "note": "Critical for the food business (KFC, Mister Donut); delivery volume directly impacts Same-Store Sales Growth (SSSG) but involves platform commission fees."
+          },
+          {
+            "entity": "Foodpanda",
+            "relation": "Downstream Distribution Channels",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.6,
+            "note": "Critical for the food business (KFC, Mister Donut); delivery volume directly impacts Same-Store Sales Growth (SSSG) but involves platform commission fees."
+          },
+          {
+            "entity": "Lineman",
+            "relation": "Downstream Distribution Channels",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.6,
             "note": "Critical for the food business (KFC, Mister Donut); delivery volume directly impacts Same-Store Sales Growth (SSSG) but involves platform commission fees."
           }
         ],
         "equity_cross_holdings": [
           {
-            "entity": "Central Restaurants Group (CRG)",
+            "entity": "CRG.BK",
             "type": "Wholly Owned Subsidiary",
             "ownership_pct": 100.0,
             "proportionality": "Proportional"

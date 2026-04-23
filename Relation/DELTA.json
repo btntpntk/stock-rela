@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "The Hongkong and Shanghai Banking Corporation (HSBC)",
+            "entity": "HSBC.BK",
             "relation": "Lender / Hedging Partner / Custodian",
             "proportionality": "Inversely Proportional",
             "note": "Acts as a primary custodian and strategic hedging partner (confirmed 2025-2026 hedging arrangements); rising rates increase cost of corporate credit lines and hedging premiums."
           },
           {
-            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "entity": "BBL.BK",
             "relation": "Primary Transactional Bank",
             "proportionality": "Inversely Proportional",
             "note": "BBL manages local working capital and payroll; high interest rates increase financing costs for massive CAPEX in India and Thailand (e.g., Krishnagiri Plant)."
@@ -50,7 +50,7 @@
             "entity": "Yarra Power Co., Ltd.",
             "relation": "Downstream Distribution/System Integrator",
             "proportionality": "Proportional",
-            "sensitivity_index": 0.60,
+            "sensitivity_index": 0.6,
             "note": "2026 MoU partner for domestic clean energy and energy-efficient solution distribution in Thailand."
           }
         ],

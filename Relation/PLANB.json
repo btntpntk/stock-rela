@@ -6,19 +6,19 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "VGI Public Company Limited (VGI.BK)",
+            "entity": "VGI.BK",
             "relation": "Largest Shareholder/Strategic Associate",
             "proportionality": "Proportional",
             "note": "VGI holds ~24.13% stake (as of 2026). The partnership allows for cross-platform sales management; VGI's financial health and BTS ridership directly impact PLANB's managed media revenue."
           },
           {
-            "entity": "TMBThanachart Bank (TTB.BK)",
+            "entity": "TTB.BK",
             "relation": "Primary Debenture Registrar/Lender",
             "proportionality": "Inversely Proportional",
             "note": "Acts as registrar for the SME26NA and SME27DA series; rising interest rates increase the cost of capital for their aggressive ฿4bn acquisition of Hello LED."
           },
           {
-            "entity": "Government Savings Bank (GSB)",
+            "entity": "GSB.BK",
             "relation": "Major Debenture Underwriter/Registrar",
             "proportionality": "Inversely Proportional",
             "note": "Serves as registrar for the ฿6.0bn 2026 debenture series; PLANB's refinancing capability is sensitive to GSB's credit terms."
@@ -32,28 +32,28 @@
         ],
         "supply_chain": [
           {
-            "entity": "VGI Public Company Limited (VGI.BK)",
+            "entity": "VGI.BK",
             "relation": "Upstream/Media Management Rights",
             "proportionality": "Proportional",
             "sensitivity_index": 0.9,
             "note": "PLANB manages the sales and marketing for VGI's entire OOH portfolio; a significant portion of 'Transit' revenue is derived from this agency-style agreement."
           },
           {
-            "entity": "Bangkok Metro Networks (BMN)",
+            "entity": "BMN.BK",
             "relation": "Upstream/MRT Concession Partner",
             "proportionality": "Proportional",
             "sensitivity_index": 0.8,
             "note": "PLANB holds 20% of BMN; commercial rights for MRT Blue Line media are critical for the 'Transit' segment revenue floor."
           },
           {
-            "entity": "CP ALL (CPALL.BK)",
+            "entity": "CPALL.BK",
             "relation": "Downstream/Retail Media Channel",
             "proportionality": "Proportional",
             "sensitivity_index": 0.65,
             "note": "Exclusive provider of digital screens inside ~14,000 7-Eleven stores; success depends on foot traffic and CPALL's outlet expansion."
           },
           {
-            "entity": "Football Association of Thailand (FAT)",
+            "entity": "FAT.BK",
             "relation": "Upstream/Content Rights Provider",
             "proportionality": "Proportional",
             "sensitivity_index": 0.75,

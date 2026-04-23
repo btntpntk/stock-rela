@@ -12,7 +12,7 @@
             "note": "Holds ~33% stake; ensures long-term institutional stability and alignment with national infrastructure interests."
           },
           {
-            "entity": "Bangkok Bank (BBL.BK) / Kasikornbank (KBANK.BK)",
+            "entity": "BBL.BK",
             "relation": "Primary Lenders/Bond Underwriters",
             "proportionality": "Inversely Proportional",
             "note": "Major providers of long-term debt and debenture management; SCC's ฿30bn 2026 investment plan is sensitive to bank credit terms and policy rates."
@@ -20,7 +20,7 @@
         ],
         "supply_chain": [
           {
-            "entity": "SCG Chemicals (SCGC)",
+            "entity": "SCGC.BK",
             "relation": "Core Subsidiary/Petrochemical Arm",
             "proportionality": "Proportional",
             "sensitivity_index": 0.9,
@@ -34,7 +34,7 @@
             "note": "A ฿16bn Ethane Feedstock enhancement project (2026-2027) aims to lower production costs and capture Vietnam's 7% GDP growth."
           },
           {
-            "entity": "SCG Packaging (SCGP.BK)",
+            "entity": "SCGP.BK",
             "relation": "Subsidiary/Packaging Arm",
             "proportionality": "Proportional",
             "sensitivity_index": 0.75,
@@ -50,13 +50,13 @@
         ],
         "equity_cross_holdings": [
           {
-            "entity": "SCG Decor (SCGD.BK)",
+            "entity": "SCGD.BK",
             "type": "Subsidiary (Ceramic/Hardware)",
             "ownership_pct": 100.0,
             "proportionality": "Proportional"
           },
           {
-            "entity": "Global House (GLOBAL.BK)",
+            "entity": "GLOBAL.BK",
             "type": "Associate (Strategic Retail)",
             "ownership_pct": 32.9,
             "proportionality": "Proportional",
@@ -65,7 +65,7 @@
         ],
         "competitors": [
           {
-            "ticker": "SCCC.BK (Siam City Cement)",
+            "ticker": "SCCC.BK",
             "market_share_overlap": "High",
             "proportionality": "Inversely Proportional",
             "note": "Direct rival in the domestic cement and construction materials market."

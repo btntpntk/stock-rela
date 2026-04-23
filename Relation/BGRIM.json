@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Asian Development Bank (ADB)",
+            "entity": "ADB.BK",
             "relation": "Strategic Lender / Green Bond Investor",
             "proportionality": "Inversely Proportional",
             "note": "A key financier for renewable projects; while providing favorable terms, the company's high Net D/E (~1.8x in 2026) makes it sensitive to global credit tightening."
           },
           {
-            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "entity": "BBL.BK",
             "relation": "Primary Domestic Lender",
             "proportionality": "Inversely Proportional",
             "note": "Provides working capital and project finance; BGRIM's high leverage ratio translates to significant interest expense sensitivity during rate hikes."
@@ -20,24 +20,31 @@
         ],
         "supply_chain": [
           {
-            "entity": "PTT Public Company Limited",
+            "entity": "PTT.BK",
             "relation": "Primary Natural Gas Supplier",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.92,
             "note": "Natural gas accounts for ~70% of BGRIM's cost of goods sold; price spikes in pooled gas or LNG imports directly compress SPP margins."
           },
           {
-            "entity": "Electricity Generating Authority of Thailand (EGAT)",
+            "entity": "EGATIF.BK",
             "relation": "Primary Offtaker (Customer)",
             "proportionality": "Proportional",
             "sensitivity_index": 0.85,
             "note": "The largest customer under long-term PPAs; revenue is highly dependent on EGAT's dispatch volume and the regulated Ft rate."
           },
           {
-            "entity": "Industrial Users (Amata/WHA Estates)",
+            "entity": "AMATA.BK",
             "relation": "Industrial Offtakers",
             "proportionality": "Proportional",
-            "sensitivity_index": 0.70,
+            "sensitivity_index": 0.7,
+            "note": "Direct electricity and steam sales to industrial clients; margins are higher than EGAT sales but dependent on domestic manufacturing activity."
+          },
+          {
+            "entity": "WHA.BK",
+            "relation": "Industrial Offtakers",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.7,
             "note": "Direct electricity and steam sales to industrial clients; margins are higher than EGAT sales but dependent on domestic manufacturing activity."
           }
         ],

@@ -20,21 +20,49 @@
         ],
         "supply_chain": [
           {
-            "entity": "Western Digital / Seagate",
+            "entity": "Seagate",
             "relation": "Downstream/Key Customers",
             "proportionality": "Proportional",
             "sensitivity_index": 0.85,
             "note": "CCET is a critical PCBA and component manufacturer for the HDD cluster in Thailand; global storage demand directly drives volume."
           },
           {
-            "entity": "HP / Epson / Canon",
+            "entity": "Western Digital",
+            "relation": "Downstream/Key Customers",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "CCET is a critical PCBA and component manufacturer for the HDD cluster in Thailand; global storage demand directly drives volume."
+          },
+          {
+            "entity": "HP",
             "relation": "Downstream/OEM Partner",
             "proportionality": "Proportional",
             "sensitivity_index": 0.75,
             "note": "Major manufacturer of ink-jet and laser printers; global consumer spending on home office tech impacts quarterly revenues."
           },
           {
-            "entity": "Nvidia / AMD",
+            "entity": "Epson",
+            "relation": "Downstream/OEM Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Major manufacturer of ink-jet and laser printers; global consumer spending on home office tech impacts quarterly revenues."
+          },
+          {
+            "entity": "Canon",
+            "relation": "Downstream/OEM Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.75,
+            "note": "Major manufacturer of ink-jet and laser printers; global consumer spending on home office tech impacts quarterly revenues."
+          },
+          {
+            "entity": "Nvidia",
+            "relation": "Upstream/Chipset Providers",
+            "proportionality": "Inversely Proportional",
+            "sensitivity_index": 0.6,
+            "note": "Raw material costs; global semiconductor supply constraints or price hikes for chipsets used in AI/PCBA applications compress margins."
+          },
+          {
+            "entity": "AMD",
             "relation": "Upstream/Chipset Providers",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.6,

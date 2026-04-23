@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Kiatnakin Phatra Bank (KKP.BK)",
+            "entity": "KKP.BK",
             "relation": "Primary Lender / IPO Strategic Advisor",
             "proportionality": "Inversely Proportional",
             "note": "KKP served as a lead underwriter and provides major credit facilities; interest rate hikes increase debt servicing on expansion CAPEX."
           },
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Lender / Transactional Bank",
             "proportionality": "Inversely Proportional",
             "note": "Provides trade finance and working capital; high sensitivity to prime lending rate fluctuations."
@@ -40,7 +40,7 @@
             "note": "B2B and B2C channels allow for margin capture and better price pass-through compared to third-party wholesalers."
           },
           {
-            "entity": "Central Retail Corporation (CRC.BK)",
+            "entity": "CRC.BK",
             "relation": "Downstream Retail Partner (Tops Market)",
             "proportionality": "Proportional",
             "sensitivity_index": 0.75,

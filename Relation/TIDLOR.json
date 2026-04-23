@@ -6,7 +6,7 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bank of Ayudhya (BAY.BK / Krungsri)",
+            "entity": "BAY.BK",
             "relation": "Parent Company / Primary Funding Partner",
             "proportionality": "Proportional",
             "note": "BAY holds ~46.51% equity as of April 2026; provides critical funding synergy and access to a lower cost of funds compared to smaller peers."
@@ -18,7 +18,7 @@
             "note": "Holds ~3.28% equity; provides institutional stability and long-term capital backing within the SET50 index."
           },
           {
-            "entity": "Social Security Office (SSO)",
+            "entity": "SSO.BK",
             "relation": "Institutional Shareholder",
             "proportionality": "Proportional",
             "note": "Holds ~0.43% equity; reflects steady domestic institutional confidence in the non-bank financial sector."
@@ -43,7 +43,7 @@
             "entity": "Metropolitan / Provincial Electricity Authorities",
             "relation": "Operational Expense Factor",
             "proportionality": "Inversely Proportional",
-            "sensitivity_index": 0.30,
+            "sensitivity_index": 0.3,
             "note": "Branch utility costs; 2026 energy price reductions provide a minor operational tailwind for its 1,700+ location network."
           }
         ],

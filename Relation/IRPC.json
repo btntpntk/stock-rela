@@ -6,19 +6,19 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Krungthai Bank Public Company Limited (KTB)",
+            "entity": "KTB.BK",
             "relation": "Primary Banking & FX Strategic Partner",
             "proportionality": "Inversely Proportional",
             "note": "KTB leads the 2026 ESG Data-Integrated FX Total Solutions Program for IRPC; interest rate hikes increase debt servicing on its ~50bn THB net debt."
           },
           {
-            "entity": "Siam Commercial Bank (SCB.BK)",
+            "entity": "SCB.BK",
             "relation": "Debenture Arranger / Project Financier",
             "proportionality": "Inversely Proportional",
             "note": "A lead arranger for 2026 senior unsecured debentures; critical for managing the company's 'A-' rated credit facilities."
           },
           {
-            "entity": "Social Security Office (SSO)",
+            "entity": "SSO.BK",
             "relation": "Institutional Shareholder",
             "proportionality": "Proportional",
             "note": "Holds 1.98% equity; provides institutional stability and aligns with government-linked fund interest in national energy infrastructure."
@@ -26,7 +26,7 @@
         ],
         "supply_chain": [
           {
-            "entity": "PTT Public Company Limited (PTT.BK)",
+            "entity": "PTT.BK",
             "relation": "Upstream Crude Supplier / Parent",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.95,
@@ -36,26 +36,26 @@
             "entity": "Industrial Users (Rayong Industrial Zone)",
             "relation": "Downstream Customers",
             "proportionality": "Proportional",
-            "sensitivity_index": 0.80,
+            "sensitivity_index": 0.8,
             "note": "Direct demand for refinery and petrochemical products (PE/PP) from regional manufacturing hubs."
           },
           {
             "entity": "IRPC Oil Company Limited",
             "relation": "Downstream Distribution Subsidiary",
             "proportionality": "Proportional",
-            "sensitivity_index": 0.90,
+            "sensitivity_index": 0.9,
             "note": "100% owned; handles the distribution of refined products, directly linking retail volume to parent output."
           }
         ],
         "equity_cross_holdings": [
           {
-            "entity": "PTT Public Company Limited (PTT.BK)",
+            "entity": "PTT.BK",
             "type": "Parent Company",
             "ownership_pct": 45.05,
             "proportionality": "Proportional"
           },
           {
-            "entity": "GPSC.BK (Global Power Synergy)",
+            "entity": "GPSC.BK",
             "type": "Joint Venture Partner (IRPC Clean Power)",
             "ownership_pct": 48.99,
             "proportionality": "Proportional"

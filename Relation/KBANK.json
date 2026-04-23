@@ -12,7 +12,7 @@
             "note": "BoT policy rate cuts (1.00% as of Q1 2026) directly impact NIM; KBANK's high floating-rate loan mix makes earnings sensitive to yield curve shifts."
           },
           {
-            "entity": "Gulf Development Public Company Limited (GULF.BK)",
+            "entity": "GULF.BK",
             "relation": "Largest Shareholder / Strategic Stakeholder",
             "proportionality": "Proportional",
             "note": "GULF increased its stake to 10.03% in early 2026, becoming the largest shareholder; provides capital stability and potential for enterprise AI/energy ecosystem financing."
@@ -26,7 +26,7 @@
         ],
         "supply_chain": [
           {
-            "entity": "KASIKORN Business-Technology Group (KBTG)",
+            "entity": "KBTG.BK",
             "relation": "Internal Technology / AI Infrastructure",
             "proportionality": "Proportional",
             "sensitivity_index": 0.95,
@@ -36,7 +36,7 @@
             "entity": "Grab Holdings",
             "relation": "Strategic Synergy Partner",
             "proportionality": "Proportional",
-            "sensitivity_index": 0.70,
+            "sensitivity_index": 0.7,
             "note": "Strategic data partnership for digital lending and payment ecosystem integration; Grab's user growth expands KBANK's addressable retail credit market."
           },
           {

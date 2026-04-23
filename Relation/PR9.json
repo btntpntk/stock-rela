@@ -6,7 +6,7 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Kiatnakin Phatra Securities (KKPS)",
+            "entity": "KKPS.BK",
             "relation": "Financial Advisor / Strategic Partner",
             "proportionality": "Inversely Proportional",
             "note": "Primary advisor for capital market activities and IPO; interest rate fluctuations impact the valuation of cash reserves and potential yield-bearing instruments."
@@ -18,7 +18,7 @@
             "note": "Holds 2.86% equity as of March 2026; state-linked fund backing provides a liquidity floor and signal of institutional stability."
           },
           {
-            "entity": "Social Security Office (SSO)",
+            "entity": "SSO.BK",
             "relation": "Institutional Shareholder",
             "proportionality": "Proportional",
             "note": "Holds 0.57% equity; reflects long-term domestic institutional confidence and provides a steady flow of insured patients to non-premium segments."

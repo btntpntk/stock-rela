@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Major Shareholder/Financial Partner",
             "proportionality": "Proportional",
             "note": "BBL is a top-5 shareholder (6.7%); provides credit facilities and high-end wealth management integration for BH’s premium clientele."
           },
           {
-            "entity": "Bangkok Insurance (BKI.BK)",
+            "entity": "BKI.BK",
             "relation": "Major Shareholder/Strategic Partner",
             "proportionality": "Proportional",
             "note": "Leading shareholder (~10%); synergy in premium health insurance packages and captive patient referrals."

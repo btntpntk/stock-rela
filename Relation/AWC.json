@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Primary Lender/Credit Provider",
             "proportionality": "Inversely Proportional",
             "note": "AWC utilizes substantial debt for large-scale property acquisitions and redevelopment projects; high sensitivity to interest rate hikes on corporate debentures and term loans."
           },
           {
-            "entity": "Krung Thai Bank (KTB.BK)",
+            "entity": "KTB.BK",
             "relation": "Lender/Debt Financier",
             "proportionality": "Inversely Proportional",
             "note": "Provides credit facilities for state-linked infrastructure tourism initiatives and hospitality expansions."
@@ -20,21 +20,21 @@
         ],
         "supply_chain": [
           {
-            "entity": "Marriott International (MAR)",
+            "entity": "MAR.BK",
             "relation": "Downstream/Global Management Partner",
             "proportionality": "Proportional",
             "sensitivity_index": 0.8,
             "note": "AWC's performance is tied to the brand strength and global booking network of its management partners; Marriott manages a significant portion of its premium hotel keys."
           },
           {
-            "entity": "PTT Public Company Limited (PTT.BK)",
+            "entity": "PTT.BK",
             "relation": "Upstream/EV & Energy Partner",
             "proportionality": "Proportional",
             "sensitivity_index": 0.45,
             "note": "Strategic partnership for 'on-ion' EV charging stations across AWC properties; synergy in driving sustainable tourism traffic."
           },
           {
-            "entity": "Sino-Thai Engineering (STEC.BK)",
+            "entity": "STEC.BK",
             "relation": "Upstream/Construction Contractor",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.5,

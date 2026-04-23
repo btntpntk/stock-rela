@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Primary Lender/Facility Agent",
             "proportionality": "Inversely Proportional",
             "note": "Provides long-term credit facilities for branch expansion; interest rate sensitivity is high due to capital-intensive warehouse construction."
           },
           {
-            "entity": "Kasikornbank (KBANK.BK)",
+            "entity": "KBANK.BK",
             "relation": "Lender/Working Capital Provider",
             "proportionality": "Inversely Proportional",
             "note": "Provides trade finance and working capital for high inventory turnover; rising rates increase the cost of carry for massive bulk stock."
@@ -20,7 +20,7 @@
         ],
         "supply_chain": [
           {
-            "entity": "Siam Cement Group (SCC.BK)",
+            "entity": "SCC.BK",
             "relation": "Upstream/Strategic Supplier & Parent Affiliate",
             "proportionality": "Proportional",
             "sensitivity_index": 0.9,
@@ -34,7 +34,7 @@
             "note": "Raw material cost impact; volatility in global/local steel prices directly affects gross margins for structural products."
           },
           {
-            "entity": "Dynasty Ceramic (DCC.BK)",
+            "entity": "DCC.BK",
             "relation": "Upstream/Tile Supplier",
             "proportionality": "Proportional",
             "sensitivity_index": 0.65,
@@ -75,7 +75,7 @@
             "note": "Competes in home decorative and DIY segments; HMPRO targets urban/premium users while GLOBAL focuses on rural/construction users."
           },
           {
-            "ticker": "CRC.BK (Thaiwatsadu)",
+            "ticker": "CRC.BK",
             "market_share_overlap": "High",
             "proportionality": "Inversely Proportional",
             "note": "Strong competition in the heavy-construction and structural material segment across Thailand."

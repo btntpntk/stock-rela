@@ -6,19 +6,19 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "entity": "BBL.BK",
             "relation": "Primary Debt Financier / Facility Provider",
             "proportionality": "Inversely Proportional",
             "note": "BBL provides significant corporate credit lines for NPL portfolio acquisitions; rising interest rates increase the cost of carry for distressed assets."
           },
           {
-            "entity": "Kasikornbank Public Company Limited (KBANK)",
+            "entity": "KBANK.BK",
             "relation": "Strategic Banking Partner",
             "proportionality": "Proportional",
             "note": "Collaborates on the JK AMC venture; KBANK's willingness to offload NPLs at favorable prices directly supports JMT's inorganic growth."
           },
           {
-            "entity": "Jaymart Group Holdings (JMART.BK)",
+            "entity": "JMART.BK",
             "relation": "Parent Company / Financial Backer",
             "proportionality": "Proportional",
             "note": "Provides inter-group liquidity and strategic capital support; JMT's performance is the primary profit engine for the JMART ecosystem."
@@ -43,13 +43,13 @@
             "entity": "Legal & Asset Appraisal Firms",
             "relation": "Midstream Operational Partners",
             "proportionality": "Inversely Proportional",
-            "sensitivity_index": 0.40,
+            "sensitivity_index": 0.4,
             "note": "Rising legal processing fees or appraisal costs for secured assets increase the 'Cost of Collection' and compress operating margins."
           }
         ],
         "equity_cross_holdings": [
           {
-            "entity": "J Asset Management (JAM)",
+            "entity": "JAM.BK",
             "type": "Subsidiary (NPL Management)",
             "ownership_pct": 90.1,
             "proportionality": "Proportional"

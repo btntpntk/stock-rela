@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Primary Lender/Facility Agent",
             "proportionality": "Inversely Proportional",
             "note": "Primary source of long-term loans and debenture underwriting for hospital construction and facility upgrades; rising rates increase cost of capital."
           },
           {
-            "entity": "Kasikornbank (KBANK.BK)",
+            "entity": "KBANK.BK",
             "relation": "Lender/Working Capital Provider",
             "proportionality": "Inversely Proportional",
             "note": "Provides short-term credit lines and operational banking services; sensitive to Thai policy rate fluctuations."
@@ -20,7 +20,7 @@
         ],
         "supply_chain": [
           {
-            "entity": "Social Security Office (SSO)",
+            "entity": "SSO.BK",
             "relation": "Downstream/Key Customer Segment",
             "proportionality": "Proportional",
             "sensitivity_index": 0.85,

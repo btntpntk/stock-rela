@@ -6,7 +6,7 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "entity": "BBL.BK",
             "relation": "Primary Lender / Transactional Bank",
             "proportionality": "Inversely Proportional",
             "note": "BBL provides major revolving credit lines for fuel procurement; 2026 interest rate sensitivity is high due to a tight Current Ratio of ~0.39."
@@ -36,7 +36,7 @@
             "entity": "Subway (Master Franchise)",
             "relation": "Downstream F&B Partner",
             "proportionality": "Proportional",
-            "sensitivity_index": 0.70,
+            "sensitivity_index": 0.7,
             "note": "Via Go Luck subsidiary; integration of Subway into the service station network is a 2026 core non-oil growth engine."
           },
           {

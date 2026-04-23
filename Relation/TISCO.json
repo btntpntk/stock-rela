@@ -37,7 +37,7 @@
             "entity": "Second-hand Car Market",
             "relation": "Residual Value Proxy",
             "proportionality": "Proportional",
-            "sensitivity_index": 0.80,
+            "sensitivity_index": 0.8,
             "note": "Used car prices directly impact recovery values for repossessed assets; 2026 market stabilization helps reduce Expected Credit Loss (ECL)."
           }
         ],
@@ -69,7 +69,7 @@
             "note": "Primary rival in the hire-purchase and wealth management segments; KKP's more aggressive lending stance contrasts with TISCO's conservative quality focus."
           },
           {
-            "ticker": "SCB.BK / InnovestX",
+            "ticker": "SCB.BK",
             "market_share_overlap": "Medium",
             "proportionality": "Inversely Proportional",
             "note": "Competes in the digital wealth management space and high-net-worth individual (HNWI) segments."

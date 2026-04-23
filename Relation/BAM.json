@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Financial Institutions Development Fund (FIDF)",
+            "entity": "FIDF.BK",
             "relation": "Major Shareholder/State-Linked Parent",
             "proportionality": "Proportional",
             "note": "FIDF holds approximately 45.8% of BAM; state affiliation provides superior credit rating and access to low-cost funding."
           },
           {
-            "entity": "Krung Thai Bank (KTB.BK)",
+            "entity": "KTB.BK",
             "relation": "Primary Credit Provider & NPL Seller",
             "proportionality": "Inversely Proportional",
             "note": "Provides significant credit facilities; however, rising interest rates increase BAM's cost of funds on debentures and loans."
@@ -20,14 +20,28 @@
         ],
         "supply_chain": [
           {
-            "entity": "Thai Commercial Banks (BBL, KBANK, SCB)",
+            "entity": "BBL.BK",
             "relation": "Upstream/NPL & NPA Suppliers",
             "proportionality": "Proportional",
             "sensitivity_index": 0.85,
             "note": "BAM's inventory growth depends on banks offloading distressed assets; rising systemic NPLs increase BAM's acquisition pipeline."
           },
           {
-            "entity": "Legal Execution Department (LED)",
+            "entity": "KBANK.BK",
+            "relation": "Upstream/NPL & NPA Suppliers",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "BAM's inventory growth depends on banks offloading distressed assets; rising systemic NPLs increase BAM's acquisition pipeline."
+          },
+          {
+            "entity": "SCB.BK",
+            "relation": "Upstream/NPL & NPA Suppliers",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.85,
+            "note": "BAM's inventory growth depends on banks offloading distressed assets; rising systemic NPLs increase BAM's acquisition pipeline."
+          },
+          {
+            "entity": "LED.BK",
             "relation": "Downstream/Liquidation Channel",
             "proportionality": "Proportional",
             "sensitivity_index": 0.7,

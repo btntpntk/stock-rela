@@ -6,7 +6,7 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "entity": "BBL.BK",
             "relation": "Primary Lender / Credit Provider",
             "proportionality": "Inversely Proportional",
             "note": "BBL is the main financier for TCC Group's acquisition-led growth; BJC's high Net D/E ratio (~1.18x) makes interest expense highly sensitive to BBL's prime lending rate."
@@ -27,7 +27,7 @@
             "note": "A 2025/2026 JV to optimize Big C's distribution and enter the healthcare distribution market; efficiency gains directly impact SG&A margins."
           },
           {
-            "entity": "PTT Public Company Limited (PTT.BK)",
+            "entity": "PTT.BK",
             "relation": "Upstream Energy Provider",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.75,

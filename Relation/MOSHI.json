@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Kasikornbank Public Company Limited (KBANK)",
+            "entity": "KBANK.BK",
             "relation": "Primary Banking Partner / Underwriter",
             "proportionality": "Inversely Proportional",
             "note": "KBANK (via Kasikorn Securities) acts as a primary advisor and liquidity provider; while MOSHI maintains a net cash position in 2026, expansion credit lines are sensitive to the 1.00% BoT policy rate."
           },
           {
-            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "entity": "BBL.BK",
             "relation": "Transactional Banking / Trade Finance",
             "proportionality": "Inversely Proportional",
             "note": "Provides trade finance facilities for cross-border sourcing; interest expenses on short-term working capital are sensitive to prime lending rate fluctuations."
@@ -57,7 +57,7 @@
         ],
         "competitors": [
           {
-            "ticker": "Miniso (MNSO)",
+            "ticker": "MNSO.BK",
             "market_share_overlap": "High",
             "proportionality": "Inversely Proportional",
             "note": "Primary global rival; 2026 data shows MOSHI gaining share as Miniso recalibrates its high-cost mall strategy in Thailand."

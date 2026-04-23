@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "entity": "BBL.BK",
             "relation": "Primary Transactional Bank / Trade Finance",
             "proportionality": "Inversely Proportional",
             "note": "Provides trade credit and FX hedging facilities; interest rate hikes increase the cost of working capital despite MEGA's strong net cash position (~THB 5.6bn in 2026)."
           },
           {
-            "entity": "Kasikornbank Public Company Limited (KBANK)",
+            "entity": "KBANK.BK",
             "relation": "Transactional Banking Partner",
             "proportionality": "Inversely Proportional",
             "note": "Primary partner for regional payment gateways and supply chain financing in the CLMV region."
@@ -36,7 +36,7 @@
             "entity": "Global API (Active Pharmaceutical Ingredient) Suppliers",
             "relation": "Upstream Raw Material Providers",
             "proportionality": "Inversely Proportional",
-            "sensitivity_index": 0.80,
+            "sensitivity_index": 0.8,
             "note": "Imports raw materials for its Samut Prakan and Australian plants; price spikes in pharmaceutical-grade chemicals directly compress GPM."
           },
           {

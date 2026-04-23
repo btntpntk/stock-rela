@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Primary Lender/Facility Agent",
             "proportionality": "Inversely Proportional",
             "note": "Major financier for international M&A and domestic project debt; rising interest rates increase the cost of servicing their multi-billion THB debt pool."
           },
           {
-            "entity": "Krung Thai Bank (KTB.BK)",
+            "entity": "KTB.BK",
             "relation": "Lead Creditor/Lender",
             "proportionality": "Inversely Proportional",
             "note": "Provides working capital and project finance, often in coordination with EGAT-linked infrastructure projects."
@@ -20,21 +20,21 @@
         ],
         "supply_chain": [
           {
-            "entity": "PTT Public Company Limited (PTT.BK)",
+            "entity": "PTT.BK",
             "relation": "Upstream/Natural Gas Supplier",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.75,
             "note": "Primary fuel supplier for Thai power plants; natural gas price volatility directly impacts operational margins despite pass-through mechanisms."
           },
           {
-            "entity": "Electricity Generating Authority of Thailand (EGAT)",
+            "entity": "EGATIF.BK",
             "relation": "Downstream/Primary Customer (PPA)",
             "proportionality": "Proportional",
             "sensitivity_index": 0.95,
             "note": "The off-taker for the majority of contracted equity capacity in Thailand; revenue stability is anchored in long-term Power Purchase Agreements (PPAs)."
           },
           {
-            "entity": "Apex Clean Energy (USA)",
+            "entity": "USA.BK",
             "relation": "Subsidiary/Renewable Developer",
             "proportionality": "Proportional",
             "sensitivity_index": 0.65,
@@ -43,7 +43,7 @@
         ],
         "equity_cross_holdings": [
           {
-            "entity": "EGAT",
+            "entity": "EGATIF.BK",
             "type": "Parent/Major Shareholder",
             "ownership_pct": 25.41,
             "proportionality": "Proportional"
@@ -55,7 +55,7 @@
             "proportionality": "Proportional"
           },
           {
-            "entity": "Linden Cogen (USA)",
+            "entity": "USA.BK",
             "type": "Subsidiary",
             "ownership_pct": 38.0,
             "proportionality": "Proportional"

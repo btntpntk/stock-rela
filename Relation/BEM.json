@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Krung Thai Bank (KTB.BK)",
+            "entity": "KTB.BK",
             "relation": "Primary Lender/Lead Arranger",
             "proportionality": "Inversely Proportional",
             "note": "KTB is a lead financier for BEM's massive infrastructure projects, including the MRT Orange Line; debt servicing is sensitive to loan repricing."
           },
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Major Debenture Underwriter",
             "proportionality": "Inversely Proportional",
             "note": "BEM maintains a large debenture profile (A(tha) rating); rising yields increase refinancing costs for its ~THB 39bn debt pool."
@@ -20,7 +20,7 @@
         ],
         "supply_chain": [
           {
-            "entity": "CH. Karnchang (CK.BK)",
+            "entity": "CK.BK",
             "relation": "Upstream/Parent & EPC Contractor",
             "proportionality": "Proportional",
             "sensitivity_index": 0.95,
@@ -34,7 +34,7 @@
             "note": "Primary supplier of 53+ new trains and signaling for Blue/Orange lines; costs are sensitive to EUR/THB and global supply chain logistics."
           },
           {
-            "entity": "Plan B Media (PLANB.BK)",
+            "entity": "PLANB.BK",
             "relation": "Downstream/Media Partner",
             "proportionality": "Proportional",
             "sensitivity_index": 0.5,

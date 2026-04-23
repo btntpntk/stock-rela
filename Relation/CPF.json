@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Siam Commercial Bank (SCB.BK)",
+            "entity": "SCB.BK",
             "relation": "Primary Lender/Lead Arranger",
             "proportionality": "Inversely Proportional",
             "note": "Provides significant credit facilities for international M&A; rising interest rates increase the servicing cost of its high debt-to-EBITDA load (~8x-10x)."
           },
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Major Debt Provider/Debenture Underwriter",
             "proportionality": "Inversely Proportional",
             "note": "BBL is a core financier for CP Group's large-scale agro-industrial infrastructure; sensitive to policy rate hikes."
@@ -20,14 +20,14 @@
         ],
         "supply_chain": [
           {
-            "entity": "Bangkok Produce Merchandising (BPM)",
+            "entity": "BPM.BK",
             "relation": "Upstream/Raw Material Procurement",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.85,
             "note": "Subsidiary handling procurement of corn and soy; price volatility in feed ingredients directly impacts gross margins (feed accounts for ~50-60% of farm costs)."
           },
           {
-            "entity": "CP ALL.BK",
+            "entity": "CPALL.BK",
             "relation": "Downstream/Key Distribution Channel",
             "proportionality": "Proportional",
             "sensitivity_index": 0.7,

@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Lead Creditor/Bond Underwriter",
             "proportionality": "Inversely Proportional",
             "note": "Primary provider of long-term debentures and project finance for global mining and power acquisitions; sensitive to rising interest rates on a high net-debt-to-EBITDA ratio (~3.4x)."
           },
           {
-            "entity": "Kasikornbank (KBANK.BK)",
+            "entity": "KBANK.BK",
             "relation": "Lender/Working Capital Provider",
             "proportionality": "Inversely Proportional",
             "note": "Provides revolving credit for trade finance and regional coal logistics operations."
@@ -36,7 +36,7 @@
         ],
         "equity_cross_holdings": [
           {
-            "entity": "BPP.BK (Banpu Power)",
+            "entity": "BPP.BK",
             "type": "Associate/Amalgamation Partner",
             "ownership_pct": 91.07,
             "proportionality": "Proportional",

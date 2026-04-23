@@ -6,19 +6,19 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "entity": "BBL.BK",
             "relation": "Primary Underwriter / Credit Provider",
             "proportionality": "Inversely Proportional",
             "note": "BBL acts as a lead underwriter for OR's corporate bonds (AA+ rating); rising interest rates in 2026 increase refinancing costs for expansion CAPEX in Mobility and Lifestyle segments."
           },
           {
-            "entity": "Kasikornbank Public Company Limited (KBANK)",
+            "entity": "KBANK.BK",
             "relation": "Strategic Banking Partner / Underwriter",
             "proportionality": "Inversely Proportional",
             "note": "Provides transactional banking and credit lines; KBANK's SME network synergies support OR's partner-based service station model."
           },
           {
-            "entity": "Krungthai Bank Public Company Limited (KTB)",
+            "entity": "KTB.BK",
             "relation": "Financial Service Provider",
             "proportionality": "Inversely Proportional",
             "note": "Collaborates on digital payment integration and government-linked stimulus disbursements (e.g., fuel subsidies or travel vouchers)."
@@ -26,7 +26,7 @@
         ],
         "supply_chain": [
           {
-            "entity": "PTT Public Company Limited (PTT.BK)",
+            "entity": "PTT.BK",
             "relation": "Primary Upstream Supplier (Refined Oil)",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.95,
@@ -67,7 +67,7 @@
             "proportionality": "Proportional"
           },
           {
-            "entity": "I-Tail Corporation (ITC)",
+            "entity": "ITC.BK",
             "type": "Strategic Investment",
             "ownership_pct": null,
             "proportionality": "Proportional"

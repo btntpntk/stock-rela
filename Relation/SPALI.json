@@ -6,7 +6,7 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bank of Ayudhya (BAY.BK / Krungsri)",
+            "entity": "Bank of Ayudhya (BAY.BK",
             "relation": "Major Shareholder / Financial Partner",
             "proportionality": "Proportional",
             "note": "Krungsi Asset Management holds ~2.06% equity; provides significant project financing and mortgage support for homebuyers."
@@ -75,7 +75,7 @@
             "note": "Competes in the premium detached house segment (e.g., Prima Villa vs LADAWAN)."
           },
           {
-            "ticker": "PSH.BK (Pruksa)",
+            "ticker": "PSH.BK",
             "market_share_overlap": "High",
             "proportionality": "Inversely Proportional",
             "note": "Competition for the 'first-home' buyer segment, currently squeezed by high household debt."

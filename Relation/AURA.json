@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Kasikornbank (KBANK.BK)",
+            "entity": "KBANK.BK",
             "relation": "Strategic Partner (via LINE BK)",
             "proportionality": "Proportional",
             "note": "Collaboration with LINE BK for 'Gold for Cash' digital pawn services expands customer reach and credit access."
           },
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Primary Credit Provider",
             "proportionality": "Inversely Proportional",
             "note": "Major provider of working capital for gold inventory; rising interest rates increase the cost of carry for high-value stock."
@@ -27,7 +27,7 @@
             "note": "AURA's selling and buyback prices are directly pegged to the association's daily fixings."
           },
           {
-            "entity": "Central Pattana (CPN.BK)",
+            "entity": "CPN.BK",
             "relation": "Downstream/Retail Infrastructure",
             "proportionality": "Proportional",
             "sensitivity_index": 0.6,

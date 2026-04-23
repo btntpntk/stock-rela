@@ -12,7 +12,7 @@
             "note": "HANA maintains a robust 'Net Cash' position with very low debt-to-equity; expansion is largely self-funded from retained earnings."
           },
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Secondary Credit Provider/Lender",
             "proportionality": "Inversely Proportional",
             "note": "Provides working capital and letters of credit for international trade; sensitive to floating interest rates on current liabilities."
@@ -20,14 +20,14 @@
         ],
         "supply_chain": [
           {
-            "entity": "PTT Public Company Limited (PTT.BK)",
+            "entity": "PTT.BK",
             "relation": "Joint Venture Partner (FT1 Corp)",
             "proportionality": "Proportional",
             "sensitivity_index": 0.8,
             "note": "11.5 billion THB JV to build Thailand's first Silicon Carbide (SiC) wafer plant, diversifying into the high-growth EV supply chain."
           },
           {
-            "entity": "Phononic Inc. (USA)",
+            "entity": "USA.BK",
             "relation": "Downstream/Strategic Customer",
             "proportionality": "Proportional",
             "sensitivity_index": 0.7,
@@ -43,7 +43,7 @@
         ],
         "equity_cross_holdings": [
           {
-            "entity": "Power Master Semiconductor (PMS)",
+            "entity": "PMS.BK",
             "type": "Subsidiary (South Korea)",
             "ownership_pct": 100.0,
             "proportionality": "Proportional",

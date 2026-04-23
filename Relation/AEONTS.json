@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Primary Credit Provider",
             "proportionality": "Inversely Proportional",
             "note": "Provides significant wholesale funding and credit facilities; rising interest rates increase AEONTS's cost of funds."
           },
           {
-            "entity": "TISCO Bank (TISCO.BK)",
+            "entity": "TISCO.BK",
             "relation": "Lender/Institutional Shareholder",
             "proportionality": "Inversely Proportional",
             "note": "Significant institutional holder via provident funds; acts as a liquidity provider for corporate debentures."
@@ -20,7 +20,7 @@
         ],
         "supply_chain": [
           {
-            "entity": "Big C Supercenter (BJC.BK)",
+            "entity": "BJC.BK",
             "relation": "Downstream Retail Partner",
             "proportionality": "Proportional",
             "sensitivity_index": 0.65,

@@ -12,7 +12,7 @@
             "note": "Colas S.A. (France) is a global leader in road construction and holds 31.09% of TASCO as of 2026; provides technical expertise and access to international tenders."
           },
           {
-            "entity": "Tipco Foods Public Company Limited (TIPCO.BK)",
+            "entity": "TIPCO.BK",
             "relation": "Founding Shareholder / Related Party",
             "proportionality": "Proportional",
             "note": "Holds 23.07% equity; the two companies share historical roots and administrative synergies despite operating in entirely different sectors."
@@ -30,7 +30,7 @@
             "entity": "Department of Highways (Thailand)",
             "relation": "Primary Domestic Customer",
             "proportionality": "Proportional",
-            "sensitivity_index": 0.90,
+            "sensitivity_index": 0.9,
             "note": "Domestic revenue is tied to the Thai government's infrastructure budget for road maintenance and new highway construction projects."
           },
           {

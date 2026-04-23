@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Krung Thai Bank (KTB.BK)",
+            "entity": "KTB.BK",
             "relation": "Primary Lender/State-Linked Creditor",
             "proportionality": "Inversely Proportional",
             "note": "AOT utilizes state-linked credit facilities for major infrastructure expansion; interest rate hikes increase the cost of servicing long-term debt."
           },
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Major Debt Provider",
             "proportionality": "Inversely Proportional",
             "note": "Provides significant financing for terminal upgrades and runway construction under the Suvarnabhumi Phase 2 & 3 projects."
@@ -27,14 +27,14 @@
             "note": "Duty-free and retail concessions account for over 40% of non-aeronautical revenue; performance is directly tied to passenger traffic and spend-per-head."
           },
           {
-            "entity": "Bangkok Aviation Fuel Services (BAFS.BK)",
+            "entity": "BAFS.BK",
             "relation": "Upstream/Fuel Services Provider",
             "proportionality": "Proportional",
             "sensitivity_index": 0.65,
             "note": "Exclusive fuel hydrant provider at major airports; flight volume directly correlates with AOT's landing fees and BAFS service volumes."
           },
           {
-            "entity": "Sino-Thai Engineering (STEC.BK)",
+            "entity": "STEC.BK",
             "relation": "Upstream/Construction Contractor",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.45,
@@ -43,7 +43,7 @@
         ],
         "equity_cross_holdings": [
           {
-            "entity": "AOT Ground Aviation Services (AOTGA)",
+            "entity": "AOTGA.BK",
             "type": "Associate/Joint Venture",
             "ownership_pct": 49.0,
             "proportionality": "Proportional"
@@ -57,7 +57,7 @@
         ],
         "competitors": [
           {
-            "ticker": "Singapore Changi (CAG)",
+            "ticker": "CAG.BK",
             "market_share_overlap": "High",
             "proportionality": "Inversely Proportional",
             "note": "Regional hub competition for international transit traffic between Europe/US and Asia-Pacific."

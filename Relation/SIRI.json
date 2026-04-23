@@ -6,7 +6,7 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "entity": "BBL.BK",
             "relation": "Primary Debt Financier / Lead Underwriter",
             "proportionality": "Inversely Proportional",
             "note": "BBL acts as a lead underwriter for SIRI's perpetual and senior bonds; rising interest rates in 2026 increase refinancing costs on their ~80bn THB total liabilities."
@@ -27,14 +27,14 @@
         ],
         "supply_chain": [
           {
-            "entity": "Siam Cement Group (SCC.BK)",
+            "entity": "SCC.BK",
             "relation": "Upstream Raw Material Supplier",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.82,
             "note": "Critical supplier of cement and green building materials for Sansiri's Net-Zero projects; rising input costs directly compress the 30-31% GPM target."
           },
           {
-            "entity": "XSpring Capital (XPG.BK)",
+            "entity": "XPG.BK",
             "relation": "Strategic Associate (Fintech/Investment)",
             "proportionality": "Proportional",
             "sensitivity_index": 0.55,
@@ -76,7 +76,7 @@
             "note": "Direct rivalry in the mid-to-high-end townhouse and detached house segments in Greater Bangkok."
           },
           {
-            "ticker": "SIRI.BK vs LH.BK",
+            "ticker": "LH.BK",
             "market_share_overlap": "High",
             "proportionality": "Inversely Proportional",
             "note": "Compete for luxury segment dominance; Sansiri's 'BuGaan' and 'Narasiri' brands vs LH's 'LADAWAN'."

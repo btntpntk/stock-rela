@@ -20,7 +20,7 @@
         ],
         "supply_chain": [
           {
-            "entity": "STA.BK (Sri Trang Agro-Industry)",
+            "entity": "STA.BK",
             "relation": "Parent Company / Primary Feedstock Supplier",
             "proportionality": "Proportional",
             "sensitivity_index": 0.95,
@@ -37,7 +37,7 @@
             "entity": "Nitrile Butadiene Rubber (NBR) Suppliers",
             "relation": "Upstream Synthetic Material Providers",
             "proportionality": "Inversely Proportional",
-            "sensitivity_index": 0.70,
+            "sensitivity_index": 0.7,
             "note": "Synthetic glove production (NBR) depends on petrochemical inputs; 2026 global oil volatility impacts synthetic glove margins differently than natural latex ones."
           }
         ],

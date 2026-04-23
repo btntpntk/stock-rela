@@ -6,7 +6,7 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "entity": "BBL.BK",
             "relation": "Primary Lender / Transactional Bank",
             "proportionality": "Inversely Proportional",
             "note": "BBL provides significant working capital and long-term project finance; interest rate hikes in 2026 increase cost of debt for farm expansions."
@@ -34,10 +34,10 @@
             "note": "Corn and soybean meal represent ~60-70% of production costs; price volatility in 2026 directly impacts gross margins."
           },
           {
-            "entity": "CPF.BK (Feed Division)",
+            "entity": "CPF.BK",
             "relation": "Secondary Upstream Supplier",
             "proportionality": "Inversely Proportional",
-            "sensitivity_index": 0.40,
+            "sensitivity_index": 0.4,
             "note": "Though a competitor, GFPT occasionally procures feed additives or specialized grain tranches from industry peers during shortages."
           }
         ],
@@ -55,7 +55,7 @@
             "proportionality": "Proportional"
           },
           {
-            "entity": "GFPT Nichirei (Thailand) Co., Ltd. (GFN)",
+            "entity": "GFN.BK",
             "type": "Associate / Joint Venture",
             "ownership_pct": 49.0,
             "proportionality": "Proportional"

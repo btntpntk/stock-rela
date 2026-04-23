@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank (BBL.BK) / Kasikornbank (KBANK.BK)",
+            "entity": "BBL.BK",
             "relation": "Primary Lenders/Sustainability-Linked Bond Underwriters",
             "proportionality": "Inversely Proportional",
             "note": "Major financiers for MINT's global debt profile; interest expense is sensitive to Thai policy rates (~1.25% in 2026) and global credit spreads."
           },
           {
-            "entity": "Social Security Office (SSO)",
+            "entity": "SSO.BK",
             "relation": "Institutional Shareholder",
             "proportionality": "Proportional",
             "note": "Holds ~3.6% stake; provides capital stability and aligns with local institutional sentiment for Thai blue-chip hospitality."
@@ -26,7 +26,7 @@
         ],
         "supply_chain": [
           {
-            "entity": "Minor Dairy Limited (MDL)",
+            "entity": "MDL.BK",
             "relation": "Internal Upstream/Manufacturing Subsidiary",
             "proportionality": "Proportional",
             "sensitivity_index": 0.9,
@@ -84,7 +84,7 @@
             "note": "Competes for high-end hospitality real estate and luxury hotel management contracts in Thailand."
           },
           {
-            "ticker": "M.BK (MK Restaurant)",
+            "ticker": "M.BK",
             "market_share_overlap": "Medium",
             "proportionality": "Inversely Proportional",
             "note": "Primary competitor for casual dining and domestic consumer wallet share in Thailand."

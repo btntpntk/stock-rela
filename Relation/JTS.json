@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Jasmine International (JAS.BK)",
+            "entity": "JAS.BK",
             "relation": "Parent/Financial Sponsor",
             "proportionality": "Proportional",
             "note": "Receives significant financial assistance and collateral support for debenture issuance from its parent company."
           },
           {
-            "entity": "Siam Commercial Bank (SCB.BK)",
+            "entity": "SCB.BK",
             "relation": "Lender/Transactional Bank",
             "proportionality": "Inversely Proportional",
             "note": "Provides credit facilities for ICT operations; sensitive to interest rate fluctuations affecting debt servicing costs."
@@ -27,7 +27,7 @@
             "note": "Primary supplier of Antminer ASICs (S21/S19 series); Capex is highly sensitive to hardware pricing and global chip supply."
           },
           {
-            "entity": "Provincial Electricity Authority (PEA)",
+            "entity": "PEA.BK",
             "relation": "Upstream/Energy Provider",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.95,
@@ -50,7 +50,7 @@
         ],
         "equity_cross_holdings": [
           {
-            "entity": "Jasmine International (JAS.BK)",
+            "entity": "JAS.BK",
             "type": "Parent",
             "ownership_pct": 44.14,
             "proportionality": "Proportional"

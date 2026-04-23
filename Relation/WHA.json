@@ -18,7 +18,7 @@
             "note": "Holds ~7.5% stake; reflects significant foreign institutional sentiment toward Thailand's industrial and digital infrastructure."
           },
           {
-            "entity": "Siam Commercial Bank (SCB.BK) / Kasikornbank (KBANK.BK)",
+            "entity": "SCB.BK",
             "relation": "Primary Lenders/Transactional Banks",
             "proportionality": "Inversely Proportional",
             "note": "Major providers of the ฿16.5bn 2026 investment budget; sensitive to interest rate cuts (expected to 1.0% in 1H26)."
@@ -40,7 +40,7 @@
             "note": "WHA is the main beneficiary of the EV supply chain 'reshoring' to Thailand's EEC; land sales target for 2026 is 2,500 rai."
           },
           {
-            "entity": "WHA Utilities and Power (WHAUP.BK)",
+            "entity": "WHAUP.BK",
             "relation": "Internal/Utility Subsidiary",
             "proportionality": "Proportional",
             "sensitivity_index": 0.85,
@@ -49,7 +49,7 @@
         ],
         "equity_cross_holdings": [
           {
-            "entity": "WHART.BK (WHA Premium Growth REIT)",
+            "entity": "WHART.BK",
             "type": "Associated REIT/Asset Monetization Vehicle",
             "ownership_pct": 15.0,
             "proportionality": "Proportional",

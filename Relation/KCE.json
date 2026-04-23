@@ -12,7 +12,7 @@
             "note": "The Ongkosit family, led by Pitharn Ongkosit (~13.94%), maintains ~33% ownership; their strategic focus on 'New S-Curve' automation directly dictates capital expenditure cycles."
           },
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Primary Lender/Financial Partner",
             "proportionality": "Inversely Proportional",
             "note": "Provides long-term credit facilities for the Lat Krabang and Ayutthaya plant upgrades; interest expense is sensitive to Thai policy rate shifts."
@@ -40,7 +40,7 @@
             "note": "Copper is a core cost component. Every $1,000/ton increase in copper prices typically results in a ~1% gross margin contraction with a 3-month lag."
           },
           {
-            "entity": "Thai Laminate Manufacturer (TLM)",
+            "entity": "TLM.BK",
             "relation": "Internal Supply/Subsidiary",
             "proportionality": "Proportional",
             "sensitivity_index": 0.7,

@@ -6,7 +6,7 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "entity": "BBL.BK",
             "relation": "Lender and Strategic Shareholder",
             "proportionality": "Inversely Proportional",
             "note": "BBL holds approx. 5.0% equity and provides major credit lines; interest rate hikes increase debt servicing costs on aircraft leases and loans."
@@ -20,30 +20,30 @@
         ],
         "supply_chain": [
           {
-            "entity": "Bangkok Aviation Fuel Services (BAFS)",
+            "entity": "BAFS.BK",
             "relation": "Logistics/Refueling Service",
             "proportionality": "Proportional",
             "sensitivity_index": 0.85,
             "note": "Primary refueling provider at major Thai hubs; operational volume is directly tied to BA's flight frequency."
           },
           {
-            "entity": "PTT Public Company Limited",
+            "entity": "PTT.BK",
             "relation": "Upstream Fuel Supplier",
             "proportionality": "Inversely Proportional",
-            "sensitivity_index": 0.70,
+            "sensitivity_index": 0.7,
             "note": "Major jet fuel supplier; rising energy prices at the source compress operating margins."
           },
           {
             "entity": "Airbus / ATR",
             "relation": "Upstream Aircraft Manufacturer",
             "proportionality": "Inversely Proportional",
-            "sensitivity_index": 0.40,
+            "sensitivity_index": 0.4,
             "note": "Suppliers of fleet (A319, A320, ATR 72-600); maintenance costs and spare parts prices affect operational CASK."
           }
         ],
         "equity_cross_holdings": [
           {
-            "entity": "BDMS.BK (Bangkok Dusit Medical Services)",
+            "entity": "BDMS.BK",
             "relation": "Long-term Investment/Associate",
             "ownership_pct": 4.6,
             "proportionality": "Proportional"
@@ -55,7 +55,7 @@
             "proportionality": "Proportional"
           },
           {
-            "entity": "Bangkok Air Catering (BAC)",
+            "entity": "BAC.BK",
             "relation": "Subsidiary",
             "ownership_pct": 100.0,
             "proportionality": "Proportional"

@@ -12,7 +12,13 @@
             "note": "A high-dividend play in 2026; recently approved a ฿0.51 cash dividend (Ex-date Mar 6, Payment Apr 30, 2026), yielding ~4.9%."
           },
           {
-            "entity": "Commercial Banks (e.g., KBank, BBL)",
+            "entity": "KBANK.BK",
+            "relation": "Lenders / Transactional Banks",
+            "proportionality": "Inversely Proportional",
+            "note": "Maintains a healthy interest coverage ratio (30x+); however, rising construction costs for new buildings in 2026 increase capital expenditure sensitivity."
+          },
+          {
+            "entity": "BBL.BK",
             "relation": "Lenders / Transactional Banks",
             "proportionality": "Inversely Proportional",
             "note": "Maintains a healthy interest coverage ratio (30x+); however, rising construction costs for new buildings in 2026 increase capital expenditure sensitivity."
@@ -34,7 +40,7 @@
             "note": "SISB Pracha Uthit is currently adding a 6-storey Secondary-Sixth Form block slated for 2026 completion; delivery delays impact enrollment capacity."
           },
           {
-            "entity": "Singapore Examinations and Assessment Board (SEAB)",
+            "entity": "SEAB.BK",
             "relation": "Curriculum / Assessment Partner",
             "proportionality": "Proportional",
             "sensitivity_index": 0.85,
@@ -63,7 +69,7 @@
         ],
         "competitors": [
           {
-            "ticker": "International School Bangkok (ISB)",
+            "ticker": "ISB.BK",
             "market_share_overlap": "High",
             "proportionality": "Inversely Proportional",
             "note": "Primary rival for premium expat and high-net-worth local families."

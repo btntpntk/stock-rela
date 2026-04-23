@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "entity": "BBL.BK",
             "relation": "Primary Debt Financier / Bond Trustee",
             "proportionality": "Inversely Proportional",
             "note": "BBL acts as a lead underwriter and registrar for CPALL's heavy corporate bond issuances (TRIS AA- rating in 2026); rising interest rates increase refinancing costs for its ~600bn THB liability base."
           },
           {
-            "entity": "Social Security Office (SSO)",
+            "entity": "SSO.BK",
             "relation": "Institutional Shareholder",
             "proportionality": "Proportional",
             "note": "Holds ~3.43% equity as of March 2026; long-term institutional stability and alignment with domestic welfare/consumption cycles."
@@ -26,7 +26,7 @@
         ],
         "supply_chain": [
           {
-            "entity": "CPF.BK (Charoen Pokphand Foods)",
+            "entity": "CPF.BK",
             "relation": "Primary Upstream Food Supplier",
             "proportionality": "Proportional",
             "sensitivity_index": 0.88,
@@ -43,13 +43,13 @@
             "entity": "7-Eleven Distribution Centers (Internal)",
             "relation": "Logistics / Midstream",
             "proportionality": "Inversely Proportional",
-            "sensitivity_index": 0.70,
+            "sensitivity_index": 0.7,
             "note": "High exposure to diesel/fuel costs for nationwide delivery fleet; rising energy prices increase 'Cost of Sales'."
           }
         ],
         "equity_cross_holdings": [
           {
-            "entity": "CPAXT.BK (CP Extra)",
+            "entity": "CPAXT.BK",
             "type": "Subsidiary (Wholesale/Hypermarket)",
             "ownership_pct": 59.9,
             "proportionality": "Proportional"

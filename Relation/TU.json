@@ -27,7 +27,7 @@
             "note": "Prices reached $2,000/ton in March 2026; high costs are expected to impact margins starting 3Q26 once low-cost inventory is depleted."
           },
           {
-            "entity": "Thai Union Feedmill (TFM.BK)",
+            "entity": "TFM.BK",
             "relation": "Internal/Feed Supply Subsidiary",
             "proportionality": "Proportional",
             "sensitivity_index": 0.7,
@@ -43,7 +43,7 @@
         ],
         "equity_cross_holdings": [
           {
-            "entity": "i-Tail Corporation (ITC.BK)",
+            "entity": "ITC.BK",
             "type": "Subsidiary (Pet Care)",
             "ownership_pct": 77.8,
             "proportionality": "Proportional",
@@ -52,7 +52,7 @@
         ],
         "competitors": [
           {
-            "ticker": "CPF.BK (Charoen Pokphand Foods)",
+            "ticker": "CPF.BK",
             "market_share_overlap": "High",
             "proportionality": "Inversely Proportional",
             "note": "Rivalry in the global frozen seafood and processed meat sectors."

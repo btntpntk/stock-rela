@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bank of Ayudhya (BAY.BK)",
+            "entity": "BAY.BK",
             "relation": "Debenture Registrar/Primary Creditor",
             "proportionality": "Inversely Proportional",
             "note": "Acts as registrar for the CRC30OA 2026 series; rising interest rates increase the cost of servicing their 124 billion THB debt pool."
           },
           {
-            "entity": "Kasikornbank (KBANK.BK)",
+            "entity": "KBANK.BK",
             "relation": "Lender/Financial Advisor",
             "proportionality": "Inversely Proportional",
             "note": "Provides working capital and strategic underwriting; debt-to-equity ratios are sensitive to BoT policy rate shifts."
@@ -20,14 +20,14 @@
         ],
         "supply_chain": [
           {
-            "entity": "Central Pattana (CPN.BK)",
+            "entity": "CPN.BK",
             "relation": "Downstream/Mixed-Use Infrastructure Partner",
             "proportionality": "Proportional",
             "sensitivity_index": 0.85,
             "note": "Sister company and primary landlord; CRC's retail footprint is anchored in CPN's 44+ shopping malls nationwide."
           },
           {
-            "entity": "Central Retail Vietnam (CRV)",
+            "entity": "CRV.BK",
             "relation": "Subsidiary/Growth Engine",
             "proportionality": "Proportional",
             "sensitivity_index": 0.75,
@@ -55,7 +55,19 @@
             "proportionality": "Proportional"
           },
           {
-            "entity": "Power Buy / Thaiwatsadu / Tops",
+            "entity": "Power Buy",
+            "type": "Wholly-Owned Subsidiaries",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Thaiwatsadu",
+            "type": "Wholly-Owned Subsidiaries",
+            "ownership_pct": 100.0,
+            "proportionality": "Proportional"
+          },
+          {
+            "entity": "Tops",
             "type": "Wholly-Owned Subsidiaries",
             "ownership_pct": 100.0,
             "proportionality": "Proportional"

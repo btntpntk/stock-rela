@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Primary Credit Provider & Strategic Shareholder",
             "proportionality": "Proportional",
             "note": "BBL holds 9.46% and provides critical bancassurance revenue; financial stability is tightly coupled with BBL's distribution reach."
           },
           {
-            "entity": "Bangkok Insurance (BKI.BK)",
+            "entity": "BKI.BK",
             "relation": "Strategic Shareholder/Affiliate",
             "proportionality": "Proportional",
             "note": "BKI holds 4.71%; synergy in cross-selling general and life insurance products to high-net-worth clients."
@@ -26,21 +26,21 @@
         ],
         "supply_chain": [
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Downstream/Bancassurance Distribution",
             "proportionality": "Proportional",
             "sensitivity_index": 0.9,
             "note": "The 2026 'Road to the Leader' initiative underscores BBL as the primary source of first-year premiums (FYP) and new business value."
           },
           {
-            "entity": "Bangkok Dusit Medical Services (BDMS.BK)",
+            "entity": "BDMS.BK",
             "relation": "Upstream/Healthcare Partner",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.7,
             "note": "Primary hospital network partner; rising medical inflation and healthcare service costs (estimated +10% in 2026) compress insurance claim margins."
           },
           {
-            "entity": "Bumrungrad Hospital (BH.BK)",
+            "entity": "BH.BK",
             "relation": "Upstream/Healthcare Partner",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.55,

@@ -12,13 +12,13 @@
             "note": "Holds 15.37%; provide capital stability and alignment with government energy security policies."
           },
           {
-            "entity": "Social Security Office (SSO)",
+            "entity": "SSO.BK",
             "relation": "Major Institutional Shareholder",
             "proportionality": "Proportional",
             "note": "Holds 14.13%; long-term institutional backing providing liquidity and institutional trust."
           },
           {
-            "entity": "Alpha Chartered Energy (ACE)",
+            "entity": "ACE.BK",
             "relation": "Strategic Shareholder (Under Legal Review)",
             "proportionality": "Inversely Proportional",
             "note": "Holds ~16.8%; assets currently frozen by AMLO; legal controversy creates friction with international lenders and reputation risk."
@@ -39,7 +39,14 @@
             "note": "Handles 100% of crude procurement and international trading; central to supply chain optimization."
           },
           {
-            "entity": "Thai Oil (TOP.BK) / PTT Group",
+            "entity": "TOP.BK",
+            "relation": "Logistics/Infrastructure Partner",
+            "proportionality": "Proportional",
+            "sensitivity_index": 0.65,
+            "note": "Shared use of oil pipelines and maritime logistics infrastructure in the Chonburi-Bangkok corridor."
+          },
+          {
+            "entity": "PTT.BK",
             "relation": "Logistics/Infrastructure Partner",
             "proportionality": "Proportional",
             "sensitivity_index": 0.65,
@@ -55,19 +62,19 @@
         ],
         "equity_cross_holdings": [
           {
-            "entity": "BSRC.BK (Bangchak Sriracha)",
+            "entity": "BSRC.BK",
             "type": "Subsidiary (Refinery)",
             "ownership_pct": 99.72,
             "proportionality": "Proportional"
           },
           {
-            "entity": "BCPG.BK (BCPG Public Co., Ltd.)",
+            "entity": "BCPG.BK",
             "type": "Subsidiary (Renewables)",
             "ownership_pct": 57.81,
             "proportionality": "Proportional"
           },
           {
-            "entity": "BBGI.BK (BBGI Public Co., Ltd.)",
+            "entity": "BBGI.BK",
             "type": "Subsidiary (Bio-fuels)",
             "ownership_pct": 60.0,
             "proportionality": "Proportional"

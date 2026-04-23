@@ -12,7 +12,7 @@
             "note": "Auditor mandate effective through December 31, 2026."
           },
           {
-            "entity": "Singapore Exchange (SGX)",
+            "entity": "SGX.BK",
             "relation": "Secondary Listing",
             "proportionality": "Proportional",
             "note": "Dual-listed on SET and SGX; cross-border arbitrage and regional liquidity flows impact share price volatility."
@@ -20,10 +20,10 @@
         ],
         "supply_chain": [
           {
-            "entity": "STGT.BK (Sri Trang Gloves)",
+            "entity": "STGT.BK",
             "relation": "Subsidiary / Downstream Customer",
             "proportionality": "Proportional",
-            "sensitivity_index": 0.90,
+            "sensitivity_index": 0.9,
             "note": "STA is a fully integrated producer; STGT consumes concentrated latex from STA. 2026 recovery in glove demand supports STA's midstream volume."
           },
           {
@@ -37,7 +37,7 @@
             "entity": "Thai Rubber Smallholders",
             "relation": "Upstream Feedstock Suppliers",
             "proportionality": "Proportional",
-            "sensitivity_index": 0.70,
+            "sensitivity_index": 0.7,
             "note": "STA procures raw material from local farmers; 2026 neutral weather conditions (post-La Niña) are expected to increase farm output."
           }
         ],

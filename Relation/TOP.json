@@ -6,7 +6,7 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "PTT Public Company Limited (PTT.BK)",
+            "entity": "PTT.BK",
             "relation": "Majority Shareholder/Parent",
             "proportionality": "Proportional",
             "note": "PTT holds ~45-48% stake; TOP serves as the group's primary refining flagship."
@@ -40,7 +40,7 @@
             "note": "Operations successfully resumed in early 2026, eliminating USD 0.5/bbl in temporary ship-to-ship transfer costs."
           },
           {
-            "entity": "PTT Oil and Retail (OR.BK)",
+            "entity": "OR.BK",
             "relation": "Downstream/Key Strategic Customer",
             "proportionality": "Proportional",
             "sensitivity_index": 0.85,
@@ -49,7 +49,7 @@
         ],
         "equity_cross_holdings": [
           {
-            "entity": "Global Power Synergy (GPSC.BK)",
+            "entity": "GPSC.BK",
             "type": "Associate (Power)",
             "ownership_pct": 10.0,
             "proportionality": "Proportional",
@@ -64,13 +64,13 @@
         ],
         "competitors": [
           {
-            "ticker": "SPRC.BK (Star Petroleum)",
+            "ticker": "SPRC.BK",
             "market_share_overlap": "High",
             "proportionality": "Inversely Proportional",
             "note": "Direct rival in complex refining; both compete for market share in middle distillates (diesel/jet fuel)."
           },
           {
-            "ticker": "BCP.BK (Bangchak)",
+            "ticker": "BCP.BK",
             "market_share_overlap": "High",
             "proportionality": "Inversely Proportional",
             "note": "Primary rival in the domestic refining and retail sector, especially post-BCP’s Esso acquisition."

@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Primary Lender/Lead Underwriter",
             "proportionality": "Inversely Proportional",
             "note": "Provides significant credit facilities for global acquisitions; IVL's high leverage makes it sensitive to global interest rate cycles and debt refinancing costs."
           },
           {
-            "entity": "Siam Commercial Bank (SCB.BK)",
+            "entity": "SCB.BK",
             "relation": "Lender/Debt Facility Provider",
             "proportionality": "Inversely Proportional",
             "note": "Major financier for domestic operations and ESG-linked financing; impact of debt-to-equity covenants on capital allocation."
@@ -20,7 +20,7 @@
         ],
         "supply_chain": [
           {
-            "entity": "PTT Global Chemical (PTTGC.BK)",
+            "entity": "PTTGC.BK",
             "relation": "Upstream/Raw Material Supplier",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.8,
@@ -34,7 +34,7 @@
             "note": "Major off-takers for PET resin and recycled PET (rPET); revenue is highly correlated with global consumer staple volumes."
           },
           {
-            "entity": "Integrated Oxides and Derivatives (IOD)",
+            "entity": "IOD.BK",
             "relation": "Internal/Upstream-Vertical",
             "proportionality": "Proportional",
             "sensitivity_index": 0.7,

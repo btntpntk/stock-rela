@@ -38,7 +38,7 @@
             "note": "Key vendors for 5G network modernization and the 'One Network' project; Capex is sensitive to global hardware pricing and trade policy."
           },
           {
-            "entity": "National Telecom (NT)",
+            "entity": "NT.BK",
             "relation": "Interconnected Partner/Former Lessor",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.6,
@@ -69,13 +69,13 @@
         ],
         "competitors": [
           {
-            "ticker": "ADVANC.BK (AIS)",
+            "ticker": "ADVANC.BK",
             "market_share_overlap": "Extreme",
             "proportionality": "Inversely Proportional",
             "note": "The 'duopoly' rival; while TRUE leads in total subscribers (~51M), AIS leads in ARPU and overall profitability."
           },
           {
-            "ticker": "GULF.BK / KTB.BK",
+            "ticker": "KTB.BK",
             "market_share_overlap": "Medium",
             "proportionality": "Inversely Proportional",
             "note": "Competes in the digital finance space; both are exploring 'Virtual Bank' licenses which directly threaten TRUE's digital wallet/fintech ambitions."

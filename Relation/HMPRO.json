@@ -6,7 +6,7 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank Public Company Limited (BBL)",
+            "entity": "BBL.BK",
             "relation": "Primary Lender / Facility Provider",
             "proportionality": "Inversely Proportional",
             "note": "BBL is a core financier for the Land and Houses (LH) ecosystem; HMPRO maintains a Net Debt/Equity ratio of ~0.5x in 2026, making it sensitive to floating-rate credit lines."
@@ -18,7 +18,7 @@
             "note": "Holds 2.62% equity as of April 2026; provides institutional capital stability and represents state-linked fund confidence in the retail sector."
           },
           {
-            "entity": "Social Security Office (SSO)",
+            "entity": "SSO.BK",
             "relation": "Institutional Shareholder",
             "proportionality": "Proportional",
             "note": "Holds 4.79% equity; reflects long-term domestic institutional trust and provides price floor support during consumption downturns."
@@ -26,7 +26,7 @@
         ],
         "supply_chain": [
           {
-            "entity": "Siam Cement Group (SCC.BK)",
+            "entity": "SCC.BK",
             "relation": "Primary Upstream Supplier (Building Materials)",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.75,
@@ -43,26 +43,26 @@
             "entity": "Private Label Manufacturers (Mega Home)",
             "relation": "Internal Supply Chain / Captive Production",
             "proportionality": "Proportional",
-            "sensitivity_index": 0.90,
+            "sensitivity_index": 0.9,
             "note": "Private labels act as a GPM enhancer; management target is to grow private label share to improve the 2026 gross margin mix."
           },
           {
             "entity": "Global Freight / Logistics Providers",
             "relation": "Upstream Logistics Services",
             "proportionality": "Inversely Proportional",
-            "sensitivity_index": 0.30,
+            "sensitivity_index": 0.3,
             "note": "War-related freight risks in 2026 impact margins; every 10% increase in transportation costs is estimated to reduce net profit by ~2.5%."
           }
         ],
         "equity_cross_holdings": [
           {
-            "entity": "LH.BK (Land and Houses)",
+            "entity": "LH.BK",
             "type": "Parent / Major Shareholder",
             "ownership_pct": 30.23,
             "proportionality": "Proportional"
           },
           {
-            "entity": "QH.BK (Quality Houses)",
+            "entity": "QH.BK",
             "type": "Major Shareholder / Associate",
             "ownership_pct": 19.87,
             "proportionality": "Proportional"

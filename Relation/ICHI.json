@@ -6,13 +6,13 @@
       "relationship_web": {
         "financial": [
           {
-            "entity": "Bangkok Bank (BBL.BK)",
+            "entity": "BBL.BK",
             "relation": "Primary Lender/Facility Agent",
             "proportionality": "Inversely Proportional",
             "note": "Provides credit lines for factory automation and regional expansion; however, ICHI maintains a very low D/E ratio (~0.2x), making it less sensitive to rate hikes than peers."
           },
           {
-            "entity": "Kasikornbank (KBANK.BK)",
+            "entity": "KBANK.BK",
             "relation": "Lender/Cash Management Provider",
             "proportionality": "Inversely Proportional",
             "note": "Key partner for supply chain finance and digital payment integration for retail distributors."
@@ -20,14 +20,14 @@
         ],
         "supply_chain": [
           {
-            "entity": "CP ALL (CPALL.BK)",
+            "entity": "CPALL.BK",
             "relation": "Downstream/Primary Distribution Channel",
             "proportionality": "Proportional",
             "sensitivity_index": 0.9,
             "note": "7-Eleven is the critical sales node; ~50-60% of RTD tea volume flows through CPALL. Stock is highly sensitive to 7-Eleven SSSG and shelf-space allocation."
           },
           {
-            "entity": "Indorama Ventures (IVL.BK)",
+            "entity": "IVL.BK",
             "relation": "Upstream/PET Resin & Preform Supplier",
             "proportionality": "Inversely Proportional",
             "sensitivity_index": 0.75,
