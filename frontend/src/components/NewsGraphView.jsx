@@ -85,7 +85,7 @@ function NewsGraphController({ selectedNews, rawData, onStockClick }) {
 
       graph.addEdge(newsId, ticker, {
         color:            edgeColor,
-        size:             Math.max(1.5, impact_weight * 9),
+        size:             Math.max(1.5, impact_weight * 7),
         relType:          "NEWS_IMPACT",
         impact_direction: impact_direction,
         impact_weight:    impact_weight,
