@@ -4,6 +4,7 @@ import "@react-sigma/core/lib/style.css";
 import GraphController from "./components/GraphController";
 import Sidebar from "./components/Sidebar";
 import NodeDetail from "./components/NodeDetail";
+import NewsPage from "./pages/NewsPage";
 
 class ErrorBoundary extends Component {
   state = { error: null };
@@ -88,6 +89,9 @@ export default function App() {
   const [rawData,          setRawData]          = useState(null);
   const [loading,          setLoading]          = useState(true);
   const [error,            setError]            = useState(null);
+
+  // Top-level page
+  const [page,             setPage]             = useState("graph"); // "graph" | "news"
 
   // Navigation
   const [mode,             setMode]             = useState("overview");
@@ -187,7 +191,34 @@ export default function App() {
     setSelectedNode(stock ? { id: stockId, ...stock } : null);
   }
 
+  function handleStockFromNews(stockId) {
+    setPage("graph");
+    // Small timeout so graph page mounts before navigation state is set
+    setTimeout(() => handleStockSearch(stockId), 60);
+  }
+
   return (
+    <div className="app-root">
+      {/* ── Top navigation bar ── */}
+      <nav className="top-nav">
+        <div className="top-nav-brand">SET Relations</div>
+        <button
+          className={`top-nav-tab${page === "graph" ? " active" : ""}`}
+          onClick={() => setPage("graph")}
+        >
+          Graph
+        </button>
+        <button
+          className={`top-nav-tab${page === "news" ? " active" : ""}`}
+          onClick={() => setPage("news")}
+        >
+          News
+        </button>
+      </nav>
+
+      {page === "news" ? (
+        <NewsPage rawData={rawData} onStockSelect={handleStockFromNews} />
+      ) : (
     <div className="layout">
       <Sidebar
         rawData={rawData}
@@ -266,6 +297,8 @@ export default function App() {
           />
         </div>
       </div>
+    </div>
+      )}
     </div>
   );
 }

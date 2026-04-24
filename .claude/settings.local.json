@@ -16,7 +16,12 @@
       "Bash(python -c ' *)",
       "Bash(python3 build_graph.py)",
       "Bash(py build_graph.py)",
-      "Bash(py -c ' *)"
+      "Bash(py -c ' *)",
+      "WebSearch",
+      "Bash(python -c \"import yfinance; print\\('yfinance', yfinance.__version__\\)\")",
+      "Bash(python news_pipeline.py)",
+      "Bash(npx vite *)",
+      "Bash(pip install *)"
     ]
   }
 }
