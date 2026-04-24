@@ -52,7 +52,7 @@ body {
 
 /* ── Top navigation bar ──────────────────────────────────────────────────────── */
 .top-nav {
-  height: 42px;
+  height: 50px;
   background: var(--panel);
   border-bottom: 3px solid var(--text);
   display: flex;
@@ -64,22 +64,32 @@ body {
   display: flex;
   align-items: center;
   padding: 0 20px;
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 700;
+  font-family: "EB Garamond", serif;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: .04em;
   color: var(--text);
   border-right: 1px solid var(--border);
   white-space: nowrap;
 }
+.top-nav-brand::before {
+  content: "";
+  width: 42px;
+  height: 42px;
+  background-image: url('/logo-cropped.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
 .top-nav-tab {
   display: flex;
   align-items: center;
-  padding: 0 20px;
+  padding: 0 18px;
   background: none;
   border: none;
   border-right: 1px solid var(--border);
   font-family: var(--font-sans);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .10em;
