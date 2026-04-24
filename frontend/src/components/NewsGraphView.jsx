@@ -1,12 +1,19 @@
 import { useEffect } from "react";
 import { SigmaContainer, useSigma, useLoadGraph, useRegisterEvents } from "@react-sigma/core";
+import { createEdgeArrowProgram } from "sigma/rendering";
 import Graphology from "graphology";
 
 const MultiDirectedGraph = Graphology.MultiDirectedGraph;
 
+const EdgeArrowLarge = createEdgeArrowProgram({
+  lengthToThicknessRatio:   5,
+  widenessToThicknessRatio: 3.5,
+});
+
 const SIGMA_SETTINGS = {
   defaultNodeType:            "circle",
   defaultEdgeType:            "arrow",
+  edgeProgramClasses:         { arrow: EdgeArrowLarge },
   renderEdgeLabels:           false,
   labelFont:                  "Libre Baskerville, Georgia, serif",
   labelSize:                  13,
@@ -112,7 +119,7 @@ function NewsGraphController({ selectedNews, rawData, onStockClick }) {
           },
           edgeReducer: (edge, data) => {
             const [s, t] = g.extremities(edge);
-            if (s === node || t === node) return { ...data, size: data.size * 2, zIndex: 1 };
+            if (s === node || t === node) return { ...data, size: data.size * 0.5, zIndex: 1 };
             return { ...data, hidden: true };
           },
         });

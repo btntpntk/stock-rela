@@ -262,6 +262,26 @@ function MacroFactorDetail({ node, rawData, onScenarioActivate }) {
   );
 }
 
+// ── Category node detail ──────────────────────────────────────────────────────
+
+function CategoryDetail({ node }) {
+  const relType = node.catRelType;
+  const color   = REL_COLORS[relType] ?? "#888";
+  const label   = REL_LABELS[relType] ?? node.label ?? relType;
+
+  return (
+    <div>
+      <div className="detail-name">{label}</div>
+      <span className="detail-label" style={{ background: color + "28", color }}>
+        Relationship Category
+      </span>
+      <div style={{ marginTop: 12, color: "var(--text-muted)", fontSize: 13 }}>
+        Click any connected stock to explore its details.
+      </div>
+    </div>
+  );
+}
+
 // ── Stock / Entity detail ─────────────────────────────────────────────────────
 
 function StockDetail({ node, rawData }) {
@@ -358,5 +378,6 @@ export default function NodeDetail({ node, rawData, mode, onScenarioActivate }) 
   if (node.nodeType === "GlobalMacro")     return <GlobalMacroDetail node={node} rawData={rawData} />;
   if (node.nodeType === "SupplyChain")  return <SupplyChainDetail node={node} rawData={rawData} />;
   if (node.nodeType === "MacroFactor")  return <MacroFactorDetail node={node} rawData={rawData} onScenarioActivate={onScenarioActivate} />;
+  if (node.nodeType === "Category")    return <CategoryDetail node={node} />;
   return <StockDetail node={node} rawData={rawData} />;
 }

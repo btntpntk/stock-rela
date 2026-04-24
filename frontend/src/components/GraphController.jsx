@@ -111,7 +111,7 @@ function buildOverviewGraph(rawData, scenarioFactorId) {
     // Spoke: root → macro
     if (rootNode && graph.hasNode(rootNode.id)) {
       graph.addEdge(rootNode.id, macro.id, {
-        color: "rgba(120,120,140,0.65)", size: 1.4, relType: "ROOT_MACRO",
+        color: "rgba(120,120,140,0.85)", size: 2.2, relType: "ROOT_MACRO",
       });
     }
   });
@@ -147,7 +147,7 @@ function buildOverviewGraph(rawData, scenarioFactorId) {
     const macroNode = rawData.nodes.find(n => n.id === e.source);
     graph.addEdge(e.source, e.target, {
       id: `cat${i}`, color: (macroNode?.color ?? "#888") + "bb",
-      size: 1.6, relType: "CAT_CHAIN",
+      size: 2.2, relType: "CAT_CHAIN",
     });
   });
 
@@ -155,7 +155,7 @@ function buildOverviewGraph(rawData, scenarioFactorId) {
   fiEdges.forEach((e, i) => {
     if (!graph.hasNode(e.source) || !graph.hasNode(e.target)) return;
     graph.addEdge(e.source, e.target, {
-      id: `fi${i}`, color: "rgba(160,120,0,0.90)", size: 2.2,
+      id: `fi${i}`, color: "rgba(160,120,0,0.75)", size: 0.5,
       relType: "FEEDS_INTO", relation: e.relation ?? "", note: e.note ?? "",
     });
   });
@@ -257,13 +257,16 @@ const EGO_COLORS = {
   COMPETITOR:         "#eb5757",
 };
 
-const EGO_BASE_ANGLES = {
-  MACRO_FACTOR:       -Math.PI / 2,          // top
-  SUPPLY_CHAIN:        0,                    // right
-  FINANCIAL_RELATION: -Math.PI / 4,          // top-right
-  EQUITY_HOLDING:      Math.PI / 4,          // bottom-right
-  COMPETITOR:          Math.PI,              // left
+const CATEGORY_LABELS = {
+  COMPETITOR:         "Competitors",
+  FINANCIAL_RELATION: "Financials",
+  SUPPLY_CHAIN:       "Supply Chain",
+  EQUITY_HOLDING:     "Equity Holdings",
+  MACRO_FACTOR:       "Macro Drivers",
 };
+
+// Consistent clockwise ordering of categories
+const CAT_ORDER = ["COMPETITOR", "FINANCIAL_RELATION", "SUPPLY_CHAIN", "EQUITY_HOLDING", "MACRO_FACTOR"];
 
 const SKIP_REL = new Set(["CHAIN_MEMBER", "FEEDS_INTO", "MACRO_CHAIN", "ROOT_CAT", "CAT_MACRO", "CAT_CHAIN", "ROOT_MACRO"]);
 
@@ -291,40 +294,73 @@ function buildEgoGraph(rawData, stockId, scenarioFactorId) {
       byType[e.relType].push({ id: peerId, edge: e });
   });
 
-  // Place peers in arcs by type
-  Object.entries(byType).forEach(([relType, peers]) => {
-    const base   = EGO_BASE_ANGLES[relType] ?? (Math.PI * 0.6);
-    const spread = Math.min(Math.PI * 0.75, peers.length * 0.30);
-    const r      = peers.length > 5 ? 560 : 380;
+  // Active categories in fixed order
+  const activeCategories = CAT_ORDER.filter(rt => byType[rt]?.length > 0);
+  const catCount = activeCategories.length || 1;
 
-    peers.forEach(({ id }, i) => {
-      if (graph.hasNode(id)) return;
-      const angle = peers.length === 1 ? base
-        : base - spread / 2 + (i / (peers.length - 1)) * spread;
-      const peerNode = rawData.nodes.find(n => n.id === id);
-      graph.addNode(id, {
-        ...(peerNode ?? {}),
-        label: peerNode?.ticker ?? peerNode?.factor ?? peerNode?.name ?? id,
-        size:  relType === "MACRO_FACTOR" ? 8 : 6,
-        color: "#121212",
-        x: Math.cos(angle) * r,
-        y: Math.sin(angle) * r,
-      });
+  const R1 = 220; // category ring radius
+  const R2 = 460; // peer ring radius
+
+  activeCategories.forEach((relType, catIdx) => {
+    const peers     = byType[relType];
+    const catAngle  = (catIdx / catCount) * 2 * Math.PI - Math.PI / 2;
+    const catColor  = EGO_COLORS[relType] ?? "#888888";
+    const catNodeId = `__cat__${relType}`;
+
+    // Category intermediate node
+    graph.addNode(catNodeId, {
+      nodeType:   "Category",
+      catRelType: relType,
+      label:      CATEGORY_LABELS[relType] ?? relType,
+      size:       13,
+      color:      catColor,
+      x: Math.cos(catAngle) * R1,
+      y: Math.sin(catAngle) * R1,
     });
-  });
 
-  // Edges — coloured by relationship type
-  const seenE = new Set();
-  relEdges.forEach(e => {
-    if (!graph.hasNode(e.source) || !graph.hasNode(e.target)) return;
-    const k = `${e.source}||${e.target}`;
-    if (seenE.has(k)) return;
-    seenE.add(k);
-    const baseColor = EGO_COLORS[e.relType];
-    const color = baseColor ? baseColor + "cc" : "rgba(90,90,90,0.80)";
-    const size  = e.relType === "MACRO_FACTOR" ? 1.2 : 1.8;
-    graph.addEdge(e.source, e.target, {
-      color, size, relType: e.relType, ...e, type: "arrow",
+    // Stock → category spoke (faint)
+    graph.addEdge(stockId, catNodeId, {
+      color:   "rgba(170,170,170,0.85)",
+      size:    1.2,
+      relType: "CAT_LINK",
+      type:    "arrow",
+    });
+
+    // Fan peers around the category angle
+    const fanSpread = Math.min(Math.PI * 0.65, peers.length * 0.28);
+    peers.forEach(({ id, edge }, i) => {
+      const peerAngle = peers.length === 1
+        ? catAngle
+        : catAngle - fanSpread / 2 + (i / (peers.length - 1)) * fanSpread;
+
+      if (!graph.hasNode(id)) {
+        const peerNode = rawData.nodes.find(n => n.id === id);
+        graph.addNode(id, {
+          ...(peerNode ?? {}),
+          label: peerNode?.ticker ?? peerNode?.factor ?? peerNode?.name ?? id,
+          size:  relType === "MACRO_FACTOR" ? 8 : 9,
+          color: "#121212",
+          x: Math.cos(peerAngle) * R2,
+          y: Math.sin(peerAngle) * R2,
+        });
+      }
+
+      // Category → peer edge (colored by relationship)
+      const baseColor = EGO_COLORS[relType];
+      graph.addEdge(catNodeId, id, {
+        color:              baseColor ? baseColor + "cc" : "rgba(90,90,90,0.85)",
+        size:               relType === "MACRO_FACTOR" ? 1.2 : 1.8,
+        relType:            edge.relType,
+        proportionality:    edge.proportionality,
+        relation:           edge.relation,
+        ownership_pct:      edge.ownership_pct,
+        market_share_overlap: edge.market_share_overlap,
+        impact_lag:         edge.impact_lag,
+        sensitivity_index:  edge.sensitivity_index,
+        note:               edge.note,
+        logic:              edge.logic,
+        type:               "arrow",
+      });
     });
   });
 

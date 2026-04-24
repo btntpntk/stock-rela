@@ -1,10 +1,16 @@
 import { useState, useEffect, useCallback, Component } from "react";
 import { SigmaContainer } from "@react-sigma/core";
 import "@react-sigma/core/lib/style.css";
+import { createEdgeArrowProgram } from "sigma/rendering";
 import GraphController from "./components/GraphController";
 import Sidebar from "./components/Sidebar";
 import NodeDetail from "./components/NodeDetail";
 import NewsPage from "./pages/NewsPage";
+
+const EdgeArrowLarge = createEdgeArrowProgram({
+  lengthToThicknessRatio:  5,
+  widenessToThicknessRatio: 3.5,
+});
 
 class ErrorBoundary extends Component {
   state = { error: null };
@@ -23,6 +29,7 @@ class ErrorBoundary extends Component {
 const SIGMA_SETTINGS = {
   defaultNodeType:            "circle",
   defaultEdgeType:            "arrow",
+  edgeProgramClasses:         { arrow: EdgeArrowLarge },
   renderEdgeLabels:           false,
   labelFont:                  "Libre Baskerville, Georgia, serif",
   labelSize:                  12,

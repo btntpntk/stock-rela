@@ -21,7 +21,8 @@
       "Bash(python -c \"import yfinance; print\\('yfinance', yfinance.__version__\\)\")",
       "Bash(python news_pipeline.py)",
       "Bash(npx vite *)",
-      "Bash(pip install *)"
+      "Bash(pip install *)",
+      "Bash(node -e \"const p = require\\('./node_modules/sigma/package.json'\\); console.log\\(p.version\\)\")"
     ]
   }
 }
