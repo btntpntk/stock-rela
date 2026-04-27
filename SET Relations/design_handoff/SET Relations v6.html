@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>SET Relations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="mock-data.js"></script>
+<script type="text/babel" src="tweaks-panel.jsx"></script>
+<script type="text/babel" src="graph-view.jsx"></script>
+<script type="text/babel" src="left-panel.jsx"></script>
+<script type="text/babel" src="right-panel.jsx"></script>
+<script type="text/babel" src="left-panel-paper.jsx"></script>
+<script type="text/babel" src="right-panel-paper.jsx"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body, #root { height: 100%; width: 100%; overflow: hidden; }
+  button, input, select { font-family: inherit; }
+
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-thumb { border-radius: 2px; }
+
+  @keyframes pulse   { 0%,100%{opacity:1} 50%{opacity:0.35} }
+  @keyframes ticker  { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  @keyframes fadeIn  { from{opacity:0} to{opacity:1} }
+  @keyframes slideUp { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes newsIn  { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes themeSwitch { from{opacity:0.4} to{opacity:1} }
+
+  /* Scanline for dark only */
+  body.theme-dark::after {
+    content:'';
+    position:fixed; inset:0;
+    background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 3px);
+    pointer-events:none; z-index:9000;
+  }
+
+  body.theme-dark { background: #0c0c0f; color: #c0c8d8; }
+  body.theme-dark ::-webkit-scrollbar-track { background: transparent; }
+  body.theme-dark ::-webkit-scrollbar-thumb { background: #2a2a38; }
+
+  body.theme-paper { background: #FFF8F2; color: #111111; }
+  body.theme-paper ::-webkit-scrollbar-track { background: #F5EDE0; }
+  body.theme-paper ::-webkit-scrollbar-thumb { background: #C8B8A8; }
+
+  /* Theme transition */
+  #root { animation: themeSwitch 0.25s ease; }
+
+  .news-pill { cursor: pointer; }
+
+  /* Compact density overrides */
+  body.density-compact .compact-pad { padding-top: 3px !important; padding-bottom: 3px !important; }
+</style>
+</head>
+<body class="theme-dark">
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useCallback, useEffect, useRef, useMemo } = React;
+
+/* ══ THEME TOKENS ══════════════════════════════════════════ */
+const DARK = {
+  name: 'dark',
+  bg:'#0c0c0f', panel:'#111215', rail:'#090910',
+  border:'#1e2025', border2:'#16161e',
+  accent:'#6b9fd4', accent2:'#3d5080',
+  txt:'#dce4f0', txt2:'#8a9ab0', txt3:'#383848', txt4:'#252530',
+  pos:'#4caf76', neg:'#e05252', gold:'#c8a040',
+  elevated:'#1a1a20', selected:'#141c2e',
+  navBg:'#090910', navTxt:'#dce4f0', navBorder:'#16161e',
+  graphBg:'#0c0c10',
+  headingFont:"'DM Sans',sans-serif",
+  bodyFont:"'DM Sans',sans-serif",
+};
+
+const PAPER = {
+  name: 'paper',
+  bg:'#FFF8F2', panel:'#FFF8F2', rail:'#F5EDE0',
+  border:'#C8B8A8', border2:'#D8C8B8',
+  accent:'#0A2540', accent2:'#1A3A5A',
+  txt:'#111111', txt2:'#3A3530', txt3:'#6A6058', txt4:'#A09080',
+  pos:'#1A5C32', neg:'#A80000', gold:'#7A5A10',
+  elevated:'#F5EDE0', selected:'#E6EEF8',
+  navBg:'#0F0F0F', navTxt:'#E8E0D8', navBorder:'#2a2a2a',
+  graphBg:'#F8F4EE',
+  headingFont:"'Libre Baskerville',Georgia,serif",
+  bodyFont:"'DM Sans',sans-serif",
+};
+
+/* ══ TWEAK DEFAULTS ══════════════════════════════════════ */
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "theme": "paper",
+  "newsStrip": true,
+  "defaultMode": "overview",
+  "panelWidth": 214,
+  "accentDark": "#ffdd00"
+}/*EDITMODE-END*/;
+
+/* ══ SHARED GRAPH CANVAS ════════════════════════════════ */
+function GraphCanvas({ T, mode, activeStockId, activeChainId, scenarioId, onNodeClick }) {
+  const ref=useRef(null);
+  const [size,setSize]=useState({w:640,h:440});
+  useEffect(()=>{
+    if(!ref.current)return;
+    const ro=new ResizeObserver(entries=>{
+      for(const e of entries) setSize({w:Math.floor(e.contentRect.width),h:Math.floor(e.contentRect.height)});
+    });
+    ro.observe(ref.current);
+    return()=>ro.disconnect();
+  },[]);
+  return (
+    <div ref={ref} style={{flex:1,position:'relative',overflow:'hidden',background:T.graphBg}}>
+      {size.w>0&&(
+        <GraphView mode={mode} activeStockId={activeStockId||'CPALL'}
+          activeChainId={activeChainId} scenarioId={scenarioId}
+          onNodeClick={onNodeClick} width={size.w} height={size.h}/>
+      )}
+      <div style={{position:'absolute',bottom:10,left:14,fontSize:7,color:T.txt4,
+        letterSpacing:'0.1em',textTransform:'uppercase',pointerEvents:'none',
+        fontFamily:T.bodyFont}}>{mode} mode</div>
+      <div style={{position:'absolute',bottom:8,right:10,display:'flex',flexDirection:'column',gap:2}}>
+        {['+','−','⊙'].map((s,i)=>(
+          <div key={i} style={{width:22,height:22,background:T.panel,border:`1px solid ${T.border}`,
+            display:'flex',alignItems:'center',justifyContent:'center',
+            fontSize:11,color:T.txt3,cursor:'pointer',userSelect:'none',
+            transition:'background 0.1s'}}
+            onMouseEnter={e=>e.currentTarget.style.background=T.elevated}
+            onMouseLeave={e=>e.currentTarget.style.background=T.panel}>{s}</div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ══ NEWS STRIP (theme-aware) ════════════════════════════ */
+function NewsStrip({ T, onSelectStock }) {
+  const [open,setOpen]=useState(true);
+  const [hovIdx,setHovIdx]=useState(null);
+  const news=window.NEWS||[];
+  const sentColor=s=>s==='POSITIVE'?T.pos:s==='NEGATIVE'?T.neg:T.txt3;
+  const sentLabel=s=>s==='POSITIVE'?'▲':s==='NEGATIVE'?'▼':'—';
+  const isDark=T.name==='dark';
+
+  return (
+    <div style={{flexShrink:0,borderTop:`${isDark?'1px':'2px'} solid ${isDark?T.border2:T.txt}`,
+      background:isDark?'#0a0a0e':T.elevated,
+      transition:'height 0.22s ease',overflow:'hidden',height:open?90:26}}>
+      <div onClick={()=>setOpen(o=>!o)}
+        style={{height:26,display:'flex',alignItems:'center',padding:'0 12px',gap:8,
+          cursor:'pointer',borderBottom:open?`1px solid ${T.border}`:'none',userSelect:'none',
+          transition:'background 0.1s'}}
+        onMouseEnter={e=>e.currentTarget.style.background=T.elevated}
+        onMouseLeave={e=>e.currentTarget.style.background='transparent'}>
+        <div style={{display:'flex',alignItems:'center',gap:4}}>
+          <div style={{width:5,height:5,borderRadius:'50%',
+            background:isDark?'#2d6644':'#2d7a4a',animation:'pulse 2s ease-in-out infinite'}}/>
+          <span style={{fontSize:7,fontWeight:700,letterSpacing:'0.12em',textTransform:'uppercase',
+            color:T.txt3,fontFamily:T.bodyFont}}>Market News</span>
+        </div>
+        <div style={{display:'flex',gap:10,flex:1}}>
+          {news.slice(0,4).map((n,i)=>(
+            <span key={i} style={{fontSize:7,fontWeight:600,color:sentColor(n.sentiment),
+              fontFamily:T.bodyFont}}>
+              {sentLabel(n.sentiment)} {n.ticker}
+            </span>
+          ))}
+        </div>
+        <span style={{fontSize:8,color:T.txt4,transform:`rotate(${open?'0':'180'}deg)`,transition:'transform 0.2s'}}>▲</span>
+      </div>
+      {open&&(
+        <div style={{display:'flex',gap:6,padding:'7px 12px',overflowX:'auto',
+          height:64,alignItems:'center',animation:'newsIn 0.18s ease'}}>
+          {news.map((n,i)=>(
+            <div key={i} className="news-pill"
+              onClick={()=>{if(n.affected?.[0]?.ticker)onSelectStock(n.affected[0].ticker.replace('.BK',''));}}
+              onMouseEnter={()=>setHovIdx(i)}
+              onMouseLeave={()=>setHovIdx(null)}
+              style={{flexShrink:0,width:222,height:48,padding:'5px 9px',
+                background:T.panel,
+                border:`1px solid ${T.border}`,
+                borderLeft:`3px solid ${sentColor(n.sentiment)}`,
+                display:'flex',flexDirection:'column',justifyContent:'space-between',
+                transition:'background 0.12s'}}>
+              <div style={{display:'flex',alignItems:'center',gap:5}}>
+                <span style={{fontSize:6.5,fontWeight:700,color:sentColor(n.sentiment),
+                  fontFamily:T.bodyFont}}>
+                  {sentLabel(n.sentiment)} {n.sentiment.slice(0,3)}
+                </span>
+                <span style={{fontSize:6.5,fontWeight:700,color:T.accent,
+                  fontFamily:T.bodyFont}}>{n.ticker}</span>
+                <span style={{fontSize:6.5,color:T.txt4,marginLeft:'auto',
+                  fontFamily:T.bodyFont}}>{n.lang} · {n.time}</span>
+              </div>
+              <div style={{fontSize:7.5,lineHeight:1.4,
+                fontFamily:T.headingFont,
+                color:hovIdx===i?T.txt:T.txt3,
+                display:'-webkit-box',WebkitLineClamp:2,WebkitBoxOrient:'vertical',overflow:'hidden',
+                transition:'color 0.12s'}}>
+                {n.title}
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ══ BREADCRUMB ═════════════════════════════════════════ */
+function Breadcrumb({ T, history, onBack }) {
+  if(!history||history.length<2) return null;
+  return (
+    <div style={{display:'flex',alignItems:'center',gap:3,overflow:'hidden',maxWidth:200}}>
+      {history.map((h,i)=>(
+        <React.Fragment key={i}>
+          {i>0&&<span style={{fontSize:8,color:T.navBorder}}>›</span>}
+          <span onClick={i<history.length-1?()=>onBack(i):undefined}
+            style={{fontSize:7.5,fontFamily:T.bodyFont,
+              color:i===history.length-1?T.accent:'#6A6A60',
+              cursor:i<history.length-1?'pointer':'default',
+              fontWeight:i===history.length-1?600:400,
+              whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>
+            {h.label}
+          </span>
+        </React.Fragment>
+      ))}
+    </div>
+  );
+}
+
+/* ══ TICKER TAPE ════════════════════════════════════════ */
+function TickerTape({ T }) {
+  const items=(window.STOCKS||[]).slice(0,14);
+  return (
+    <div style={{overflow:'hidden',flex:1,height:'100%'}}>
+      <div style={{display:'flex',gap:18,animation:'ticker 32s linear infinite',
+        whiteSpace:'nowrap',height:'100%',alignItems:'center'}}>
+        {[...items,...items].map((s,i)=>(
+          <span key={i} style={{fontSize:7.5,letterSpacing:'0.03em',fontFamily:T.bodyFont}}>
+            <span style={{color:'#6A6A60',fontWeight:600}}>{s.id}</span>
+            <span style={{color:s.change>=0?'#4d8a60':'#8a4d4d',marginLeft:4}}>
+              {s.change>=0?'▲':'▼'}{Math.abs(s.change)}%
+            </span>
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ══ SETTINGS PANEL (TweaksPanel-based) ═════════════════ */
+function SettingsPanel({ tweaks, setTweak }) {
+  return (
+    <TweaksPanel title="Settings">
+      <TweakSection label="Theme"/>
+      <TweakRadio label="Appearance" value={tweaks.theme}
+        options={['dark','paper']}
+        onChange={v=>setTweak('theme',v)}/>
+
+      <TweakSection label="Layout"/>
+      <TweakToggle label="News strip" value={tweaks.newsStrip}
+        onChange={v=>setTweak('newsStrip',v)}/>
+      <TweakRadio label="Default graph mode" value={tweaks.defaultMode}
+        options={['overview','chain','ego']}
+        onChange={v=>setTweak('defaultMode',v)}/>
+      <TweakSlider label="Left panel width" value={tweaks.panelWidth}
+        min={180} max={280} step={4} unit="px"
+        onChange={v=>setTweak('panelWidth',v)}/>
+
+      <TweakSection label="Dark theme"/>
+      <TweakColor label="Accent colour" value={tweaks.accentDark}
+        onChange={v=>setTweak('accentDark',v)}/>
+    </TweaksPanel>
+  );
+}
+
+/* ══ MAIN APP ═══════════════════════════════════════════ */
+function App() {
+  const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
+
+  /* resolve active theme */
+  const T = useMemo(()=>{
+    const base = tweaks.theme==='paper' ? PAPER : DARK;
+    if(tweaks.theme==='dark') return { ...base, accent: tweaks.accentDark, accent2: tweaks.accentDark+'80' };
+    return base;
+  },[tweaks.theme, tweaks.accentDark]);
+
+  /* apply body class for global CSS */
+  useEffect(()=>{
+    document.body.className = `theme-${tweaks.theme}`;
+    document.body.style.fontFamily = T.bodyFont;
+  },[tweaks.theme, T.bodyFont]);
+
+  /* graph state */
+  const [graphMode,     setGraphMode]     = useState(tweaks.defaultMode);
+  const [activeStockId, setActiveStockId] = useState(null);
+  const [activeChainId, setActiveChainId] = useState('energy');
+  const [scenarioId,    setScenarioId]    = useState(null);
+  const [selectedStock, setSelectedStock] = useState(null);
+  const [navHistory,    setNavHistory]    = useState([{label:'Overview',mode:'overview'}]);
+  const [search,        setSearch]        = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const [showSearch,    setShowSearch]    = useState(false);
+
+  useEffect(()=>{
+    if(!search.trim()){setSearchResults([]);return;}
+    const q=search.toLowerCase();
+    setSearchResults((window.STOCKS||[]).filter(s=>
+      s.id.toLowerCase().includes(q)||s.name.toLowerCase().includes(q)).slice(0,6));
+  },[search]);
+
+  const navigate=useCallback((mode,stockId,chainId,label)=>{
+    setGraphMode(mode);
+    if(stockId!==undefined)setActiveStockId(stockId);
+    if(chainId!==undefined)setActiveChainId(chainId);
+    setNavHistory(h=>[...h,{label,mode,stockId,chainId}]);
+  },[]);
+
+  const goBack=useCallback((toIdx)=>{
+    const snap=navHistory[toIdx];
+    if(!snap)return;
+    setGraphMode(snap.mode);
+    if(snap.stockId!==undefined)setActiveStockId(snap.stockId);
+    if(snap.chainId!==undefined)setActiveChainId(snap.chainId);
+    setNavHistory(h=>h.slice(0,toIdx+1));
+  },[navHistory]);
+
+  const selectStock=useCallback((ticker)=>{
+    setSelectedStock(ticker);
+    navigate('ego',ticker,undefined,ticker);
+  },[navigate]);
+
+  const handleNodeClick=useCallback((node)=>{
+    if(node.nodeType==='Stock') setSelectedStock(node.id.replace('.BK',''));
+    else if(node.nodeType==='Chain'||node.nodeType==='GhostChain')
+      navigate('chain',undefined,node.id,node.label||node.id);
+  },[navigate]);
+
+  useEffect(()=>{
+    const h=e=>{
+      if(e.key==='Escape'){
+        if(showSearch){setShowSearch(false);setSearch('');return;}
+        if(navHistory.length>1)goBack(navHistory.length-2);
+      }
+    };
+    window.addEventListener('keydown',h);
+    return()=>window.removeEventListener('keydown',h);
+  },[navHistory,goBack,showSearch]);
+
+  const setMode=useCallback((m)=>{
+    const labels={overview:'Overview',chain:'Chain',ego:activeStockId||'Ego'};
+    navigate(m,m==='ego'?(activeStockId||'CPALL'):undefined,
+      m==='chain'?activeChainId:undefined,labels[m]);
+  },[navigate,activeStockId,activeChainId]);
+
+  const isDark=tweaks.theme==='dark';
+  const PanelLeft  = isDark ? LeftPanel       : LeftPanelPaper;
+  const PanelRight = isDark ? RightPanel      : RightPanelPaper;
+
+  return (
+    <div style={{height:'100vh',display:'flex',flexDirection:'column',overflow:'hidden',
+      fontFamily:T.bodyFont, animation:'themeSwitch 0.25s ease'}}>
+
+      {/* ══ NAV ══ */}
+      <div style={{height:42,background:T.navBg,borderBottom:`1px solid ${T.navBorder}`,
+        display:'flex',alignItems:'stretch',flexShrink:0,zIndex:20}}>
+
+        {/* Masthead / Logo */}
+        <div style={{display:'flex',alignItems:'center',padding:'0 16px',gap:8,
+          borderRight:`1px solid ${T.navBorder}`,flexShrink:0}}>
+          <div>
+            <div style={{fontSize:isDark?10:11,fontWeight:700,letterSpacing:isDark?'0.18em':'0.14em',
+              color:T.navTxt,textTransform:'uppercase',fontFamily:T.headingFont,lineHeight:1}}>
+              SET Relations
+            </div>
+            {!isDark&&<div style={{fontSize:6,color:'#505045',letterSpacing:'0.12em',marginTop:2,
+              fontFamily:T.bodyFont,textTransform:'uppercase'}}>
+              {new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})}
+            </div>}
+          </div>
+        </div>
+
+        {/* Mode pills */}
+        <div style={{display:'flex',alignItems:'center',gap:3,padding:'0 12px',
+          borderRight:`1px solid ${T.navBorder}`,flexShrink:0}}>
+          {[['overview','Overview'],['chain','Chain'],['ego','Ego']].map(([id,label])=>{
+            const isAct=graphMode===id;
+            return (
+              <button key={id} onClick={()=>setMode(id)}
+                style={{padding:'3px 10px',cursor:'pointer',fontFamily:T.bodyFont,
+                  fontSize:7.5,fontWeight:700,letterSpacing:'0.06em',textTransform:'uppercase',
+                  border:isDark?`1px solid ${isAct?T.accent2:T.border}`:`1px solid ${isAct?'#E8E0D8':'#444'}`,
+                  background:isDark?(isAct?T.accent2:'transparent'):(isAct?'#E8E0D8':'transparent'),
+                  color:isDark?(isAct?T.accent:'#6A6A60'):(isAct?T.navBg:'#6A6A60'),
+                  transition:'all 0.12s'}}>
+                {label}
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Breadcrumb */}
+        {navHistory.length>1&&(
+          <div style={{display:'flex',alignItems:'center',padding:'0 10px',
+            borderRight:`1px solid ${T.navBorder}`,flexShrink:0}}>
+            <Breadcrumb T={T} history={navHistory} onBack={goBack}/>
+          </div>
+        )}
+
+        {/* Search */}
+        <div style={{position:'relative',display:'flex',alignItems:'center',
+          padding:'0 10px',borderRight:`1px solid ${T.navBorder}`,flexShrink:0}}>
+          <div style={{display:'flex',alignItems:'center',gap:5,
+            background:'#1a1a1a',border:'1px solid #333',padding:'3px 8px',width:140}}>
+            <span style={{fontSize:9,color:'#4a4a40'}}>⌕</span>
+            <input value={search}
+              onChange={e=>{setSearch(e.target.value);setShowSearch(true);}}
+              onFocus={()=>setShowSearch(true)}
+              onBlur={()=>setTimeout(()=>setShowSearch(false),150)}
+              placeholder="Search stock…"
+              style={{background:'transparent',border:'none',outline:'none',fontSize:8.5,
+                color:'#A09080',width:'100%',fontFamily:T.bodyFont}}/>
+          </div>
+          {showSearch&&searchResults.length>0&&(
+            <div style={{position:'absolute',top:'100%',left:10,width:196,
+              background:T.panel,border:`1px solid ${T.txt}`,zIndex:50,
+              boxShadow:'0 8px 24px rgba(0,0,0,0.2)',overflow:'hidden'}}>
+              {searchResults.map(s=>(
+                <div key={s.id} onMouseDown={()=>selectStock(s.id)}
+                  style={{padding:'6px 10px',cursor:'pointer',borderBottom:`1px solid ${T.border}`,
+                    display:'flex',justifyContent:'space-between',alignItems:'center',
+                    transition:'background 0.1s'}}
+                  onMouseEnter={e=>e.currentTarget.style.background=T.elevated}
+                  onMouseLeave={e=>e.currentTarget.style.background='transparent'}>
+                  <div>
+                    <div style={{fontSize:9,fontWeight:700,color:T.txt,fontFamily:T.headingFont}}>{s.id}</div>
+                    <div style={{fontSize:7,color:T.txt4,fontFamily:T.bodyFont}}>{s.name}</div>
+                  </div>
+                  <span style={{fontSize:8,fontWeight:700,fontFamily:T.bodyFont,
+                    color:s.change>=0?T.pos:T.neg}}>
+                    {s.change>=0?'▲':'▼'}{Math.abs(s.change)}%
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Ticker tape */}
+        <div style={{flex:1,overflow:'hidden',borderRight:`1px solid ${T.navBorder}`,height:'100%'}}>
+          <TickerTape T={T}/>
+        </div>
+
+        {/* Live + theme badge */}
+        <div style={{display:'flex',alignItems:'center',gap:8,padding:'0 14px',flexShrink:0}}>
+          <div style={{display:'flex',alignItems:'center',gap:4}}>
+            <div style={{width:5,height:5,borderRadius:'50%',
+              background:isDark?'#2d6644':'#2d7a4a',animation:'pulse 2s ease-in-out infinite'}}/>
+            <span style={{fontSize:7,color:'#505045',letterSpacing:'0.06em',fontFamily:T.bodyFont}}>LIVE</span>
+          </div>
+          {/* Theme pill indicator */}
+          <div style={{padding:'2px 8px',fontSize:6.5,fontWeight:700,
+            letterSpacing:'0.08em',textTransform:'uppercase',fontFamily:T.bodyFont,
+            border:'1px solid #333',color:'#6A6A60',cursor:'pointer',
+            transition:'border-color 0.1s,color 0.1s'}}
+            onClick={()=>setTweak('theme',isDark?'paper':'dark')}
+            onMouseEnter={e=>{e.currentTarget.style.borderColor='#888';e.currentTarget.style.color='#AAA';}}
+            onMouseLeave={e=>{e.currentTarget.style.borderColor='#333';e.currentTarget.style.color='#6A6A60';}}>
+            {isDark?'◑ DARK':'◐ PAPER'}
+          </div>
+        </div>
+      </div>
+
+      {/* ══ WORKSPACE ══ */}
+      <div style={{flex:1,display:'flex',overflow:'hidden'}}>
+
+        {/* Left panel — swaps on theme */}
+        <PanelLeft
+          selectedStock={selectedStock} onSelectStock={selectStock}
+          graphMode={graphMode} setGraphMode={setMode}
+          activeChainId={activeChainId}
+          setActiveChainId={id=>{setActiveChainId(id);
+            navigate('chain',undefined,id,(window.CHAINS||[]).find(c=>c.id===id)?.label||id);}}
+          scenarioId={scenarioId} setScenarioId={setScenarioId}
+          panelWidth={tweaks.panelWidth}/>
+
+        {/* Center: graph + news strip */}
+        <div style={{flex:1,display:'flex',flexDirection:'column',overflow:'hidden'}}>
+          <GraphCanvas T={T} mode={graphMode}
+            activeStockId={activeStockId||'CPALL'}
+            activeChainId={activeChainId} scenarioId={scenarioId}
+            onNodeClick={handleNodeClick}/>
+          {tweaks.newsStrip&&(
+            <NewsStrip T={T}
+              onSelectStock={id=>{setSelectedStock(id);navigate('ego',id,undefined,id);}}/>
+          )}
+        </div>
+
+        {/* Right panel — swaps on theme */}
+        <PanelRight
+          selectedStock={selectedStock}
+          onFocusEgo={ticker=>{setSelectedStock(ticker);navigate('ego',ticker,undefined,ticker);}}
+          onSelectRelated={ticker=>{if(ticker){setSelectedStock(ticker);navigate('ego',ticker,undefined,ticker);}}}/>
+      </div>
+
+      {/* ══ SETTINGS PANEL ══ */}
+      <SettingsPanel tweaks={tweaks} setTweak={setTweak}/>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+</body>
+</html>

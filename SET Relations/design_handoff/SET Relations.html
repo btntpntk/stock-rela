@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SET Relations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="mock-data.js"></script>
+<script type="text/babel" src="graph-view.jsx"></script>
+<script type="text/babel" src="panels.jsx"></script>
+<script type="text/babel" src="news-page.jsx"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body, #root { height: 100%; width: 100%; }
+  body {
+    background: #0c0c0f;
+    font-family: 'DM Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #c0c8d8;
+    overflow: hidden;
+  }
+  button { font-family: inherit; }
+  input  { font-family: inherit; }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #2a2a35; border-radius: 2px; }
+
+  /* Subtle scanline texture */
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background: repeating-linear-gradient(
+      0deg, transparent, transparent 2px,
+      rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 3px
+    );
+    pointer-events: none; z-index: 9999;
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { useState, useCallback, useEffect, useRef } = React;
+
+/* ── Breadcrumb ─────────────────────────────────────── */
+function Breadcrumb({ history, onBack }) {
+  if (!history || history.length === 0) return null;
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+      {history.map((h, i) => (
+        <React.Fragment key={i}>
+          {i > 0 && <span style={{ fontSize: 9, color: '#252530' }}>›</span>}
+          <span
+            onClick={i < history.length - 1 ? () => onBack(i) : undefined}
+            style={{ fontSize: 8, color: i === history.length - 1 ? '#6b9fd4' : '#303045',
+              cursor: i < history.length - 1 ? 'pointer' : 'default', fontWeight: i === history.length - 1 ? 600 : 400 }}>
+            {h.label}
+          </span>
+        </React.Fragment>
+      ))}
+    </div>
+  );
+}
+
+/* ── Ticker tape ─────────────────────────────────────── */
+function TickerTape() {
+  const items = (window.STOCKS || []).slice(0, 10);
+  return (
+    <div style={{ overflow: 'hidden', flex: 1, position: 'relative', height: '100%' }}>
+      <div style={{ display: 'flex', gap: 18, animation: 'ticker 28s linear infinite', whiteSpace: 'nowrap', height: '100%', alignItems: 'center' }}>
+        {[...items, ...items].map((s, i) => (
+          <span key={i} style={{ fontSize: 8, letterSpacing: '0.04em' }}>
+            <span style={{ color: '#3a4055', fontWeight: 600 }}>{s.id}</span>
+            <span style={{ color: s.change >= 0 ? '#2d6644' : '#6a2828', marginLeft: 4 }}>
+              {s.change >= 0 ? '▲' : '▼'}{Math.abs(s.change)}%
+            </span>
+          </span>
+        ))}
+      </div>
+      <style>{`@keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }`}</style>
+    </div>
+  );
+}
+
+/* ── Graph canvas with size tracking ──────────────────── */
+function GraphCanvas({ mode, activeStockId, activeChainId, scenarioId, onNodeClick }) {
+  const ref = useRef(null);
+  const [size, setSize] = useState({ w: 640, h: 480 });
+
+  useEffect(() => {
+    if (!ref.current) return;
+    const ro = new ResizeObserver(entries => {
+      for (const e of entries) {
+        setSize({ w: Math.floor(e.contentRect.width), h: Math.floor(e.contentRect.height) });
+      }
+    });
+    ro.observe(ref.current);
+    return () => ro.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} style={{ flex: 1, position: 'relative', overflow: 'hidden', background: '#0c0c10' }}>
+      {size.w > 0 && (
+        <GraphView mode={mode} activeStockId={activeStockId} activeChainId={activeChainId}
+          scenarioId={scenarioId} onNodeClick={onNodeClick} width={size.w} height={size.h} />
+      )}
+      {/* mode watermark */}
+      <div style={{ position: 'absolute', bottom: 12, left: 14, fontSize: 7, color: '#1e1e28',
+        letterSpacing: '0.1em', textTransform: 'uppercase', pointerEvents: 'none' }}>
+        {mode} · sigma.js
+      </div>
+      {/* zoom stubs */}
+      <div style={{ position: 'absolute', bottom: 10, right: 10, display: 'flex', flexDirection: 'column', gap: 2 }}>
+        {['+','−','⊙'].map((s,i) => (
+          <div key={i} style={{ width: 22, height: 22, background: '#12121a', border: '1px solid #1e1e28',
+            borderRadius: 2, display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: 11, color: '#282838', cursor: 'pointer', userSelect: 'none' }}>{s}</div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ── APP ───────────────────────────────────────────────── */
+function App() {
+  const [page,           setPage]           = useState('graph');
+  const [mode,           setMode]           = useState('overview');
+  const [activeStockId,  setActiveStockId]  = useState(null);
+  const [activeChainId,  setActiveChainId]  = useState('energy');
+  const [scenarioId,     setScenarioId]     = useState(null);
+  const [selectedNode,   setSelectedNode]   = useState(null);
+  const [navHistory,     setNavHistory]     = useState([{ label: 'Overview', mode: 'overview', stockId: null, chainId: 'energy' }]);
+
+  // push nav snapshot
+  const navigate = useCallback((newMode, stockId, chainId, label) => {
+    setMode(newMode);
+    if (stockId !== undefined) setActiveStockId(stockId);
+    if (chainId  !== undefined) setActiveChainId(chainId);
+    setSelectedNode(null);
+    setNavHistory(h => [...h, { label, mode: newMode, stockId, chainId }]);
+  }, []);
+
+  const goBack = useCallback((toIdx) => {
+    const snap = navHistory[toIdx];
+    if (!snap) return;
+    setMode(snap.mode);
+    if (snap.stockId !== undefined) setActiveStockId(snap.stockId);
+    if (snap.chainId  !== undefined) setActiveChainId(snap.chainId);
+    setSelectedNode(null);
+    setNavHistory(h => h.slice(0, toIdx + 1));
+  }, [navHistory]);
+
+  // keyboard back
+  useEffect(() => {
+    const handler = e => {
+      if (e.key === 'Escape' || e.key === 'Backspace' && e.target.tagName !== 'INPUT') {
+        if (navHistory.length > 1) goBack(navHistory.length - 2);
+      }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, [navHistory, goBack]);
+
+  const handleNodeClick = useCallback((node) => {
+    setSelectedNode(node);
+    // clicking a chain node → chain mode
+    if ((node.nodeType === 'Chain' || node.nodeType === 'GhostChain') && window.CHAINS) {
+      const chain = window.CHAINS.find(c => c.id === node.id);
+      if (chain) { /* just select, action button does navigate */ }
+    }
+  }, []);
+
+  const handleFocusEgo = useCallback((id, forceMode) => {
+    if (forceMode === 'chain') {
+      const chain = (window.CHAINS || []).find(c => c.id === id);
+      navigate('chain', undefined, id, chain?.label || id);
+    } else {
+      navigate('ego', id, undefined, id);
+    }
+  }, [navigate]);
+
+  const handleNavigateEgo = useCallback((stockId) => {
+    navigate('ego', stockId, undefined, stockId);
+    setPage('graph');
+  }, [navigate]);
+
+  const handleNavigateStock = useCallback((stockId) => {
+    navigate('ego', stockId, undefined, stockId);
+    setPage('graph');
+  }, [navigate]);
+
+  const setModeWithNav = useCallback((m) => {
+    const labels = { overview: 'Overview', chain: 'Chain', ego: activeStockId || 'Ego' };
+    navigate(m, m === 'ego' ? (activeStockId || 'CPALL') : undefined,
+      m === 'chain' ? activeChainId : undefined, labels[m]);
+  }, [navigate, activeStockId, activeChainId]);
+
+  return (
+    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+
+      {/* ── TOP NAV ── */}
+      <div style={{ height: 38, background: '#090910', borderBottom: '1px solid #16161e',
+        display: 'flex', alignItems: 'center', padding: '0 14px', gap: 12, flexShrink: 0, zIndex: 10 }}>
+
+        {/* Logo */}
+        <div style={{ fontWeight: 800, fontSize: 10.5, letterSpacing: '0.18em', color: '#6b9fd4',
+          textTransform: 'uppercase', flexShrink: 0 }}>SET</div>
+        <div style={{ fontSize: 9, color: '#1e1e2a', letterSpacing: '0.08em', flexShrink: 0 }}>Relations</div>
+        <div style={{ width: 1, height: 14, background: '#1e1e28', flexShrink: 0 }} />
+
+        {/* Page tabs */}
+        {['graph', 'news'].map(p => (
+          <button key={p} onClick={() => setPage(p)}
+            style={{ fontSize: 8.5, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase',
+              color: page === p ? '#c0c8d8' : '#282838', background: 'transparent', border: 'none',
+              padding: '0 2px', height: '100%', cursor: 'pointer',
+              borderBottom: `2px solid ${page === p ? '#6b9fd4' : 'transparent'}` }}>
+            {p}
+          </button>
+        ))}
+
+        <div style={{ width: 1, height: 14, background: '#1e1e28' }} />
+
+        {/* Breadcrumb (graph only) */}
+        {page === 'graph' && (
+          <>
+            <Breadcrumb history={navHistory} onBack={goBack} />
+            <div style={{ width: 1, height: 14, background: '#1e1e28' }} />
+          </>
+        )}
+
+        {/* Ticker tape */}
+        <TickerTape />
+
+        {/* Live tag */}
+        <div style={{ flexShrink: 0, display: 'flex', alignItems: 'center', gap: 4 }}>
+          <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#2d6644', animation: 'pulse 2s ease-in-out infinite' }} />
+          <span style={{ fontSize: 7, color: '#252530', letterSpacing: '0.08em' }}>LIVE · SET</span>
+        </div>
+        <style>{`@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }`}</style>
+      </div>
+
+      {/* ── BODY ── */}
+      <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
+
+        {page === 'graph' && (
+          <>
+            {/* Sidebar (icon rail + panel) */}
+            <Sidebar
+              mode={mode} setMode={setModeWithNav}
+              activeChainId={activeChainId} setActiveChainId={id => navigate('chain', undefined, id, (window.CHAINS||[]).find(c=>c.id===id)?.label || id)}
+              activeStockId={activeStockId} setActiveStockId={id => navigate('ego', id, undefined, id)}
+              scenarioId={scenarioId} setScenarioId={setScenarioId}
+              onNavigateEgo={handleNavigateEgo} />
+
+            {/* Graph canvas */}
+            <GraphCanvas
+              mode={mode} activeStockId={activeStockId || 'CPALL'}
+              activeChainId={activeChainId} scenarioId={scenarioId}
+              onNodeClick={handleNodeClick} />
+
+            {/* Node detail */}
+            <NodeDetail
+              selectedNode={selectedNode} mode={mode}
+              onFocusEgo={handleFocusEgo}
+              onViewNews={id => { setPage('news'); }} />
+          </>
+        )}
+
+        {page === 'news' && (
+          <NewsPage onNavigateStock={handleNavigateStock} />
+        )}
+      </div>
+    </div>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
