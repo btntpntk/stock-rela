@@ -75,3 +75,10 @@ input[type="range"].settings-slider::-moz-range-thumb {
   box-shadow: 0 1px 3px rgba(0,0,0,0.2);
   cursor: pointer;
 }
+
+/* ── Newspaper grid — hook classes for impact-calculator-agent ── */
+.news-grid          { display: grid; }
+/* featured: high-impact article, spans two columns */
+.news-featured      { grid-column: span 2; }
+/* standard: normal article, one column */
+.news-standard      { grid-column: span 1; }

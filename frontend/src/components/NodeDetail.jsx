@@ -42,6 +42,9 @@ const CAT_LABELS = {
 
 const SKIP_REL = new Set(["CHAIN_MEMBER","FEEDS_INTO","MACRO_CHAIN","ROOT_CAT","CAT_MACRO","CAT_CHAIN","ROOT_MACRO"]);
 
+/* ── CAT_ORDER — canonical relationship category ordering ── */
+const CAT_ORDER = ['COMPETITOR','SUPPLY_CHAIN','FINANCIAL_RELATION','EQUITY_HOLDING','MACRO_FACTOR'];
+
 /* ── Format market cap ── */
 function fmtCap(v) {
   if (v == null) return '—';
@@ -50,6 +53,16 @@ function fmtCap(v) {
   if (v >= 1e9)  return `฿${(v/1e9).toFixed(1)}B`;
   if (v >= 1e6)  return `฿${(v/1e6).toFixed(1)}M`;
   return `฿${v}`;
+}
+
+/* ── Format news publish timestamp ── */
+function fmtPub(n) {
+  const ts = n.published_at;
+  if (!ts) return n.time || n.published || '';
+  try {
+    const d = new Date(typeof ts === 'number' ? ts * 1000 : ts);
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+  } catch { return ''; }
 }
 
 /* ── Shared data hook ── */
@@ -82,13 +95,15 @@ function useRightPanelData(rawData, newsData, selectedStock, analysisData) {
   }, [rawData, stockNode]);
 
   const relBreakdown = useMemo(() =>
-    Object.entries(EGO_COLORS).map(([k,c]) => ({
-      key: k,
-      label: CAT_LABELS[k] || k,
-      color: c,
-      count: (rels[k] || []).length,
-      peers: rels[k] || [],
-    })).filter(r => r.count > 0)
+    CAT_ORDER
+      .map(k => ({
+        key:   k,
+        label: CAT_LABELS[k] || k,
+        color: EGO_COLORS[k] || '#888',
+        count: (rels[k] || []).length,
+        peers: (rels[k] || []).slice().sort(),
+      }))
+      .filter(r => r.count > 0)
   , [rels]);
 
   const maxRel = useMemo(() => Math.max(1, ...relBreakdown.map(r => r.count)), [relBreakdown]);
@@ -99,10 +114,13 @@ function useRightPanelData(rawData, newsData, selectedStock, analysisData) {
       .filter(n =>
         n.ticker === selectedStock ||
         n.ticker === selectedStock + '.BK' ||
-        (n.affected || []).some(a =>
+        n.ticker_source === selectedStock ||
+        n.ticker_source === selectedStock + '.BK' ||
+        (n.affected_stocks || n.affected || []).some(a =>
           a.ticker === selectedStock || a.ticker === selectedStock + '.BK'
         )
-      ).slice(0, 4);
+      ).sort((a, b) => (b.published_at || 0) - (a.published_at || 0))
+       .slice(0, 8);
   }, [newsData, selectedStock]);
 
   const rankInfo = useMemo(() => rankInfoFromAnalysis(analysisData), [analysisData]);
@@ -122,7 +140,7 @@ function useRightPanelData(rawData, newsData, selectedStock, analysisData) {
 const RP = {
   panel:'#111215', border:'#1e2025', border2:'#16161e',
   accent:'#6b9fd4', accent2:'#3d5080',
-  txt:'#dce4f0', txt2:'#8a9ab0', txt3:'#383848', txt4:'#252530',
+  txt:'#dce4f0', txt2:'#8a9ab0', txt3:'#707888', txt4:'#252530',
   pos:'#4caf76', neg:'#e05252', gold:'#c8a040',
   elevated:'#1a1a20', selected:'#141c2e',
 };
@@ -393,10 +411,10 @@ export function RightPanel({ rawData, newsData, selectedStock, onFocusEgo, onSel
       {/* Body */}
       <div style={{flex:1,overflowY:'auto',opacity:fade?1:0,transition:'opacity 0.12s ease'}}>
 
-        {/* Relations */}
-        {(activeSection==='all'||activeSection==='rels')&&relBreakdown.length>0&&(
+        {/* Relations — compact summary in 'all' tab */}
+        {activeSection==='all'&&relBreakdown.length>0&&(
           <div style={{padding:'8px 13px',borderBottom:`1px solid ${RP.border2}`}}>
-            {activeSection==='all'&&<div style={{fontSize:10,color:RP.txt4,letterSpacing:'0.1em',textTransform:'uppercase',marginBottom:6}}>Relations</div>}
+            <div style={{fontSize:10,color:RP.txt4,letterSpacing:'0.1em',textTransform:'uppercase',marginBottom:6}}>Relations</div>
             {relBreakdown.map(r=>(
               <div key={r.key} onClick={()=>r.peers[0]&&onSelectRelated&&onSelectRelated(r.peers[0])}
                 style={{display:'flex',alignItems:'center',gap:6,marginBottom:4,
@@ -415,6 +433,32 @@ export function RightPanel({ rawData, newsData, selectedStock, onFocusEgo, onSel
             ))}
           </div>
         )}
+        {/* Relations — expanded categorised peer list in 'rels' tab */}
+        {activeSection==='rels'&&(
+          relBreakdown.length===0
+            ? <div style={{padding:'12px 13px',fontSize:12,color:RP.txt4,fontStyle:'italic'}}>No relations found</div>
+            : relBreakdown.map(r=>(
+                <div key={r.key} style={{borderBottom:`1px solid ${RP.border2}`}}>
+                  <div style={{display:'flex',alignItems:'center',gap:6,padding:'5px 13px',background:RP.elevated}}>
+                    <div style={{width:7,height:7,borderRadius:'50%',background:r.color,flexShrink:0}}/>
+                    <span style={{fontSize:10,fontWeight:700,color:RP.txt3,letterSpacing:'0.07em',textTransform:'uppercase',flex:1}}>{r.label}</span>
+                    <span style={{fontSize:10,color:RP.txt4}}>{r.count}</span>
+                  </div>
+                  <div style={{padding:'2px 13px 6px'}}>
+                    {r.peers.map(p=>(
+                      <div key={p} onClick={()=>onSelectRelated&&onSelectRelated(p)}
+                        style={{padding:'3px 4px',display:'flex',alignItems:'center',gap:5,
+                          borderBottom:`1px solid ${RP.border2}`,cursor:'pointer',transition:'opacity 0.1s'}}
+                        onMouseEnter={e=>e.currentTarget.style.opacity='0.65'}
+                        onMouseLeave={e=>e.currentTarget.style.opacity='1'}>
+                        <span style={{flex:1,fontSize:12,color:RP.txt2,fontWeight:600}}>{p.replace('.BK','')}</span>
+                        <span style={{fontSize:10,color:RP.accent}}>→</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))
+        )}
 
         {/* News */}
         {(activeSection==='all'||activeSection==='news')&&(
@@ -423,23 +467,31 @@ export function RightPanel({ rawData, newsData, selectedStock, onFocusEgo, onSel
             {stockNews.length===0&&(
               <div style={{fontSize:14,color:RP.txt4,fontStyle:'italic',padding:'4px 0'}}>No news for {selectedStock}</div>
             )}
-            {stockNews.map((n,i)=>(
-              <div key={i} style={{marginBottom:8,paddingBottom:8,
-                borderBottom:i<stockNews.length-1?`1px solid ${RP.border2}`:'none',
-                cursor:'pointer',transition:'opacity 0.1s'}}
-                onMouseEnter={e=>e.currentTarget.style.opacity='0.75'}
-                onMouseLeave={e=>e.currentTarget.style.opacity='1'}>
-                <div style={{display:'flex',gap:4,marginBottom:3,alignItems:'center'}}>
-                  <RPSentBadge s={n.sentiment}/>
-                  <span style={{fontSize:12,color:RP.txt4,marginLeft:'auto'}}>{n.time||n.published}</span>
+            {stockNews.map((n,i)=>{
+              const affect = (n.affected_stocks||n.affected||[]).find(a=>
+                a.ticker===selectedStock||a.ticker===selectedStock+'.BK'
+              );
+              const impDir = affect?.impact_direction || n.sentiment;
+              const impW   = affect?.impact_weight;
+              return (
+                <div key={i} style={{marginBottom:8,paddingBottom:8,
+                  borderBottom:i<stockNews.length-1?`1px solid ${RP.border2}`:'none',
+                  cursor:'pointer',transition:'opacity 0.1s'}}
+                  onMouseEnter={e=>e.currentTarget.style.opacity='0.75'}
+                  onMouseLeave={e=>e.currentTarget.style.opacity='1'}>
+                  <div style={{display:'flex',gap:4,marginBottom:3,alignItems:'center'}}>
+                    <RPSentBadge s={impDir}/>
+                    {impW!=null&&<span style={{fontSize:10,color:RP.txt4,marginLeft:2}}>{(impW*100).toFixed(0)}%</span>}
+                    <span style={{fontSize:12,color:RP.txt4,marginLeft:'auto'}}>{fmtPub(n)}</span>
+                  </div>
+                  <div style={{fontSize:11,color:RP.txt3,lineHeight:1.45,
+                    display:'-webkit-box',WebkitLineClamp:3,WebkitBoxOrient:'vertical',overflow:'hidden'}}>
+                    {n.title}
+                  </div>
+                  <div style={{fontSize:10,color:RP.txt4,marginTop:2}}>{n.source}</div>
                 </div>
-                <div style={{fontSize:11,color:RP.txt3,lineHeight:1.45,
-                  display:'-webkit-box',WebkitLineClamp:3,WebkitBoxOrient:'vertical',overflow:'hidden'}}>
-                  {n.title}
-                </div>
-                <div style={{fontSize:10,color:RP.txt4,marginTop:2}}>{n.source}</div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
 
@@ -870,11 +922,11 @@ export function RightPanelPaper({ rawData, newsData, selectedStock, onFocusEgo, 
       {/* Body */}
       <div style={{flex:1,overflowY:'auto',opacity:fade?1:0,transition:'opacity 0.12s ease'}}>
 
-        {/* Relations */}
-        {(activeSection==='all'||activeSection==='rels')&&relBreakdown.length>0&&(
+        {/* Relations — compact summary in 'all' tab */}
+        {activeSection==='all'&&relBreakdown.length>0&&(
           <div style={{padding:'8px 13px',borderBottom:`1px solid ${PP2.rule}`}}>
-            {activeSection==='all'&&<div style={{fontSize:12,color:PP2.ink4,letterSpacing:'0.12em',
-              textTransform:'uppercase',marginBottom:6,fontFamily:"'DM Sans',sans-serif"}}>Relations</div>}
+            <div style={{fontSize:12,color:PP2.ink4,letterSpacing:'0.12em',
+              textTransform:'uppercase',marginBottom:6,fontFamily:"'DM Sans',sans-serif"}}>Relations</div>
             {relBreakdown.map(r=>(
               <div key={r.key} onClick={()=>r.peers[0]&&onSelectRelated&&onSelectRelated(r.peers[0])}
                 style={{display:'flex',alignItems:'center',gap:6,marginBottom:5,
@@ -891,6 +943,35 @@ export function RightPanelPaper({ rawData, newsData, selectedStock, onFocusEgo, 
             ))}
           </div>
         )}
+        {/* Relations — expanded categorised peer list in 'rels' tab */}
+        {activeSection==='rels'&&(
+          relBreakdown.length===0
+            ? <div style={{padding:'12px 13px',fontSize:12,color:PP2.ink4,fontStyle:'italic',
+                fontFamily:"'Libre Baskerville',Georgia,serif"}}>No relations found</div>
+            : relBreakdown.map(r=>(
+                <div key={r.key} style={{borderBottom:`1px solid ${PP2.rule}`}}>
+                  <div style={{display:'flex',alignItems:'center',gap:6,padding:'5px 13px',background:PP2.paperDk}}>
+                    <div style={{width:7,height:7,borderRadius:'50%',background:r.color,flexShrink:0}}/>
+                    <span style={{fontSize:10,fontWeight:700,color:PP2.ink3,letterSpacing:'0.08em',
+                      textTransform:'uppercase',flex:1,fontFamily:"'DM Sans',sans-serif"}}>{r.label}</span>
+                    <span style={{fontSize:10,color:PP2.ink4,fontFamily:"'DM Sans',sans-serif"}}>{r.count}</span>
+                  </div>
+                  <div style={{padding:'2px 13px 6px'}}>
+                    {r.peers.map(p=>(
+                      <div key={p} onClick={()=>onSelectRelated&&onSelectRelated(p)}
+                        style={{padding:'3px 0',display:'flex',alignItems:'center',gap:5,
+                          borderBottom:`1px solid ${PP2.rule}`,cursor:'pointer',transition:'opacity 0.1s'}}
+                        onMouseEnter={e=>e.currentTarget.style.opacity='0.65'}
+                        onMouseLeave={e=>e.currentTarget.style.opacity='1'}>
+                        <span style={{flex:1,fontSize:13,color:PP2.ink,fontWeight:600,
+                          fontFamily:"'Libre Baskerville',Georgia,serif"}}>{p.replace('.BK','')}</span>
+                        <span style={{fontSize:10,color:PP2.accent}}>→</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))
+        )}
 
         {/* News */}
         {(activeSection==='all'||activeSection==='news')&&(
@@ -902,24 +983,32 @@ export function RightPanelPaper({ rawData, newsData, selectedStock, onFocusEgo, 
                 No news for {selectedStock}
               </div>
             )}
-            {stockNews.map((n,i)=>(
-              <div key={i} style={{marginBottom:9,paddingBottom:9,
-                borderBottom:i<stockNews.length-1?`1px solid ${PP2.rule}`:'none',
-                cursor:'pointer',transition:'opacity 0.1s'}}
-                onMouseEnter={e=>e.currentTarget.style.opacity='0.7'}
-                onMouseLeave={e=>e.currentTarget.style.opacity='1'}>
-                <div style={{display:'flex',gap:4,marginBottom:4,alignItems:'center'}}>
-                  <PPSentBadge s={n.sentiment}/>
-                  <span style={{fontSize:12,color:PP2.ink4,marginLeft:'auto',fontFamily:"'DM Sans',sans-serif"}}>{n.time||n.published}</span>
+            {stockNews.map((n,i)=>{
+              const affect = (n.affected_stocks||n.affected||[]).find(a=>
+                a.ticker===selectedStock||a.ticker===selectedStock+'.BK'
+              );
+              const impDir = affect?.impact_direction || n.sentiment;
+              const impW   = affect?.impact_weight;
+              return (
+                <div key={i} style={{marginBottom:9,paddingBottom:9,
+                  borderBottom:i<stockNews.length-1?`1px solid ${PP2.rule}`:'none',
+                  cursor:'pointer',transition:'opacity 0.1s'}}
+                  onMouseEnter={e=>e.currentTarget.style.opacity='0.7'}
+                  onMouseLeave={e=>e.currentTarget.style.opacity='1'}>
+                  <div style={{display:'flex',gap:4,marginBottom:4,alignItems:'center'}}>
+                    <PPSentBadge s={impDir}/>
+                    {impW!=null&&<span style={{fontSize:10,color:PP2.ink4,marginLeft:2,fontFamily:"'DM Sans',sans-serif"}}>{(impW*100).toFixed(0)}%</span>}
+                    <span style={{fontSize:12,color:PP2.ink4,marginLeft:'auto',fontFamily:"'DM Sans',sans-serif"}}>{fmtPub(n)}</span>
+                  </div>
+                  <div style={{fontSize:15,color:PP2.ink,lineHeight:1.5,
+                    fontFamily:"'Libre Baskerville',Georgia,serif",
+                    display:'-webkit-box',WebkitLineClamp:3,WebkitBoxOrient:'vertical',overflow:'hidden'}}>
+                    {n.title}
+                  </div>
+                  <div style={{fontSize:10,color:PP2.ink4,marginTop:3,fontFamily:"'DM Sans',sans-serif"}}>{n.source}</div>
                 </div>
-                <div style={{fontSize:15,color:PP2.ink,lineHeight:1.5,
-                  fontFamily:"'Libre Baskerville',Georgia,serif",
-                  display:'-webkit-box',WebkitLineClamp:3,WebkitBoxOrient:'vertical',overflow:'hidden'}}>
-                  {n.title}
-                </div>
-                <div style={{fontSize:10,color:PP2.ink4,marginTop:3,fontFamily:"'DM Sans',sans-serif"}}>{n.source}</div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         )}
 

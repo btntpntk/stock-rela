@@ -19,7 +19,7 @@ const DARK = {
   bg: '#0c0c0f', panel: '#111215', rail: '#090910',
   border: '#1e2025', border2: '#16161e',
   accent: '#6b9fd4', accent2: '#3d5080',
-  txt: '#dce4f0', txt2: '#8a9ab0', txt3: '#383848', txt4: '#252530',
+  txt: '#dce4f0', txt2: '#8a9ab0', txt3: '#707888', txt4: '#252530',
   pos: '#4caf76', neg: '#e05252', gold: '#c8a040',
   elevated: '#1a1a20', selected: '#141c2e',
   navBg: '#090910', navTxt: '#dce4f0', navBorder: '#16161e',
@@ -93,20 +93,31 @@ function useTweaks(defaults) {
 
 // ── TickerTape ────────────────────────────────────────────────────────────────
 
-function TickerTape({ T, stocks }) {
-  const items = stocks.slice(0, 14);
+function TickerTape({ T, stocks, marketData, marketPrices }) {
+  const items = useMemo(() => {
+    return stocks.slice(0, 24).map(s => {
+      const ticker = s.ticker || s.id;
+      const tickerBK = ticker.endsWith('.BK') ? ticker : ticker + '.BK';
+      // priority: market_data.json → backend /prices → node default
+      const md = marketData?.stocks?.[ticker] || marketData?.stocks?.[tickerBK];
+      const mp = marketPrices?.[ticker] || marketPrices?.[tickerBK];
+      return { ...s, change: md?.change_pct ?? mp?.change_pct ?? s.change ?? s.priceChange ?? 0 };
+    });
+  }, [stocks, marketData, marketPrices]);
+
   if (!items.length) return <div style={{ flex: 1 }} />;
   return (
     <div style={{ overflow: 'hidden', flex: 1, height: '100%' }}>
       <div style={{
-        display: 'flex', gap: 18, animation: 'ticker 32s linear infinite',
+        display: 'flex', gap: 18, animation: 'ticker 36s linear infinite',
         whiteSpace: 'nowrap', height: '100%', alignItems: 'center',
       }}>
         {[...items, ...items].map((s, i) => {
-          const chg = s.change ?? s.priceChange ?? 0;
+          const chg = s.change ?? 0;
+          const label = (s.ticker || s.id || '').replace('.BK', '');
           return (
             <span key={i} style={{ fontSize: 14, letterSpacing: '0.03em', fontFamily: T.bodyFont }}>
-              <span style={{ color: '#6A6A60', fontWeight: 600 }}>{s.ticker || s.id.replace('.BK', '')}</span>
+              <span style={{ color: '#6A6A60', fontWeight: 600 }}>{label}</span>
               <span style={{ color: chg >= 0 ? '#4d8a60' : '#8a4d4d', marginLeft: 4 }}>
                 {chg >= 0 ? '▲' : '▼'}{Math.abs(chg).toFixed(2)}%
               </span>
@@ -248,13 +259,13 @@ function SettingsPanel({ tweaks, setTweak }) {
           width: 28, height: 28,
           background: isDark ? '#111215' : '#F5EDE0',
           border: `1px solid ${isDark ? '#1e2025' : '#C8B8A8'}`,
-          color: isDark ? '#383848' : '#A09080',
+          color: isDark ? '#707888' : '#A09080',
           cursor: 'pointer', fontSize: 16,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           transition: 'color 0.1s',
         }}
         onMouseEnter={e => e.currentTarget.style.color = isDark ? '#8a9ab0' : '#6A6058'}
-        onMouseLeave={e => e.currentTarget.style.color = isDark ? '#383848' : '#A09080'}
+        onMouseLeave={e => e.currentTarget.style.color = isDark ? '#707888' : '#A09080'}
       >⚙</button>
     </div>
   );
@@ -277,10 +288,11 @@ export default function App() {
   }, [tweaks.theme, T.bodyFont]);
 
   // Data
-  const [rawData,   setRawData]   = useState(null);
-  const [newsData,  setNewsData]  = useState([]);
-  const [loading,   setLoading]   = useState(true);
-  const [dataError, setDataError] = useState(null);
+  const [rawData,    setRawData]    = useState(null);
+  const [newsData,   setNewsData]   = useState([]);
+  const [marketData, setMarketData] = useState(null);
+  const [loading,    setLoading]    = useState(true);
+  const [dataError,  setDataError]  = useState(null);
 
   // Backend
   const [backendReady,    setBackendReady]    = useState(false);
@@ -304,7 +316,8 @@ export default function App() {
             .then(r2 => r2.ok ? r2.json() : null)
             .then(sd => { if (!cancelled && sd) setStartupData(sd); })
             .catch(() => {});
-          fetch(`http://localhost:8000/prices?tickers=${RANKED_TICKERS.join(',')}`)
+          const MACRO_SYMS = ['^SET.BK', 'CL=F', 'GC=F'];
+          fetch(`http://localhost:8000/prices?tickers=${[...RANKED_TICKERS, ...MACRO_SYMS].join(',')}`)
             .then(r2 => r2.ok ? r2.json() : {})
             .then(pd => { if (!cancelled) setMarketPrices(pd); })
             .catch(() => {});
@@ -347,10 +360,12 @@ export default function App() {
     Promise.all([
       fetch('/graph-data.json').then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); }),
       fetch(`/news_data.json?t=${Date.now()}`).then(r => r.ok ? r.json() : []).catch(() => []),
+      fetch(`/market_data.json?t=${Date.now()}`).then(r => r.ok ? r.json() : null).catch(() => null),
     ])
-      .then(([graph, news]) => {
+      .then(([graph, news, market]) => {
         setRawData(graph);
         setNewsData(Array.isArray(news) ? news : (news?.articles ?? news?.news ?? []));
+        setMarketData(market);
         setLoading(false);
       })
       .catch(e => { setDataError(e.message); setLoading(false); });
@@ -385,12 +400,20 @@ export default function App() {
     );
   }, [search, stockNodes]);
 
-  // Navigation helpers
+  // Navigation helpers — structural breadcrumb (Overview > Chain > Ego)
   const navigate = useCallback((mode, stockId, chainId, label) => {
     setGraphMode(mode);
     if (stockId !== undefined) setActiveStockId(stockId);
     if (chainId !== undefined) setActiveChainId(chainId);
-    setNavHistory(h => [...h, { label, mode, stockId, chainId }]);
+    setNavHistory(prev => {
+      const root  = prev[0];  // always the Overview entry
+      const entry = { label, mode, stockId, chainId };
+      if (mode === 'overview') return [root];
+      if (mode === 'chain')    return [root, entry];
+      // ego: keep chain context when it exists, so we get Overview > Chain > Stock
+      const chainEntry = prev.find(h => h.mode === 'chain');
+      return chainEntry ? [root, chainEntry, entry] : [root, entry];
+    });
   }, []);
 
   const goBack = useCallback((toIdx) => {
@@ -613,7 +636,7 @@ export default function App() {
 
         {/* Ticker tape */}
         <div style={{ flex: 1, overflow: 'hidden', borderRight: `1px solid ${T.navBorder}`, height: '100%' }}>
-          <TickerTape T={T} stocks={stockNodes} />
+          <TickerTape T={T} stocks={stockNodes} marketData={marketData} marketPrices={marketPrices} />
         </div>
 
         {/* Live pulse + theme toggle */}
@@ -663,6 +686,7 @@ export default function App() {
           panelWidth={tweaks.panelWidth}
           startupData={startupData}
           marketPrices={marketPrices}
+          marketData={marketData}
         />
 
         {/* Center: graph canvas + news strip */}

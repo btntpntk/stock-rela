@@ -9,12 +9,59 @@ function fmtPrice(p) {
   return p >= 1000 ? p.toFixed(0) : p.toFixed(2);
 }
 
-/* ── Static quant data (mirrors prototype mock data) ── */
+/* ── Static quant fallback data (used when market_data.json unavailable) ── */
 const SPARK_DATA = {
   SET:  [1472,1468,1461,1455,1460,1458,1453,1457],
   OIL:  [95.8,96.1,96.8,97.0,97.2,97.1,97.4,97.45],
   GOLD: [4710,4700,4695,4702,4698,4705,4700,4697],
 };
+
+/* ── Derive macro items — priority: market_data.json > backend /prices > static ── */
+function useMacroItems(marketData, marketPrices) {
+  return useMemo(() => [
+    { label:'SET Index', key:'SET',  sym:'^SET.BK', fallback:'0',  fallbackChg:0 },
+    { label:'Crude Oil', key:'OIL',  sym:'CL=F',   fallback:'0',  fallbackChg:0 },
+    { label:'Gold',      key:'GOLD', sym:'GC=F',   fallback:'0',  fallbackChg:0 },
+  ].map(m => {
+    const md  = marketData?.macro?.[m.key];       // from market_pipeline.py
+    const mp  = marketPrices?.[m.sym];            // from backend /prices
+    const chgNum = md?.change_pct ?? mp?.change_pct ?? m.fallbackChg;
+    const price  = md?.price ?? mp?.price;
+    return {
+      label: m.label,
+      val:   price != null ? price.toFixed(2) : m.fallback,
+      chg:   `${chgNum >= 0 ? '+' : ''}${chgNum.toFixed(2)}%`,
+      pos:   chgNum >= 0,
+      data:  md?.sparkline?.length >= 2 ? md.sparkline : SPARK_DATA[m.key],
+    };
+  }), [marketData, marketPrices]);
+}
+
+/* ── Derive ranked list from marketData, fallback to ALL_RANKED ── */
+function useActiveRanked(marketData) {
+  return useMemo(() => {
+    if (!marketData?.stocks) return ALL_RANKED;
+    return Object.values(marketData.stocks)
+      .map(s => {
+        const ticker = s.ticker.replace('.BK', '');
+        const existing = ALL_RANKED.find(r => r.ticker === ticker);
+        const alpha = s.alpha_score ?? existing?.alpha ?? 50;
+        return {
+          ticker,
+          sector:  s.sector || existing?.sector || '—',
+          score:   alpha,
+          verdict: alpha >= 65 ? 'FUND' : alpha >= 45 ? 'TECH' : 'FAIL',
+          change:  s.change_pct ?? existing?.change ?? 0,
+          alpha,
+          strat:   existing?.strat ?? 'MOMENTUM',
+          entry:   s.price ?? existing?.entry ?? null,
+          tp:      existing?.tp ?? null,
+          sl:      existing?.sl ?? null,
+        };
+      })
+      .sort((a, b) => b.score - a.score);
+  }, [marketData]);
+}
 
 const ALL_RANKED = [
   {ticker:'DELTA',  sector:'Tech',         score:75.9, verdict:'FUND', change:+2.1, alpha:96.8, strat:'MOMENTUM',  entry:265,   tp:317,    sl:263   },
@@ -89,7 +136,7 @@ const DK = {
   panel:'#111215', rail:'#090910',
   border:'#1e2025', border2:'#16161e',
   accent:'#6b9fd4', accent2:'#3d5080',
-  txt:'#dce4f0', txt2:'#8a9ab0', txt3:'#383848', txt4:'#252530',
+  txt:'#dce4f0', txt2:'#8a9ab0', txt3:'#707888', txt4:'#252530',
   pos:'#4caf76', neg:'#e05252', gold:'#c8a040',
   elevated:'#1a1a20', selected:'#141c2e',
 };
@@ -136,18 +183,21 @@ function DKSection({ title, badge, action, defaultOpen=true, children }) {
 
 export function LeftPanel({ rawData, selectedStock, onSelectStock, graphMode, setGraphMode,
   activeChainId, setActiveChainId, scenarioId, setScenarioId, panelWidth=214, startupData,
-  marketPrices={} }) {
+  marketPrices={}, marketData=null }) {
 
   const [showFullRanking, setShowFullRanking] = useState(false);
   const [rankFilter,      setRankFilter]      = useState('ALL');
   const [rankSearch,      setRankSearch]      = useState('');
   const [rankSort,        setRankSort]        = useState({col:'score',dir:-1});
   const { chains, macroScenarios, scenarioAffected } = usePanelData(rawData, scenarioId);
+  const macroItems   = useMacroItems(marketData, marketPrices);
+  const activeRanked = useActiveRanked(marketData);
 
   const filteredRank = useMemo(()=>{
-    let d = ALL_RANKED.map(r => {
+    let d = activeRanked.map(r => {
+      const md = marketData?.stocks?.[r.ticker+'.BK'] || marketData?.stocks?.[r.ticker];
       const mp = marketPrices?.[r.ticker + '.BK'];
-      return { ...r, realPrice: mp?.price ?? null, realChg: mp?.change_pct ?? r.change };
+      return { ...r, realPrice: md?.price ?? mp?.price ?? null, realChg: md?.change_pct ?? mp?.change_pct ?? r.change };
     });
     if(rankFilter!=='ALL') d=d.filter(r=>r.verdict===rankFilter);
     if(rankSearch.trim()){const q=rankSearch.toLowerCase();d=d.filter(r=>r.ticker.toLowerCase().includes(q)||r.sector.toLowerCase().includes(q));}
@@ -157,7 +207,7 @@ export function LeftPanel({ rawData, selectedStock, onSelectStock, graphMode, se
       return (av-bv)*rankSort.dir;
     });
     return d;
-  },[rankFilter,rankSearch,rankSort,marketPrices]);
+  },[activeRanked,rankFilter,rankSearch,rankSort,marketPrices,marketData]);
 
   return (
     <div style={{width:panelWidth,background:DK.panel,borderRight:`1px solid ${DK.border}`,
@@ -237,12 +287,13 @@ export function LeftPanel({ rawData, selectedStock, onSelectStock, graphMode, se
 
           {/* ① MARKET PULSE */}
           <DKSection title="Market Pulse" defaultOpen={true}>
+            {marketData?.generated_at&&(
+              <div style={{padding:'2px 12px',fontSize:12,color:DK.txt4,letterSpacing:'0.04em'}}>
+                {new Date(marketData.generated_at).toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}
+              </div>
+            )}
             <div style={{padding:'4px 10px 8px',display:'flex',flexDirection:'column',gap:6}}>
-              {[
-                {label:'SET Index',val:'1,457',chg:'-0.29%',pos:false,data:SPARK_DATA.SET},
-                {label:'Crude Oil',val:'97.45', chg:'+1.67%',pos:true, data:SPARK_DATA.OIL},
-                {label:'Gold',     val:'4,697', chg:'-0.17%',pos:false,data:SPARK_DATA.GOLD},
-              ].map(m=>(
+              {macroItems.map(m=>(
                 <div key={m.label} style={{display:'flex',alignItems:'center',gap:6,
                   padding:'4px 5px',borderRadius:3,transition:'background 0.12s',cursor:'default'}}
                   onMouseEnter={e=>e.currentTarget.style.background=DK.elevated}
@@ -289,14 +340,15 @@ export function LeftPanel({ rawData, selectedStock, onSelectStock, graphMode, se
           </DKSection>
 
           {/* ② TOP RANKED */}
-          <DKSection title="Top Ranked" badge="STT100"
+          <DKSection title="Top Ranked" badge={marketData?`α${activeRanked.length}`:"STT100"}
             action={{label:'Full ↗',fn:()=>setShowFullRanking(true)}}
             defaultOpen={true}>
             <div style={{padding:'2px 0'}}>
-              {ALL_RANKED.slice(0,10).map((r,i)=>{
+              {activeRanked.slice(0,10).map((r,i)=>{
+                const md = marketData?.stocks?.[r.ticker+'.BK'] || marketData?.stocks?.[r.ticker];
                 const mp = marketPrices?.[r.ticker + '.BK'];
-                const realPrice = mp?.price ?? null;
-                const realChg   = mp?.change_pct ?? r.change;
+                const realPrice = md?.price ?? mp?.price ?? null;
+                const realChg   = md?.change_pct ?? mp?.change_pct ?? r.change;
                 const isSel=selectedStock===r.ticker;
                 return (
                   <div key={r.ticker} onClick={()=>onSelectStock(r.ticker)}
@@ -446,18 +498,21 @@ function PPSection({ title, badge, action, defaultOpen=true, children }) {
 
 export function LeftPanelPaper({ rawData, selectedStock, onSelectStock, graphMode, setGraphMode,
   activeChainId, setActiveChainId, scenarioId, setScenarioId, panelWidth=214, startupData,
-  marketPrices={} }) {
+  marketPrices={}, marketData=null }) {
 
   const [showFullRanking, setShowFullRanking] = useState(false);
   const [rankFilter,      setRankFilter]      = useState('ALL');
   const [rankSearch,      setRankSearch]      = useState('');
   const [rankSort,        setRankSort]        = useState({col:'score',dir:-1});
   const { chains, macroScenarios, scenarioAffected } = usePanelData(rawData, scenarioId);
+  const macroItems   = useMacroItems(marketData, marketPrices);
+  const activeRanked = useActiveRanked(marketData);
 
   const filteredRank = useMemo(()=>{
-    let d = ALL_RANKED.map(r => {
+    let d = activeRanked.map(r => {
+      const md = marketData?.stocks?.[r.ticker+'.BK'] || marketData?.stocks?.[r.ticker];
       const mp = marketPrices?.[r.ticker + '.BK'];
-      return { ...r, realPrice: mp?.price ?? null, realChg: mp?.change_pct ?? r.change };
+      return { ...r, realPrice: md?.price ?? mp?.price ?? null, realChg: md?.change_pct ?? mp?.change_pct ?? r.change };
     });
     if(rankFilter!=='ALL') d=d.filter(r=>r.verdict===rankFilter);
     if(rankSearch.trim()){const q=rankSearch.toLowerCase();d=d.filter(r=>r.ticker.toLowerCase().includes(q));}
@@ -467,7 +522,7 @@ export function LeftPanelPaper({ rawData, selectedStock, onSelectStock, graphMod
       return (av-bv)*rankSort.dir;
     });
     return d;
-  },[rankFilter,rankSearch,rankSort,marketPrices]);
+  },[activeRanked,rankFilter,rankSearch,rankSort,marketPrices,marketData]);
 
   return (
     <div style={{width:panelWidth,background:PP.paper,borderRight:`1px solid ${PP.rule}`,
@@ -549,12 +604,13 @@ export function LeftPanelPaper({ rawData, selectedStock, onSelectStock, graphMod
 
           {/* ① MARKET DATA */}
           <PPSection title="Market Data" defaultOpen={true}>
+            {marketData?.generated_at&&(
+              <div style={{padding:'2px 12px',fontSize:12,color:PP.ink4,fontFamily:"'DM Sans',sans-serif"}}>
+                {new Date(marketData.generated_at).toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}
+              </div>
+            )}
             <div style={{padding:'6px 12px 10px',display:'flex',flexDirection:'column',gap:7}}>
-              {[
-                {label:'SET Index',val:'1,457.10',chg:'-0.29%',pos:false,data:SPARK_DATA.SET},
-                {label:'Crude Oil', val:'97.45',  chg:'+1.67%',pos:true, data:SPARK_DATA.OIL},
-                {label:'Gold',      val:'4,697.2',chg:'-0.17%',pos:false,data:SPARK_DATA.GOLD},
-              ].map(m=>(
+              {macroItems.map(m=>(
                 <div key={m.label} style={{display:'flex',alignItems:'center',gap:6,
                   padding:'5px 6px',borderBottom:`1px solid ${PP.rule}`,cursor:'default'}}
                   onMouseEnter={e=>e.currentTarget.style.background=PP.paperDk}
@@ -601,7 +657,7 @@ export function LeftPanelPaper({ rawData, selectedStock, onSelectStock, graphMod
           </PPSection>
 
           {/* ② TOP RANKED */}
-          <PPSection title="Top Ranked" badge="STT100"
+          <PPSection title="Top Ranked" badge={marketData?`α${activeRanked.length}`:"STT100"}
             action={{label:'Full table →',fn:()=>setShowFullRanking(true)}}
             defaultOpen={true}>
             <div style={{display:'flex',padding:'3px 12px',borderBottom:`1px solid ${PP.rule}`,background:PP.paperDk}}>
@@ -610,10 +666,11 @@ export function LeftPanelPaper({ rawData, selectedStock, onSelectStock, graphMod
                   color:PP.ink4,fontFamily:"'DM Sans',sans-serif",flex:i===1?2:1,textAlign:i>1?'right':'left'}}>{h}</span>
               ))}
             </div>
-            {ALL_RANKED.slice(0,10).map((r,i)=>{
+            {activeRanked.slice(0,10).map((r,i)=>{
+              const md = marketData?.stocks?.[r.ticker+'.BK'] || marketData?.stocks?.[r.ticker];
               const mp = marketPrices?.[r.ticker + '.BK'];
-              const realPrice = mp?.price ?? null;
-              const realChg   = mp?.change_pct ?? r.change;
+              const realPrice = md?.price ?? mp?.price ?? null;
+              const realChg   = md?.change_pct ?? mp?.change_pct ?? r.change;
               const isSel=selectedStock===r.ticker;
               return (
                 <div key={r.ticker} onClick={()=>onSelectStock(r.ticker)}
