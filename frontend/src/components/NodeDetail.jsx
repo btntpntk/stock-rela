@@ -4,21 +4,23 @@
 
 import { useState, useMemo, useEffect, useRef } from "react";
 
-/* ── Static rank data (mirrors prototype mock) ── */
-const RANK_MAP = {
-  DELTA: {score:75.9,verdict:'FUND',entry:265,   tp:317,    sl:263,    strat:'MOMENTUM'},
-  AOT:   {score:70.7,verdict:'FUND',entry:54.25, tp:64.5,   sl:50.77,  strat:'MOMENTUM'},
-  ADVANC:{score:63.5,verdict:'FUND',entry:349,   tp:383.5,  sl:329,    strat:'MEAN_REV'},
-  KBANK: {score:64.6,verdict:'TECH',entry:156.5, tp:164,    sl:150,    strat:'MEAN_REV'},
-  SCB:   {score:64.6,verdict:'TECH',entry:130,   tp:136.25, sl:127.06, strat:'MEAN_REV'},
-  CPALL: {score:52.3,verdict:'FUND',entry:65,    tp:72,     sl:62,     strat:'MOMENTUM'},
-  SCC:   {score:61.0,verdict:'FAIL',entry:219,   tp:219,    sl:204.64, strat:'MOMENTUM'},
-  PTT:   {score:55.1,verdict:'FAIL',entry:31.75, tp:34,     sl:30,     strat:'MOMENTUM'},
-  GPSC:  {score:57.4,verdict:'FUND',entry:56,    tp:62,     sl:53,     strat:'MOMENTUM'},
-  GULF:  {score:54.0,verdict:'FUND',entry:49.75, tp:55,     sl:47,     strat:'MOMENTUM'},
-  MAKRO: {score:50.1,verdict:'FUND',entry:43.5,  tp:48,     sl:41,     strat:'MOMENTUM'},
-  PTTEP: {score:48.3,verdict:'FAIL',entry:123,   tp:138,    sl:118,    strat:'MOMENTUM'},
+const SIGNAL_TO_VERDICT = {
+  STRONG_BUY: 'FUND', BUY: 'FUND', NEUTRAL: 'TECH', SELL: 'FAIL', STRONG_SELL: 'FAIL',
 };
+
+function rankInfoFromAnalysis(analysis) {
+  if (!analysis) return null;
+  const f = analysis.fundamental;
+  const t = analysis.technical;
+  return {
+    score:   f.alpha_score,
+    verdict: SIGNAL_TO_VERDICT[f.signal] || 'TECH',
+    entry:   t.entry_price,
+    tp:      t.tp_price,
+    sl:      t.sl_price,
+    strat:   t.strategy,
+  };
+}
 
 const EGO_COLORS = {
   COMPETITOR:         '#c87840',
@@ -51,7 +53,7 @@ function fmtCap(v) {
 }
 
 /* ── Shared data hook ── */
-function useRightPanelData(rawData, newsData, selectedStock) {
+function useRightPanelData(rawData, newsData, selectedStock, analysisData) {
   const stockNode = useMemo(() => {
     if (!rawData || !selectedStock) return null;
     return rawData.nodes.find(n =>
@@ -103,12 +105,12 @@ function useRightPanelData(rawData, newsData, selectedStock) {
       ).slice(0, 4);
   }, [newsData, selectedStock]);
 
-  const rankInfo = useMemo(() => RANK_MAP[selectedStock] || null, [selectedStock]);
+  const rankInfo = useMemo(() => rankInfoFromAnalysis(analysisData), [analysisData]);
 
   const priceData = useMemo(() => {
-    const p = stockNode?.price || stockNode?.lastPrice || 100;
+    const p = analysisData?.price || stockNode?.price || stockNode?.lastPrice || 100;
     return [p*0.88, p*0.90, p*0.91, p*0.89, p*0.93, p*0.94, p*0.96, p];
-  }, [stockNode]);
+  }, [stockNode, analysisData]);
 
   return { stockNode, relBreakdown, maxRel, stockNews, rankInfo, priceData };
 }
@@ -203,8 +205,8 @@ function QuoteModal({ stock, rawData, newsData, onClose, onViewInGraph }) {
   },[onClose]);
   if(!stock) return null;
 
-  const price = stock.price || stock.lastPrice || 0;
-  const change = stock.change || stock.priceChange || 0;
+  const price = stock.price || stock.lastPrice || null;
+  const change = stock.change || stock.priceChange || null;
   const pe = stock.pe || stock.pe_ratio || '—';
   const mktCap = fmtCap(stock.market_cap || stock.mktCap || stock.marketCap);
   const stockNews = (Array.isArray(newsData)?newsData:[])
@@ -224,9 +226,11 @@ function QuoteModal({ stock, rawData, newsData, onClose, onViewInGraph }) {
             <div style={{fontSize:15,color:RP.txt3,marginTop:1}}>{stock.name} · {stock.sector}</div>
           </div>
           <div style={{textAlign:'right'}}>
-            <div style={{fontSize:25,fontWeight:800,color:RP.txt}}>฿{price.toFixed(2)}</div>
+            <div style={{fontSize:25,fontWeight:800,color:RP.txt}}>
+              {price != null ? `฿${price.toFixed(2)}` : '฿—'}
+            </div>
             <div style={{fontSize:13,fontWeight:700,color:change>=0?RP.pos:RP.neg}}>
-              {change>=0?'▲':'▼'} {Math.abs(change).toFixed(2)}%
+              {change != null ? `${change>=0?'▲':'▼'} ${Math.abs(change).toFixed(2)}%` : '—'}
             </div>
           </div>
           <button onClick={onClose}
@@ -287,7 +291,8 @@ function QuoteModal({ stock, rawData, newsData, onClose, onViewInGraph }) {
   );
 }
 
-export function RightPanel({ rawData, newsData, selectedStock, onFocusEgo, onSelectRelated }) {
+export function RightPanel({ rawData, newsData, selectedStock, onFocusEgo, onSelectRelated,
+  analysisData, analysisLoading, analysisError }) {
   const [showModal,     setShowModal]     = useState(false);
   const [activeSection, setActiveSection] = useState('all');
   const [prevStock,     setPrevStock]     = useState(null);
@@ -303,7 +308,7 @@ export function RightPanel({ rawData, newsData, selectedStock, onFocusEgo, onSel
   },[selectedStock]);
 
   const { stockNode, relBreakdown, maxRel, stockNews, rankInfo, priceData }
-    = useRightPanelData(rawData, newsData, selectedStock);
+    = useRightPanelData(rawData, newsData, selectedStock, analysisData);
 
   if(!selectedStock||!stockNode) return (
     <div style={{width:264,background:RP.panel,borderLeft:`1px solid ${RP.border}`,
@@ -320,8 +325,8 @@ export function RightPanel({ rawData, newsData, selectedStock, onFocusEgo, onSel
     </div>
   );
 
-  const price  = stockNode.price || stockNode.lastPrice || 0;
-  const change = stockNode.change || stockNode.priceChange || 0;
+  const price  = analysisData?.price ?? (stockNode.price || stockNode.lastPrice || null);
+  const change = analysisData?.change_pct ?? (stockNode.change || stockNode.priceChange || null);
   const pe     = stockNode.pe || stockNode.pe_ratio;
   const mktCap = fmtCap(stockNode.market_cap || stockNode.mktCap || stockNode.marketCap);
   const verdictColors={FUND:RP.pos,TECH:RP.accent,FAIL:RP.neg};
@@ -345,9 +350,11 @@ export function RightPanel({ rawData, newsData, selectedStock, onFocusEgo, onSel
             <div style={{fontSize:10,color:RP.txt4,marginTop:1}}>{stockNode.sector}</div>
           </div>
           <div style={{textAlign:'right'}}>
-            <div style={{fontSize:18,fontWeight:800,color:RP.txt}}>฿{price.toFixed(2)}</div>
+            <div style={{fontSize:18,fontWeight:800,color:RP.txt}}>
+              {price != null ? `฿${price.toFixed(2)}` : analysisLoading ? '฿…' : '฿—'}
+            </div>
             <div style={{fontSize:16,fontWeight:700,color:change>=0?RP.pos:RP.neg,marginTop:1}}>
-              {change>=0?'▲':'▼'} {Math.abs(change).toFixed(2)}%
+              {change != null ? `${change>=0?'▲':'▼'} ${Math.abs(change).toFixed(2)}%` : '—'}
             </div>
           </div>
         </div>
@@ -355,7 +362,9 @@ export function RightPanel({ rawData, newsData, selectedStock, onFocusEgo, onSel
           <RPSpark data={priceData} color={change>=0?RP.pos:RP.neg} w={238} h={36}/>
         </div>
         <div style={{display:'flex',gap:4,marginTop:6}}>
-          {[['Cap',mktCap],['P/E',pe!=null?pe+'×':'—'],rankInfo?['Score',rankInfo.score]:null].filter(Boolean).map(([k,v])=>(
+          {[['Cap',mktCap],['P/E',pe!=null?pe+'×':'—'],
+            analysisLoading?['Score','…']:rankInfo?['Score',rankInfo.score]:null
+          ].filter(Boolean).map(([k,v])=>(
             <div key={k} style={{flex:1,background:RP.elevated,borderRadius:2,padding:'3px 6px',transition:'background 0.1s'}}
               onMouseEnter={e=>e.currentTarget.style.background='#20202a'}
               onMouseLeave={e=>e.currentTarget.style.background=RP.elevated}>
@@ -368,7 +377,7 @@ export function RightPanel({ rawData, newsData, selectedStock, onFocusEgo, onSel
 
       {/* Tabs */}
       <div style={{display:'flex',borderBottom:`1px solid ${RP.border2}`,flexShrink:0}}>
-        {[['all','All'],['rels','Rels'],['news','News'],['rank','Rank']].map(([id,label])=>(
+        {[['all','All'],['rels','Rels'],['news','News'],['analysis','Analysis']].map(([id,label])=>(
           <div key={id} onClick={()=>setActiveSection(id)}
             style={{flex:1,padding:'5px 0',textAlign:'center',cursor:'pointer',fontSize:10,
               fontWeight:700,letterSpacing:'0.06em',textTransform:'uppercase',
@@ -434,32 +443,108 @@ export function RightPanel({ rawData, newsData, selectedStock, onFocusEgo, onSel
           </div>
         )}
 
-        {/* Rank */}
-        {(activeSection==='all'||activeSection==='rank')&&rankInfo&&(
+        {/* Analysis */}
+        {(activeSection==='all'||activeSection==='analysis')&&(
           <div style={{padding:'8px 13px'}}>
-            {activeSection==='all'&&<div style={{fontSize:10,color:RP.txt4,letterSpacing:'0.1em',textTransform:'uppercase',marginBottom:6}}>Rank Position</div>}
-            <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:5}}>
-              {[
-                ['Score',   rankInfo.score,                          RP.gold],
-                ['Verdict', rankInfo.verdict,                        verdictColors[rankInfo.verdict]||RP.txt2],
-                ['Entry',   '฿'+rankInfo.entry,                     RP.txt2],
-                ['TP',      '฿'+rankInfo.tp,                        RP.pos],
-                ['SL',      '฿'+rankInfo.sl,                        RP.neg],
-                ['Strategy',rankInfo.strat.replace('_',' '),         RP.txt3],
-              ].map(([k,v,c])=>(
-                <div key={k} style={{background:RP.elevated,borderRadius:3,padding:'5px 7px',transition:'background 0.1s'}}
-                  onMouseEnter={e=>e.currentTarget.style.background='#20202a'}
-                  onMouseLeave={e=>e.currentTarget.style.background=RP.elevated}>
-                  <div style={{fontSize:12,color:RP.txt4,textTransform:'uppercase',letterSpacing:'0.06em'}}>{k}</div>
-                  <div style={{fontSize:15,fontWeight:700,color:c,marginTop:1,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{v}</div>
+            {activeSection==='all'&&<div style={{fontSize:10,color:RP.txt4,letterSpacing:'0.1em',textTransform:'uppercase',marginBottom:6}}>Analysis</div>}
+            {analysisLoading&&(
+              <div style={{display:'flex',alignItems:'center',gap:8,padding:'10px 0'}}>
+                <div style={{width:12,height:12,border:`2px solid ${RP.border}`,borderTopColor:RP.accent,
+                  borderRadius:'50%',animation:'spin 0.8s linear infinite'}}/>
+                <span style={{fontSize:12,color:RP.txt4}}>Analysing {selectedStock}…</span>
+              </div>
+            )}
+            {!analysisLoading&&analysisError&&(
+              <div style={{fontSize:11,color:RP.neg,padding:'8px 0',lineHeight:1.5}}>{analysisError}</div>
+            )}
+            {/* All-tab compact summary */}
+            {!analysisLoading&&rankInfo&&activeSection==='all'&&(
+              <div style={{display:'grid',gridTemplateColumns:'1fr 1fr',gap:5}}>
+                {[
+                  ['Score',    rankInfo.score?.toFixed(1)?? '—',             RP.gold],
+                  ['Verdict',  rankInfo.verdict??'—',                        verdictColors[rankInfo.verdict]||RP.txt2],
+                  ['Entry',    rankInfo.entry!=null?'฿'+rankInfo.entry:'—',  RP.txt2],
+                  ['TP',       rankInfo.tp!=null?'฿'+rankInfo.tp:'—',        RP.pos],
+                  ['SL',       rankInfo.sl!=null?'฿'+rankInfo.sl:'—',        RP.neg],
+                  ['Strategy', rankInfo.strat?.replace(/_/g,' ')??'—',       RP.txt3],
+                ].map(([k,v,c])=>(
+                  <div key={k} style={{background:RP.elevated,borderRadius:3,padding:'5px 7px',transition:'background 0.1s'}}
+                    onMouseEnter={e=>e.currentTarget.style.background='#20202a'}
+                    onMouseLeave={e=>e.currentTarget.style.background=RP.elevated}>
+                    <div style={{fontSize:12,color:RP.txt4,textTransform:'uppercase',letterSpacing:'0.06em'}}>{k}</div>
+                    <div style={{fontSize:15,fontWeight:700,color:c,marginTop:1,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{v}</div>
+                  </div>
+                ))}
+              </div>
+            )}
+            {/* Full Analysis tab detail */}
+            {!analysisLoading&&analysisData&&activeSection==='analysis'&&(()=>{
+              const f = analysisData.fundamental;
+              const t = analysisData.technical;
+              const pct = v => v!=null ? `${(v*100).toFixed(1)}%` : '—';
+              const num = (v,d=2) => v!=null ? v.toFixed(d) : '—';
+              const pr  = v => v!=null ? `฿${v.toFixed(2)}` : '—';
+              const sigColor = s => ['BUY','STRONG_BUY'].includes(s)?RP.pos:['SELL','STRONG_SELL'].includes(s)?RP.neg:RP.txt3;
+              const moatColor= m => m==='WIDE'?RP.pos:m==='NARROW'?RP.gold:RP.txt4;
+              const zoneColor= z => z==='SAFE'?RP.pos:z==='DISTRESS'?RP.neg:RP.gold;
+              const stratColor=s => s==='MOMENTUM'?RP.accent:s==='BREAKOUT'?RP.gold:RP.txt3;
+              const badge = (label, color) => (
+                <span style={{fontSize:11,fontWeight:700,padding:'1px 5px',borderRadius:2,
+                  background:color+'22',color:color}}>{label?.replace(/_/g,' ')||'—'}</span>
+              );
+              const Row = ({label, value, color, full=false}) => (
+                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',
+                  padding:'4px 0',borderBottom:`1px solid ${RP.border2}`,minHeight:24}}>
+                  <span style={{fontSize:10,color:RP.txt4,letterSpacing:'0.04em',flexShrink:0,marginRight:6}}>{label}</span>
+                  {full
+                    ? <span style={{fontSize:11,color:color||RP.txt3,textAlign:'right',lineHeight:1.3,wordBreak:'break-word'}}>{value}</span>
+                    : <span style={{fontSize:13,fontWeight:700,color:color||RP.txt2}}>{value}</span>
+                  }
                 </div>
-              ))}
-            </div>
-          </div>
-        )}
-        {activeSection==='rank'&&!rankInfo&&(
-          <div style={{padding:'14px 13px',fontSize:14,color:RP.txt4,textAlign:'center'}}>
-            {selectedStock} not in current scan
+              );
+              const SectionHead = ({title}) => (
+                <div style={{fontSize:9,fontWeight:700,color:RP.txt4,letterSpacing:'0.14em',
+                  textTransform:'uppercase',padding:'8px 0 4px',borderBottom:`1px solid ${RP.border}`}}>
+                  {title}
+                </div>
+              );
+              return (
+                <>
+                  <SectionHead title="Fundamental"/>
+                  <Row label="Signal"       value={badge(f.signal, sigColor(f.signal))}/>
+                  <Row label="Alpha Score"  value={f.alpha_score!=null?`${f.alpha_score.toFixed(1)} / 100`:'—'} color={RP.gold}/>
+                  <Row label="ROIC"         value={pct(f.roic)}   color={f.roic!=null&&f.wacc!=null&&f.roic>=f.wacc?RP.pos:RP.neg}/>
+                  <Row label="WACC"         value={pct(f.wacc)}   color={RP.txt2}/>
+                  <Row label="ROIC − WACC"  value={pct(f.roic_wacc_spread)} color={f.roic_wacc_spread>=0?RP.pos:RP.neg}/>
+                  <Row label="Moat"         value={badge(f.moat, moatColor(f.moat))}/>
+                  <Row label="Sloan Ratio"  value={num(f.sloan_ratio,3)} color={f.sloan_ratio!=null&&Math.abs(f.sloan_ratio)>0.1?RP.neg:RP.pos}/>
+                  <Row label="FCF Quality"  value={num(f.fcf_quality)} color={f.fcf_quality!=null?(f.fcf_quality>=0.7?RP.pos:f.fcf_quality>=0.4?RP.gold:RP.neg):RP.txt2}/>
+                  <Row label="Altman Z"     value={num(f.altman_z)}   color={RP.txt2}/>
+                  <Row label="Altman Zone"  value={badge(f.altman_zone, zoneColor(f.altman_zone))}/>
+                  <Row label="Asset T/O"    value={f.asset_turnover!=null?`${f.asset_turnover.toFixed(2)}×`:'—'} color={RP.txt2}/>
+                  <Row label="CCC"          value={f.cash_conversion_cycle!=null?`${f.cash_conversion_cycle.toFixed(0)} d`:'—'} color={RP.txt2}/>
+                  <Row label="Sortino"      value={num(f.sortino)} color={f.sortino!=null?(f.sortino>=1?RP.pos:f.sortino>=0?RP.gold:RP.neg):RP.txt2}/>
+                  <Row label="Beta"         value={num(f.beta)}   color={RP.txt2}/>
+
+                  <SectionHead title="Technical"/>
+                  <Row label="Strategy"        value={badge(t.strategy, stratColor(t.strategy))}/>
+                  <Row label="Signal Strength"  value={t.signal_strength!=null?`${t.signal_strength} / 100`:'—'} color={t.signal_strength!=null?(t.signal_strength>=60?RP.pos:t.signal_strength>=40?RP.gold:RP.neg):RP.txt2}/>
+                  <Row label="Entry"           value={pr(t.entry_price)} color={RP.txt2}/>
+                  <Row label="Take Profit"     value={pr(t.tp_price)}    color={RP.pos}/>
+                  <Row label="Stop Loss"       value={pr(t.sl_price)}    color={RP.neg}/>
+                  <Row label="R/R Ratio"       value={t.rr_ratio!=null?`${t.rr_ratio.toFixed(2)}×`:'—'} color={t.rr_ratio!=null?(t.rr_ratio>=2?RP.pos:t.rr_ratio>=1?RP.gold:RP.neg):RP.txt2}/>
+                  <Row label="ATR(14)"         value={num(t.atr_14)} color={RP.txt2}/>
+                  <Row label="Price Regime"    value={t.indicators?.price_regime||'—'} color={RP.txt2}/>
+                  <Row label="ADX"             value={t.indicators?.adx!=null?t.indicators.adx.toFixed(1):'—'} color={RP.txt2}/>
+                  <Row label="Regime"          value={t.regime_fit||'—'} color={RP.txt3} full/>
+                </>
+              );
+            })()}
+            {!analysisLoading&&!analysisData&&!analysisError&&(
+              <div style={{padding:'6px 0',fontSize:12,color:RP.txt4,textAlign:'center'}}>
+                Click a stock node to run analysis
+              </div>
+            )}
           </div>
         )}
       </div>
@@ -585,8 +670,8 @@ function QuoteModalPaper({ stock, rawData, newsData, onClose, onViewInGraph }) {
   },[onClose]);
   if(!stock) return null;
 
-  const price  = stock.price || stock.lastPrice || 0;
-  const change = stock.change || stock.priceChange || 0;
+  const price  = stock.price || stock.lastPrice || null;
+  const change = stock.change || stock.priceChange || null;
   const pe     = stock.pe || stock.pe_ratio || '—';
   const mktCap = fmtCap(stock.market_cap || stock.mktCap || stock.marketCap);
   const stockNews = (Array.isArray(newsData)?newsData:[])
@@ -612,10 +697,12 @@ function QuoteModalPaper({ stock, rawData, newsData, onClose, onViewInGraph }) {
           </div>
           <div style={{textAlign:'right',borderLeft:`1px solid ${PP2.rule}`,paddingLeft:14}}>
             <div style={{fontSize:31,fontWeight:700,color:PP2.ink,lineHeight:1,
-              fontFamily:"'Libre Baskerville',Georgia,serif"}}>฿{price.toFixed(2)}</div>
+              fontFamily:"'Libre Baskerville',Georgia,serif"}}>
+              {price != null ? `฿${price.toFixed(2)}` : '฿—'}
+            </div>
             <div style={{fontSize:14,fontWeight:700,color:change>=0?PP2.pos:PP2.neg,
               marginTop:3,fontFamily:"'DM Sans',sans-serif"}}>
-              {change>=0?'▲':'▼'} {Math.abs(change).toFixed(2)}%
+              {change != null ? `${change>=0?'▲':'▼'} ${Math.abs(change).toFixed(2)}%` : '—'}
             </div>
           </div>
           <button onClick={onClose}
@@ -681,7 +768,8 @@ function QuoteModalPaper({ stock, rawData, newsData, onClose, onViewInGraph }) {
   );
 }
 
-export function RightPanelPaper({ rawData, newsData, selectedStock, onFocusEgo, onSelectRelated }) {
+export function RightPanelPaper({ rawData, newsData, selectedStock, onFocusEgo, onSelectRelated,
+  analysisData, analysisLoading, analysisError }) {
   const [showModal,     setShowModal]     = useState(false);
   const [activeSection, setActiveSection] = useState('all');
   const [prevStock,     setPrevStock]     = useState(null);
@@ -697,7 +785,7 @@ export function RightPanelPaper({ rawData, newsData, selectedStock, onFocusEgo, 
   },[selectedStock]);
 
   const { stockNode, relBreakdown, maxRel, stockNews, rankInfo, priceData }
-    = useRightPanelData(rawData, newsData, selectedStock);
+    = useRightPanelData(rawData, newsData, selectedStock, analysisData);
 
   if(!selectedStock||!stockNode) return (
     <div style={{width:264,background:PP2.paper,borderLeft:`1px solid ${PP2.rule}`,
@@ -712,8 +800,8 @@ export function RightPanelPaper({ rawData, newsData, selectedStock, onFocusEgo, 
     </div>
   );
 
-  const price  = stockNode.price || stockNode.lastPrice || 0;
-  const change = stockNode.change || stockNode.priceChange || 0;
+  const price  = analysisData?.price ?? (stockNode.price || stockNode.lastPrice || null);
+  const change = analysisData?.change_pct ?? (stockNode.change || stockNode.priceChange || null);
   const pe     = stockNode.pe || stockNode.pe_ratio;
   const mktCap = fmtCap(stockNode.market_cap || stockNode.mktCap || stockNode.marketCap);
   const verdictColors={FUND:PP2.pos,TECH:PP2.accent,FAIL:PP2.neg};
@@ -738,10 +826,10 @@ export function RightPanelPaper({ rawData, newsData, selectedStock, onFocusEgo, 
           </div>
           <div style={{textAlign:'right'}}>
             <div style={{fontSize:19,fontWeight:700,color:PP2.ink,fontFamily:"'Libre Baskerville',Georgia,serif"}}>
-              ฿{price.toFixed(2)}
+              {price != null ? `฿${price.toFixed(2)}` : analysisLoading ? '฿…' : '฿—'}
             </div>
             <div style={{fontSize:16,fontWeight:700,color:change>=0?PP2.pos:PP2.neg,marginTop:2,fontFamily:"'DM Sans',sans-serif"}}>
-              {change>=0?'▲':'▼'} {Math.abs(change).toFixed(2)}%
+              {change != null ? `${change>=0?'▲':'▼'} ${Math.abs(change).toFixed(2)}%` : '—'}
             </div>
           </div>
         </div>
@@ -749,7 +837,9 @@ export function RightPanelPaper({ rawData, newsData, selectedStock, onFocusEgo, 
           <RPPSpark data={priceData} color={change>=0?PP2.pos:PP2.neg} w={238} h={36}/>
         </div>
         <div style={{display:'flex',gap:0,marginTop:6,border:`1px solid ${PP2.rule}`}}>
-          {[['Cap',mktCap],['P/E',pe!=null?pe+'×':'—'],rankInfo?['Score',rankInfo.score]:null].filter(Boolean).map(([k,v],i,arr)=>(
+          {[['Cap',mktCap],['P/E',pe!=null?pe+'×':'—'],
+            analysisLoading?['Score','…']:rankInfo?['Score',rankInfo.score]:null
+          ].filter(Boolean).map(([k,v],i,arr)=>(
             <div key={k} style={{flex:1,padding:'4px 6px',
               borderRight:i<arr.length-1?`1px solid ${PP2.rule}`:'none',
               background:i%2===0?PP2.paperDk:PP2.paper}}>
@@ -763,7 +853,7 @@ export function RightPanelPaper({ rawData, newsData, selectedStock, onFocusEgo, 
 
       {/* Tabs */}
       <div style={{display:'flex',borderBottom:`1px solid ${PP2.ruleDk}`,flexShrink:0}}>
-        {[['all','All'],['rels','Rels'],['news','News'],['rank','Rank']].map(([id,label])=>(
+        {[['all','All'],['rels','Rels'],['news','News'],['analysis','Analysis']].map(([id,label])=>(
           <div key={id} onClick={()=>setActiveSection(id)}
             style={{flex:1,padding:'5px 0',textAlign:'center',cursor:'pointer',
               fontSize:10,fontWeight:700,letterSpacing:'0.08em',textTransform:'uppercase',
@@ -833,30 +923,117 @@ export function RightPanelPaper({ rawData, newsData, selectedStock, onFocusEgo, 
           </div>
         )}
 
-        {/* Rank */}
-        {(activeSection==='all'||activeSection==='rank')&&rankInfo&&(
+        {/* Analysis */}
+        {(activeSection==='all'||activeSection==='analysis')&&(
           <div style={{padding:'8px 13px'}}>
-            {activeSection==='all'&&<div style={{fontSize:12,color:PP2.ink4,letterSpacing:'0.12em',
-              textTransform:'uppercase',marginBottom:6,fontFamily:"'DM Sans',sans-serif"}}>Rank Position</div>}
-            <div style={{border:`1px solid ${PP2.rule}`}}>
-              {[['Score',rankInfo.score,PP2.gold],['Verdict',rankInfo.verdict,verdictColors[rankInfo.verdict]||PP2.ink],
-                ['Entry','฿'+rankInfo.entry,PP2.ink2],['TP','฿'+rankInfo.tp,PP2.pos],
-                ['SL','฿'+rankInfo.sl,PP2.neg],['Strategy',rankInfo.strat.replace('_',' '),PP2.ink3]
-              ].map(([k,v,c],i)=>(
-                <div key={k} style={{display:'flex',justifyContent:'space-between',
-                  padding:'5px 8px',borderBottom:i<5?`1px solid ${PP2.rule}`:'none',
-                  background:i%2===0?PP2.paperDk:PP2.paper}}>
-                  <span style={{fontSize:10,color:PP2.ink4,textTransform:'uppercase',letterSpacing:'0.07em',fontFamily:"'DM Sans',sans-serif"}}>{k}</span>
-                  <span style={{fontSize:15,fontWeight:700,color:c,fontFamily:"'Libre Baskerville',Georgia,serif"}}>{v}</span>
+            {activeSection==='all'&&<div style={{fontSize:10,color:PP2.ink4,letterSpacing:'0.12em',
+              textTransform:'uppercase',marginBottom:6,fontFamily:"'DM Sans',sans-serif"}}>Analysis</div>}
+            {analysisLoading&&(
+              <div style={{display:'flex',alignItems:'center',gap:8,padding:'10px 0'}}>
+                <div style={{width:12,height:12,border:`2px solid ${PP2.rule}`,borderTopColor:PP2.ink,
+                  borderRadius:'50%',animation:'spin 0.8s linear infinite'}}/>
+                <span style={{fontSize:11,color:PP2.ink4,fontFamily:"'DM Sans',sans-serif"}}>Analysing {selectedStock}…</span>
+              </div>
+            )}
+            {!analysisLoading&&analysisError&&(
+              <div style={{fontSize:11,color:PP2.neg,padding:'8px 0',lineHeight:1.5,
+                fontFamily:"'DM Sans',sans-serif"}}>{analysisError}</div>
+            )}
+            {/* All-tab compact summary */}
+            {!analysisLoading&&rankInfo&&activeSection==='all'&&(
+              <div style={{border:`1px solid ${PP2.rule}`}}>
+                {[['Score',rankInfo.score?.toFixed(1)??'—',PP2.gold],
+                  ['Verdict',rankInfo.verdict??'—',verdictColors[rankInfo.verdict]||PP2.ink],
+                  ['Entry',rankInfo.entry!=null?'฿'+rankInfo.entry:'—',PP2.ink2],
+                  ['TP',rankInfo.tp!=null?'฿'+rankInfo.tp:'—',PP2.pos],
+                  ['SL',rankInfo.sl!=null?'฿'+rankInfo.sl:'—',PP2.neg],
+                  ['Strategy',rankInfo.strat?.replace(/_/g,' ')??'—',PP2.ink3],
+                ].map(([k,v,c],i)=>(
+                  <div key={k} style={{display:'flex',justifyContent:'space-between',
+                    padding:'5px 8px',borderBottom:i<5?`1px solid ${PP2.rule}`:'none',
+                    background:i%2===0?PP2.paperDk:PP2.paper}}>
+                    <span style={{fontSize:10,color:PP2.ink4,textTransform:'uppercase',letterSpacing:'0.07em',fontFamily:"'DM Sans',sans-serif"}}>{k}</span>
+                    <span style={{fontSize:14,fontWeight:700,color:c,fontFamily:"'Libre Baskerville',Georgia,serif"}}>{v}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+            {/* Full Analysis tab detail */}
+            {!analysisLoading&&analysisData&&activeSection==='analysis'&&(()=>{
+              const f = analysisData.fundamental;
+              const t = analysisData.technical;
+              const pct = v => v!=null ? `${(v*100).toFixed(1)}%` : '—';
+              const num = (v,d=2) => v!=null ? v.toFixed(d) : '—';
+              const pr  = v => v!=null ? `฿${v.toFixed(2)}` : '—';
+              const sigColor = s => ['BUY','STRONG_BUY'].includes(s)?PP2.pos:['SELL','STRONG_SELL'].includes(s)?PP2.neg:PP2.ink4;
+              const moatColor= m => m==='WIDE'?PP2.pos:m==='NARROW'?PP2.gold:PP2.ink4;
+              const zoneColor= z => z==='SAFE'?PP2.pos:z==='DISTRESS'?PP2.neg:PP2.gold;
+              const stratColor=s => s==='MOMENTUM'?PP2.accent:s==='BREAKOUT'?PP2.gold:PP2.ink3;
+              const badge = (label, color) => (
+                <span style={{fontSize:11,fontWeight:700,padding:'1px 5px',
+                  background:color+'18',color:color,border:`1px solid ${color}40`,
+                  fontFamily:"'DM Sans',sans-serif"}}>
+                  {label?.replace(/_/g,' ')||'—'}
+                </span>
+              );
+              const Row = ({label, value, color, full=false}) => (
+                <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',
+                  padding:'4px 0',borderBottom:`1px solid ${PP2.rule}`,minHeight:24}}>
+                  <span style={{fontSize:10,color:PP2.ink4,letterSpacing:'0.04em',
+                    fontFamily:"'DM Sans',sans-serif",flexShrink:0,marginRight:6}}>{label}</span>
+                  {full
+                    ? <span style={{fontSize:11,color:color||PP2.ink3,textAlign:'right',
+                        lineHeight:1.3,wordBreak:'break-word',fontFamily:"'DM Sans',sans-serif"}}>{value}</span>
+                    : <span style={{fontSize:13,fontWeight:700,color:color||PP2.ink2,
+                        fontFamily:"'Libre Baskerville',Georgia,serif"}}>{value}</span>
+                  }
                 </div>
-              ))}
-            </div>
-          </div>
-        )}
-        {activeSection==='rank'&&!rankInfo&&(
-          <div style={{padding:'14px 13px',fontSize:11,color:PP2.ink4,textAlign:'center',
-            fontStyle:'italic',fontFamily:"'Libre Baskerville',Georgia,serif"}}>
-            {selectedStock} not in current scan
+              );
+              const SectionHead = ({title}) => (
+                <div style={{fontSize:9,fontWeight:700,color:PP2.ink4,letterSpacing:'0.15em',
+                  textTransform:'uppercase',padding:'8px 0 4px',borderBottom:`2px solid ${PP2.ink}`,
+                  fontFamily:"'DM Sans',sans-serif"}}>
+                  {title}
+                </div>
+              );
+              return (
+                <>
+                  <SectionHead title="Fundamental"/>
+                  <Row label="Signal"       value={badge(f.signal, sigColor(f.signal))}/>
+                  <Row label="Alpha Score"  value={f.alpha_score!=null?`${f.alpha_score.toFixed(1)} / 100`:'—'} color={PP2.gold}/>
+                  <Row label="ROIC"         value={pct(f.roic)}   color={f.roic!=null&&f.wacc!=null&&f.roic>=f.wacc?PP2.pos:PP2.neg}/>
+                  <Row label="WACC"         value={pct(f.wacc)}   color={PP2.ink2}/>
+                  <Row label="ROIC − WACC"  value={pct(f.roic_wacc_spread)} color={f.roic_wacc_spread>=0?PP2.pos:PP2.neg}/>
+                  <Row label="Moat"         value={badge(f.moat, moatColor(f.moat))}/>
+                  <Row label="Sloan Ratio"  value={num(f.sloan_ratio,3)} color={f.sloan_ratio!=null&&Math.abs(f.sloan_ratio)>0.1?PP2.neg:PP2.pos}/>
+                  <Row label="FCF Quality"  value={num(f.fcf_quality)} color={f.fcf_quality!=null?(f.fcf_quality>=0.7?PP2.pos:f.fcf_quality>=0.4?PP2.gold:PP2.neg):PP2.ink2}/>
+                  <Row label="Altman Z"     value={num(f.altman_z)}   color={PP2.ink2}/>
+                  <Row label="Altman Zone"  value={badge(f.altman_zone, zoneColor(f.altman_zone))}/>
+                  <Row label="Asset T/O"    value={f.asset_turnover!=null?`${f.asset_turnover.toFixed(2)}×`:'—'} color={PP2.ink2}/>
+                  <Row label="CCC"          value={f.cash_conversion_cycle!=null?`${f.cash_conversion_cycle.toFixed(0)} d`:'—'} color={PP2.ink2}/>
+                  <Row label="Sortino"      value={num(f.sortino)} color={f.sortino!=null?(f.sortino>=1?PP2.pos:f.sortino>=0?PP2.gold:PP2.neg):PP2.ink2}/>
+                  <Row label="Beta"         value={num(f.beta)}   color={PP2.ink2}/>
+
+                  <SectionHead title="Technical"/>
+                  <Row label="Strategy"        value={badge(t.strategy, stratColor(t.strategy))}/>
+                  <Row label="Signal Strength"  value={t.signal_strength!=null?`${t.signal_strength} / 100`:'—'} color={t.signal_strength!=null?(t.signal_strength>=60?PP2.pos:t.signal_strength>=40?PP2.gold:PP2.neg):PP2.ink2}/>
+                  <Row label="Entry"           value={pr(t.entry_price)} color={PP2.ink2}/>
+                  <Row label="Take Profit"     value={pr(t.tp_price)}    color={PP2.pos}/>
+                  <Row label="Stop Loss"       value={pr(t.sl_price)}    color={PP2.neg}/>
+                  <Row label="R/R Ratio"       value={t.rr_ratio!=null?`${t.rr_ratio.toFixed(2)}×`:'—'} color={t.rr_ratio!=null?(t.rr_ratio>=2?PP2.pos:t.rr_ratio>=1?PP2.gold:PP2.neg):PP2.ink2}/>
+                  <Row label="ATR(14)"         value={num(t.atr_14)} color={PP2.ink2}/>
+                  <Row label="Price Regime"    value={t.indicators?.price_regime||'—'} color={PP2.ink2}/>
+                  <Row label="ADX"             value={t.indicators?.adx!=null?t.indicators.adx.toFixed(1):'—'} color={PP2.ink2}/>
+                  <Row label="Regime"          value={t.regime_fit||'—'} color={PP2.ink3} full/>
+                </>
+              );
+            })()}
+            {!analysisLoading&&!analysisData&&!analysisError&&(
+              <div style={{padding:'6px 0',fontSize:11,color:PP2.ink4,textAlign:'center',
+                fontStyle:'italic',fontFamily:"'Libre Baskerville',Georgia,serif"}}>
+                Click a stock node to run analysis
+              </div>
+            )}
           </div>
         )}
       </div>

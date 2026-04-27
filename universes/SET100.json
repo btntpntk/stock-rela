@@ -1,0 +1,18 @@
+{
+  "name": "SET100",
+  "benchmark": "^SET.BK",
+  "fallback_benchmark": "EWY",
+  "sectors": {
+    "ENERGY":        ["PTT.BK", "PTTEP.BK", "TOP.BK", "EGCO.BK", "RATCH.BK", "OR.BK", "IRPC.BK"],
+    "FINANCIALS":    ["KBANK.BK", "SCB.BK", "BBL.BK", "KTB.BK", "TISCO.BK", "KKP.BK", "KTC.BK", "MTC.BK", "TIDLOR.BK", "BAY.BK", "TCAP.BK"],
+    "TECH":          ["DELTA.BK", "ADVANC.BK", "TRUE.BK", "COM7.BK", "HANA.BK", "INSET.BK"],
+    "CONSUMER_DISC": ["CPALL.BK", "BJC.BK", "HMPRO.BK", "CENTEL.BK", "MINT.BK", "CRC.BK", "GLOBAL.BK", "OSP.BK", "CBG.BK", "BEAUTY.BK"],
+    "CONSUMER_STAP": ["CPF.BK", "TU.BK", "GFPT.BK", "TFG.BK"],
+    "HEALTH":        ["BDMS.BK", "BH.BK", "BCH.BK", "CHG.BK", "PRINC.BK"],
+    "MATERIALS":     ["SCC.BK", "IVL.BK", "PTTGC.BK", "SCGP.BK", "SCCC.BK"],
+    "INDUSTRIALS":   ["BEM.BK", "BTS.BK", "AOT.BK", "AMATA.BK", "CK.BK"],
+    "UTILITIES":     ["BGRIM.BK", "GPSC.BK", "GULF.BK", "EA.BK", "GUNKUL.BK", "BCPG.BK", "DEMCO.BK"],
+    "REIT":          ["WHA.BK", "CPN.BK", "AWC.BK", "LH.BK", "SPALI.BK", "AP.BK", "SC.BK", "LPN.BK"],
+    "TRANSPORT":     ["BANPU.BK", "AAV.BK"]
+  }
+}

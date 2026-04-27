@@ -23,7 +23,9 @@
       "Bash(npx vite *)",
       "Bash(pip install *)",
       "Bash(node -e \"const p = require\\('./node_modules/sigma/package.json'\\); console.log\\(p.version\\)\")",
-      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173/)"
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173/)",
+      "Bash(python -c \"import json; d = json.load\\(open\\('frontend/public/news_data.json'\\)\\); t = type\\(d\\).__name__; print\\(t\\); print\\(list\\(d.keys\\(\\)\\) if isinstance\\(d, dict\\) else f'list len={len\\(d\\)}'\\)\")",
+      "Bash(python -c \"import json; d = json.load\\(open\\('frontend/public/news_data.json', encoding='utf-8'\\)\\); t = type\\(d\\).__name__; print\\(t\\); print\\(list\\(d.keys\\(\\)\\) if isinstance\\(d, dict\\) else f'list len={len\\(d\\)}'\\)\")"
     ]
   }
 }

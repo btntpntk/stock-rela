@@ -4,6 +4,11 @@
 
 import { useState, useMemo } from "react";
 
+function fmtPrice(p) {
+  if (p == null) return '—';
+  return p >= 1000 ? p.toFixed(0) : p.toFixed(2);
+}
+
 /* ── Static quant data (mirrors prototype mock data) ── */
 const SPARK_DATA = {
   SET:  [1472,1468,1461,1455,1460,1458,1453,1457],
@@ -28,6 +33,8 @@ const ALL_RANKED = [
   {ticker:'MAKRO',  sector:'Consumer S.',  score:50.1, verdict:'FUND', change:+0.9, alpha:44.0, strat:'MOMENTUM',  entry:43.5,  tp:48,     sl:41    },
   {ticker:'PTTEP',  sector:'Energy',       score:48.3, verdict:'FAIL', change:-1.1, alpha:38.0, strat:'MOMENTUM',  entry:123,   tp:138,    sl:118   },
 ];
+
+export const RANKED_TICKERS = ALL_RANKED.map(r => r.ticker + '.BK');
 
 /* ── Shared data hook ── */
 function usePanelData(rawData, scenarioId) {
@@ -128,7 +135,8 @@ function DKSection({ title, badge, action, defaultOpen=true, children }) {
 }
 
 export function LeftPanel({ rawData, selectedStock, onSelectStock, graphMode, setGraphMode,
-  activeChainId, setActiveChainId, scenarioId, setScenarioId, panelWidth=214 }) {
+  activeChainId, setActiveChainId, scenarioId, setScenarioId, panelWidth=214, startupData,
+  marketPrices={} }) {
 
   const [showFullRanking, setShowFullRanking] = useState(false);
   const [rankFilter,      setRankFilter]      = useState('ALL');
@@ -137,12 +145,19 @@ export function LeftPanel({ rawData, selectedStock, onSelectStock, graphMode, se
   const { chains, macroScenarios, scenarioAffected } = usePanelData(rawData, scenarioId);
 
   const filteredRank = useMemo(()=>{
-    let d=[...ALL_RANKED];
+    let d = ALL_RANKED.map(r => {
+      const mp = marketPrices?.[r.ticker + '.BK'];
+      return { ...r, realPrice: mp?.price ?? null, realChg: mp?.change_pct ?? r.change };
+    });
     if(rankFilter!=='ALL') d=d.filter(r=>r.verdict===rankFilter);
     if(rankSearch.trim()){const q=rankSearch.toLowerCase();d=d.filter(r=>r.ticker.toLowerCase().includes(q)||r.sector.toLowerCase().includes(q));}
-    d.sort((a,b)=>(a[rankSort.col]-b[rankSort.col])*rankSort.dir);
+    d.sort((a,b)=>{
+      const av = rankSort.col==='change' ? a.realChg : a[rankSort.col];
+      const bv = rankSort.col==='change' ? b.realChg : b[rankSort.col];
+      return (av-bv)*rankSort.dir;
+    });
     return d;
-  },[rankFilter,rankSearch,rankSort]);
+  },[rankFilter,rankSearch,rankSort,marketPrices]);
 
   return (
     <div style={{width:panelWidth,background:DK.panel,borderRight:`1px solid ${DK.border}`,
@@ -179,7 +194,7 @@ export function LeftPanel({ rawData, selectedStock, onSelectStock, graphMode, se
             <table style={{width:'100%',borderCollapse:'collapse',fontSize:14}}>
               <thead>
                 <tr style={{position:'sticky',top:0,background:DK.rail}}>
-                  {[['#','',16],['Ticker','ticker',52],['Score','score',36],['Verdict','verdict',38],['α','alpha',28]].map(([h,col,w])=>(
+                  {[['#','',16],['Ticker','ticker',52],['Price','',52],['Chg','change',40],['V','verdict',28]].map(([h,col,w])=>(
                     <td key={h} onClick={()=>col&&setRankSort(s=>s.col===col?{col,dir:-s.dir}:{col,dir:-1})}
                       style={{padding:'4px 5px',color:rankSort.col===col?DK.accent:DK.txt4,
                         fontWeight:700,fontSize:9,letterSpacing:'0.06em',
@@ -202,9 +217,11 @@ export function LeftPanel({ rawData, selectedStock, onSelectStock, graphMode, se
                       onMouseLeave={e=>{if(!isSel)e.currentTarget.style.background='transparent';}}>
                       <td style={{padding:'3px 5px',color:DK.txt4,fontSize:9}}>{i+1}</td>
                       <td style={{padding:'3px 5px',color:isSel?DK.accent:DK.txt2,fontWeight:700}}>{r.ticker}</td>
-                      <td style={{padding:'3px 5px',color:DK.gold,fontWeight:700}}>{r.score.toFixed(1)}</td>
+                      <td style={{padding:'3px 5px',color:DK.txt,fontWeight:700,fontSize:11}}>฿{fmtPrice(r.realPrice)}</td>
+                      <td style={{padding:'3px 5px',color:r.realChg>=0?DK.pos:DK.neg,fontWeight:700,fontSize:10}}>
+                        {r.realChg>=0?'+':''}{r.realChg.toFixed(2)}%
+                      </td>
                       <td style={{padding:'3px 5px'}}><DKVerdict v={r.verdict}/></td>
-                      <td style={{padding:'3px 5px',color:r.alpha>=50?DK.pos:DK.neg,fontWeight:600,fontSize:10}}>{r.alpha.toFixed(0)}</td>
                     </tr>
                   );
                 })}
@@ -241,25 +258,34 @@ export function LeftPanel({ rawData, selectedStock, onSelectStock, graphMode, se
                 </div>
               ))}
             </div>
-            <div style={{margin:'0 10px 10px',background:DK.elevated,border:`1px solid ${DK.border}`,
-              borderRadius:3,padding:'7px 10px',display:'flex',alignItems:'center',gap:8,
-              transition:'border-color 0.15s',cursor:'default'}}
-              onMouseEnter={e=>e.currentTarget.style.borderColor=DK.accent2}
-              onMouseLeave={e=>e.currentTarget.style.borderColor=DK.border}>
-              <div>
-                <div style={{fontSize:12,color:DK.txt4,letterSpacing:'0.08em',textTransform:'uppercase'}}>Regime</div>
-                <div style={{fontSize:23,fontWeight:800,color:DK.gold,letterSpacing:'-0.02em',lineHeight:1.1}}>34.7</div>
-              </div>
-              <div style={{flex:1}}>
-                <div style={{fontSize:11,fontWeight:700,color:DK.gold}}>MODERATE</div>
-                <div style={{fontSize:12,color:DK.txt4,marginTop:1}}>VIX 19.3 · Spread 305bp</div>
-                <div style={{marginTop:5,height:4,background:DK.border,borderRadius:2,overflow:'hidden',display:'flex'}}>
-                  {[[DK.pos,16],[DK.neg,68],['#c87840',16]].map(([c,v],i)=>(
-                    <div key={i} style={{flex:v,background:c,opacity:0.8}}/>
-                  ))}
+            {(()=>{
+              const mr = startupData?.market_risk;
+              const riskScore  = mr?.composite?.composite_risk  ?? 34.7;
+              const riskLabel  = mr?.composite?.regime_label    ?? 'MODERATE';
+              const vix        = mr?.trigger?.vix_spot?.vix_level ?? 19.3;
+              const spreadBps  = mr?.regime?.hy_credit_spread?.oas_bps ?? 305;
+              return (
+                <div style={{margin:'0 10px 10px',background:DK.elevated,border:`1px solid ${DK.border}`,
+                  borderRadius:3,padding:'7px 10px',display:'flex',alignItems:'center',gap:8,
+                  transition:'border-color 0.15s',cursor:'default'}}
+                  onMouseEnter={e=>e.currentTarget.style.borderColor=DK.accent2}
+                  onMouseLeave={e=>e.currentTarget.style.borderColor=DK.border}>
+                  <div>
+                    <div style={{fontSize:12,color:DK.txt4,letterSpacing:'0.08em',textTransform:'uppercase'}}>Regime</div>
+                    <div style={{fontSize:23,fontWeight:800,color:DK.gold,letterSpacing:'-0.02em',lineHeight:1.1}}>{riskScore.toFixed(1)}</div>
+                  </div>
+                  <div style={{flex:1}}>
+                    <div style={{fontSize:11,fontWeight:700,color:DK.gold}}>{riskLabel.replace(/_/g,' ')}</div>
+                    <div style={{fontSize:12,color:DK.txt4,marginTop:1}}>VIX {vix.toFixed(1)} · Spread {Math.round(spreadBps)}bp</div>
+                    <div style={{marginTop:5,height:4,background:DK.border,borderRadius:2,overflow:'hidden',display:'flex'}}>
+                      {[[DK.pos,16],[DK.neg,68],['#c87840',16]].map(([c,v],i)=>(
+                        <div key={i} style={{flex:v,background:c,opacity:0.8}}/>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
+              );
+            })()}
           </DKSection>
 
           {/* ② TOP RANKED */}
@@ -268,6 +294,9 @@ export function LeftPanel({ rawData, selectedStock, onSelectStock, graphMode, se
             defaultOpen={true}>
             <div style={{padding:'2px 0'}}>
               {ALL_RANKED.slice(0,10).map((r,i)=>{
+                const mp = marketPrices?.[r.ticker + '.BK'];
+                const realPrice = mp?.price ?? null;
+                const realChg   = mp?.change_pct ?? r.change;
                 const isSel=selectedStock===r.ticker;
                 return (
                   <div key={r.ticker} onClick={()=>onSelectStock(r.ticker)}
@@ -278,9 +307,12 @@ export function LeftPanel({ rawData, selectedStock, onSelectStock, graphMode, se
                     onMouseEnter={e=>{if(!isSel){e.currentTarget.style.background=DK.elevated;e.currentTarget.style.borderLeftColor=DK.accent2;}}}
                     onMouseLeave={e=>{if(!isSel){e.currentTarget.style.background='transparent';e.currentTarget.style.borderLeftColor='transparent';}}}>
                     <span style={{fontSize:10,color:DK.txt4,width:12,textAlign:'right',flexShrink:0}}>{i+1}</span>
-                    <span style={{fontSize:15,fontWeight:700,color:isSel?DK.accent:DK.txt2,flex:1,transition:'color 0.1s'}}>{r.ticker}</span>
-                    <span style={{fontSize:14,fontWeight:700,color:r.change>=0?DK.pos:DK.neg,flexShrink:0}}>
-                      {r.change>=0?'▲':'▼'}{Math.abs(r.change)}%
+                    <div style={{flex:1,minWidth:0}}>
+                      <div style={{fontSize:15,fontWeight:700,color:isSel?DK.accent:DK.txt2,transition:'color 0.1s'}}>{r.ticker}</div>
+                      <div style={{fontSize:10,color:DK.txt4}}>฿{fmtPrice(realPrice)}</div>
+                    </div>
+                    <span style={{fontSize:13,fontWeight:700,color:realChg>=0?DK.pos:DK.neg,flexShrink:0}}>
+                      {realChg>=0?'▲':'▼'}{Math.abs(realChg).toFixed(2)}%
                     </span>
                     <DKVerdict v={r.verdict}/>
                   </div>
@@ -413,7 +445,8 @@ function PPSection({ title, badge, action, defaultOpen=true, children }) {
 }
 
 export function LeftPanelPaper({ rawData, selectedStock, onSelectStock, graphMode, setGraphMode,
-  activeChainId, setActiveChainId, scenarioId, setScenarioId, panelWidth=214 }) {
+  activeChainId, setActiveChainId, scenarioId, setScenarioId, panelWidth=214, startupData,
+  marketPrices={} }) {
 
   const [showFullRanking, setShowFullRanking] = useState(false);
   const [rankFilter,      setRankFilter]      = useState('ALL');
@@ -422,12 +455,19 @@ export function LeftPanelPaper({ rawData, selectedStock, onSelectStock, graphMod
   const { chains, macroScenarios, scenarioAffected } = usePanelData(rawData, scenarioId);
 
   const filteredRank = useMemo(()=>{
-    let d=[...ALL_RANKED];
+    let d = ALL_RANKED.map(r => {
+      const mp = marketPrices?.[r.ticker + '.BK'];
+      return { ...r, realPrice: mp?.price ?? null, realChg: mp?.change_pct ?? r.change };
+    });
     if(rankFilter!=='ALL') d=d.filter(r=>r.verdict===rankFilter);
     if(rankSearch.trim()){const q=rankSearch.toLowerCase();d=d.filter(r=>r.ticker.toLowerCase().includes(q));}
-    d.sort((a,b)=>(a[rankSort.col]-b[rankSort.col])*rankSort.dir);
+    d.sort((a,b)=>{
+      const av = rankSort.col==='change' ? a.realChg : a[rankSort.col];
+      const bv = rankSort.col==='change' ? b.realChg : b[rankSort.col];
+      return (av-bv)*rankSort.dir;
+    });
     return d;
-  },[rankFilter,rankSearch,rankSort]);
+  },[rankFilter,rankSearch,rankSort,marketPrices]);
 
   return (
     <div style={{width:panelWidth,background:PP.paper,borderRight:`1px solid ${PP.rule}`,
@@ -464,7 +504,7 @@ export function LeftPanelPaper({ rawData, selectedStock, onSelectStock, graphMod
             <table style={{width:'100%',borderCollapse:'collapse'}}>
               <thead>
                 <tr style={{position:'sticky',top:0,background:PP.paperDk,borderBottom:`2px solid ${PP.rule}`}}>
-                  {[['#','',14],['Ticker','ticker',56],['Score','score',34],['V','verdict',30]].map(([h,col,w])=>(
+                  {[['#','',14],['Ticker','ticker',52],['Price','',48],['Chg','change',38],['V','verdict',28]].map(([h,col,w])=>(
                     <td key={h} onClick={()=>col&&setRankSort(s=>s.col===col?{col,dir:-s.dir}:{col,dir:-1})}
                       style={{padding:'4px 6px',color:rankSort.col===col?PP.accent:PP.ink3,
                         fontWeight:700,fontSize:12,letterSpacing:'0.08em',textTransform:'uppercase',
@@ -486,7 +526,12 @@ export function LeftPanelPaper({ rawData, selectedStock, onSelectStock, graphMod
                       <td style={{padding:'4px 6px',color:PP.ink4,fontSize:10}}>{i+1}</td>
                       <td style={{padding:'4px 6px',color:isSel?PP.accent:PP.ink,fontWeight:700,
                         fontFamily:"'Libre Baskerville',Georgia,serif",fontSize:11}}>{r.ticker}</td>
-                      <td style={{padding:'4px 6px',color:PP.gold,fontWeight:700,fontSize:11}}>{r.score.toFixed(1)}</td>
+                      <td style={{padding:'4px 6px',color:PP.ink,fontWeight:700,fontSize:11,
+                        fontFamily:"'Libre Baskerville',Georgia,serif"}}>฿{fmtPrice(r.realPrice)}</td>
+                      <td style={{padding:'4px 6px',fontWeight:700,fontSize:11,fontFamily:"'DM Sans',sans-serif",
+                        color:r.realChg>=0?PP.pos:PP.neg}}>
+                        {r.realChg>=0?'+':''}{r.realChg.toFixed(2)}%
+                      </td>
                       <td style={{padding:'4px 6px'}}><PPVerdict v={r.verdict}/></td>
                     </tr>
                   );
@@ -527,23 +572,32 @@ export function LeftPanelPaper({ rawData, selectedStock, onSelectStock, graphMod
                 </div>
               ))}
             </div>
-            <div style={{margin:'0 10px 10px',background:PP.paperDk,border:`1px solid ${PP.rule}`,padding:'8px 10px'}}>
-              <div style={{fontSize:12,color:PP.ink4,letterSpacing:'0.1em',textTransform:'uppercase',
-                fontFamily:"'DM Sans',sans-serif",marginBottom:3}}>Market Regime</div>
-              <div style={{display:'flex',alignItems:'baseline',gap:8}}>
-                <span style={{fontSize:27,fontWeight:700,color:PP.gold,
-                  fontFamily:"'Libre Baskerville',Georgia,serif"}}>34.7</span>
-                <span style={{fontSize:11,fontWeight:700,color:PP.gold,fontFamily:"'DM Sans',sans-serif"}}>MODERATE</span>
-              </div>
-              <div style={{marginTop:5,height:3,background:PP.rule,display:'flex'}}>
-                {[[PP.pos,16],[PP.neg,68],['#8B6914',16]].map(([c,v],i)=>(
-                  <div key={i} style={{flex:v,background:c,opacity:0.7}}/>
-                ))}
-              </div>
-              <div style={{marginTop:4,fontSize:12,color:PP.ink4,fontFamily:"'DM Sans',sans-serif"}}>
-                VIX 19.3 · HY Spread 305bp
-              </div>
-            </div>
+            {(()=>{
+              const mr = startupData?.market_risk;
+              const riskScore  = mr?.composite?.composite_risk  ?? 34.7;
+              const riskLabel  = mr?.composite?.regime_label    ?? 'MODERATE';
+              const vix        = mr?.trigger?.vix_spot?.vix_level ?? 19.3;
+              const spreadBps  = mr?.regime?.hy_credit_spread?.oas_bps ?? 305;
+              return (
+                <div style={{margin:'0 10px 10px',background:PP.paperDk,border:`1px solid ${PP.rule}`,padding:'8px 10px'}}>
+                  <div style={{fontSize:12,color:PP.ink4,letterSpacing:'0.1em',textTransform:'uppercase',
+                    fontFamily:"'DM Sans',sans-serif",marginBottom:3}}>Market Regime</div>
+                  <div style={{display:'flex',alignItems:'baseline',gap:8}}>
+                    <span style={{fontSize:27,fontWeight:700,color:PP.gold,
+                      fontFamily:"'Libre Baskerville',Georgia,serif"}}>{riskScore.toFixed(1)}</span>
+                    <span style={{fontSize:11,fontWeight:700,color:PP.gold,fontFamily:"'DM Sans',sans-serif"}}>{riskLabel.replace(/_/g,' ')}</span>
+                  </div>
+                  <div style={{marginTop:5,height:3,background:PP.rule,display:'flex'}}>
+                    {[[PP.pos,16],[PP.neg,68],['#8B6914',16]].map(([c,v],i)=>(
+                      <div key={i} style={{flex:v,background:c,opacity:0.7}}/>
+                    ))}
+                  </div>
+                  <div style={{marginTop:4,fontSize:12,color:PP.ink4,fontFamily:"'DM Sans',sans-serif"}}>
+                    VIX {vix.toFixed(1)} · HY Spread {Math.round(spreadBps)}bp
+                  </div>
+                </div>
+              );
+            })()}
           </PPSection>
 
           {/* ② TOP RANKED */}
@@ -551,12 +605,15 @@ export function LeftPanelPaper({ rawData, selectedStock, onSelectStock, graphMod
             action={{label:'Full table →',fn:()=>setShowFullRanking(true)}}
             defaultOpen={true}>
             <div style={{display:'flex',padding:'3px 12px',borderBottom:`1px solid ${PP.rule}`,background:PP.paperDk}}>
-              {['#','Ticker','Chg','Score',''].map((h,i)=>(
+              {['#','Ticker','Price','Chg',''].map((h,i)=>(
                 <span key={i} style={{fontSize:9,fontWeight:700,letterSpacing:'0.08em',textTransform:'uppercase',
                   color:PP.ink4,fontFamily:"'DM Sans',sans-serif",flex:i===1?2:1,textAlign:i>1?'right':'left'}}>{h}</span>
               ))}
             </div>
             {ALL_RANKED.slice(0,10).map((r,i)=>{
+              const mp = marketPrices?.[r.ticker + '.BK'];
+              const realPrice = mp?.price ?? null;
+              const realChg   = mp?.change_pct ?? r.change;
               const isSel=selectedStock===r.ticker;
               return (
                 <div key={r.ticker} onClick={()=>onSelectStock(r.ticker)}
@@ -570,12 +627,14 @@ export function LeftPanelPaper({ rawData, selectedStock, onSelectStock, graphMod
                   <span style={{fontSize:15,fontWeight:700,flex:2,
                     fontFamily:"'Libre Baskerville',Georgia,serif",
                     color:isSel?PP.accent:PP.ink}}>{r.ticker}</span>
-                  <span style={{fontSize:14,fontWeight:700,flex:1,textAlign:'right',
-                    color:r.change>=0?PP.pos:PP.neg,fontFamily:"'DM Sans',sans-serif"}}>
-                    {r.change>=0?'+':''}{r.change}%
+                  <span style={{fontSize:12,fontWeight:700,flex:1,textAlign:'right',
+                    color:PP.ink,fontFamily:"'Libre Baskerville',Georgia,serif"}}>
+                    ฿{fmtPrice(realPrice)}
                   </span>
-                  <span style={{fontSize:10,flex:1,textAlign:'right',color:PP.gold,
-                    fontWeight:700,fontFamily:"'DM Sans',sans-serif"}}>{r.score.toFixed(1)}</span>
+                  <span style={{fontSize:12,fontWeight:700,flex:1,textAlign:'right',
+                    color:realChg>=0?PP.pos:PP.neg,fontFamily:"'DM Sans',sans-serif"}}>
+                    {realChg>=0?'+':''}{realChg.toFixed(2)}%
+                  </span>
                   <span style={{flex:1,textAlign:'right'}}><PPVerdict v={r.verdict}/></span>
                 </div>
               );

@@ -1,9 +1,9 @@
-﻿import { useState, useEffect, useCallback, useMemo, Component, Fragment } from "react";
+﻿import { useState, useEffect, useCallback, useMemo, useRef, Component, Fragment } from "react";
 import { SigmaContainer } from "@react-sigma/core";
 import "@react-sigma/core/lib/style.css";
 import { createEdgeArrowProgram } from "sigma/rendering";
 import GraphController from "./components/GraphController";
-import { LeftPanel, LeftPanelPaper } from "./components/Sidebar";
+import { LeftPanel, LeftPanelPaper, RANKED_TICKERS } from "./components/Sidebar";
 import { RightPanel, RightPanelPaper } from "./components/NodeDetail";
 import NewsStrip from "./pages/NewsPage";
 
@@ -282,6 +282,67 @@ export default function App() {
   const [loading,   setLoading]   = useState(true);
   const [dataError, setDataError] = useState(null);
 
+  // Backend
+  const [backendReady,    setBackendReady]    = useState(false);
+  const [startupData,     setStartupData]     = useState(null);
+  const [marketPrices,    setMarketPrices]    = useState({});
+  const [analysisData,    setAnalysisData]    = useState(null);
+  const [analysisLoading, setAnalysisLoading] = useState(false);
+  const [analysisError,   setAnalysisError]   = useState(null);
+  const pollTimer = useRef(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    const poll = async () => {
+      try {
+        const r = await fetch('http://localhost:8000/health');
+        const d = await r.json();
+        if (cancelled) return;
+        if (d.ready) {
+          setBackendReady(true);
+          fetch('http://localhost:8000/startup-data')
+            .then(r2 => r2.ok ? r2.json() : null)
+            .then(sd => { if (!cancelled && sd) setStartupData(sd); })
+            .catch(() => {});
+          fetch(`http://localhost:8000/prices?tickers=${RANKED_TICKERS.join(',')}`)
+            .then(r2 => r2.ok ? r2.json() : {})
+            .then(pd => { if (!cancelled) setMarketPrices(pd); })
+            .catch(() => {});
+        } else {
+          pollTimer.current = setTimeout(poll, 3000);
+        }
+      } catch {
+        if (!cancelled) pollTimer.current = setTimeout(poll, 3000);
+      }
+    };
+    poll();
+    return () => { cancelled = true; clearTimeout(pollTimer.current); };
+  }, []);
+
+  const fetchAnalysis = useCallback(async (tickerFull) => {
+    if (!backendReady || !tickerFull) return;
+    setAnalysisLoading(true);
+    setAnalysisError(null);
+    setAnalysisData(null);
+    try {
+      const r = await fetch('http://localhost:8000/analyse', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ticker: tickerFull }),
+      });
+      if (!r.ok) {
+        const err = await r.json().catch(() => ({}));
+        setAnalysisError(err.detail || `HTTP ${r.status}`);
+      } else {
+        setAnalysisData(await r.json());
+      }
+    } catch (e) {
+      setAnalysisError(e.message);
+    } finally {
+      setAnalysisLoading(false);
+    }
+  }, [backendReady]);
+
   useEffect(() => {
     Promise.all([
       fetch('/graph-data.json').then(r => { if (!r.ok) throw new Error(r.statusText); return r.json(); }),
@@ -289,7 +350,7 @@ export default function App() {
     ])
       .then(([graph, news]) => {
         setRawData(graph);
-        setNewsData(Array.isArray(news) ? news : (news?.articles ?? []));
+        setNewsData(Array.isArray(news) ? news : (news?.articles ?? news?.news ?? []));
         setLoading(false);
       })
       .catch(e => { setDataError(e.message); setLoading(false); });
@@ -351,7 +412,8 @@ export default function App() {
     setSelectedStock(clean);
     setActiveStockId(nodeId);
     navigate('ego', nodeId, undefined, clean);
-  }, [rawData, navigate]);
+    fetchAnalysis(nodeId);
+  }, [rawData, navigate, fetchAnalysis]);
 
   const setMode = useCallback((m) => {
     const labels = { overview: 'Overview', chain: 'Chain', ego: selectedStock || 'Ego' };
@@ -377,7 +439,12 @@ export default function App() {
   // GraphController node action handler
   const handleNodeAction = useCallback((action) => {
     const { type, nodeId, nodeType, attrs } = action;
-    if (type === 'clickStage') { setSelectedStock(null); return; }
+    if (type === 'clickStage') {
+      setSelectedStock(null);
+      setAnalysisData(null);
+      setAnalysisError(null);
+      return;
+    }
     if (type !== 'click') return;
 
     if (nodeType === 'SupplyChain') {
@@ -387,10 +454,11 @@ export default function App() {
       setSelectedStock(ticker);
       setActiveStockId(nodeId);
       navigate('ego', nodeId, undefined, ticker);
+      fetchAnalysis(nodeId);
     } else if (nodeType === 'MacroFactor') {
       setScenarioId(prev => prev === nodeId ? null : nodeId);
     }
-  }, [navigate]);
+  }, [navigate, fetchAnalysis]);
 
   const isDark = tweaks.theme === 'dark';
   const PanelLeft  = isDark ? LeftPanel      : LeftPanelPaper;
@@ -593,6 +661,8 @@ export default function App() {
           scenarioId={scenarioId}
           setScenarioId={setScenarioId}
           panelWidth={tweaks.panelWidth}
+          startupData={startupData}
+          marketPrices={marketPrices}
         />
 
         {/* Center: graph canvas + news strip */}
@@ -671,6 +741,9 @@ export default function App() {
           selectedStock={selectedStock}
           onFocusEgo={selectStock}
           onSelectRelated={ticker => { if (ticker) selectStock(ticker); }}
+          analysisData={analysisData}
+          analysisLoading={analysisLoading}
+          analysisError={analysisError}
         />
       </div>
 

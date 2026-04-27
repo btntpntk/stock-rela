@@ -1,0 +1,18 @@
+{
+  "name": "SP500",
+  "benchmark": "SPY",
+  "fallback_benchmark": "^GSPC",
+  "sectors": {
+    "TECH":          ["AAPL", "MSFT", "NVDA", "AVGO", "ORCL", "CRM", "AMD", "CSCO", "AMAT", "QCOM"],
+    "HEALTH":        ["UNH", "LLY", "JNJ", "ABBV", "MRK", "TMO", "ABT", "DHR", "AMGN", "ISRG"],
+    "FINANCIALS":    ["BRK-B", "JPM", "V", "MA", "BAC", "WFC", "GS", "MS", "BLK", "AXP"],
+    "CONSUMER_DISC": ["AMZN", "TSLA", "HD", "MCD", "NKE", "LOW", "SBUX", "BKNG", "TGT", "GM"],
+    "COMM_SERVICES": ["META", "GOOGL", "NFLX", "DIS", "TMUS", "VZ", "T", "CMCSA", "EA", "TTWO"],
+    "INDUSTRIALS":   ["GE", "CAT", "HON", "RTX", "UPS", "LMT", "DE", "BA", "FDX", "CSX"],
+    "CONSUMER_STAP": ["WMT", "PG", "KO", "PEP", "COST", "PM", "MO", "CL", "MDLZ", "KHC"],
+    "ENERGY":        ["XOM", "CVX", "COP", "SLB", "EOG", "MPC", "PSX", "VLO", "OXY", "HAL"],
+    "UTILITIES":     ["NEE", "DUK", "SO", "D", "AEP", "EXC", "SRE", "XEL", "ED", "ETR"],
+    "REAL_ESTATE":   ["PLD", "AMT", "EQIX", "CCI", "PSA", "SPG", "WELL", "DLR", "O", "AVB"],
+    "MATERIALS":     ["LIN", "APD", "ECL", "SHW", "FCX", "NEM", "NUE", "VMC", "MLM", "ALB"]
+  }
+}

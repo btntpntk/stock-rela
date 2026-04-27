@@ -1,0 +1,16 @@
+{
+  "name": "WATCHLIST",
+  "benchmark": "^SET.BK",
+  "fallback_benchmark": "EWY",
+  "sectors": {
+    "ENERGY":          ["PTT.BK", "PTTEP.BK", "EGCO.BK", "RATCH.BK", "OR.BK", "BANPU.BK", "GULF.BK", "BKV"],
+    "FINANCIALS":      ["BBL.BK", "KBANK.BK", "KTB.BK", "SCB.BK", "TIDLOR.BK", "TTB.BK", "NEO.BK"],
+    "TECH":            ["DELTA.BK", "ADVANC.BK", "KCE.BK", "SIS.BK", "SFLEX.BK"],
+    "CONSUMER_DISC":   ["CPALL.BK", "CPAXT.BK", "CRC.BK", "HMPRO.BK", "GLOBAL.BK", "OSP.BK", "ERW.BK", "MINT.BK", "SABINA.BK"],
+    "HEALTH":          ["BDMS.BK", "BH.BK", "BCH.BK", "MEGA.BK"],
+    "MATERIALS":       ["SCC.BK"],
+    "REIT_PROPERTY":   ["CPN.BK", "LH.BK", "WHA.BK", "SPALI.BK", "PF.BK"],
+    "INDUSTRIALS":     ["AOT.BK"],
+    "WATCHLIST_OTHER": ["HL.BK", "NKT.BK", "PR9.BK", "RBF.BK", "SISB.BK"]
+  }
+}
