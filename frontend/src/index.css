@@ -35,15 +35,6 @@ body.theme-dark::after {
   z-index: 9000;
 }
 
-/* ── Paper theme ── */
-body.theme-paper {
-  background: #FFF8F2;
-  color: #111111;
-  font-family: 'DM Sans', sans-serif;
-}
-body.theme-paper ::-webkit-scrollbar-track { background: #F5EDE0; }
-body.theme-paper ::-webkit-scrollbar-thumb { background: #C8B8A8; }
-
 /* ── Sigma container background reset ── */
 .sigma-container { background: transparent !important; flex: 1; }
 

@@ -1,8 +1,18 @@
-﻿// Sidebar.jsx — exports LeftPanel (dark) and LeftPanelPaper
+﻿// Sidebar.jsx — exports LeftPanel
 // Adapted from design_handoff/left-panel.jsx and left-panel-paper.jsx
 // Uses real rawData instead of window globals
 
 import { useState, useMemo } from "react";
+import SET100Data    from '../../../universes/SET100.json';
+import SP500Data     from '../../../universes/SP500.json';
+import WATCHLISTData from '../../../universes/WATCHLIST.json';
+
+const UNIVERSES = { SET100: SET100Data, SP500: SP500Data, WATCHLIST: WATCHLISTData };
+
+function getUniverseTickers(universeData) {
+  if (!universeData?.sectors) return null;
+  return new Set(Object.values(universeData.sectors).flat().map(t => t.replace('.BK', '')));
+}
 
 function fmtPrice(p) {
   if (p == null) return '—';
@@ -11,30 +21,34 @@ function fmtPrice(p) {
 
 /* ── Static quant fallback data (used when market_data.json unavailable) ── */
 const SPARK_DATA = {
-  SET:  [1472,1468,1461,1455,1460,1458,1453,1457],
-  OIL:  [95.8,96.1,96.8,97.0,97.2,97.1,97.4,97.45],
-  GOLD: [4710,4700,4695,4702,4698,4705,4700,4697],
+  SET:  [0,0,0,0,0,0,0,0],
+  OIL:  [0,0,0,0,0,0,0,0],
+  GOLD: [0,0,0,0,0,0,0,0],
 };
 
-/* ── Derive macro items — priority: market_data.json > backend /prices > static ── */
-function useMacroItems(marketData, marketPrices) {
+/* ── Derive macro items — priority: market_data.json > backend /prices > /sparklines > static ── */
+function useMacroItems(marketData, marketPrices, sparklines) {
   return useMemo(() => [
     { label:'SET Index', key:'SET',  sym:'^SET.BK', fallback:'0',  fallbackChg:0 },
     { label:'Crude Oil', key:'OIL',  sym:'CL=F',   fallback:'0',  fallbackChg:0 },
     { label:'Gold',      key:'GOLD', sym:'GC=F',   fallback:'0',  fallbackChg:0 },
   ].map(m => {
-    const md  = marketData?.macro?.[m.key];       // from market_pipeline.py
-    const mp  = marketPrices?.[m.sym];            // from backend /prices
+    const md  = marketData?.macro?.[m.key];
+    const mp  = marketPrices?.[m.sym];
+    const sl  = sparklines?.[m.sym];
     const chgNum = md?.change_pct ?? mp?.change_pct ?? m.fallbackChg;
     const price  = md?.price ?? mp?.price;
+    const sparkData = md?.sparkline?.length >= 2 ? md.sparkline
+                    : sl?.length >= 2             ? sl
+                    : SPARK_DATA[m.key];
     return {
       label: m.label,
       val:   price != null ? price.toFixed(2) : m.fallback,
       chg:   `${chgNum >= 0 ? '+' : ''}${chgNum.toFixed(2)}%`,
       pos:   chgNum >= 0,
-      data:  md?.sparkline?.length >= 2 ? md.sparkline : SPARK_DATA[m.key],
+      data:  sparkData,
     };
-  }), [marketData, marketPrices]);
+  }), [marketData, marketPrices, sparklines]);
 }
 
 /* ── Derive ranked list from marketData, fallback to ALL_RANKED ── */
@@ -63,23 +77,18 @@ function useActiveRanked(marketData) {
   }, [marketData]);
 }
 
-const ALL_RANKED = [
-  {ticker:'DELTA',  sector:'Tech',         score:75.9, verdict:'FUND', change:+2.1, alpha:96.8, strat:'MOMENTUM',  entry:265,   tp:317,    sl:263   },
-  {ticker:'AOT',    sector:'Industrials',  score:70.7, verdict:'FUND', change:-1.8, alpha:95.0, strat:'MOMENTUM',  entry:54.25, tp:64.5,   sl:50.77 },
-  {ticker:'ADVANC', sector:'Tech',         score:63.5, verdict:'FUND', change:+0.7, alpha:80.0, strat:'MEAN_REV',  entry:349,   tp:383.5,  sl:329   },
-  {ticker:'CK',     sector:'Industrials',  score:65.4, verdict:'FAIL', change:-0.2, alpha:3.60, strat:'MOMENTUM',  entry:16.49, tp:17.8,   sl:14.77 },
-  {ticker:'SCB',    sector:'Financials',   score:64.6, verdict:'TECH', change:+0.3, alpha:43.0, strat:'MEAN_REV',  entry:130,   tp:136.25, sl:127   },
-  {ticker:'KBANK',  sector:'Financials',   score:64.6, verdict:'TECH', change:-0.6, alpha:43.0, strat:'MEAN_REV',  entry:156,   tp:164,    sl:150   },
-  {ticker:'SCC',    sector:'Materials',    score:61.0, verdict:'FAIL', change:+0.5, alpha:65.0, strat:'MOMENTUM',  entry:219,   tp:219,    sl:204   },
-  {ticker:'WHA',    sector:'REIT',         score:62.8, verdict:'TECH', change:+0.1, alpha:36.0, strat:'MOMENTUM',  entry:4.36,  tp:4.6,    sl:4.13  },
-  {ticker:'CPF',    sector:'Food & Agro',  score:58.2, verdict:'FUND', change:-0.3, alpha:55.0, strat:'MOMENTUM',  entry:26.75, tp:30,     sl:25    },
-  {ticker:'CPALL',  sector:'Consumer S.',  score:52.3, verdict:'FUND', change:+1.8, alpha:48.0, strat:'MOMENTUM',  entry:65,    tp:72,     sl:62    },
-  {ticker:'PTT',    sector:'Energy',       score:55.1, verdict:'FAIL', change:-0.4, alpha:40.0, strat:'MOMENTUM',  entry:31.75, tp:34,     sl:30    },
-  {ticker:'GPSC',   sector:'Utilities',    score:57.4, verdict:'FUND', change:+0.3, alpha:52.0, strat:'MOMENTUM',  entry:56,    tp:62,     sl:53    },
-  {ticker:'GULF',   sector:'Utilities',    score:54.0, verdict:'FUND', change:+1.2, alpha:50.0, strat:'MOMENTUM',  entry:49.75, tp:55,     sl:47    },
-  {ticker:'MAKRO',  sector:'Consumer S.',  score:50.1, verdict:'FUND', change:+0.9, alpha:44.0, strat:'MOMENTUM',  entry:43.5,  tp:48,     sl:41    },
-  {ticker:'PTTEP',  sector:'Energy',       score:48.3, verdict:'FAIL', change:-1.1, alpha:38.0, strat:'MOMENTUM',  entry:123,   tp:138,    sl:118   },
-];
+function buildAllRanked(universeData) {
+  const rows = [];
+  for (const [sector, tickers] of Object.entries(universeData.sectors || {})) {
+    const label = sector.replace(/_/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+    for (const t of tickers) {
+      rows.push({ ticker: t.replace('.BK', ''), sector: label, score: 50, verdict: 'TECH', change: 0, alpha: 50, strat: 'MOMENTUM', entry: null, tp: null, sl: null });
+    }
+  }
+  return rows;
+}
+
+const ALL_RANKED = buildAllRanked(SET100Data);
 
 export const RANKED_TICKERS = ALL_RANKED.map(r => r.ticker + '.BK');
 
@@ -183,18 +192,22 @@ function DKSection({ title, badge, action, defaultOpen=true, children }) {
 
 export function LeftPanel({ rawData, selectedStock, onSelectStock, graphMode, setGraphMode,
   activeChainId, setActiveChainId, scenarioId, setScenarioId, panelWidth=214, startupData,
-  marketPrices={}, marketData=null }) {
+  marketPrices={}, marketData=null, sparklines={}, correlations=null }) {
 
-  const [showFullRanking, setShowFullRanking] = useState(false);
-  const [rankFilter,      setRankFilter]      = useState('ALL');
-  const [rankSearch,      setRankSearch]      = useState('');
-  const [rankSort,        setRankSort]        = useState({col:'score',dir:-1});
+  const [showFullRanking,  setShowFullRanking]  = useState(false);
+  const [rankFilter,       setRankFilter]       = useState('ALL');
+  const [rankSearch,       setRankSearch]       = useState('');
+  const [rankSort,         setRankSort]         = useState({col:'score',dir:-1});
+  const [selectedUniverse, setSelectedUniverse] = useState('SET100');
   const { chains, macroScenarios, scenarioAffected } = usePanelData(rawData, scenarioId);
-  const macroItems   = useMacroItems(marketData, marketPrices);
+  const macroItems   = useMacroItems(marketData, marketPrices, sparklines);
   const activeRanked = useActiveRanked(marketData);
 
+  const universeTickers   = useMemo(() => getUniverseTickers(UNIVERSES[selectedUniverse]), [selectedUniverse]);
+  const rankedInUniverse  = useMemo(() => universeTickers ? activeRanked.filter(r => universeTickers.has(r.ticker)) : activeRanked, [activeRanked, universeTickers]);
+
   const filteredRank = useMemo(()=>{
-    let d = activeRanked.map(r => {
+    let d = rankedInUniverse.map(r => {
       const md = marketData?.stocks?.[r.ticker+'.BK'] || marketData?.stocks?.[r.ticker];
       const mp = marketPrices?.[r.ticker + '.BK'];
       return { ...r, realPrice: md?.price ?? mp?.price ?? null, realChg: md?.change_pct ?? mp?.change_pct ?? r.change };
@@ -207,7 +220,16 @@ export function LeftPanel({ rawData, selectedStock, onSelectStock, graphMode, se
       return (av-bv)*rankSort.dir;
     });
     return d;
-  },[activeRanked,rankFilter,rankSearch,rankSort,marketPrices,marketData]);
+  },[rankedInUniverse,rankFilter,rankSearch,rankSort,marketPrices,marketData]);
+
+  const uniSelect = (
+    <select value={selectedUniverse} onChange={e=>setSelectedUniverse(e.target.value)}
+      onClick={e=>e.stopPropagation()}
+      style={{background:DK.elevated,border:`1px solid ${DK.border}`,color:DK.txt2,
+        fontSize:10,padding:'1px 4px',borderRadius:2,cursor:'pointer',outline:'none',flexShrink:0}}>
+      {Object.keys(UNIVERSES).map(k=><option key={k} value={k}>{UNIVERSES[k].name}</option>)}
+    </select>
+  );
 
   return (
     <div style={{width:panelWidth,background:DK.panel,borderRight:`1px solid ${DK.border}`,
@@ -217,7 +239,7 @@ export function LeftPanel({ rawData, selectedStock, onSelectStock, graphMode, se
         <div style={{display:'flex',flexDirection:'column',height:'100%'}}>
           <div style={{padding:'8px 12px',borderBottom:`1px solid ${DK.border2}`,flexShrink:0,display:'flex',alignItems:'center',gap:8}}>
             <span style={{fontSize:10,fontWeight:700,letterSpacing:'0.12em',textTransform:'uppercase',color:DK.txt3,flex:1}}>Full Ranking</span>
-            <span style={{fontSize:12,color:DK.txt4}}>STT100</span>
+            {uniSelect}
             <button onClick={()=>setShowFullRanking(false)}
               style={{fontSize:12,color:DK.txt3,background:'transparent',border:`1px solid ${DK.border}`,
                 borderRadius:2,padding:'1px 6px',cursor:'pointer'}}>✕</button>
@@ -279,7 +301,7 @@ export function LeftPanel({ rawData, selectedStock, onSelectStock, graphMode, se
             </table>
           </div>
           <div style={{padding:'5px 10px',borderTop:`1px solid ${DK.border2}`,fontSize:12,color:DK.txt4,textAlign:'center'}}>
-            {filteredRank.length} / {ALL_RANKED.length} stocks
+            {filteredRank.length} / {rankedInUniverse.length} stocks · {UNIVERSES[selectedUniverse].name}
           </div>
         </div>
       ) : (
@@ -340,11 +362,15 @@ export function LeftPanel({ rawData, selectedStock, onSelectStock, graphMode, se
           </DKSection>
 
           {/* ② TOP RANKED */}
-          <DKSection title="Top Ranked" badge={marketData?`α${activeRanked.length}`:"STT100"}
+          <DKSection title="Top Ranked" badge={`${UNIVERSES[selectedUniverse].name} · ${rankedInUniverse.length}`}
             action={{label:'Full ↗',fn:()=>setShowFullRanking(true)}}
             defaultOpen={true}>
+            <div style={{padding:'3px 8px 2px',borderBottom:`1px solid ${DK.border2}`,display:'flex',alignItems:'center',gap:4}}>
+              <span style={{fontSize:9,color:DK.txt3,letterSpacing:'0.08em',textTransform:'uppercase'}}>Universe</span>
+              {uniSelect}
+            </div>
             <div style={{padding:'2px 0'}}>
-              {activeRanked.slice(0,10).map((r,i)=>{
+              {rankedInUniverse.slice(0,10).map((r,i)=>{
                 const md = marketData?.stocks?.[r.ticker+'.BK'] || marketData?.stocks?.[r.ticker];
                 const mp = marketPrices?.[r.ticker + '.BK'];
                 const realPrice = md?.price ?? mp?.price ?? null;
@@ -396,7 +422,63 @@ export function LeftPanel({ rawData, selectedStock, onSelectStock, graphMode, se
             </div>
           </DKSection>
 
-          {/* ④ MACRO OVERLAY */}
+          {/* ④ CORRELATIONS (ego mode only) */}
+          {selectedStock && correlations && (()=>{
+            const t = selectedStock.replace('.BK','');
+            const peerMap = correlations[t] ?? correlations[t+'.BK'] ?? {};
+            const peers = Object.entries(peerMap)
+              .map(([peer, rho]) => ({ peer: peer.replace('.BK',''), rho }))
+              .filter(x => isFinite(x.rho))
+              .sort((a,b) => Math.abs(b.rho) - Math.abs(a.rho))
+              .slice(0, 12);
+            if (!peers.length) return null;
+            const rhoColor = rho => {
+              if (rho >= 0.6)  return DK.pos;
+              if (rho >= 0.3)  return '#87d4a8';
+              if (rho <= -0.6) return DK.neg;
+              if (rho <= -0.3) return '#e08080';
+              return DK.txt3;
+            };
+            return (
+              <DKSection title="Correlations" badge={t} defaultOpen={true}>
+                <div style={{padding:'4px 10px 8px'}}>
+                  <div style={{display:'flex',gap:4,marginBottom:6}}>
+                    <span style={{fontSize:9,color:DK.txt4,letterSpacing:'0.08em',textTransform:'uppercase'}}>
+                      30-day Pearson ρ · top {peers.length} peers
+                    </span>
+                  </div>
+                  {peers.map(({peer,rho})=>{
+                    const c = rhoColor(rho);
+                    const pct = Math.abs(rho) * 100;
+                    return (
+                      <div key={peer} style={{display:'flex',alignItems:'center',gap:6,padding:'3px 0',
+                        borderBottom:`1px solid ${DK.border2}`,cursor:'pointer'}}
+                        onClick={() => onSelectStock(peer)}>
+                        <span style={{fontSize:11,fontWeight:700,color:DK.txt2,width:44,flexShrink:0}}>
+                          {peer}
+                        </span>
+                        {/* Bar track */}
+                        <div style={{flex:1,height:4,background:DK.border,borderRadius:2,overflow:'hidden',position:'relative'}}>
+                          <div style={{
+                            position:'absolute',
+                            left: rho >= 0 ? '50%' : `${50 - pct/2}%`,
+                            width: `${pct/2}%`,
+                            height:'100%',background:c,borderRadius:2,
+                          }}/>
+                          <div style={{position:'absolute',left:'50%',top:0,bottom:0,width:1,background:DK.border2}}/>
+                        </div>
+                        <span style={{fontSize:11,fontWeight:700,color:c,width:38,textAlign:'right',flexShrink:0}}>
+                          {rho>=0?'+':''}{rho.toFixed(2)}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </DKSection>
+            );
+          })()}
+
+          {/* ⑤ MACRO OVERLAY */}
           <DKSection title="Macro Overlay" defaultOpen={false}>
             <div style={{padding:'4px 0 6px'}}>
               {macroScenarios.map(sc=>{
@@ -434,327 +516,3 @@ export function LeftPanel({ rawData, selectedStock, onSelectStock, graphMode, se
   );
 }
 
-/* ════════════════════════════════════════════
-   PAPER THEME — LeftPanelPaper
-════════════════════════════════════════════ */
-
-const PP = {
-  paper:'#FFF8F2', paperDk:'#F5EDE0', paperMd:'#EDE0D0',
-  ink:'#111111', ink2:'#3A3530', ink3:'#6A6058', ink4:'#A09080',
-  rule:'#C8B8A8', ruleDk:'#8A7A6A',
-  accent:'#0A2540', accentLt:'#E6EEF8',
-  pos:'#1A5C32', neg:'#A80000', gold:'#7A5A10',
-};
-
-function PPSpark({ data, color, w=52, h=18 }) {
-  const mx=Math.max(...data),mn=Math.min(...data),rng=mx-mn||1;
-  const pts=data.map((v,i)=>`${(i/(data.length-1))*w},${h-((v-mn)/rng)*(h-3)-1.5}`).join(' ');
-  return (
-    <svg width={w} height={h} style={{display:'block',overflow:'visible'}}>
-      <polyline points={pts} fill="none" stroke={color} strokeWidth="1.3" strokeLinejoin="round"/>
-    </svg>
-  );
-}
-
-function PPVerdict({ v }) {
-  const map={
-    FUND:{bg:'rgba(26,92,50,0.1)',  c:PP.pos,  border:'rgba(26,92,50,0.3)'},
-    TECH:{bg:'rgba(10,37,64,0.08)', c:PP.accent,border:'rgba(10,37,64,0.2)'},
-    FAIL:{bg:'rgba(168,0,0,0.08)',  c:PP.neg,  border:'rgba(168,0,0,0.2)'},
-  };
-  const s=map[v]||map.FAIL;
-  return <span style={{fontSize:9,fontWeight:700,padding:'1px 4px',
-    background:s.bg,color:s.c,border:`1px solid ${s.border}`,letterSpacing:'0.04em'}}>{v}</span>;
-}
-
-function PPSection({ title, badge, action, defaultOpen=true, children }) {
-  const [open,setOpen]=useState(defaultOpen);
-  return (
-    <div style={{borderBottom:`1px solid ${PP.rule}`}}>
-      <div onClick={()=>setOpen(o=>!o)}
-        style={{display:'flex',alignItems:'center',gap:6,padding:'6px 12px',
-          cursor:'pointer',userSelect:'none',transition:'background 0.1s'}}
-        onMouseEnter={e=>e.currentTarget.style.background=PP.paperDk}
-        onMouseLeave={e=>e.currentTarget.style.background='transparent'}>
-        <span style={{fontSize:12,fontWeight:700,letterSpacing:'0.15em',textTransform:'uppercase',
-          color:PP.ink3,flex:1,fontFamily:"'DM Sans',sans-serif"}}>{title}</span>
-        {badge&&<span style={{fontSize:9,color:PP.accent,border:`1px solid ${PP.accent}`,
-          padding:'0 4px',letterSpacing:'0.05em'}}>{badge}</span>}
-        {action&&<span onClick={e=>{e.stopPropagation();action.fn();}}
-          style={{fontSize:12,color:PP.accent,cursor:'pointer',textDecoration:'underline',
-            textDecorationStyle:'dotted',fontFamily:"'DM Sans',sans-serif"}}
-          onMouseEnter={e=>e.currentTarget.style.textDecorationStyle='solid'}
-          onMouseLeave={e=>e.currentTarget.style.textDecorationStyle='dotted'}>
-          {action.label}
-        </span>}
-        <span style={{fontSize:11,color:PP.ink4,transform:`rotate(${open?'0':'180'}deg)`,transition:'transform 0.2s'}}>▲</span>
-      </div>
-      <div style={{overflow:'hidden',maxHeight:open?'600px':'0',transition:'max-height 0.25s ease'}}>
-        {children}
-      </div>
-    </div>
-  );
-}
-
-export function LeftPanelPaper({ rawData, selectedStock, onSelectStock, graphMode, setGraphMode,
-  activeChainId, setActiveChainId, scenarioId, setScenarioId, panelWidth=214, startupData,
-  marketPrices={}, marketData=null }) {
-
-  const [showFullRanking, setShowFullRanking] = useState(false);
-  const [rankFilter,      setRankFilter]      = useState('ALL');
-  const [rankSearch,      setRankSearch]      = useState('');
-  const [rankSort,        setRankSort]        = useState({col:'score',dir:-1});
-  const { chains, macroScenarios, scenarioAffected } = usePanelData(rawData, scenarioId);
-  const macroItems   = useMacroItems(marketData, marketPrices);
-  const activeRanked = useActiveRanked(marketData);
-
-  const filteredRank = useMemo(()=>{
-    let d = activeRanked.map(r => {
-      const md = marketData?.stocks?.[r.ticker+'.BK'] || marketData?.stocks?.[r.ticker];
-      const mp = marketPrices?.[r.ticker + '.BK'];
-      return { ...r, realPrice: md?.price ?? mp?.price ?? null, realChg: md?.change_pct ?? mp?.change_pct ?? r.change };
-    });
-    if(rankFilter!=='ALL') d=d.filter(r=>r.verdict===rankFilter);
-    if(rankSearch.trim()){const q=rankSearch.toLowerCase();d=d.filter(r=>r.ticker.toLowerCase().includes(q));}
-    d.sort((a,b)=>{
-      const av = rankSort.col==='change' ? a.realChg : a[rankSort.col];
-      const bv = rankSort.col==='change' ? b.realChg : b[rankSort.col];
-      return (av-bv)*rankSort.dir;
-    });
-    return d;
-  },[activeRanked,rankFilter,rankSearch,rankSort,marketPrices,marketData]);
-
-  return (
-    <div style={{width:panelWidth,background:PP.paper,borderRight:`1px solid ${PP.rule}`,
-      display:'flex',flexDirection:'column',overflow:'hidden',flexShrink:0,transition:'width 0.2s ease'}}>
-
-      {showFullRanking ? (
-        <div style={{display:'flex',flexDirection:'column',height:'100%'}}>
-          <div style={{padding:'7px 12px',borderBottom:`2px solid ${PP.ink}`,
-            display:'flex',alignItems:'center',gap:8,flexShrink:0}}>
-            <span style={{fontSize:10,fontWeight:700,letterSpacing:'0.15em',textTransform:'uppercase',
-              color:PP.ink3,flex:1,fontFamily:"'DM Sans',sans-serif"}}>Full Ranking · STT100</span>
-            <button onClick={()=>setShowFullRanking(false)}
-              style={{fontSize:11,color:PP.ink3,background:'transparent',border:`1px solid ${PP.rule}`,
-                padding:'1px 6px',cursor:'pointer'}}>✕</button>
-          </div>
-          <div style={{padding:'5px 8px',borderBottom:`1px solid ${PP.rule}`,flexShrink:0,display:'flex',gap:3,flexWrap:'wrap'}}>
-            {['ALL','FUND','TECH','FAIL'].map(f=>{
-              const col=f==='FUND'?PP.pos:f==='TECH'?PP.accent:f==='FAIL'?PP.neg:PP.ink;
-              return (
-                <button key={f} onClick={()=>setRankFilter(f)}
-                  style={{padding:'2px 6px',border:`1px solid ${rankFilter===f?col:PP.rule}`,
-                    cursor:'pointer',fontSize:12,fontWeight:700,
-                    background:rankFilter===f?`${col}0f`:'transparent',color:rankFilter===f?col:PP.ink3}}>
-                  {f}
-                </button>
-              );
-            })}
-            <input value={rankSearch} onChange={e=>setRankSearch(e.target.value)}
-              placeholder="Search…"
-              style={{flex:1,minWidth:0,background:PP.paperDk,border:`1px solid ${PP.rule}`,
-                padding:'2px 6px',fontSize:10,color:PP.ink,outline:'none'}}/>
-          </div>
-          <div style={{flex:1,overflowY:'auto'}}>
-            <table style={{width:'100%',borderCollapse:'collapse'}}>
-              <thead>
-                <tr style={{position:'sticky',top:0,background:PP.paperDk,borderBottom:`2px solid ${PP.rule}`}}>
-                  {[['#','',14],['Ticker','ticker',52],['Price','',48],['Chg','change',38],['V','verdict',28]].map(([h,col,w])=>(
-                    <td key={h} onClick={()=>col&&setRankSort(s=>s.col===col?{col,dir:-s.dir}:{col,dir:-1})}
-                      style={{padding:'4px 6px',color:rankSort.col===col?PP.accent:PP.ink3,
-                        fontWeight:700,fontSize:12,letterSpacing:'0.08em',textTransform:'uppercase',
-                        fontFamily:"'DM Sans',sans-serif",cursor:col?'pointer':'default',width:w}}>
-                      {h}{rankSort.col===col?(rankSort.dir===-1?' ↓':' ↑'):''}
-                    </td>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {filteredRank.map((r,i)=>{
-                  const isSel=selectedStock===r.ticker;
-                  return (
-                    <tr key={r.ticker} onClick={()=>onSelectStock(r.ticker)}
-                      style={{cursor:'pointer',borderBottom:`1px solid ${PP.rule}`,
-                        background:isSel?PP.accentLt:'transparent',transition:'background 0.1s'}}
-                      onMouseEnter={e=>{if(!isSel)e.currentTarget.style.background=PP.paperDk;}}
-                      onMouseLeave={e=>{if(!isSel)e.currentTarget.style.background='transparent';}}>
-                      <td style={{padding:'4px 6px',color:PP.ink4,fontSize:10}}>{i+1}</td>
-                      <td style={{padding:'4px 6px',color:isSel?PP.accent:PP.ink,fontWeight:700,
-                        fontFamily:"'Libre Baskerville',Georgia,serif",fontSize:11}}>{r.ticker}</td>
-                      <td style={{padding:'4px 6px',color:PP.ink,fontWeight:700,fontSize:11,
-                        fontFamily:"'Libre Baskerville',Georgia,serif"}}>฿{fmtPrice(r.realPrice)}</td>
-                      <td style={{padding:'4px 6px',fontWeight:700,fontSize:11,fontFamily:"'DM Sans',sans-serif",
-                        color:r.realChg>=0?PP.pos:PP.neg}}>
-                        {r.realChg>=0?'+':''}{r.realChg.toFixed(2)}%
-                      </td>
-                      <td style={{padding:'4px 6px'}}><PPVerdict v={r.verdict}/></td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-          <div style={{padding:'5px 10px',borderTop:`1px solid ${PP.rule}`,
-            fontSize:12,color:PP.ink4,textAlign:'center',fontFamily:"'DM Sans',sans-serif"}}>
-            {filteredRank.length} / {ALL_RANKED.length} stocks
-          </div>
-        </div>
-      ) : (
-        <div style={{flex:1,overflowY:'auto'}}>
-
-          {/* ① MARKET DATA */}
-          <PPSection title="Market Data" defaultOpen={true}>
-            {marketData?.generated_at&&(
-              <div style={{padding:'2px 12px',fontSize:12,color:PP.ink4,fontFamily:"'DM Sans',sans-serif"}}>
-                {new Date(marketData.generated_at).toLocaleString('en-GB',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}
-              </div>
-            )}
-            <div style={{padding:'6px 12px 10px',display:'flex',flexDirection:'column',gap:7}}>
-              {macroItems.map(m=>(
-                <div key={m.label} style={{display:'flex',alignItems:'center',gap:6,
-                  padding:'5px 6px',borderBottom:`1px solid ${PP.rule}`,cursor:'default'}}
-                  onMouseEnter={e=>e.currentTarget.style.background=PP.paperDk}
-                  onMouseLeave={e=>e.currentTarget.style.background='transparent'}>
-                  <div style={{flex:1}}>
-                    <div style={{fontSize:12,color:PP.ink4,letterSpacing:'0.06em',fontFamily:"'DM Sans',sans-serif"}}>{m.label}</div>
-                    <div style={{display:'flex',alignItems:'baseline',gap:5,marginTop:1}}>
-                      <span style={{fontSize:16,fontWeight:700,color:PP.ink,
-                        fontFamily:"'Libre Baskerville',Georgia,serif",letterSpacing:'-0.01em'}}>{m.val}</span>
-                      <span style={{fontSize:14,fontWeight:700,color:m.pos?PP.pos:PP.neg,
-                        fontFamily:"'DM Sans',sans-serif"}}>{m.chg}</span>
-                    </div>
-                  </div>
-                  <PPSpark data={m.data} color={m.pos?PP.pos:PP.neg}/>
-                </div>
-              ))}
-            </div>
-            {(()=>{
-              const mr = startupData?.market_risk;
-              const riskScore  = mr?.composite?.composite_risk  ?? 34.7;
-              const riskLabel  = mr?.composite?.regime_label    ?? 'MODERATE';
-              const vix        = mr?.trigger?.vix_spot?.vix_level ?? 19.3;
-              const spreadBps  = mr?.regime?.hy_credit_spread?.oas_bps ?? 305;
-              return (
-                <div style={{margin:'0 10px 10px',background:PP.paperDk,border:`1px solid ${PP.rule}`,padding:'8px 10px'}}>
-                  <div style={{fontSize:12,color:PP.ink4,letterSpacing:'0.1em',textTransform:'uppercase',
-                    fontFamily:"'DM Sans',sans-serif",marginBottom:3}}>Market Regime</div>
-                  <div style={{display:'flex',alignItems:'baseline',gap:8}}>
-                    <span style={{fontSize:27,fontWeight:700,color:PP.gold,
-                      fontFamily:"'Libre Baskerville',Georgia,serif"}}>{riskScore.toFixed(1)}</span>
-                    <span style={{fontSize:11,fontWeight:700,color:PP.gold,fontFamily:"'DM Sans',sans-serif"}}>{riskLabel.replace(/_/g,' ')}</span>
-                  </div>
-                  <div style={{marginTop:5,height:3,background:PP.rule,display:'flex'}}>
-                    {[[PP.pos,16],[PP.neg,68],['#8B6914',16]].map(([c,v],i)=>(
-                      <div key={i} style={{flex:v,background:c,opacity:0.7}}/>
-                    ))}
-                  </div>
-                  <div style={{marginTop:4,fontSize:12,color:PP.ink4,fontFamily:"'DM Sans',sans-serif"}}>
-                    VIX {vix.toFixed(1)} · HY Spread {Math.round(spreadBps)}bp
-                  </div>
-                </div>
-              );
-            })()}
-          </PPSection>
-
-          {/* ② TOP RANKED */}
-          <PPSection title="Top Ranked" badge={marketData?`α${activeRanked.length}`:"STT100"}
-            action={{label:'Full table →',fn:()=>setShowFullRanking(true)}}
-            defaultOpen={true}>
-            <div style={{display:'flex',padding:'3px 12px',borderBottom:`1px solid ${PP.rule}`,background:PP.paperDk}}>
-              {['#','Ticker','Price','Chg',''].map((h,i)=>(
-                <span key={i} style={{fontSize:9,fontWeight:700,letterSpacing:'0.08em',textTransform:'uppercase',
-                  color:PP.ink4,fontFamily:"'DM Sans',sans-serif",flex:i===1?2:1,textAlign:i>1?'right':'left'}}>{h}</span>
-              ))}
-            </div>
-            {activeRanked.slice(0,10).map((r,i)=>{
-              const md = marketData?.stocks?.[r.ticker+'.BK'] || marketData?.stocks?.[r.ticker];
-              const mp = marketPrices?.[r.ticker + '.BK'];
-              const realPrice = md?.price ?? mp?.price ?? null;
-              const realChg   = md?.change_pct ?? mp?.change_pct ?? r.change;
-              const isSel=selectedStock===r.ticker;
-              return (
-                <div key={r.ticker} onClick={()=>onSelectStock(r.ticker)}
-                  style={{display:'flex',alignItems:'center',padding:'4px 12px',cursor:'pointer',
-                    borderBottom:`1px solid ${PP.rule}`,
-                    background:isSel?PP.accentLt:'transparent',
-                    borderLeft:`3px solid ${isSel?PP.accent:'transparent'}`,transition:'background 0.1s'}}
-                  onMouseEnter={e=>{if(!isSel)e.currentTarget.style.background=PP.paperDk;}}
-                  onMouseLeave={e=>{if(!isSel)e.currentTarget.style.background='transparent';}}>
-                  <span style={{fontSize:10,color:PP.ink4,flex:1}}>{i+1}</span>
-                  <span style={{fontSize:15,fontWeight:700,flex:2,
-                    fontFamily:"'Libre Baskerville',Georgia,serif",
-                    color:isSel?PP.accent:PP.ink}}>{r.ticker}</span>
-                  <span style={{fontSize:12,fontWeight:700,flex:1,textAlign:'right',
-                    color:PP.ink,fontFamily:"'Libre Baskerville',Georgia,serif"}}>
-                    ฿{fmtPrice(realPrice)}
-                  </span>
-                  <span style={{fontSize:12,fontWeight:700,flex:1,textAlign:'right',
-                    color:realChg>=0?PP.pos:PP.neg,fontFamily:"'DM Sans',sans-serif"}}>
-                    {realChg>=0?'+':''}{realChg.toFixed(2)}%
-                  </span>
-                  <span style={{flex:1,textAlign:'right'}}><PPVerdict v={r.verdict}/></span>
-                </div>
-              );
-            })}
-          </PPSection>
-
-          {/* ③ SUPPLY CHAINS */}
-          <PPSection title="Supply Chains" defaultOpen={false}>
-            <div style={{padding:'2px 0 6px'}}>
-              {chains.map(chain=>{
-                const isActive=activeChainId===chain.id&&graphMode==='chain';
-                return (
-                  <div key={chain.id} onClick={()=>{setActiveChainId(chain.id);setGraphMode('chain');}}
-                    style={{padding:'5px 12px',cursor:'pointer',
-                      background:isActive?PP.accentLt:'transparent',
-                      borderLeft:`3px solid ${isActive?PP.accent:'transparent'}`,transition:'background 0.1s'}}
-                    onMouseEnter={e=>{if(!isActive)e.currentTarget.style.background=PP.paperDk;}}
-                    onMouseLeave={e=>{if(!isActive)e.currentTarget.style.background='transparent';}}>
-                    <div style={{fontSize:15,color:isActive?PP.accent:PP.ink2,
-                      fontFamily:"'Libre Baskerville',Georgia,serif",transition:'color 0.1s'}}>{chain.label}</div>
-                    <div style={{fontSize:12,color:PP.ink4,marginTop:1,fontFamily:"'DM Sans',sans-serif"}}>
-                      {chain.members.slice(0,4).join(' · ')}{chain.members.length>4?' …':''}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </PPSection>
-
-          {/* ④ MACRO OVERLAY */}
-          <PPSection title="Macro Overlay" defaultOpen={false}>
-            <div style={{padding:'4px 0 6px'}}>
-              {macroScenarios.map(sc=>{
-                const isActive=scenarioId===sc.id;
-                return (
-                  <div key={sc.id||'null'} onClick={()=>setScenarioId(sc.id)}
-                    style={{padding:'5px 12px',cursor:'pointer',
-                      background:isActive?PP.accentLt:'transparent',
-                      borderLeft:`3px solid ${isActive?PP.accent:'transparent'}`,transition:'background 0.1s'}}
-                    onMouseEnter={e=>{if(!isActive)e.currentTarget.style.background=PP.paperDk;}}
-                    onMouseLeave={e=>{if(!isActive)e.currentTarget.style.background='transparent';}}>
-                    <div style={{fontSize:15,color:isActive?PP.accent:PP.ink2,
-                      fontFamily:"'Libre Baskerville',Georgia,serif",transition:'color 0.1s'}}>{sc.label}</div>
-                  </div>
-                );
-              })}
-              {scenarioAffected&&(
-                <div style={{margin:'4px 12px 2px',padding:'6px 8px',background:PP.paperDk,border:`1px solid ${PP.rule}`}}>
-                  <div style={{fontSize:12,color:PP.ink4,marginBottom:3,textTransform:'uppercase',
-                    letterSpacing:'0.1em',fontFamily:"'DM Sans',sans-serif"}}>Affected Stocks</div>
-                  <div style={{marginBottom:2}}>{(scenarioAffected.pos||[]).map(t=>(
-                    <span key={t} style={{fontSize:10,color:PP.pos,fontWeight:700,marginRight:6,fontFamily:"'DM Sans',sans-serif"}}>▲{t}</span>
-                  ))}</div>
-                  <div>{(scenarioAffected.neg||[]).map(t=>(
-                    <span key={t} style={{fontSize:10,color:PP.neg,fontWeight:700,marginRight:6,fontFamily:"'DM Sans',sans-serif"}}>▼{t}</span>
-                  ))}</div>
-                </div>
-              )}
-            </div>
-          </PPSection>
-
-        </div>
-      )}
-    </div>
-  );
-}

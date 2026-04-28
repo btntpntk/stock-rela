@@ -1,16 +1,14 @@
-﻿import { useState, useEffect, useCallback, useMemo, useRef, Component, Fragment } from "react";
-import { SigmaContainer } from "@react-sigma/core";
-import "@react-sigma/core/lib/style.css";
-import { createEdgeArrowProgram } from "sigma/rendering";
-import GraphController from "./components/GraphController";
-import { LeftPanel, LeftPanelPaper, RANKED_TICKERS } from "./components/Sidebar";
-import { RightPanel, RightPanelPaper } from "./components/NodeDetail";
+﻿import { useState, useEffect, useCallback, useMemo, useRef, Component } from "react";
+import ThreeCanvas from "./components/ThreeCanvas";
+import { RANKED_TICKERS } from "./components/Sidebar";
+import InstitutionalHeader from "./components/InstitutionalHeader";
+import MacroRegimePanel from "./components/MacroRegimePanel";
+import QuantFundamentalsPanel from "./components/QuantFundamentalsPanel";
 import NewsStrip from "./pages/NewsPage";
 
-const EdgeArrowLarge = createEdgeArrowProgram({
-  lengthToThicknessRatio: 5,
-  widenessToThicknessRatio: 3.5,
-});
+// Macro reference tickers appended to every /correlations request
+// so MacroRegimePanel always has data for its 6 global factors
+const MACRO_CORREL_TICKERS = ['TLT', 'UUP', 'MCHI', 'GC=F', 'CL=F', '^SET.BK'];
 
 // ── Theme tokens ──────────────────────────────────────────────────────────────
 
@@ -28,26 +26,13 @@ const DARK = {
   bodyFont: "'DM Sans',sans-serif",
 };
 
-const PAPER = {
-  name: 'paper',
-  bg: '#FFF8F2', panel: '#FFF8F2', rail: '#F5EDE0',
-  border: '#C8B8A8', border2: '#D8C8B8',
-  accent: '#0A2540', accent2: '#1A3A5A',
-  txt: '#111111', txt2: '#3A3530', txt3: '#6A6058', txt4: '#A09080',
-  pos: '#1A5C32', neg: '#A80000', gold: '#7A5A10',
-  elevated: '#F5EDE0', selected: '#E6EEF8',
-  navBg: '#0F0F0F', navTxt: '#E8E0D8', navBorder: '#2a2a2a',
-  graphBg: '#F8F4EE',
-  headingFont: "'Libre Baskerville',Georgia,serif",
-  bodyFont: "'DM Sans',sans-serif",
-};
-
 const TWEAK_DEFAULTS = {
-  theme: "paper",
   newsStrip: true,
   defaultMode: "overview",
   panelWidth: 214,
-  accentDark: "#ffdd00",
+  accent: "#6b9fd4",
+  physicsEnabled: false,
+  bloomIntensity: 1.2,
 };
 
 // ── ErrorBoundary ─────────────────────────────────────────────────────────────
@@ -129,37 +114,12 @@ function TickerTape({ T, stocks, marketData, marketPrices }) {
   );
 }
 
-// ── Breadcrumb ────────────────────────────────────────────────────────────────
-
-function Breadcrumb({ T, history, onBack }) {
-  if (!history || history.length < 2) return null;
-  return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 3, overflow: 'hidden', maxWidth: 200 }}>
-      {history.map((h, i) => (
-        <Fragment key={i}>
-          {i > 0 && <span style={{ fontSize: 11, color: T.navBorder }}>›</span>}
-          <span
-            onClick={i < history.length - 1 ? () => onBack(i) : undefined}
-            style={{
-              fontSize: 14, fontFamily: T.bodyFont,
-              color: i === history.length - 1 ? T.accent : '#6A6A60',
-              cursor: i < history.length - 1 ? 'pointer' : 'default',
-              fontWeight: i === history.length - 1 ? 600 : 400,
-              whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis',
-            }}
-          >{h.label}</span>
-        </Fragment>
-      ))}
-    </div>
-  );
-}
 
 // ── SettingsPanel ─────────────────────────────────────────────────────────────
 
 function SettingsPanel({ tweaks, setTweak }) {
   const [open, setOpen] = useState(false);
-  const isDark = tweaks.theme === 'dark';
-  const T = isDark ? DARK : PAPER;
+  const T = DARK;
 
   const rowStyle = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '4px 0' };
   const labelStyle = { fontSize: 11, color: T.txt3, fontFamily: T.bodyFont, letterSpacing: '0.04em' };
@@ -174,28 +134,11 @@ function SettingsPanel({ tweaks, setTweak }) {
       {open && (
         <div style={{
           position: 'absolute', bottom: 34, right: 0, width: 200,
-          background: isDark ? '#0e0e14' : '#FFF8F2',
+          background: '#0e0e14',
           border: `1px solid ${T.border}`, padding: '10px 12px',
           boxShadow: '0 8px 32px rgba(0,0,0,0.25)',
           animation: 'slideUp 0.15s ease',
         }}>
-          {/* Theme */}
-          <div style={sectionStyle}>Theme</div>
-          <div style={rowStyle}>
-            <span style={labelStyle}>Appearance</span>
-            <div style={{ display: 'flex', gap: 4 }}>
-              {['dark', 'paper'].map(v => (
-                <button key={v} onClick={() => setTweak('theme', v)} style={{
-                  padding: '2px 7px', fontSize: 14, fontFamily: T.bodyFont,
-                  border: `1px solid ${tweaks.theme === v ? T.accent : T.border}`,
-                  background: tweaks.theme === v ? T.accent + '22' : 'transparent',
-                  color: tweaks.theme === v ? T.accent : T.txt3,
-                  cursor: 'pointer',
-                }}>{v}</button>
-              ))}
-            </div>
-          </div>
-
           {/* Layout */}
           <div style={sectionStyle}>Layout</div>
           <div style={rowStyle}>
@@ -240,13 +183,43 @@ function SettingsPanel({ tweaks, setTweak }) {
             onChange={e => setTweak('panelWidth', Number(e.target.value))}
           />
 
-          {/* Dark theme */}
-          <div style={sectionStyle}>Dark theme</div>
+          {/* Graph */}
+          <div style={sectionStyle}>Graph</div>
           <div style={rowStyle}>
-            <span style={labelStyle}>Accent colour</span>
+            <span style={labelStyle}>Physics</span>
+            <div
+              onClick={() => setTweak('physicsEnabled', !tweaks.physicsEnabled)}
+              style={{
+                width: 28, height: 14, borderRadius: 7, cursor: 'pointer',
+                background: tweaks.physicsEnabled ? T.accent : T.border,
+                position: 'relative', transition: 'background 0.2s',
+              }}
+            >
+              <div style={{
+                position: 'absolute', top: 2, left: tweaks.physicsEnabled ? 14 : 2,
+                width: 10, height: 10, borderRadius: '50%',
+                background: '#fff', transition: 'left 0.2s',
+              }} />
+            </div>
+          </div>
+          <div style={rowStyle}>
+            <span style={labelStyle}>Bloom</span>
+            <span style={{ fontSize: 14, color: T.txt2, fontFamily: T.bodyFont }}>{tweaks.bloomIntensity.toFixed(1)}</span>
+          </div>
+          <input
+            type="range" className="settings-slider"
+            min={0} max={3} step={0.1}
+            value={tweaks.bloomIntensity}
+            onChange={e => setTweak('bloomIntensity', Number(e.target.value))}
+          />
+
+          {/* Accent */}
+          <div style={sectionStyle}>Accent colour</div>
+          <div style={rowStyle}>
+            <span style={labelStyle}>Colour</span>
             <input
-              type="color" value={tweaks.accentDark}
-              onChange={e => setTweak('accentDark', e.target.value)}
+              type="color" value={tweaks.accent}
+              onChange={e => setTweak('accent', e.target.value)}
               style={{ width: 28, height: 18, border: `1px solid ${T.border}`, cursor: 'pointer', padding: 1 }}
             />
           </div>
@@ -257,15 +230,13 @@ function SettingsPanel({ tweaks, setTweak }) {
         onClick={() => setOpen(o => !o)}
         style={{
           width: 28, height: 28,
-          background: isDark ? '#111215' : '#F5EDE0',
-          border: `1px solid ${isDark ? '#1e2025' : '#C8B8A8'}`,
-          color: isDark ? '#707888' : '#A09080',
+          background: '#111215', border: '1px solid #1e2025', color: '#707888',
           cursor: 'pointer', fontSize: 16,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           transition: 'color 0.1s',
         }}
-        onMouseEnter={e => e.currentTarget.style.color = isDark ? '#8a9ab0' : '#6A6058'}
-        onMouseLeave={e => e.currentTarget.style.color = isDark ? '#707888' : '#A09080'}
+        onMouseEnter={e => e.currentTarget.style.color = '#8a9ab0'}
+        onMouseLeave={e => e.currentTarget.style.color = '#707888'}
       >⚙</button>
     </div>
   );
@@ -276,16 +247,14 @@ function SettingsPanel({ tweaks, setTweak }) {
 export default function App() {
   const [tweaks, setTweak] = useTweaks(TWEAK_DEFAULTS);
 
-  const T = useMemo(() => {
-    const base = tweaks.theme === 'paper' ? PAPER : DARK;
-    if (tweaks.theme === 'dark') return { ...base, accent: tweaks.accentDark, accent2: tweaks.accentDark + '80' };
-    return base;
-  }, [tweaks.theme, tweaks.accentDark]);
+  const T = useMemo(() => ({
+    ...DARK, accent: tweaks.accent, accent2: tweaks.accent + '80',
+  }), [tweaks.accent]);
 
   useEffect(() => {
-    document.body.className = `theme-${tweaks.theme}`;
+    document.body.className = 'theme-dark';
     document.body.style.fontFamily = T.bodyFont;
-  }, [tweaks.theme, T.bodyFont]);
+  }, [T.bodyFont]);
 
   // Data
   const [rawData,    setRawData]    = useState(null);
@@ -298,9 +267,11 @@ export default function App() {
   const [backendReady,    setBackendReady]    = useState(false);
   const [startupData,     setStartupData]     = useState(null);
   const [marketPrices,    setMarketPrices]    = useState({});
+  const [sparklines,      setSparklines]      = useState({});
   const [analysisData,    setAnalysisData]    = useState(null);
   const [analysisLoading, setAnalysisLoading] = useState(false);
   const [analysisError,   setAnalysisError]   = useState(null);
+  const [correlations,    setCorrelations]    = useState(null);
   const pollTimer = useRef(null);
 
   useEffect(() => {
@@ -321,6 +292,10 @@ export default function App() {
             .then(r2 => r2.ok ? r2.json() : {})
             .then(pd => { if (!cancelled) setMarketPrices(pd); })
             .catch(() => {});
+          fetch(`http://localhost:8000/sparklines?tickers=${MACRO_SYMS.join(',')}`)
+            .then(r2 => r2.ok ? r2.json() : {})
+            .then(sl => { if (!cancelled) setSparklines(sl); })
+            .catch(() => {});
         } else {
           pollTimer.current = setTimeout(poll, 3000);
         }
@@ -331,6 +306,14 @@ export default function App() {
     poll();
     return () => { cancelled = true; clearTimeout(pollTimer.current); };
   }, []);
+
+  const fetchCorrelations = useCallback(async (tickers) => {
+    if (!backendReady || !tickers?.length) return;
+    try {
+      const r = await fetch(`http://localhost:8000/correlations?tickers=${tickers.join(',')}`);
+      if (r.ok) setCorrelations(await r.json());
+    } catch {}
+  }, [backendReady]);
 
   const fetchAnalysis = useCallback(async (tickerFull) => {
     if (!backendReady || !tickerFull) return;
@@ -389,6 +372,24 @@ export default function App() {
     [rawData]
   );
 
+  // Per-ticker mean sentiment: POSITIVE=1, NEUTRAL=0, NEGATIVE=-1
+  const sentimentMap = useMemo(() => {
+    const items = Array.isArray(newsData) ? newsData
+      : Array.isArray(newsData?.articles) ? newsData.articles : [];
+    const acc = {};
+    items.forEach(n => {
+      const ticker = (n.ticker_source || n.ticker || '').replace('.BK', '');
+      if (!ticker) return;
+      const score = n.sentiment === 'POSITIVE' ? 1 : n.sentiment === 'NEGATIVE' ? -1 : 0;
+      if (!acc[ticker]) acc[ticker] = { sum: 0, count: 0 };
+      acc[ticker].sum += score;
+      acc[ticker].count += 1;
+    });
+    const out = {};
+    Object.entries(acc).forEach(([k, v]) => { out[k] = v.sum / v.count; });
+    return out;
+  }, [newsData]);
+
   useEffect(() => {
     if (!search.trim()) { setSearchResults([]); return; }
     const q = search.toLowerCase();
@@ -436,7 +437,21 @@ export default function App() {
     setActiveStockId(nodeId);
     navigate('ego', nodeId, undefined, clean);
     fetchAnalysis(nodeId);
-  }, [rawData, navigate, fetchAnalysis]);
+    // Fetch correlations for ego stock + direct neighbours
+    if (rawData) {
+      const relEdges = rawData.edges.filter(e =>
+        (e.source === nodeId || e.target === nodeId) &&
+        !["CHAIN_MEMBER", "FEEDS_INTO", "ROOT_MACRO", "CAT_CHAIN"].includes(e.relType)
+      );
+      const peerIds = relEdges.map(e => e.source === nodeId ? e.target : e.source);
+      const peerTickers = [...new Set([nodeId, ...peerIds])]
+        .map(id => rawData.nodes.find(n => n.id === id)?.ticker)
+        .filter(Boolean)
+        .map(t => t.endsWith('.BK') ? t : t + '.BK');
+      const allTickers = [...new Set([...peerTickers, ...MACRO_CORREL_TICKERS])];
+      if (allTickers.length) fetchCorrelations(allTickers);
+    }
+  }, [rawData, navigate, fetchAnalysis, fetchCorrelations]);
 
   const setMode = useCallback((m) => {
     const labels = { overview: 'Overview', chain: 'Chain', ego: selectedStock || 'Ego' };
@@ -483,213 +498,45 @@ export default function App() {
     }
   }, [navigate, fetchAnalysis]);
 
-  const isDark = tweaks.theme === 'dark';
-  const PanelLeft  = isDark ? LeftPanel      : LeftPanelPaper;
-  const PanelRight = isDark ? RightPanel     : RightPanelPaper;
-
-  const sigmaSettings = useMemo(() => ({
-    defaultNodeType: 'circle',
-    defaultEdgeType: 'arrow',
-    edgeProgramClasses: { arrow: EdgeArrowLarge },
-    renderEdgeLabels: false,
-    labelFont: 'Libre Baskerville, Georgia, serif',
-    labelSize: 12,
-    labelWeight: isDark ? '500' : '600',
-    labelColor: { color: isDark ? '#8a9ab0' : '#6A6058' },
-    labelDensity: 1.0,
-    labelGridCellSize: 100,
-    labelRenderedSizeThreshold: 4,
-    zoomingRatio: 1.5,
-    minCameraRatio: 0.001,
-    maxCameraRatio: 20,
-    allowInvalidContainer: true,
-  }), [isDark]);
 
   return (
     <div style={{
       height: '100vh', display: 'flex', flexDirection: 'column', overflow: 'hidden',
-      fontFamily: T.bodyFont, animation: 'themeSwitch 0.25s ease',
+      fontFamily: T.bodyFont,
     }}>
 
-      {/* ══ NAV BAR ══ */}
-      <div style={{
-        height: 42, background: T.navBg, borderBottom: `1px solid ${T.navBorder}`,
-        display: 'flex', alignItems: 'stretch', flexShrink: 0, zIndex: 20,
-      }}>
+      {/* ══ ROW 0 — INSTITUTIONAL HEADER ══ */}
+      <InstitutionalHeader
+        selectedStock={selectedStock}
+        marketPrices={marketPrices}
+        startupData={startupData}
+        analysisData={analysisData}
+        graphMode={graphMode}
+        setMode={setMode}
+        search={search}
+        setSearch={setSearch}
+        showSearch={showSearch}
+        setShowSearch={setShowSearch}
+        searchResults={searchResults}
+        onSelectStock={selectStock}
+      >
+        <TickerTape T={T} stocks={stockNodes} marketData={marketData} marketPrices={marketPrices} />
+      </InstitutionalHeader>
 
-        {/* Masthead */}
-        <div style={{
-          display: 'flex', alignItems: 'center', padding: '0 16px', gap: 8,
-          borderRight: `1px solid ${T.navBorder}`, flexShrink: 0,
-        }}>
-          <div>
-            <div style={{
-              fontSize: isDark ? 10 : 11, fontWeight: 700,
-              letterSpacing: isDark ? '0.18em' : '0.14em',
-              color: T.navTxt, textTransform: 'uppercase',
-              fontFamily: T.headingFont, lineHeight: 1,
-            }}>SET Relations</div>
-            {!isDark && (
-              <div style={{
-                fontSize: 9, color: '#505045', letterSpacing: '0.12em',
-                marginTop: 2, fontFamily: T.bodyFont, textTransform: 'uppercase',
-              }}>
-                {new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Mode pills */}
-        <div style={{
-          display: 'flex', alignItems: 'center', gap: 3, padding: '0 12px',
-          borderRight: `1px solid ${T.navBorder}`, flexShrink: 0,
-        }}>
-          {[['overview', 'Overview'], ['chain', 'Chain'], ['ego', 'Ego']].map(([id, label]) => {
-            const isAct = graphMode === id;
-            return (
-              <button key={id} onClick={() => setMode(id)} style={{
-                padding: '3px 10px', cursor: 'pointer', fontFamily: T.bodyFont,
-                fontSize: 14, fontWeight: 700, letterSpacing: '0.06em', textTransform: 'uppercase',
-                border: isDark
-                  ? `1px solid ${isAct ? T.accent2 : T.border}`
-                  : `1px solid ${isAct ? '#E8E0D8' : '#444'}`,
-                background: isDark
-                  ? (isAct ? T.accent2 : 'transparent')
-                  : (isAct ? '#E8E0D8' : 'transparent'),
-                color: isDark
-                  ? (isAct ? T.accent : '#6A6A60')
-                  : (isAct ? T.navBg : '#6A6A60'),
-                transition: 'all 0.12s',
-              }}>{label}</button>
-            );
-          })}
-        </div>
-
-        {/* Breadcrumb */}
-        {navHistory.length > 1 && (
-          <div style={{
-            display: 'flex', alignItems: 'center', padding: '0 10px',
-            borderRight: `1px solid ${T.navBorder}`, flexShrink: 0,
-          }}>
-            <Breadcrumb T={T} history={navHistory} onBack={goBack} />
-          </div>
-        )}
-
-        {/* Search */}
-        <div style={{
-          position: 'relative', display: 'flex', alignItems: 'center',
-          padding: '0 10px', borderRight: `1px solid ${T.navBorder}`, flexShrink: 0,
-        }}>
-          <div style={{
-            display: 'flex', alignItems: 'center', gap: 5,
-            background: '#1a1a1a', border: '1px solid #333', padding: '3px 8px', width: 140,
-          }}>
-            <span style={{ fontSize: 12, color: '#4a4a40' }}>⌕</span>
-            <input
-              value={search}
-              onChange={e => { setSearch(e.target.value); setShowSearch(true); }}
-              onFocus={() => setShowSearch(true)}
-              onBlur={() => setTimeout(() => setShowSearch(false), 150)}
-              placeholder="Search stock…"
-              style={{
-                background: 'transparent', border: 'none', outline: 'none',
-                fontSize: 15, color: '#A09080', width: '100%', fontFamily: T.bodyFont,
-              }}
-            />
-          </div>
-          {showSearch && searchResults.length > 0 && (
-            <div style={{
-              position: 'absolute', top: '100%', left: 10, width: 196,
-              background: T.panel, border: `1px solid ${T.txt}`,
-              zIndex: 50, boxShadow: '0 8px 24px rgba(0,0,0,0.2)', overflow: 'hidden',
-            }}>
-              {searchResults.map(s => {
-                const ticker = s.ticker || s.id.replace('.BK', '');
-                const chg = s.change ?? s.priceChange ?? 0;
-                return (
-                  <div
-                    key={s.id}
-                    onMouseDown={() => { selectStock(ticker); setSearch(''); setShowSearch(false); }}
-                    style={{
-                      padding: '6px 10px', cursor: 'pointer',
-                      borderBottom: `1px solid ${T.border}`,
-                      display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                      transition: 'background 0.1s',
-                    }}
-                    onMouseEnter={e => e.currentTarget.style.background = T.elevated}
-                    onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
-                  >
-                    <div>
-                      <div style={{ fontSize: 12, fontWeight: 700, color: T.txt, fontFamily: T.headingFont }}>{ticker}</div>
-                      <div style={{ fontSize: 10, color: T.txt4, fontFamily: T.bodyFont }}>{s.name || s.label || ''}</div>
-                    </div>
-                    <span style={{ fontSize: 11, fontWeight: 700, fontFamily: T.bodyFont, color: chg >= 0 ? T.pos : T.neg }}>
-                      {chg >= 0 ? '▲' : '▼'}{Math.abs(chg).toFixed(2)}%
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </div>
-
-        {/* Ticker tape */}
-        <div style={{ flex: 1, overflow: 'hidden', borderRight: `1px solid ${T.navBorder}`, height: '100%' }}>
-          <TickerTape T={T} stocks={stockNodes} marketData={marketData} marketPrices={marketPrices} />
-        </div>
-
-        {/* Live pulse + theme toggle */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '0 14px', flexShrink: 0 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-            <div style={{
-              width: 5, height: 5, borderRadius: '50%',
-              background: isDark ? '#2d6644' : '#2d7a4a',
-              animation: 'pulse 2s ease-in-out infinite',
-            }} />
-            <span style={{ fontSize: 10, color: '#505045', letterSpacing: '0.06em', fontFamily: T.bodyFont }}>LIVE</span>
-          </div>
-          <div
-            onClick={() => setTweak('theme', isDark ? 'paper' : 'dark')}
-            style={{
-              padding: '2px 8px', fontSize: 12, fontWeight: 700,
-              letterSpacing: '0.08em', textTransform: 'uppercase', fontFamily: T.bodyFont,
-              border: '1px solid #333', color: '#6A6A60', cursor: 'pointer',
-              transition: 'border-color 0.1s,color 0.1s',
-            }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = '#888'; e.currentTarget.style.color = '#AAA'; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = '#333'; e.currentTarget.style.color = '#6A6A60'; }}
-          >
-            {isDark ? '◑ DARK' : '◐ PAPER'}
-          </div>
-        </div>
-      </div>
-
-      {/* ══ WORKSPACE ══ */}
+      {/* ══ WORKSPACE — 20 / 60 / 20 ══ */}
       <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
 
-        {/* Left panel — swaps on theme */}
-        <PanelLeft
-          rawData={rawData}
-          selectedStock={selectedStock}
-          onSelectStock={selectStock}
-          graphMode={graphMode}
-          setGraphMode={setMode}
-          activeChainId={activeChainId}
-          setActiveChainId={id => {
-            setActiveChainId(id);
-            const chainNode = rawData?.nodes.find(n => n.id === id);
-            navigate('chain', undefined, id, chainNode?.label || id);
-          }}
-          scenarioId={scenarioId}
-          setScenarioId={setScenarioId}
-          panelWidth={tweaks.panelWidth}
+        {/* Left 20% — Macro & Regime */}
+        <MacroRegimePanel
+          ticker={selectedStock}
+          correlations={correlations}
+          analysisData={analysisData}
           startupData={startupData}
-          marketPrices={marketPrices}
           marketData={marketData}
+          width={tweaks.panelWidth}
         />
 
-        {/* Center: graph canvas + news strip */}
+        {/* Center 60% — Graph + optional news strip */}
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
           <div style={{ flex: 1, position: 'relative', overflow: 'hidden', background: T.graphBg }}>
 
@@ -723,20 +570,19 @@ export default function App() {
 
             {!loading && !dataError && rawData && (
               <ErrorBoundary>
-                <SigmaContainer
-                  key={tweaks.theme}
-                  settings={sigmaSettings}
-                  style={{ width: '100%', height: '100%', background: 'transparent' }}
-                >
-                  <GraphController
-                    rawData={rawData}
-                    mode={graphMode}
-                    activeChainId={activeChainId}
-                    activeStockId={activeStockId}
-                    scenarioFactorId={scenarioId}
-                    onNodeAction={handleNodeAction}
-                  />
-                </SigmaContainer>
+                <ThreeCanvas
+                  rawData={rawData}
+                  mode={graphMode}
+                  activeChainId={activeChainId}
+                  activeStockId={activeStockId}
+                  scenarioFactorId={scenarioId}
+                  onNodeAction={handleNodeAction}
+                  marketPrices={marketPrices}
+                  correlations={correlations}
+                  sentimentMap={sentimentMap}
+                  physicsEnabled={tweaks.physicsEnabled}
+                  bloomIntensity={tweaks.bloomIntensity}
+                />
               </ErrorBoundary>
             )}
 
@@ -750,24 +596,18 @@ export default function App() {
           </div>
 
           {tweaks.newsStrip && (
-            <NewsStrip
-              T={T}
-              newsData={newsData}
-              onSelectStock={selectStock}
-            />
+            <NewsStrip T={T} newsData={newsData} onSelectStock={selectStock} />
           )}
         </div>
 
-        {/* Right panel — swaps on theme */}
-        <PanelRight
+        {/* Right 20% — Quant Fundamentals */}
+        <QuantFundamentalsPanel
+          ticker={selectedStock}
+          analysisData={analysisData}
           rawData={rawData}
           newsData={newsData}
-          selectedStock={selectedStock}
-          onFocusEgo={selectStock}
-          onSelectRelated={ticker => { if (ticker) selectStock(ticker); }}
-          analysisData={analysisData}
-          analysisLoading={analysisLoading}
-          analysisError={analysisError}
+          marketPrices={marketPrices}
+          width={tweaks.panelWidth}
         />
       </div>
 

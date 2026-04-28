@@ -67,6 +67,67 @@ async def get_prices(tickers: str = Query(...)):
     return await loop.run_in_executor(None, _fetch)
 
 
+@app.get("/sparklines")
+async def get_sparklines(tickers: str = Query(...), period: str = "5d", interval: str = "1d"):
+    ticker_list = [t.strip() for t in tickers.split(",") if t.strip()]
+    loop = asyncio.get_event_loop()
+
+    def _fetch():
+        result = {}
+        for t in ticker_list:
+            try:
+                hist = yf.Ticker(t).history(period=period, interval=interval)
+                closes = hist["Close"].dropna().tolist()
+                result[t] = [round(v, 2) for v in closes]
+            except Exception:
+                result[t] = []
+        return result
+
+    return await loop.run_in_executor(None, _fetch)
+
+
+@app.get("/correlations")
+async def get_correlations(tickers: str = Query(...), period: str = "30d", interval: str = "1d"):
+    ticker_list = [t.strip() for t in tickers.split(",") if t.strip()]
+    loop = asyncio.get_event_loop()
+
+    def _compute():
+        import pandas as pd
+        import numpy as np
+
+        raw = yf.download(ticker_list, period=period, interval=interval, progress=False, auto_adjust=True)
+        if raw.empty:
+            return {}
+
+        closes = raw["Close"] if isinstance(raw.columns, pd.MultiIndex) else raw
+        closes = closes.dropna(how="all")
+
+        returns = closes.pct_change().dropna(how="all")
+
+        result = {}
+        for col in returns.columns:
+            col_key = str(col)
+            col_returns = returns[col].dropna()
+            correlations = {}
+            for other in returns.columns:
+                if col == other:
+                    continue
+                other_key = str(other)
+                paired = pd.concat([col_returns, returns[other].dropna()], axis=1).dropna()
+                if len(paired) < 5:
+                    continue
+                rho = float(np.corrcoef(paired.iloc[:, 0], paired.iloc[:, 1])[0, 1])
+                correlations[other_key] = round(rho, 4)
+            result[col_key] = correlations
+
+        return result
+
+    try:
+        return await loop.run_in_executor(None, _compute)
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc))
+
+
 class AnalyseRequest(BaseModel):
     ticker: str
 

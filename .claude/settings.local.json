@@ -25,7 +25,12 @@
       "Bash(node -e \"const p = require\\('./node_modules/sigma/package.json'\\); console.log\\(p.version\\)\")",
       "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:5173/)",
       "Bash(python -c \"import json; d = json.load\\(open\\('frontend/public/news_data.json'\\)\\); t = type\\(d\\).__name__; print\\(t\\); print\\(list\\(d.keys\\(\\)\\) if isinstance\\(d, dict\\) else f'list len={len\\(d\\)}'\\)\")",
-      "Bash(python -c \"import json; d = json.load\\(open\\('frontend/public/news_data.json', encoding='utf-8'\\)\\); t = type\\(d\\).__name__; print\\(t\\); print\\(list\\(d.keys\\(\\)\\) if isinstance\\(d, dict\\) else f'list len={len\\(d\\)}'\\)\")"
+      "Bash(python -c \"import json; d = json.load\\(open\\('frontend/public/news_data.json', encoding='utf-8'\\)\\); t = type\\(d\\).__name__; print\\(t\\); print\\(list\\(d.keys\\(\\)\\) if isinstance\\(d, dict\\) else f'list len={len\\(d\\)}'\\)\")",
+      "Bash(head -n 462 \"c:/Users/TRNTTI/Documents/stock-rela/frontend/src/components/Sidebar.jsx\")",
+      "Bash(cp /tmp/sidebar_trimmed.jsx \"c:/Users/TRNTTI/Documents/stock-rela/frontend/src/components/Sidebar.jsx\")",
+      "Bash(head -n 633 \"c:/Users/TRNTTI/Documents/stock-rela/frontend/src/components/NodeDetail.jsx\")",
+      "Bash(cp /tmp/nd_trimmed.jsx \"c:/Users/TRNTTI/Documents/stock-rela/frontend/src/components/NodeDetail.jsx\")",
+      "Bash(npm uninstall *)"
     ]
   }
 }

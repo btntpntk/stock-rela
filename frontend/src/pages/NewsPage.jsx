@@ -29,8 +29,6 @@ export default function NewsStrip({ T, newsData, onSelectStock }) {
     : Array.isArray(newsData?.articles) ? newsData.articles
     : [];
 
-  const isDark = T.name === 'dark';
-
   const sentColor = s => s === 'POSITIVE' ? T.pos : s === 'NEGATIVE' ? T.neg : T.txt3;
   const sentLabel = s => s === 'POSITIVE' ? '▲' : s === 'NEGATIVE' ? '▼' : '—';
 
@@ -52,8 +50,8 @@ export default function NewsStrip({ T, newsData, onSelectStock }) {
   return (
     <div style={{
       flexShrink: 0,
-      borderTop: `${isDark ? '1px' : '2px'} solid ${isDark ? T.border2 : T.txt}`,
-      background: isDark ? '#0a0a0e' : T.elevated,
+      borderTop: `1px solid ${T.border2}`,
+      background: '#0a0a0e',
       transition: 'height 0.22s ease',
       overflow: 'hidden',
       height: open ? 168 : 26,
@@ -76,7 +74,7 @@ export default function NewsStrip({ T, newsData, onSelectStock }) {
         <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
           <div style={{
             width: 5, height: 5, borderRadius: '50%',
-            background: isDark ? '#2d6644' : '#2d7a4a',
+            background: '#2d6644',
             animation: 'pulse 2s ease-in-out infinite',
           }}/>
           <span style={{
@@ -134,13 +132,12 @@ export default function NewsStrip({ T, newsData, onSelectStock }) {
                   gridColumn: featured ? 'span 2' : 'span 1',
                   minHeight: featured ? 60 : brief ? 42 : 50,
                   padding: featured ? '6px 10px' : '5px 8px',
-                  background: T.panel,
+                  background: hovIdx === i ? T.elevated : T.panel,
                   border: `1px solid ${T.border}`,
                   borderLeft: `3px solid ${sentC}`,
                   display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
                   cursor: 'pointer',
                   transition: 'background 0.12s',
-                  background: hovIdx === i ? T.elevated : T.panel,
                 }}
               >
                 {/* Top row */}

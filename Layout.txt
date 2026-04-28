@@ -1,0 +1,26 @@
+=============================================================================================================
+| 📊 TICKER: BCH.BK (Serif) | 💵 PRICE: B9.65 | 🔄 REGIME: RISK-ON (Kalman Filter) | 🎯 OUTPERFORM PROB: 78% |
+=============================================================================================================
+|  1. MACRO & REGIME (20%)      |  2. DYNAMIC ALPHA GRAPH - EGO VIEW (60%)      |  3. QUANT FUNDAMENTALS (20%)
+|-------------------------------|-----------------------------------------------|---------------------------
+| [GLOBAL MACRO CORRELATION]    |                                               | [RELATIVE VALUATION]      
+| Rolling 90-Day Correlation    |         [ Middle East Proxy Node ]            | P/E Ratio: 66.0           
+| US 10Y Yield:  -0.65 (Red)    |               /          \                    | Z-Score: +1.2             
+| Dollar (DXY):  -0.72 (Red)    |     (Lead 30d Edge)  (Correlation Edge)       | Target: Mean Reversion    
+| China PMI:     +0.45 (Green)  |             /              \                  |                           
+|                               |       [KWD/THB]         [Brent Crude]         | ------------------------- 
+| -------------------------     |             \              /                  | [SMART MONEY FLOW (SEC)]  
+| [LOCAL DRIVERS SENSITIVITY]   |              \            /                   | Form 59 (Exec): +2M Shares
+| SSO DRG Weight: +0.88         |                [ W M C ]                      | Form 246-2: None          
+| MedTech Index:  -0.30         |                    |                          | Signal: Strong Accumulate 
+| THB/USD:        -0.60         |              (Thick Edge)                     |                           
+|                               |                    |                          | ------------------------- 
+| -------------------------     |             [ B C H . B K ]                   | [NLP SENTIMENT HEATMAP]   
+| [MARKET REGIME: HMM MODEL]    |           /        |        \                 | Sector News: [-0.4]       
+| Volatility: Low (12.4%)       |          /         |         \                | BCH News:    [+0.6]       
+| Liquidity:  Moderate          |  [SCB.BK]    [Competitors]    [SSO Policy]    | ------------------------- 
+| Status: Bullish / Risk-On     |  (Red Edge)   (Thin Edge)     (Dashed Edge)   | [PREDICTIVE ALERT]        
+|                               |                                               | Alert: SSO Wage Ceiling  
+|                               |     * Latent Nodes Zone (Bottom Corner) * | trigger identified.      
+|                               |     [Isolated Node 1]   [Isolated Node 2]     | Expected Impact: +2.5%    
+=============================================================================================================
