@@ -786,6 +786,546 @@ const fetchCorrelations = useCallback(async (tickers) => {
 
 ---
 
+## 5. 🔁 Duplicate Code & Shared Utility Opportunities
+
+> Every item below is a function, constant, or component that exists in **two or more files** with either identical or near-identical logic. Each duplication is a future maintenance hazard: a bug fixed in one copy stays broken in all others.
+
+---
+
+### [D1] `Section` collapsible wrapper — copy-pasted between two panel components
+**Files:** `MacroRegimePanel.jsx:58–79` and `QuantFundamentalsPanel.jsx:17–34`
+
+Both components define a `Section` function with **identical JSX, identical hover handlers, and identical animation logic**. The only difference is the imported color constant name (`C` in both, but referencing their own local object).
+
+```
+// MacroRegimePanel.jsx:58          // QuantFundamentalsPanel.jsx:17
+function Section({ title, badge,   function Section({ title, badge,
+  defaultOpen = true, children }) {   defaultOpen = true, children }) {
+  const [open, setOpen] =             const [open, setOpen] =
+    useState(defaultOpen);              useState(defaultOpen);
+  return (                            return (
+    <div style={{ borderBottom:…       <div style={{ borderBottom:…
+// 21 lines identical ↓              // 21 lines identical ↓
+```
+
+**Fix — extract to `frontend/src/components/ui/PanelSection.jsx`:**
+
+```jsx
+// frontend/src/components/ui/PanelSection.jsx
+const SANS = "'Inter','DM Sans',sans-serif";
+
+export function PanelSection({ title, badge, defaultOpen = true,
+                               borderColor = '#12121a', accentColor = '#6b9fd4',
+                               elevatedBg  = '#111118', txt3 = '#606878', txt4 = '#252530',
+                               children }) {
+  const [open, setOpen] = useState(defaultOpen);
+  return (
+    <div style={{ borderBottom: `1px solid ${borderColor}` }}>
+      <div
+        onClick={() => setOpen(o => !o)}
+        style={{ display: 'flex', alignItems: 'center', gap: 6,
+                 padding: '6px 11px', cursor: 'pointer', userSelect: 'none' }}
+        onMouseEnter={e => e.currentTarget.style.background = elevatedBg}
+        onMouseLeave={e => e.currentTarget.style.background = 'transparent'}
+      >
+        <span style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.14em',
+                       textTransform: 'uppercase', color: txt3, flex: 1, fontFamily: SANS }}>
+          {title}
+        </span>
+        {badge && (
+          <span style={{ fontSize: 10, color: accentColor,
+                         background: 'rgba(107,159,212,0.1)',
+                         padding: '1px 5px', borderRadius: 8, fontFamily: SANS }}>
+            {badge}
+          </span>
+        )}
+        <span style={{ fontSize: 10, color: txt4,
+                       transform: `rotate(${open ? 0 : 180}deg)`, transition: 'transform 0.2s' }}>
+          ▲
+        </span>
+      </div>
+      {open && <div>{children}</div>}
+    </div>
+  );
+}
+```
+
+---
+
+### [D2] `EGO_COLORS` object — defined twice with **conflicting values**
+**Files:** `graphDataBuilder.js:187–193` and `NodeDetail.jsx:24–31`
+
+```js
+// graphDataBuilder.js               // NodeDetail.jsx
+EGO_COLORS = {                       EGO_COLORS = {
+  MACRO_FACTOR: "#6fcf97",   ← 🟢    MACRO_FACTOR: '#708888',   ← 🩶 DIFFERENT
+  FINANCIAL_RELATION: "#4f8ef7", ←   FINANCIAL_RELATION: '#904080', ← DIFFERENT
+  SUPPLY_CHAIN: "#f7a24f",            SUPPLY_CHAIN: '#508060',       ← DIFFERENT
+  EQUITY_HOLDING: "#bb6bd9",          EQUITY_HOLDING: '#4a6fa5',     ← DIFFERENT
+  COMPETITOR: "#eb5757",              COMPETITOR: '#c87840',         ← DIFFERENT
+};
+```
+
+All five values differ. The graph node colors and the NodeDetail relation colors are visually inconsistent — a MACRO_FACTOR node appears green in the graph but grey in the sidebar panel.
+
+**Fix — single source of truth:**
+
+```js
+// frontend/src/constants/relationColors.js
+export const RELATION_COLORS = {
+  MACRO_FACTOR:       "#6fcf97",
+  FINANCIAL_RELATION: "#4f8ef7",
+  SUPPLY_CHAIN:       "#f7a24f",
+  EQUITY_HOLDING:     "#bb6bd9",
+  COMPETITOR:         "#eb5757",
+  FEEDS_INTO:         "#6a8060",
+};
+// Import in graphDataBuilder.js, NodeDetail.jsx, and ForceGraph3D.jsx
+```
+
+---
+
+### [D3] `SKIP_REL` and `CAT_ORDER` — defined twice, `CAT_ORDER` has a different sequence
+**Files:** `graphDataBuilder.js:203–204` and `NodeDetail.jsx:42–45`
+
+```js
+// graphDataBuilder.js:203          // NodeDetail.jsx:45
+const CAT_ORDER = [                  const CAT_ORDER = [
+  "COMPETITOR",                        'COMPETITOR',
+  "FINANCIAL_RELATION",   ← 2nd        'SUPPLY_CHAIN',      ← 2nd (swapped!)
+  "SUPPLY_CHAIN",         ← 3rd        'FINANCIAL_RELATION',← 3rd (swapped!)
+  "EQUITY_HOLDING",                    'EQUITY_HOLDING',
+  "MACRO_FACTOR",                      'MACRO_FACTOR',
+];                                   ];
+```
+
+The graph ego view and the NodeDetail relations panel display categories in **different orders** because they each define the array independently. This is a subtle visual inconsistency that was introduced by copy-paste drift.
+
+```js
+// frontend/src/constants/relationColors.js  (extend the file from D2)
+export const CAT_ORDER = [
+  "COMPETITOR", "FINANCIAL_RELATION", "SUPPLY_CHAIN", "EQUITY_HOLDING", "MACRO_FACTOR",
+];
+export const SKIP_REL = new Set([
+  "CHAIN_MEMBER", "FEEDS_INTO", "MACRO_CHAIN", "ROOT_CAT", "CAT_MACRO", "CAT_CHAIN", "ROOT_MACRO",
+]);
+```
+
+---
+
+### [D4] Bidirectional bar — the same 8-line JSX pattern appears in 5 places
+**Files:**
+- `MacroRegimePanel.jsx:97–107` (inside `CorrelRow`)
+- `QuantFundamentalsPanel.jsx:62–73` (inside `SentBarRow`)
+- `QuantFundamentalsPanel.jsx:226–236` (Z-score bar, inline)
+- `NodeDetail.jsx:499–507` (NLP bar, inline in news loop)
+- `NodeDetail.jsx:635–641` (Z-score bar, inline in analysis tab)
+
+All five instances render identical HTML structure: a `position:relative` container, `overflow:hidden`, a colored fill div whose `left` and `width` are computed from a signed scalar, and a centered midpoint tick.
+
+**Fix — one shared primitive:**
+
+```jsx
+// frontend/src/components/ui/BiBar.jsx
+export function BiBar({ value, maxAbs = 1, color, bgColor = '#1a1a22', height = 3 }) {
+  const clipped = Math.min(Math.abs(value ?? 0) / maxAbs, 1);
+  const pct     = clipped * 50;
+  return (
+    <div style={{ height, background: bgColor, borderRadius: 2,
+                  position: 'relative', overflow: 'hidden' }}>
+      {value != null && (
+        <div style={{
+          position: 'absolute',
+          left:  value >= 0 ? '50%' : `${50 - pct}%`,
+          width: `${pct}%`,
+          height: '100%', background: color, borderRadius: 2,
+        }} />
+      )}
+      <div style={{ position: 'absolute', left: '50%', top: 0,
+                    bottom: 0, width: 1, background: '#12121a' }} />
+    </div>
+  );
+}
+// Usage: <BiBar value={rho} maxAbs={1} color={rhoColor(rho)} />
+//        <BiBar value={zScore} maxAbs={3} color={zColor} />
+//        <BiBar value={sentScore} maxAbs={1} color={sentColor} height={3} />
+```
+
+---
+
+### [D5] Z-score calculation — implemented independently in two components with different thresholds
+**Files:** `NodeDetail.jsx:618–623` and `QuantFundamentalsPanel.jsx:111–119`
+
+```js
+// NodeDetail.jsx                   // QuantFundamentalsPanel.jsx
+const z = (p - ep) / atr;           const zScore = (price - entryP) / atr;
+
+// Threshold for "Overbought":       // Threshold for "Overbought":
+z > 2 → 'Overbought'                zScore > 1.5 → 'Overbought'
+z > 1 → 'Extended'                  zScore > 0.5 → 'Extended'
+```
+
+The thresholds are **different** (NodeDetail uses ±2/±1, QuantFundamentals uses ±1.5/±0.5). Two panels will show different labels for the same stock at the same z-score.
+
+**Fix — shared utility function:**
+
+```js
+// frontend/src/utils/quant.js
+export function calcZScore(price, entry, atr) {
+  if (price == null || entry == null || !atr || atr <= 0) return null;
+  return (price - entry) / atr;
+}
+
+export function zScoreLabel(z) {
+  if (z == null) return '—';
+  if (z >  2.0) return 'Overbought';
+  if (z >  1.0) return 'Extended';
+  if (z < -2.0) return 'Oversold';
+  if (z < -1.0) return 'Discounted';
+  return 'Near Mean';
+}
+
+export function zScoreColor(z, colors) {
+  if (z == null) return colors.txt3;
+  if (Math.abs(z) > 2.0) return z > 0 ? colors.neg : colors.pos;
+  if (Math.abs(z) > 1.0) return z > 0 ? '#e0a050' : '#87d4a8';
+  return colors.txt2;
+}
+```
+
+---
+
+### [D6] Sentiment score normalisation — three different implementations with inconsistent scales
+**Files:** `App.jsx:383`, `NodeDetail.jsx:492–494`, `QuantFundamentalsPanel.jsx:166–168`
+
+```js
+// App.jsx (sentimentMap — used by ForceGraph3D)
+POSITIVE → +1.0,  NEGATIVE → -1.0
+
+// NodeDetail.jsx and QuantFundamentalsPanel.jsx
+POSITIVE → +0.7,  NEGATIVE → -0.7
+```
+
+`sentimentMap` passed to the graph uses ±1.0, but the same panel display code uses ±0.7. A stock with `POSITIVE` sentiment will show `+1.00` on the ForceGraph edge (via sentimentMap) but `+0.70` in the NLP panel. They describe the same data on two different scales.
+
+**Fix — one canonical function:**
+
+```js
+// frontend/src/utils/quant.js  (extend from D5)
+export function normaliseSentiment(article) {
+  if (article.sentiment_score != null) return article.sentiment_score;
+  if (article.sentiment === 'POSITIVE') return 0.7;
+  if (article.sentiment === 'NEGATIVE') return -0.7;
+  return 0;
+}
+// App.jsx sentimentMap should also use this:
+const score = normaliseSentiment(n);  // consistent ±0.7 for enum
+```
+
+---
+
+### [D7] Ticker normalisation `.replace('.BK', '')` — appears **19 times** across 7 files
+
+```
+MacroRegimePanel.jsx  : lines 29, 155, 165, 207
+ForceGraph3D.jsx      : lines 24, 25, 49, 50, 57, 58, 198
+App.jsx               : lines 401, 431, 449
+NodeDetail.jsx        : lines 89, 453
+QuantFundamentalsPanel: lines 160, 165, 202, 307
+Sidebar.jsx           : lines 14, 60
+graphDataBuilder.js   : lines 138, 258
+```
+
+No shared utility. Any change to ticker normalisation rules (e.g., handling `".NS"` for NSE, or `".SG"` for SGX) requires hunting down every site.
+
+**Fix:**
+
+```js
+// frontend/src/utils/ticker.js
+export const cleanTicker  = t  => (t  ?? '').replace(/\.(BK|NS|SG|HK)$/i, '');
+export const withBK       = t  => cleanTicker(t) + '.BK';
+export const isBKTicker   = t  => t?.endsWith('.BK') ?? false;
+```
+
+---
+
+### [D8] `DKSpark` and `RPSpark` — two sparkline SVG components with identical maths
+**Files:** `Sidebar.jsx:153–161` and `NodeDetail.jsx:147–163`
+
+```js
+// Sidebar.jsx — DKSpark            // NodeDetail.jsx — RPSpark
+const mx=Math.max(...data),          const mx=Math.max(...data),
+      mn=Math.min(...data),                mn=Math.min(...data),
+      rng=mx-mn||1;                        rng=mx-mn||1;
+const pts=data.map((v,i)=>           const pts=data.map((v,i)=>
+  `${(i/(data.length-1))*w},           `${(i/(data.length-1))*w},
+   ${h-((v-mn)/rng)*(h-3)-1.5}`)       ${h-((v-mn)/rng)*(h-4)-2}`)
+  .join(' ');                           .join(' ');
+// DKSpark: polyline only            // RPSpark: polyline + gradient fill polygon
+```
+
+The only difference is RPSpark adds an `<area>` polygon with a gradient fill. This can be one component with a `showFill` prop.
+
+**Fix:**
+
+```jsx
+// frontend/src/components/ui/Sparkline.jsx
+export function Sparkline({ data, color, w = 52, h = 20, showFill = false }) {
+  if (!data || data.length < 2) return null;
+  const mn  = data.reduce((a, v) => v < a ? v : a,  Infinity);
+  const mx  = data.reduce((a, v) => v > a ? v : a, -Infinity);
+  const rng = mx - mn || 1;
+  const pts = data.map((v, i) =>
+    `${(i / (data.length - 1)) * w},${h - ((v - mn) / rng) * (h - 4) - 2}`
+  ).join(' ');
+  const gradId = `spark-${color.replace(/[^a-z0-9]/gi, '')}`;
+  return (
+    <svg width={w} height={h} style={{ display: 'block', overflow: 'visible' }}>
+      {showFill && (
+        <defs>
+          <linearGradient id={gradId} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stopColor={color} stopOpacity="0.22" />
+            <stop offset="100%" stopColor={color} stopOpacity="0" />
+          </linearGradient>
+        </defs>
+      )}
+      {showFill && (
+        <polygon points={`0,${h} ${pts} ${w},${h}`} fill={`url(#${gradId})`} />
+      )}
+      <polyline points={pts} fill="none" stroke={color}
+                strokeWidth="1.4" strokeLinejoin="round" />
+    </svg>
+  );
+}
+```
+
+---
+
+### [D9] Theme color constants — 6 independent copies of the same palette
+**Files:** `App.jsx`, `Sidebar.jsx`, `NodeDetail.jsx`, `MacroRegimePanel.jsx`, `QuantFundamentalsPanel.jsx`, `InstitutionalHeader.jsx`
+
+Each file defines its own local color object (`DARK`, `DK`, `RP`, `C`, `T`). The hex values are mostly the same but with small drift:
+
+| Token       | App.jsx    | Sidebar.jsx | NodeDetail | MacroRegime | QuantFund  |
+|-------------|-----------|-------------|------------|-------------|-----------|
+| `panel`     | `#111215` | `#111215`   | `#111215`  | `#0d0d12`  | `#0d0d12` |
+| `border`    | `#1e2025` | `#1e2025`   | `#1e2025`  | `#1a1a22`  | `#1a1a22` |
+| `border2`   | `#16161e` | `#16161e`   | `#16161e`  | `#12121a`  | `#12121a` |
+| `txt3`      | `#707888` | `#707888`   | `#707888`  | `#606878`  | `#606878` |
+
+The new panel components (MacroRegimePanel, QuantFundamentalsPanel) use `#0d0d12` for panel background while the old panels use `#111215` — causing a visible colour discontinuity between left/right panels and the center sidebar header.
+
+**Fix — single theme file:**
+
+```js
+// frontend/src/theme.js
+export const THEME = {
+  // Backgrounds
+  bg:        '#0c0c0f',
+  panel:     '#0d0d12',   // unified — use this everywhere
+  elevated:  '#111118',
+  rail:      '#090910',
+  selected:  '#0e1828',
+  // Borders
+  border:    '#1a1a22',
+  border2:   '#12121a',
+  // Text
+  txt:       '#dce4f0',
+  txt2:      '#8a9ab0',
+  txt3:      '#606878',
+  txt4:      '#252530',
+  // Semantic
+  accent:    '#6b9fd4',
+  accent2:   '#3d5080',
+  pos:       '#4caf76',
+  neg:       '#e05252',
+  gold:      '#c8a040',
+  warn:      '#d4903a',
+  graphBg:   '#0c0c10',
+  // Typography
+  serif:     "'Playfair Display','Libre Baskerville',Georgia,serif",
+  sans:      "'Inter','DM Sans',sans-serif",
+};
+```
+
+All 6 component files would `import { THEME as C } from '../theme'` and remove their local constant.
+
+---
+
+### [D10] `getRho` vs `findRho` — two correlation lookup helpers with overlapping logic
+**Files:** `ForceGraph3D.jsx:20–27` and `MacroRegimePanel.jsx:27–37`
+
+```js
+// ForceGraph3D.jsx — symmetric lookup between two tickers
+function getRho(correlations, tickerA, tickerB) {
+  const a = tickerA.replace(".BK", "");
+  const b = tickerB.replace(".BK", "");
+  return correlations[a]?.[b] ?? correlations[a]?.[b + ".BK"]
+      ?? correlations[a + ".BK"]?.[b] ?? correlations[b]?.[a]
+      ?? correlations[b + ".BK"]?.[a];
+}
+
+// MacroRegimePanel.jsx — lookup of one ticker against a list of possible symbol names
+function findRho(correlations, ticker, syms) {
+  const t   = ticker.replace('.BK', '');
+  const tBK = t + '.BK';
+  const row = correlations[t] ?? correlations[tBK] ?? {};
+  for (const s of syms) {
+    const v = row[s] ?? row[s.replace('.BK', '')] ?? row[s + '.BK'];
+    if (v !== undefined && v !== null) return v;
+  }
+  return null;
+}
+```
+
+`findRho` with a single-element `syms` array is equivalent to `getRho`. Both normalise ticker formats. The normalisation logic should be shared.
+
+**Fix — one unified function:**
+
+```js
+// frontend/src/utils/ticker.js  (extend from D7)
+export function lookupRho(correlations, tickerA, candidates) {
+  if (!correlations || !tickerA) return null;
+  const a   = cleanTicker(tickerA);
+  const aBK = a + '.BK';
+  const row = correlations[a] ?? correlations[aBK] ?? {};
+  for (const b of candidates) {
+    const bClean = cleanTicker(b);
+    const v = row[b] ?? row[bClean] ?? row[bClean + '.BK'];
+    if (v != null) return v;
+  }
+  // Symmetric fallback — check if 'a' appears as a value key for any candidate
+  for (const b of candidates) {
+    const bClean = cleanTicker(b);
+    const bRow   = correlations[b] ?? correlations[bClean] ?? correlations[bClean + '.BK'] ?? {};
+    const v      = bRow[a] ?? bRow[aBK];
+    if (v != null) return v;
+  }
+  return null;
+}
+// Replace getRho(corr, A, B)        → lookupRho(corr, A, [B])
+// Replace findRho(corr, ticker, []) → lookupRho(corr, ticker, syms)
+```
+
+---
+
+### [D11] `fmtPrice` — price formatting inconsistent across files
+**Files:**
+- `Sidebar.jsx:17–20` → `p >= 1000 ? p.toFixed(0) : p.toFixed(2)` but named `fmtPrice`
+- `InstitutionalHeader.jsx:86` → same logic, inline
+- `NodeDetail.jsx:247, 371` → always `price.toFixed(2)` — ignores the ≥1000 case
+- `QuantFundamentalsPanel.jsx` → uses `eps.toFixed(2)` directly
+
+```js
+// frontend/src/utils/quant.js
+export function fmtPrice(p, currency = '฿') {
+  if (p == null) return '—';
+  const str = p >= 1000 ? p.toFixed(0) : p >= 10 ? p.toFixed(2) : p.toFixed(3);
+  return currency ? `${currency}${str}` : str;
+}
+export const fmtPct = (v, decimals = 2) =>
+  v == null ? '—' : `${v >= 0 ? '+' : ''}${v.toFixed(decimals)}%`;
+```
+
+---
+
+### [D12] `Row` / `SensRow` / `MetRow` / `RegimeBadge` — four label-value pair components doing the same thing
+**Files:**
+- `NodeDetail.jsx:569–577` → `Row` (inline in analysis tab, label + Serif value)
+- `MacroRegimePanel.jsx:111–124` → `SensRow` (label + signed Serif value)
+- `MacroRegimePanel.jsx:127–134` → `RegimeBadge` (label + colored value, no border)
+- `QuantFundamentalsPanel.jsx:37–49` → `MetRow` (label + Serif value)
+
+All four render a flex row with a label on the left and a value on the right. The only variations are: border or no border, font size, and signed prefix. One component with props handles all cases:
+
+```jsx
+// frontend/src/components/ui/KVRow.jsx
+export function KVRow({ label, value, color, serif = true, signed = false,
+                        noBorder = false, fontSize = 13, padding = '4px 11px' }) {
+  const displayVal = value == null ? '—'
+    : signed && typeof value === 'number' ? `${value >= 0 ? '+' : ''}${value.toFixed(2)}`
+    : String(value);
+  return (
+    <div style={{
+      display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+      padding,
+      borderBottom: noBorder ? 'none' : '1px solid #12121a',
+    }}>
+      <span style={{ fontSize: 10, color: '#8a9ab0', fontFamily: "'Inter','DM Sans',sans-serif" }}>
+        {label}
+      </span>
+      <span style={{
+        fontSize, fontWeight: 700, color: color ?? '#dce4f0',
+        fontFamily: serif ? "'Playfair Display',Georgia,serif" : "'Inter',sans-serif",
+      }}>
+        {displayVal}
+      </span>
+    </div>
+  );
+}
+```
+
+---
+
+### [D13] `MiniCandles` uses unseeded `Math.random()` — candles re-randomise on every re-render
+**File:** `NodeDetail.jsx:176–215`
+
+```js
+function MiniCandles({ price }) {
+  const [candles] = useState(() => {
+    const out = []; let p = (price||100) * 0.92;
+    for (let i = 0; i < 16; i++) {
+      const o = p + (Math.random() - 0.48) * 2;   // ← unseeded random
+```
+
+`useState(() => ...)` initialises once per mount so candles don't change on re-render — but they change every time the component unmounts and remounts (e.g., switching stocks). Candle data should be derived from real price history (from `priceData` prop) rather than random generation.
+
+**Improved approach:** Use `priceData` (already computed in `useRightPanelData`) instead of mock candles, and derive OHLC from the sparkline values:
+
+```js
+// In useRightPanelData: already computes priceData as a price array
+// MiniCandles should receive priceData and render real sparkline data
+// or use seeded random: mulberry32(hashStr(stockNode.id + price))
+```
+
+---
+
+### [D14] `fmtPub` date formatter and similar date logic not shared with `NewsPage.jsx`
+**File:** `NodeDetail.jsx:58–64`
+
+`NodeDetail.jsx` defines `fmtPub(n)` which handles `published_at` as Unix timestamp or ISO string. `NewsPage.jsx` likely has its own inline date formatting. Any change to the date format must be applied in both places.
+
+Move to `frontend/src/utils/format.js`:
+
+```js
+export function fmtPublished(article) {
+  const ts = article.published_at;
+  if (!ts) return article.time || article.published || '';
+  try {
+    const d = new Date(typeof ts === 'number' ? ts * 1000 : ts);
+    return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' });
+  } catch { return ''; }
+}
+```
+
+---
+
+### Summary of Proposed Shared Modules
+
+| New File | Consolidates | Touches |
+|----------|-------------|---------|
+| `src/theme.js` | 6× color constant objects | Every component file |
+| `src/constants/relationColors.js` | `EGO_COLORS`×2, `CAT_ORDER`×2, `SKIP_REL`×2 | `graphDataBuilder`, `NodeDetail`, `ForceGraph3D` |
+| `src/utils/ticker.js` | `.replace('.BK','')` ×19, `getRho`, `findRho` | 7 files |
+| `src/utils/quant.js` | Z-score ×2, `fmtPrice` ×4, `fmtPct` ×6, sentiment norm ×3 | 5 files |
+| `src/utils/format.js` | `fmtPub`, date formatting | `NodeDetail`, `NewsPage` |
+| `src/components/ui/PanelSection.jsx` | `Section` ×2 | `MacroRegimePanel`, `QuantFundamentalsPanel` |
+| `src/components/ui/BiBar.jsx` | Bidirectional bar ×5 | `MacroRegimePanel`, `QuantFundamentalsPanel`, `NodeDetail` |
+| `src/components/ui/Sparkline.jsx` | `DKSpark` + `RPSpark` | `Sidebar`, `NodeDetail` |
+| `src/components/ui/KVRow.jsx` | `Row`/`SensRow`/`RegimeBadge`/`MetRow` ×4 | `NodeDetail`, `MacroRegimePanel`, `QuantFundamentalsPanel` |
+
+---
+
 ## Summary Priority Matrix
 
 | ID  | Area         | Severity | Effort | Action                                           |
@@ -810,3 +1350,18 @@ const fetchCorrelations = useCallback(async (tickers) => {
 | E9  | GPU perf     | 🟢 Low   | Low   | Remove `computeLineDistances` per-frame call    |
 | S3  | Architecture | 🟢 Low   | High  | Web Worker for sentiment/quant math             |
 | S5  | Architecture | 🟢 Low   | High  | WASM physics (future, 500+ nodes)               |
+| **Duplicate Code** ||||
+| D2  | Correctness  | 🔴 Critical | Low | Unify `EGO_COLORS` — all 5 values currently differ between files |
+| D3  | Correctness  | 🔴 Critical | Low | Unify `CAT_ORDER` + `SKIP_REL` — order mismatch causes visual drift |
+| D6  | Correctness  | 🟠 High  | Low   | Unify sentiment scale (±1 vs ±0.7 inconsistency) via `normaliseSentiment()` |
+| D5  | Correctness  | 🟠 High  | Low   | Unify Z-score thresholds — NodeDetail uses ±2/±1, QuantFund uses ±1.5/±0.5 |
+| D9  | Maintenance  | 🟠 High  | Med   | Extract `src/theme.js` — 6 independent color constant objects with drift |
+| D7  | Maintenance  | 🟠 High  | Med   | Extract `src/utils/ticker.js` — `.replace('.BK','')` appears 19 times |
+| D10 | Maintenance  | 🟡 Med   | Low   | Unify `getRho` + `findRho` → `lookupRho` in `ticker.js` |
+| D4  | Maintenance  | 🟡 Med   | Med   | Extract `BiBar` component — bidirectional bar duplicated 5 times |
+| D1  | Maintenance  | 🟡 Med   | Low   | Extract `PanelSection` — `Section` component copy-pasted in 2 files |
+| D8  | Maintenance  | 🟡 Med   | Low   | Extract `Sparkline` — `DKSpark` + `RPSpark` are the same component |
+| D12 | Maintenance  | 🟡 Med   | Med   | Extract `KVRow` — 4 near-identical label-value row components |
+| D11 | Maintenance  | 🟢 Low   | Low   | Extract `fmtPrice`/`fmtPct` utilities — inconsistent formatting in 4 files |
+| D13 | UX           | 🟢 Low   | Low   | `MiniCandles` uses unseeded random — candles change on stock switch |
+| D14 | Maintenance  | 🟢 Low   | Low   | Extract `fmtPublished` — `fmtPub` not shared with `NewsPage.jsx` |
